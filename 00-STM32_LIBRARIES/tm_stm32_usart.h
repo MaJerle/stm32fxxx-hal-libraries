@@ -543,9 +543,10 @@ void TM_USART_SetCustomStringEndCharacter(USART_TypeDef* USARTx, uint8_t Charact
  *         then this function will be called where you can initialize custom pins for USART peripheral.
  * @note   With __weak parameter to prevent link errors if not defined by user
  * @param  *USARTx: Pointer to USARTx peripheral you will use for initialization
+ * @param  AlternateFunction: Alternate function number which should be used for GPIO pins
  * @retval None
  */
-void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx);
+void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx, uint16_t AlternateFunction);
 
 /**
  * @brief  Callback function for receive interrupt on USART1 in case you have enabled custom USART handler mode 

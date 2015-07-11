@@ -175,7 +175,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerAutoReloadValue(TM_DELAY_Timer_t* Timer, uint32_
 /* 1ms function called when systick makes interrupt */
 __weak void TM_DELAY_1msHandler(void) {
   /* NOTE: This function Should not be modified, when the callback is needed,
-           the HAL_HASH_InCpltCallback could be implemented in the user file
+           the TM_DELAY_1msHandler could be implemented in the user file
    */
 }
 

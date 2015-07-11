@@ -371,9 +371,10 @@ void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c) {
 	}
 }
 
-__weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx) {
-	/* Custom user function. */
-	/* In case user needs functionality for custom pins, this function should be declared outside this library */
+__weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx, uint16_t AlternateFunction) { 
+	/* NOTE: This function Should not be modified, when the callback is needed,
+           the TM_USART_InitCustomPinsCallback could be implemented in the user file
+   */
 }
 
 TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx) {
@@ -485,7 +486,7 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART1);
+		TM_USART_InitCustomPinsCallback(USART1, GPIO_AF7_USART1);
 	}
 }
 #endif
@@ -505,7 +506,7 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART2);
+		TM_USART_InitCustomPinsCallback(USART2, GPIO_AF7_USART2);
 	}
 }
 #endif
@@ -530,7 +531,7 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART3);
+		TM_USART_InitCustomPinsCallback(USART3, GPIO_AF7_USART3);
 	}
 }
 #endif
@@ -550,7 +551,7 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART4);
+		TM_USART_InitCustomPinsCallback(UART4, GPIO_AF8_UART4);
 	}
 }
 #endif
@@ -566,7 +567,7 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART5);
+		TM_USART_InitCustomPinsCallback(UART5, GPIO_AF_UART5);
 	}
 }
 #endif
@@ -586,7 +587,7 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART6);
+		TM_USART_InitCustomPinsCallback(USART6, GPIO_AF8_USART6);
 	}
 }
 #endif
@@ -606,7 +607,7 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART7);
+		TM_USART_InitCustomPinsCallback(UART7, GPIO_AF8_UART7);
 	}
 }
 #endif
@@ -621,7 +622,7 @@ void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART8);
+		TM_USART_InitCustomPinsCallback(UART8, GPIO_AF8_UART8);
 	}
 }
 #endif
@@ -771,7 +772,7 @@ static void TM_USART_INT_Init(
 #ifdef USART1
 	if (USARTx == USART1) {
 		/* Enable USART clock */
-		__USART1_CLK_ENABLE();
+		__HAL_RCC_USART1_CLK_ENABLE();
 		
 		/* Init pins */
 		TM_USART1_InitPins(pinspack);
@@ -783,7 +784,7 @@ static void TM_USART_INT_Init(
 #ifdef USART2
 	if (USARTx == USART2) {
 		/* Enable USART clock */
-		__USART2_CLK_ENABLE();
+		__HAL_RCC_USART2_CLK_ENABLE();
 		
 		/* Init pins */
 		TM_USART2_InitPins(pinspack);
@@ -795,7 +796,7 @@ static void TM_USART_INT_Init(
 #ifdef USART3
 	if (USARTx == USART3) {
 		/* Enable USART clock */
-		__USART3_CLK_ENABLE();
+		__HAL_RCC_USART3_CLK_ENABLE();
 		
 		/* Init pins */
 		TM_USART3_InitPins(pinspack);
@@ -807,7 +808,7 @@ static void TM_USART_INT_Init(
 #ifdef UART4
 	if (USARTx == UART4) {
 		/* Enable UART clock */
-		__UART4_CLK_ENABLE();
+		__HAL_RCC_UART4_CLK_ENABLE();
 		
 		/* Init pins */
 		TM_UART4_InitPins(pinspack);
@@ -819,7 +820,7 @@ static void TM_USART_INT_Init(
 #ifdef UART5
 	if (USARTx == UART5) {
 		/* Enable UART clock */
-		__UART5_CLK_ENABLE();
+		__HAL_RCC_UART5_CLK_ENABLE();
 
 		/* Init pins */
 		TM_UART5_InitPins(pinspack);
@@ -831,7 +832,7 @@ static void TM_USART_INT_Init(
 #ifdef USART6
 	if (USARTx == USART6) {
 		/* Enable UART clock */
-		__USART6_CLK_ENABLE();
+		__HAL_RCC_USART6_CLK_ENABLE();
 		
 		/* Init pins */
 		TM_USART6_InitPins(pinspack);
@@ -843,7 +844,7 @@ static void TM_USART_INT_Init(
 #ifdef UART7
 	if (USARTx == UART7) {
 		/* Enable UART clock */
-		__UART7_CLK_ENABLE();
+		__HAL_RCC_UART7_CLK_ENABLE();
 		
 		/* Init pins */
 		TM_UART7_InitPins(pinspack);
@@ -855,7 +856,7 @@ static void TM_USART_INT_Init(
 #ifdef UART8
 	if (USARTx == UART8) {
 		/* Enable UART clock */
-		__UART8_CLK_ENABLE();
+		__HAL_RCC_UART8_CLK_ENABLE();
 
 		/* Init pins */
 		TM_UART8_InitPins(pinspack);

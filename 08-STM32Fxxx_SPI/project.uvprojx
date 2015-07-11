@@ -1516,9 +1516,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3119,9 +3119,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4722,9 +4722,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6325,9 +6325,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7928,9 +7928,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -9531,9 +9531,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -11134,9 +11134,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -12737,9 +12737,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -14340,9 +14340,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -15943,9 +15943,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -17546,9 +17546,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -17810,7 +17810,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -18890,9 +18890,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
