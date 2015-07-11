@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    
- * @version v1.5
+ * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GPIO Library for STM32F4xx and STM32F7xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_GPIO_H
-#define TM_GPIO_H 150
+#define TM_GPIO_H 100
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -54,30 +54,7 @@ extern C {
  * \par Changelog
  *
 @verbatim
- Version 1.5
-  - June 10 2015
-  - Added 2 new functions for getting used GPIO pins
-  
- Version 1.4
-  - April 28, 2015
-  - Added support for PORT locking
-  
- Version 1.3
-  - March 23, 2015
-  - Totally independent from HAL / SPD drivers
-  - Library can be used with any drivers or totally itself
-  
- Version 1.2
-  - March 10, 2015
-  - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
-  - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
-0
- Version 1.1
-  - March 09, 2015
-  - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
-  
  Version 1.0
-  - March 08, 2015
   - Initial release
 @endverbatim
  *

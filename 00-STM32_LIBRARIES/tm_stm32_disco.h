@@ -29,8 +29,9 @@
  */
 #ifndef TM_DISCO_H
 #define TM_DISCO_H 100
+
 /**
- * @addtogroup TM_STM32F4xx_Libraries
+ * @addtogroup TM_STM32F4xx_hAL_Libraries
  * @{
  */
 

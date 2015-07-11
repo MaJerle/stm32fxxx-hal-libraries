@@ -1,5 +1,5 @@
 /**
- * Keil project template
+ * Keil project example for ONEWIRE protocol
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -17,8 +17,12 @@
 #include "defines.h"
 #include "tm_stm32_disco.h"
 #include "tm_stm32_delay.h"
+#include "tm_stm32_onewire.h"
 
-int main(void) {
+/* Onewire structure */
+TM_OneWire_t OW;
+
+int main(void) {	
 	/* Init system clock for maximum system speed */
 	TM_RCC_InitSystem();
 	
@@ -31,15 +35,26 @@ int main(void) {
 	/* Init button */
 	TM_DISCO_ButtonInit();
 	
+	/* Init ONEWIRE port on PB4 pin */
+	TM_OneWire_Init(&OW, GPIOB, GPIO_PIN_4);
+	
+	/* Check if any device is connected */
+	if (TM_OneWire_First(&OW)) {
+		/* Set LED GREEN */
+		TM_DISCO_LedOn(LED_GREEN);
+		
+		/* Search for next devices */
+		do {
+			/* Read rom from device */
+			//TM_OneWire_GetFullROM(&OW, &array_8_bytes[0]);
+		} while (TM_OneWire_Next(&OW));
+	} else {
+		/* Set LED RED */
+		TM_DISCO_LedOn(LED_RED);
+	}
+	
 	while (1) {
-		/* If button pressed */
-		if (TM_DISCO_ButtonPressed()) {
-			/* Turn on ALL leds */
-			TM_DISCO_LedOn(LED_ALL);
-		} else {
-			/* Turn off ALL leds */
-			TM_DISCO_LedOff(LED_ALL);
-		}
+
 	}
 }
 

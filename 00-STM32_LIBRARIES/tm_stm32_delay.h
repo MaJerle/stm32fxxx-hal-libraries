@@ -41,7 +41,7 @@ extern C {
  */
 
 /**
- * @defgroup TM_LIBNAME
+ * @defgroup TM_DELAY
  * @brief    Delay library for STM32Fxxx devices
  * @{
  *
