@@ -8,8 +8,8 @@
  * @website   http://stm32f4-discovery.com
  * @ide       Keil uVision 5
  * @conf      PLL parameters are set in "Options for Target" -> "C/C++" -> "Defines"
- * @packs     STM32F4xx Keil packs version 2.4.0 or greater required
- * @stdperiph STM32F4xx Standard peripheral drivers version 1.5.0 or greater required
+ * @packs     STM32F4xx/STM32F7xx Keil packs are requred with HAL driver support
+ * @stdperiph STM32F4xx/STM32F7xx HAL drivers required
  */
 /* Include core modules */
 #include "stm32fxxx_hal.h"
@@ -22,14 +22,11 @@
 int main(void) {
 	__IO uint32_t i;
 	
-	/* Init system clock */
+	/* Init system clock for maximum system speed */
 	TM_RCC_InitSystem();
 	
 	/* Init HAL layer */
 	HAL_Init();
-	
-	/* Init delay functions */
-	TM_DELAY_Init();
 	
 	/* Init leds */
 	TM_DISCO_LedInit();

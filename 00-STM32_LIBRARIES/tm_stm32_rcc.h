@@ -111,7 +111,7 @@ typedef enum {
  * @note   This function should be called on the start of main program
  * @note   When STM32F7xx target is used, D and I caches are also enabled with this function
  * @param  None
- * @retval None
+ * @retval RCC System status
  */
 TM_RCC_Result_t TM_RCC_InitSystem(void);
 
