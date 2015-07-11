@@ -1,5 +1,5 @@
 /**
- * Keil project template
+ * Keil project template for delay functions
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -33,14 +33,20 @@ int main(void) {
 	/* Init button */
 	TM_DISCO_ButtonInit();
 	
+	/* Init delay */
+	TM_DELAY_Init();
+	
 	while (1) {
+		/* Turn off ALL leds */
+		TM_DISCO_LedToggle(LED_ALL);
+		
 		/* If button pressed */
 		if (TM_DISCO_ButtonPressed()) {
-			/* Turn on ALL leds */
-			TM_DISCO_LedOn(LED_ALL);
+			/* Delayms */
+			Delayms(1000);
 		} else {
-			/* Turn off ALL leds */
-			TM_DISCO_LedOff(LED_ALL);
+			/* Delayus */
+			Delay(100000);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Keil project template
+ * Keil project template for LEDS and buttons on evaluation boards
  *
  * Before you start, select your target, on the right of the "Load" button
  *

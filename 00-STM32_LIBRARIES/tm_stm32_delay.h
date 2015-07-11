@@ -109,13 +109,13 @@ extern C {
 /**
  * @brief  Custom timer structure
  */
-typedef struct {
-	uint32_t ARR;             /*!< Auto reload value */
-	uint32_t AR;              /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
-	uint32_t CNT;             /*!< Counter value, counter counts down */
-	uint8_t CTRL;             /*!< Set to 1 when timer is enabled */
-	void (*Callback)(void *); /*!< Callback which will be called when timer reaches zero */
-	void* UserParameters;     /*!< Pointer to user parameters used for callback function */
+typedef struct _TM_DELAY_Timer_t {
+	uint32_t ARR;                                        /*!< Auto reload value */
+	uint32_t AR;                                         /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
+	uint32_t CNT;                                        /*!< Counter value, counter counts down */
+	uint8_t CTRL;                                        /*!< Set to 1 when timer is enabled */
+	void (*Callback)(struct _TM_DELAY_Timer_t*, void *); /*!< Callback which will be called when timer reaches zero */
+	void* UserParameters;                                /*!< Pointer to user parameters used for callback function */
 } TM_DELAY_Timer_t;
 
 /**
@@ -219,7 +219,7 @@ __STATIC_INLINE void Delayms(uint32_t millis) {
  * @param  *UserParameters: Pointer to void pointer to user parameters used as first parameter in callback function
  * @retval Pointer to allocated timer structure
  */
-TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReloadCmd, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void *), void* UserParameters);
+TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReloadCmd, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(struct _TM_DELAY_Timer_t*, void *), void* UserParameters);
 
 /**
  * @brief  Deletes already allocated timer

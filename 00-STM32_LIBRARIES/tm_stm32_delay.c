@@ -57,7 +57,7 @@ uint32_t TM_DELAY_Init(void) {
 }
 
 
-TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReloadCmd, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void *), void* UserParameters) {
+TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReloadCmd, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(struct _TM_DELAY_Timer_t*, void *), void* UserParameters) {
 	TM_DELAY_Timer_t* tmp;
 	
 	/* Check if available */
@@ -210,7 +210,7 @@ void HAL_IncTick(void) {
 			/* Check if count is zero */
 			if (CustomTimers.Timers[i]->CNT == 0) {
 				/* Call user callback function */
-				CustomTimers.Timers[i]->Callback(CustomTimers.Timers[i]->UserParameters);
+				CustomTimers.Timers[i]->Callback(CustomTimers.Timers[i], CustomTimers.Timers[i]->UserParameters);
 				
 				/* Set new counter value */
 				CustomTimers.Timers[i]->CNT = CustomTimers.Timers[i]->ARR;
