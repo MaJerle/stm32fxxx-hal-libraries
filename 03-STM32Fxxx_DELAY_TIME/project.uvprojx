@@ -1515,6 +1515,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3112,6 +3117,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4711,6 +4721,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6308,6 +6323,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7907,6 +7927,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -9504,6 +9529,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -11103,6 +11133,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -12700,6 +12735,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -14299,6 +14339,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -15896,6 +15941,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -17495,6 +17545,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -17945,7 +18000,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F746xx,USE_HAL_DRIVER,ARM_MATH_CM7,__FPU_PRESENT=1,STM32F7XX,STM32F7_DISCOVERY,HSE_VALUE=25000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLSOURCE=RCC_PLLSOURCE_HSE,RCC_PLLM=25,RCC_PLLN=432,RCC_PLLP=2,RCC_PLLQ=9</Define>
+              <Define>STM32F746xx,USE_HAL_DRIVER,ARM_MATH_CM7,__FPU_PRESENT=1,STM32F7XX,STM32F7_DISCOVERY,HSE_VALUE=25000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLSOURCE=RCC_PLLSOURCE_HSE,RCC_PLLM=25,RCC_PLLN=432,RCC_PLLP=2,RCC_PLLQ=7,</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F7xx\Include;..\00-HAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -18833,6 +18888,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
           </Files>
         </Group>

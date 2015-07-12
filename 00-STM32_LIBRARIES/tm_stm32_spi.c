@@ -246,13 +246,13 @@ void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint32_t count) {
 		SPI_WAIT_TX(SPIx);
 		
 		/* Fill output buffer with data */
-		SPIx->DR = *dataOut++;
+		*(__IO uint8_t *)&SPIx->DR = *dataOut++;
 		
 		/* Wait for SPI to end everything */
 		SPI_WAIT_RX(SPIx);
 		
 		/* Read data register */
-		(void)SPIx->DR;
+		(void)*(__IO uint16_t *)&SPIx->DR;
 	}
 }
 
@@ -265,13 +265,13 @@ void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t* dataIn, uint8_t dummy, uint32_
 		SPI_WAIT_TX(SPIx);
 		
 		/* Fill output buffer with data */
-		SPIx->DR = dummy;
+		*(__IO uint8_t *)&SPIx->DR = dummy;
 		
 		/* Wait for SPI to end everything */
 		SPI_WAIT_RX(SPIx);
 		
 		/* Save data to buffer */
-		*dataIn++ = SPIx->DR;
+		*dataIn++ = *(__IO uint8_t *)&SPIx->DR;
 	}
 }
 
@@ -284,13 +284,13 @@ void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, 
 		SPI_WAIT_TX(SPIx);
 		
 		/* Fill output buffer with data */
-		SPIx->DR = *dataOut++;
+		*(__IO uint16_t *)&SPIx->DR = *dataOut++;
 		
 		/* Wait for SPI to end everything */
 		SPI_WAIT_RX(SPIx);
 		
 		/* Read data register */
-		*dataIn++ = SPIx->DR;
+		*dataIn++ = *(__IO uint16_t *)&SPIx->DR;
 	}
 }
 
@@ -303,13 +303,13 @@ void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint32_t count) {
 		SPI_WAIT_TX(SPIx);
 		
 		/* Fill output buffer with data */
-		SPIx->DR = *dataOut++;
+		*(__IO uint16_t *)&SPIx->DR = *dataOut++;
 		
 		/* Wait for SPI to end everything */
 		SPI_WAIT_RX(SPIx);
 		
 		/* Read data register */
-		(void)SPIx->DR;
+		(void)*(__IO uint16_t *)&SPIx->DR;
 	}
 }
 
@@ -501,6 +501,12 @@ void TM_SPI2_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #if defined(GPIOI)
 	if (pinspack == TM_SPI_PinsPack_3) {
 		TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_0 | GPIO_PIN_2 | GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
+	}
+#endif
+#if defined(GPIOB) && defined(GPIOI)
+	if (pinspack == TM_SPI_PinsPack_4) {
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
+		TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
 	}
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {

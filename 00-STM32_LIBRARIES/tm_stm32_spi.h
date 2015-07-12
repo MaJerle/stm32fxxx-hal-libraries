@@ -60,14 +60,14 @@ extern C {
  *	\par Pinout
  *
 @verbatim
-        |PINS PACK 1            |PINS PACK 2            |PINS PACK 3
-SPIX    |MOSI   MISO    SCK     |MOSI   MISO    SCK     |MOSI   MISO    SCK
-        |                                                    
-SPI1    |PA7    PA6     PA5     |PB5    PB4     PB3     |
-SPI2    |PC3    PC2     PB10    |PB15   PB14    PB13    |PI3    PI2     PI0
-SPI3    |PB5    PB4     PB3     |PC12   PC11    PC10    |
-SPI4    |PE6    PE5     PE2     |PE14   PE13    PE12    |
-SPI5    |PF9    PF8     PF7     |PF11   PH7     PH6     |
+        |PINS PACK 1            |PINS PACK 2            |PINS PACK 3           |PINS PACK 4
+SPIX    |MOSI   MISO    SCK     |MOSI   MISO    SCK     |MOSI   MISO    SCK    |MOSI   MISO    SCK
+        |                                                                           
+SPI1    |PA7    PA6     PA5     |PB5    PB4     PB3     |                      |
+SPI2    |PC3    PC2     PB10    |PB15   PB14    PB13    |PI3    PI2     PI0    |PB15   PB14    PI1
+SPI3    |PB5    PB4     PB3     |PC12   PC11    PC10    |                      |
+SPI4    |PE6    PE5     PE2     |PE14   PE13    PE12    |                      |
+SPI5    |PF9    PF8     PF7     |PF11   PH7     PH6     |                      |
 SPI6    |PG14   PG12    PG13    |
 @endverbatim
  *
@@ -137,6 +137,7 @@ typedef enum {
 	TM_SPI_PinsPack_1 = 0x00, /*!< Select PinsPack1 from Pinout table for specific SPI */
 	TM_SPI_PinsPack_2,        /*!< Select PinsPack2 from Pinout table for specific SPI */
 	TM_SPI_PinsPack_3,        /*!< Select PinsPack3 from Pinout table for specific SPI */
+	TM_SPI_PinsPack_4,        /*!< Select PinsPack4 from Pinout table for specific SPI */
 	TM_SPI_PinsPack_Custom    /*!< Select custom pins for specific SPI, callback will be called, look @ref TM_SPI_InitCustomPinsCallback */
 } TM_SPI_PinsPack_t;
 
