@@ -6,7 +6,7 @@
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   External SDRAM for STM32F429-Discovery or STM324x9-EVAL boards
+ * @brief   External SDRAM for STM32F429-Discovery, STM32F439-EVAL or STM32F7-Discovery boards
  *	
 @verbatim
    ----------------------------------------------------------------------
@@ -45,7 +45,7 @@
  * It supports boards below::
  *  - STM32F429-Discovery:
  *     - 8MB (64Mbit) memory size
- *  - STM32439-EVAL:
+ *  - STM32F439-EVAL:
  *     - 8MB (64Mbit) memory size
  *  - STM32F7-Discovery:
  *     - 8MB (64Mbit) memory size
@@ -57,8 +57,8 @@
  * If you are working with STM324x9-EVAL board, you can add define in defines.h file and enable configuration for SDRAM on this board.
  *
 @verbatim
-//Use SDRAM on STM324x9-EVAL board
-#define SDRAM_USE_STM32439_EVAL
+//Use SDRAM on STM32F439-EVAL board
+#define SDRAM_USE_STM32F439_EVAL
 
 //Use SDRAM on STM32F7-Discovery board
 #define SDRAM_USE_STM32F7_DISCOVERY
@@ -133,8 +133,6 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 #include "attributes.h"
 #include "tm_stm32_gpio.h"
 
-/* Library supports STM324x9_Eval board too */
-
 /**
  * @defgroup TM_SDRAM_Macros
  * @brief    Library defines
@@ -166,10 +164,10 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 /**
  * @}
  */
-#elif defined(SDRAM_USE_STM32439_EVAL) || defined(STM32F439_EVAL)
+#elif defined(SDRAM_USE_STM32F439_EVAL) || defined(STM32F439_EVAL)
 /* Make define */
-#ifndef SDRAM_USE_STM32439_EVAL
-#define SDRAM_USE_STM32439_EVAL
+#ifndef SDRAM_USE_STM32F439_EVAL
+#define SDRAM_USE_STM32F439_EVAL
 #endif
 /**
  * @defgroup TM_SDRAM_STM324x9_EVAL_Macros
@@ -313,13 +311,13 @@ uint8_t TM_SDRAM_Init(void);
  * @brief  Initialize custom pins callback.
  *         It can be used by user to implement custom pins for application if needed
  * @note   This function is called every time @ref TM_SDRAM_Init() function is called
- * @param  None
+ * @param  AlternateFunction: Alternate function to be used when initializing GPIO pins
  * @retval Initialization status:
  *            - 0: User did not initialize custom pins, default will be used, depending on already supported boards
  *            - > 0: User has initialized custom pins, default pins will be ignored
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
-uint8_t TM_SDRAM_InitCustomPinsCallback(void);
+uint8_t TM_SDRAM_InitCustomPinsCallback(uint16_t AlternateFunction);
 
 /**
  * @}

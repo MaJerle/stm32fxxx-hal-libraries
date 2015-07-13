@@ -1879,6 +1879,31 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3890,6 +3915,31 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5903,6 +5953,31 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7914,6 +7989,31 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -9927,6 +10027,31 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -11938,6 +12063,31 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -13951,6 +14101,31 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -15962,6 +16137,31 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -17975,6 +18175,31 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -19987,6 +20212,31 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -20269,7 +20519,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>1</TargetSelection>
+          <TargetSelection>11</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -20283,7 +20533,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -21998,6 +22248,31 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -23752,6 +24027,31 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -24034,7 +24334,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>11</TargetSelection>
+          <TargetSelection>1</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -24048,7 +24348,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
+            <Driver>BIN\UL2CM3.DLL</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -25874,6 +26174,31 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
           </Files>
         </Group>

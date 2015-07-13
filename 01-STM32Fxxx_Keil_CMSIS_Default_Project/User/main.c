@@ -19,6 +19,8 @@
 #include "tm_stm32_delay.h"
 
 int main(void) {
+	__IO uint32_t i = 0;
+	
 	/* Init system clock for maximum system speed */
 	TM_RCC_InitSystem();
 	
@@ -31,15 +33,17 @@ int main(void) {
 	/* Init button */
 	TM_DISCO_ButtonInit();
 	
+	i = 1000;
+	while (i--);
+	
+	i = 100;
+	
 	while (1) {
-		/* If button pressed */
-		if (TM_DISCO_ButtonPressed()) {
-			/* Turn on ALL leds */
-			TM_DISCO_LedOn(LED_ALL);
-		} else {
-			/* Turn off ALL leds */
-			TM_DISCO_LedOff(LED_ALL);
-		}
+		/* Toggle leds */
+		TM_DISCO_LedToggle(LED_ALL);
+		
+		/* Delay 100us */
+		Delay(100);
 	}
 }
 

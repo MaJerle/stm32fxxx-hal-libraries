@@ -153,14 +153,22 @@ uint32_t TM_DELAY_Init(void);
  * @param  micros: Number of microseconds for delay
  * @retval None
  */
-__STATIC_INLINE void Delay(uint32_t micros) {
+__STATIC_INLINE void Delay(__IO uint32_t micros) {
+#if !defined(STM32F0xx)
 	uint32_t start = DWT->CYCCNT;
 	
 	/* Go to number of cycles for system */
-	micros *= (SystemCoreClock / 1000000);
+	micros *= (HAL_RCC_GetHCLKFreq() / 1000000);
 	
 	/* Delay till end */
 	while ((DWT->CYCCNT - start) < micros);
+#else
+	/* Go to clock cycles */
+	micros *= (SystemCoreClock / 1000000) / 5;
+	
+	/* Wait till done */
+	while (micros--);
+#endif
 }
 
 /**

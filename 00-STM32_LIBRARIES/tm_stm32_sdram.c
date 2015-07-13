@@ -142,14 +142,24 @@ uint8_t TM_SDRAM_Init(void) {
 	return 0;
 }
 
+__weak uint8_t TM_SDRAM_InitCustomPinsCallback(uint16_t AlternateFunction) {
+	/* NOTE: This function Should not be modified, when the callback is needed,
+             the TM_SDRAM_InitCustomPinsCallback could be implemented in the user file
+	*/
+	
+	/* Return 0, use pins already supported from library */
+	return 0;
+}
+
+/* Private functions */
 static void TM_SDRAM_InitPins(void) {
 	/* Try to initialize from user */
-	if (TM_SDRAM_InitCustomPinsCallback()) {
+	if (TM_SDRAM_InitCustomPinsCallback(GPIO_AF12_FMC)) {
 		/* User has initialized pins by itself */
 		return;
 	}
 	
-#if defined(SDRAM_USE_STM32439_EVAL)
+#if defined(SDRAM_USE_STM32F439_EVAL)
 	TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF12_FMC);
 	TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF12_FMC);
 	TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF12_FMC);
@@ -171,12 +181,4 @@ static void TM_SDRAM_InitPins(void) {
 	TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF12_FMC);
 	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF12_FMC);
 #endif
-}
-
-__weak uint8_t TM_SDRAM_InitCustomPinsCallback(void) {
-	/* If you need custom implementation, then create this function externally. */
-	/* This function here should not be modified */
-	
-	/* Return 0, lib will use default pins */
-	return 0;
 }

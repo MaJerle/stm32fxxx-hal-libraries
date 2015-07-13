@@ -31,7 +31,7 @@
 #define TM_DISCO_H 100
 
 /**
- * @addtogroup TM_STM32F4xx_hAL_Libraries
+ * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
  */
 
@@ -63,6 +63,7 @@
  * - NUCLEO-F401: (STM32F401RE) - <code>NUCLEO_F401</code>
  * - NUCLEO-F411: (STM32F411RE) - <code>NUCLEO_F411</code>
  * - NUCLEO-F446: (STM32F411RE) - <code>NUCLEO_F411</code>
+ * - NUCLEO-F091: (STM32F091RC) - <code>NUCLEO_F091</code>
  *   - Led:
  *     - LED_GREEN   on PA5
  *   - Button: (LOW when pressed)
@@ -86,8 +87,8 @@
  * Imagine, we want to work with STM324x9-Eval board. Then, you can open <code>defines.h</code> file and add define:
  *
 @verbatim
-//Select STM324x9-Eval for DISCO library
-#define STM324x9_EVAL
+//Select STM32F439-Eval for DISCO library
+#define STM32F439_EVAL
 @endverbatim
  * Or if you want STM32F429-Discovery, do this:
 @verbatim
@@ -114,8 +115,8 @@
 #include "defines.h"
 #include "tm_stm32_gpio.h"
 
-/* STM32F4x9 Eval */
-#if defined(STM324x9_EVAL)
+/* STM32F439 Eval */
+#if defined(STM32F439_EVAL)
 	#define LED_GREEN					0x0040U
 	#define LED_ORANGE					0x0080U
 	#define LED_RED						0x0400U
@@ -162,7 +163,7 @@
 	#define TM_DISCO_BUTTON_PRESSED		1
 	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
 /* Nucleo F401-RE & F411-RE & F446-RE */
-#elif defined(NUCLEO_F401) || defined(NUCLEO_F411) || defined(NUCLEO_F446)
+#elif defined(NUCLEO_F401) || defined(NUCLEO_F411) || defined(NUCLEO_F446) || defined(NUCLEO_F091)
 	#define LED_GREEN					GPIO_PIN_5
 	#define LED_RED						0
 	#define LED_ORANGE					0

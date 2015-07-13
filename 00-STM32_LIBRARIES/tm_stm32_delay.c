@@ -32,6 +32,7 @@ typedef struct {
 static TM_DELAY_Timers_t CustomTimers = {0};
 
 uint32_t TM_DELAY_Init(void) {
+#if !defined(STM32F0xx)
 	uint32_t c;
 	
     /* Enable TRC */
@@ -54,6 +55,10 @@ uint32_t TM_DELAY_Init(void) {
 	
 	/* Return difference, if result is zero, DWT has not started */
 	return (DWT->CYCCNT - c);
+#else
+	/* Return OK */
+	return 1;
+#endif
 }
 
 

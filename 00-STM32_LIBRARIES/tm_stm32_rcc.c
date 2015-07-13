@@ -23,9 +23,19 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 
 #if defined(STM32F7xx)
-	/* Enable I-Cache */
-	SCB_EnableICache();	
+	/* Invalidate I-Cache : ICIALLU register */
+	SCB_InvalidateICache();
 
+	/* Enable branch prediction */
+	SCB->CCR |= (1 <<18);
+	__DSB();
+
+	/* Enable I-Cache */
+	SCB_EnableICache();
+
+	/* Invalidate I-Cache */
+	SCB_InvalidateDCache();
+	
 	/* Enable D-Cache */
 	SCB_EnableDCache();
 #endif
@@ -33,9 +43,11 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 	/* Enable Power Control clock */
 	__HAL_RCC_PWR_CLK_ENABLE();
 
+#if !defined(STM32F0xx)
 	/* Set voltage scaling */
 	__HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
+#endif
+	
 	/* Enable HSE Oscillator and activate PLL with HSE as source */
 	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE;
 	
@@ -44,24 +56,35 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 		RCC_OscInitStruct.HSEState = RCC_HSE_ON;
 		RCC_OscInitStruct.HSIState = RCC_HSI_OFF;
 		RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+#if defined(STM32F0xx)
+		RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
+		RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
+#endif
 	} else {
 		RCC_OscInitStruct.HSEState = RCC_HSE_OFF;
 		RCC_OscInitStruct.HSIState = RCC_HSI_ON;
 		RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+#if defined(STM32F0xx)
+		RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
+		RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
+#endif
 	}
 	
 	/* Set PLL parameters */
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+	
+#if !defined(STM32F0xx)
 	RCC_OscInitStruct.PLL.PLLM = RCC_PLLM;
 	RCC_OscInitStruct.PLL.PLLN = RCC_PLLN;
 	RCC_OscInitStruct.PLL.PLLP = RCC_PLLP;
 	RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ;
+#endif
 	
 #if defined(STM32F446xx)
 #if defined(RCC_PLLR)
 	RCC_OscInitStruct.PLL.PLLR = RCC_PLLR;
 #else
-	RCC_OscInitStruct.PLL.PLLR = 10;
+	RCC_OscInitStruct.PLL.PLLR = 7;
 #endif
 #endif
 	
@@ -75,11 +98,13 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 	HAL_PWREx_EnableOverDrive();
 #endif
 
-	/* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
-	clocks dividers */
-	RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
+	/* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 clocks dividers */
 	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
 	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+	RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1);
+#if !defined(STM32F0xx)
+	RCC_ClkInitStruct.ClockType |= RCC_CLOCKTYPE_PCLK2;
+#endif
 	
 #if defined(STM32F405xx) || \
 	defined(STM32F415xx) || \
@@ -93,14 +118,20 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 	defined(STM32F7xx) 
 	
 	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
-#elif defined(STM32F401xC) || defined(STM32F401xE) || defined(STM32F411xE)
+	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+#elif defined(STM32F0xx)
+	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+#else
 	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;  
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;  
 #endif
 	
 	/* Try to init */
+#if defined(STM32F0xx)
+	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK) {
+#else
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK) {
+#endif
 		return TM_RCC_Result_Error;
 	}
 	
