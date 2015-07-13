@@ -279,7 +279,6 @@ uint32_t TM_LCD_GetFrameBuffer(void);
  * @{
  */
 
-
 /**
  * @brief  Sets X and Y location for character drawings
  * @param  X: X coordinate for character drawings

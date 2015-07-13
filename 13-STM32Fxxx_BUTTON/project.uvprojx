@@ -1879,6 +1879,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3890,6 +3895,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5903,6 +5913,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7914,6 +7929,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -9927,6 +9947,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -11938,6 +11963,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -13951,6 +13981,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -15962,6 +15997,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -17975,6 +18015,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -19986,6 +20031,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -21999,6 +22049,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -23751,6 +23806,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -25874,6 +25934,11 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_button.c</FilePath>
             </File>
           </Files>
         </Group>
