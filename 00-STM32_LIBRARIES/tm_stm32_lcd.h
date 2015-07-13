@@ -274,6 +274,17 @@ uint16_t TM_LCD_GetHeight(void);
 uint32_t TM_LCD_GetFrameBuffer(void);
 
 /**
+ * @brief  Sets LCD orientation
+ * @param  orientation: LCD orientation you wanna use, values 0 to 3 are available where:
+ *            - 0: 180 degrees, default mode inverted
+ *            - 1: Normal mode, default selected
+ *            - 2: 90 degrees
+ *            - 3: 270 degrees
+ * @retval Member of @ref TM_LCD_Result_t enumeration
+ */
+TM_LCD_Result_t TM_LCD_SetOrientation(uint8_t orientation);
+
+/**
  * @defgroup TM_LCD_String_Functions
  * @brief    String functions
  * @{

@@ -90,6 +90,9 @@ static LTDC_HandleTypeDef LTDCHandle;
 typedef struct _TM_LCD_INT_t {
 	uint16_t Width;
 	uint16_t Height;
+	uint16_t CurrentWidth;
+	uint16_t CurrentHeight;
+	uint8_t Orientation;
 	uint32_t CurrentFrameBuffer;
 	uint32_t FrameStart;
 	uint32_t FrameOffset;
@@ -120,6 +123,7 @@ TM_LCD_Result_t TM_LCD_Init(void) {
 	LCD.CurrentFont = &TM_Font_11x18;
 	LCD.ForegroundColor = 0x0000;
 	LCD.BackgroundColor = 0xFFFF;
+	LCD.Orientation = 1;
 	
 	/* Set configrations for DMA2D */
 	DMA2DConf.BufferStart = LCD_FRAME_BUFFER;
@@ -173,6 +177,34 @@ TM_LCD_Result_t TM_LCD_Fill(uint32_t color) {
 	return TM_LCD_Result_Ok;
 }
 
+TM_LCD_Result_t TM_LCD_SetOrientation(uint8_t orientation) {
+	/* Check input */
+	if (orientation > 3) {
+		return TM_LCD_Result_Error;
+	}
+	
+	/* Save rotation */
+	LCD.Orientation = orientation;
+	
+	/* Check X and Y values */
+	if (
+		orientation == 0 ||
+		orientation == 1
+	) {
+		LCD.CurrentHeight = LCD.Height;
+		LCD.CurrentWidth = LCD.Width;
+	} else {
+		LCD.CurrentHeight = LCD.Width;
+		LCD.CurrentWidth = LCD.Height;
+	}
+	
+	/* Rotate DMA2D graphic library */
+	TM_DMA2DGRAPHIC_SetOrientation(orientation);
+	
+	/* Return OK */
+	return TM_LCD_Result_Ok;
+}
+
 TM_LCD_Result_t TM_LCD_DisplayOn(void) {
 	/* Enable LTDC */
 	LTDC->GCR |= LTDC_GCR_LTDCEN;
@@ -211,7 +243,7 @@ TM_LCD_Result_t TM_LCD_DisplayOff(void) {
 
 TM_LCD_Result_t TM_LCD_SetXY(uint16_t X, uint16_t Y) {
 	/* Check if we are inside LCD */
-	if (X >= LCD.Width || Y >= LCD.Height) {
+	if (X >= LCD.CurrentWidth || Y >= LCD.CurrentHeight) {
 		return TM_LCD_Result_Error;
 	}
 	
@@ -244,13 +276,13 @@ TM_LCD_Result_t TM_LCD_Putc(char c) {
 	uint32_t i, b, j;
 	
 	/* Check current coordinates */
-	if ((LCD.CurrentX + LCD.CurrentFont->FontWidth) >= LCD.Width) {
+	if ((LCD.CurrentX + LCD.CurrentFont->FontWidth) >= LCD.CurrentWidth) {
 		/* If at the end of a line of display, go to new line and set x to 0 position */
 		LCD.CurrentY += LCD.CurrentFont->FontHeight;
 		LCD.CurrentY = 0;
 		
 		/* Check for Y position */
-		if (LCD.CurrentY >= LCD.Height) {
+		if (LCD.CurrentY >= LCD.CurrentHeight) {
 			/* Return error */
 			return TM_LCD_Result_Error;
 		}
@@ -261,9 +293,9 @@ TM_LCD_Result_t TM_LCD_Putc(char c) {
 		b = LCD.CurrentFont->data[(c - 32) * LCD.CurrentFont->FontHeight + i];
 		for (j = 0; j < LCD.CurrentFont->FontWidth; j++) {
 			if ((b << j) & 0x8000) {
-				TM_LCD_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.ForegroundColor);
+				TM_DMA2DGRAPHIC_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.ForegroundColor);
 			} else {
-				TM_LCD_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.BackgroundColor);
+				TM_DMA2DGRAPHIC_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.BackgroundColor);
 			}
 		}
 	}
@@ -277,7 +309,7 @@ TM_LCD_Result_t TM_LCD_Putc(char c) {
 
 TM_LCD_Result_t TM_LCD_DrawPixel(uint16_t X, uint16_t Y, uint32_t color) {
 	/* Draw pixel at desired location */
-	*(__IO uint16_t *) (LCD.CurrentFrameBuffer + 2 * ((Y * LCD.Width) + X)) = color;
+	TM_DMA2DGRAPHIC_DrawPixel(X, Y, color);
 	
 	/* Return OK */
 	return TM_LCD_Result_Ok;
@@ -285,7 +317,7 @@ TM_LCD_Result_t TM_LCD_DrawPixel(uint16_t X, uint16_t Y, uint32_t color) {
 
 uint32_t TM_LCD_GetPixel(uint16_t X, uint16_t Y) {
 	/* Get pixel at desired location */
-	return *(__IO uint16_t *) (LCD.CurrentFrameBuffer + 2 * ((Y * LCD.Width) + X));
+	return TM_DMA2DGRAPHIC_GetPixel(X, Y);
 }
 
 TM_LCD_Result_t TM_LCD_Puts(char* str) {
@@ -457,11 +489,11 @@ TM_LCD_Result_t TM_LCD_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint3
 
 
 uint16_t TM_LCD_GetWidth(void) {
-	return LCD.Width;
+	return LCD.CurrentWidth;
 }
 
 uint16_t TM_LCD_GetHeight(void) {
-	return LCD.Height;
+	return LCD.CurrentHeight;
 }
 
 uint32_t TM_LCD_GetFrameBuffer(void) {
