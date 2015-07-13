@@ -38,52 +38,26 @@ int main(void) {
 	/* Init HAL layer */
 	HAL_Init();
 	
-	/* Init leds */
-	TM_DISCO_LedInit();
-	
-	/* Init button */
-	TM_DISCO_ButtonInit();
-	
 	/* Init LCD */
 	TM_LCD_Init();
-
-	/* GO to layer 1 */
-	TM_LCD_SetLayer1();
-	
-	/* Fill LCD with color */
-	TM_LCD_Fill(0x1234);
-	
-	/* Go to layer 2 */
-	TM_LCD_SetLayer2();
 	
 	/* Fill LCD with color */
 	TM_LCD_Fill(0x4321);
 	
 	/* Put string on the middle of LCD */
 	TM_LCD_SetFont(&TM_Font_11x18);
+	
 	/* Get width and height of string */
 	TM_FONT_GetStringSize(str, &FontSize, &TM_Font_11x18);
+	
 	/* Calculate middle of LCD */
 	TM_LCD_SetXY((TM_LCD_GetWidth() - FontSize.Width) / 2, (TM_LCD_GetHeight() - FontSize.Height) / 2);
 	
 	/* Put string to LCD */
 	TM_LCD_Puts(str);
 	
-	/* Go back to layer 1 */
-	TM_LCD_SetLayer1();
-	
-	/* Use DMA2D for test operation */
-	TM_DMA2DGRAPHIC_DrawFilledRectangle(30, 30, 100, 50, 0x5555);
-	
-	/* Draw circle */
-	TM_LCD_DrawLine(10, 10, TM_LCD_GetWidth() - 10, TM_LCD_GetHeight() - 10, 0x4567);
-	
 	while (1) {
-		/* Delay */
-		HAL_Delay(500);
-		
-		/* Change visible layers */
-		//TM_LCD_ChangeLayers();
+		/* Do nothing */
 	}
 }
 

@@ -157,6 +157,10 @@ TM_LCD_Result_t TM_LCD_Init(void) {
 	TM_LCD_Fill(LCD_COLOR_WHITE);
 	TM_LCD_SetLayer1();
 	
+	/* Set layer 1 as active layer */
+	TM_LCD_SetLayer1Opacity(255);
+	TM_LCD_SetLayer2Opacity(0);
+	
 	/* Return OK */
 	return TM_LCD_Result_Ok;
 }
