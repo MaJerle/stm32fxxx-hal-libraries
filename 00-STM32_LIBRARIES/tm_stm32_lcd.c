@@ -125,6 +125,9 @@ TM_LCD_Result_t TM_LCD_Init(void) {
 	LCD.BackgroundColor = 0xFFFF;
 	LCD.Orientation = 1;
 	
+	/* Set orientation */
+	TM_LCD_SetOrientation(LCD.Orientation);
+	
 	/* Set configrations for DMA2D */
 	DMA2DConf.BufferStart = LCD_FRAME_BUFFER;
 	DMA2DConf.BufferOffset = LCD_BUFFER_OFFSET;
@@ -279,7 +282,7 @@ TM_LCD_Result_t TM_LCD_Putc(char c) {
 	if ((LCD.CurrentX + LCD.CurrentFont->FontWidth) >= LCD.CurrentWidth) {
 		/* If at the end of a line of display, go to new line and set x to 0 position */
 		LCD.CurrentY += LCD.CurrentFont->FontHeight;
-		LCD.CurrentY = 0;
+		LCD.CurrentX = 0;
 		
 		/* Check for Y position */
 		if (LCD.CurrentY >= LCD.CurrentHeight) {
