@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/01/library-47-crc-module-on-stm32f4
+ * @link    
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -57,7 +57,7 @@ extern C {
  * \par Dependencies
  *
 @verbatim
- - STM32F4xx
+ - STM32Fxxx HAL
  - defines.h
 @endverbatim
  */

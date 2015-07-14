@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
+ * @link    
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -35,13 +35,13 @@ extern C {
 #endif
 
 /**
- * @addtogroup TM_STM32F4xx_Libraries
+ * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
  */
 
 /**
  * @defgroup TM_SPI
- * @brief    SPI library for STM32F4xx - http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
+ * @brief    SPI library for STM32F4xx
  * @{
  *
  * It supports all 6 SPIs in master with 3 Lines Full Duplex mode

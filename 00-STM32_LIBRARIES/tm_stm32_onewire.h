@@ -42,7 +42,7 @@ extern C {
 
 /**
  * @defgroup TM_ONEWIRE
- * @brief    Onewire library for STM32Fxxx devices - http://stm32f4-discovery.com/2014/05/library-12-onewire-library-for-stm43f4xx/
+ * @brief    Onewire library for STM32Fxxx devices
  * @{
  *
  * \par Changelog

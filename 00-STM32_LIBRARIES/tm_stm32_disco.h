@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
+ * @link    
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,10 +37,8 @@
 
 /**
  * @defgroup TM_DISCO
- * @brief    Leds and buttons for STM32F4 Discovery, Nucleo and eval boards - http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
+ * @brief    Leds and buttons for discovery, nucleo and eval boards
  * @{
- *
- * Library supports all STM32F4 Discovery boards, All STM32F4 Nucleo boards and STM324x9 eval board.
  *	
  * \par Supported boards
  *			
@@ -62,7 +60,7 @@
  *     - Blue button on PA0
  * - NUCLEO-F401: (STM32F401RE) - <code>NUCLEO_F401</code>
  * - NUCLEO-F411: (STM32F411RE) - <code>NUCLEO_F411</code>
- * - NUCLEO-F446: (STM32F411RE) - <code>NUCLEO_F411</code>
+ * - NUCLEO-F446: (STM32F411RE) - <code>NUCLEO_F446</code>
  * - NUCLEO-F091: (STM32F091RC) - <code>NUCLEO_F091</code>
  *   - Led:
  *     - LED_GREEN   on PA5
@@ -106,7 +104,7 @@
  * \par Dependencies
  *
 @verbatim
- - STM32F4xx
+ - STM32Fxxx HAL
  - defines.h
  - TM GPIO
 @endverbatim

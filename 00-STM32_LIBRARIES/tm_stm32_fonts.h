@@ -64,7 +64,7 @@ extern C {
  * \par Dependencies
  *
 @verbatim
- - STM32F4xx
+ - STM32Fxxx HAL
  - defines.h
  - string.h
 @endverbatim

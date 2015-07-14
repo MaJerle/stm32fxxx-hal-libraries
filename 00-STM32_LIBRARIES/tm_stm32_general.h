@@ -71,8 +71,7 @@ extern C {
  * \par Dependencies
  *
 @verbatim
- - STM32F4xx
- - STM32F4xx RCC
+ - STM32Fxxx HAL
  - defines.h
  - attributes.h
 @endverbatim
@@ -237,7 +236,10 @@ uint8_t TM_GENERAL_DWTCounterEnable(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
+#if !defined(STM32F0xx)
 #define TM_GENERAL_DWTCounterDisable()       (DWT->CTRL &= ~0x00000001)
+#endif
+
 
 /**
  * @brief  Gets current DWT counter value

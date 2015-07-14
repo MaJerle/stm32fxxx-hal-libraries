@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4
+ * @link    
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3

@@ -17,7 +17,7 @@
 #include "defines.h"
 #include "tm_stm32_disco.h"
 #include "tm_stm32_delay.h"
-
+	
 int main(void) {
 	/* Init system clock for maximum system speed */
 	TM_RCC_InitSystem();

@@ -273,7 +273,7 @@ void TM_GPIO_SetPullResistor(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_PuP
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them low
  * @retval None
  */
-#define TM_GPIO_SetPinLow(GPIOx, GPIO_Pin)			((GPIOx)->BSRR = (uint32_t)((GPIO_Pin) << 16));
+#define TM_GPIO_SetPinLow(GPIOx, GPIO_Pin)			((GPIOx)->BSRR = (uint32_t)((GPIO_Pin) << 16))
 
 /**
  * @brief  Sets pin(s) high

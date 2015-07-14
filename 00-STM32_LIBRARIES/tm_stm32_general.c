@@ -135,6 +135,7 @@ TM_GENERAL_ResetSource_t TM_GENERAL_GetResetSource(uint8_t reset_flags) {
 	return source;
 }
 
+#if !defined(STM32F0xx)
 uint8_t TM_GENERAL_DWTCounterEnable(void) {
 	uint32_t c;
 	
@@ -165,6 +166,7 @@ uint8_t TM_GENERAL_DWTCounterEnable(void) {
 	/* Return difference, if result is zero, DWT has not started */
 	return (DWT->CYCCNT - c);
 }
+#endif
 
 void TM_GENERAL_ConvertFloat(TM_GENERAL_Float_t* Float_Struct, float Number, uint8_t decimals) {
 	/* Check decimals */

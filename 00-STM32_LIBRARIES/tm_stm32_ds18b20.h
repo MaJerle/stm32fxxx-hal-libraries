@@ -2,8 +2,8 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
- * @version v2.0
+ * @link    
+ * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Library for interfacing DS18B20 temperature sensor from Dallas semiconductors.
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_DS12820
- * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors - http://stm32f4-discovery.com/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
+ * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors
  * @{
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits and check if device is DS18B20.
@@ -54,7 +54,7 @@
  * \par Dependencies
  *
 @verbatim
- - STM32F4xx
+ - STM32Fxxx HAL
  - TM ONEWIRE
  - TM GPIO
  - defines.h
