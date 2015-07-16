@@ -42,35 +42,22 @@
  *	\par Pinout
  *	
 @verbatim
-       |PINSPACK 1   |PINSPACK 2   |PINSPACK 3
-I2CX   |SCL   SDA    |SCL   SDA    |SCL   SDA
-       |             |             |
-I2C1   |PB6   PB7    |PB8   PB9    |PB6   PB9
-I2C2   |PB10  PB11   |PF1   PF0    |PH4   PH5
-I2C3   |PA8   PC9    |PH7   PH8    |-     -
+       |PINSPACK 1   |PINSPACK 2   |PINSPACK 3   |PINSPACK 4
+I2CX   |SCL   SDA    |SCL   SDA    |SCL   SDA    |SCL   SDA
+       |             |             |             |
+I2C1   |PB6   PB7    |PB8   PB9    |PB6   PB9    |
+I2C2   |PB10  PB11   |PF1   PF0    |PH4   PH5    |
+I2C3   |PA8   PC9    |PH7   PH8    |-     -      |
+I2C4   |PD12  PD13   |PF1   PF0    |PF14  PF15   |PH11  PH12
 @endverbatim
+ *
+ * I2C4 is not available on all devices. Please check if it is available for your device before using it!
  *
  * \par Custom pinout
  *
  * In case these pins are not good for you, you can use
  * @ref TM_I2C_PinsPack_Custom in @ref TM_I2C_Init() function and callback function will be called,
  * where you can initialize your custom pinout for your I2C peripheral
- *
- * Possible changes in your defines.h file:
- * Change x to your I2C used, 1-3
- *	
-@verbatim
-//By default library support only 7bit long address
-#define TM_I2Cx_ACKNOWLEDGED_ADDRESS   I2C_AcknowledgedAddress_7bit
-//Library supports I2C mode
-#define TM_I2Cx_MODE                   I2C_Mode_I2C
-//Own address, if slave mode
-#define TM_I2Cx_OWN_ADDRESS            0x00
-//By default, disable ack
-#define TM_I2Cx_ACK                    I2C_Ack_Disable
-//Duty cycle 2, 50%
-#define TM_I2Cx_DUTY_CYCLE             I2C_DutyCycle_2
-@endverbatim
  *
  * \par Changelog
  *
@@ -89,8 +76,8 @@ I2C3   |PA8   PC9    |PH7   PH8    |-     -
 @endverbatim
  */
 #include "stm32fxxx_hal.h"
-#include "attributes.h"
 #include "defines.h"
+#include "attributes.h"
 #include "tm_stm32_gpio.h"
 
 /**
@@ -98,13 +85,6 @@ I2C3   |PA8   PC9    |PH7   PH8    |-     -
  * @brief    Library defines
  * @{
  */
-
-/**
- * @brief  Timeout for I2C
- */
-#ifndef TM_I2C_TIMEOUT
-#define TM_I2C_TIMEOUT					20000
-#endif
 
 /* Clock values */
 #define TM_I2C_CLOCK_STANDARD			100000  /*!< I2C Standard speed */
@@ -129,8 +109,17 @@ typedef enum {
 	TM_I2C_PinsPack_1 = 0x00, /*!< Use Pinspack1 from Pinout table for I2Cx */
 	TM_I2C_PinsPack_2,        /*!< Use Pinspack2 from Pinout table for I2Cx */
 	TM_I2C_PinsPack_3,        /*!< Use Pinspack3 from Pinout table for I2Cx */
+	TM_I2C_PinsPack_4,        /*!< Use Pinspack4 from Pinout table for I2Cx */
 	TM_I2C_PinsPack_Custom    /*!< Use custom pins for I2Cx */
 } TM_I2C_PinsPack_t;
+
+/**
+ * @brief  I2C result enumeration
+ */
+typedef enum {
+	TM_I2C_Result_Ok = 0x00, /*!< Everything OK */
+	TM_I2C_Result_Error      /*!< An error has occurred */
+} TM_I2C_Result_t;
 
 /**
  * @}
@@ -143,152 +132,128 @@ typedef enum {
  */
 
 /**
- * @brief  Initializes I2C
- * @param  *I2Cx: I2C used
- * @param  pinspack: Pins used. This parameter can have a value of @ref TM_I2C_PinsPack_t enumeration
- * @param  clockSpeed: Clock speed for SCL in Hertz
- * @retval None
+ * @brief  Initializes I2C peripheral
+ * @param  *I2Cx: Pointer to I2Cx peripheral you will use for iintialization
+ * @param  pinspack: Pinspack used for GPIO initialization. This parameter can be a value of @ref TM_I2C_PinsPack_t enumeration
+ * @param  clockSpeed: Clock speed in units of Hz for I2C communication
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed);
+TM_I2C_Result_t TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed);
 
 /**
- * @brief  Reads single byte from slave
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @param  reg: register to read from
- * @retval Data from slave
+ * @brief  Reads single byte from device
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  register_address: Register address from where read will be done
+ * @param  *data: Pointer to variable where data will be stored from read operation
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg);
+TM_I2C_Result_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t register_address, uint8_t* data);
 
 /**
- * @brief  Reads multi bytes from slave
- * @param  *I2Cx: I2C used
- * @param  uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @param  uint8_t reg: register to read from
- * @param  uint8_t *data: pointer to data array to store data from slave
- * @param  uint8_t count: how many bytes will be read
- * @retval None
+ * @brief  Reads multiple bytes from device
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  register_address: Register address from where read operation will start
+ * @param  *data: Pointer to variable where data will be stored from read operation
+ * @param  count: Number of elements to read from device
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+TM_I2C_Result_t TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t register_address, uint8_t* data, uint16_t count);
 
 /**
- * @brief  Reads byte from slave without specify register address
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @retval Data from slave
+ * @brief  Reads I2C data without specifying register address
+ * @note   This can be used if your sensors just sends data, without any registers
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  *data: Pointer to variable where data will be stored from read operation
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-uint8_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t address);
+TM_I2C_Result_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data);
 
 /**
- * @brief  Reads multi bytes from slave without setting register from where to start read
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @param  *data: pointer to data array to store data from slave
- * @param  count: how many bytes will be read
- * @retval None
+ * @brief  Reads multiple bytes from device without specifying register address
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  *data: Pointer to variable where data will be stored from read operation
+ * @param  count: Number of elements to read from device
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);
+TM_I2C_Result_t TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data, uint16_t count);
 
 /**
- * @brief  Writes single byte to slave
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @param  reg: register to write to
- * @param  data: data to be written
- * @retval None
+ * @brief  Reads single byte from device with 16-bit register address
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  register_address: Register address from where read will be done
+ * @param  *data: Pointer to variable where data will be stored from read operation
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data);
+TM_I2C_Result_t TM_I2C_Read16(I2C_TypeDef* I2Cx, uint8_t device_address, uint16_t register_address, uint8_t* data);
+
 
 /**
- * @brief  Writes multi bytes to slave
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @param  reg: register to write to
- * @param  *data: pointer to data array to write it to slave
- * @param  count: how many bytes will be written
- * @retval None
+ * @brief  Writes single byte to device
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  register_address: Register address where you want to write data
+ * @param  data: Data to be written to device
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+TM_I2C_Result_t TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t register_address, uint8_t data);
 
 /**
- * @brief  Writes byte to slave without specify register address
- *
- *         Useful if you have I2C device to read like that:
- *            - I2C START
- *            - SEND DEVICE ADDRESS
- *            - SEND DATA BYTE
- *            - I2C STOP
- *
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @param  data: data byte which will be send to device
- * @retval None
+ * @brief  Writes multiple data to device
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  *data: Data to be written to device.
+ *            Data to be stored to device has this structure:
+ *            - data[0] = register_address
+ *            - data[1] = data0
+ *            - data[n + 1] = datan
+ * @param  count: Number of elements to write, excluding register address
+ *            In case you want to write 5 bytes, set this parameter to 5, and pass data pointer with at least 6 elements
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-void TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data);
+TM_I2C_Result_t TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t *data, uint16_t count);
 
 /**
- * @brief  Writes multi bytes to slave without setting register from where to start write
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @param  *data: pointer to data array to write data to slave
- * @param  count: how many bytes you want to write
- * @retval None
+ * @brief  Writes single byte to device without specifying register address, can be used for command write
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  data: Data to be written to device
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-void TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);
+TM_I2C_Result_t TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t data);
 
 /**
- * @brief  Checks if device is connected to I2C bus
- * @param  *I2Cx: I2C used
- * @param  address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- * @retval Device status:
- *            - 0: Device is not connected
- *            - > 0: Device is connected
+ * @brief  Writes multiple data to device without register address
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  *data: Pointer to data array t obe written to device. Array length is the same as number of elements you want to write
+ * @param  count: Number of elements to write
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address);
+TM_I2C_Result_t TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data, uint16_t count);
 
 /**
- * @brief  I2C Start condition
- * @param  *I2Cx: I2C used
- * @param  address: slave address
- * @param  direction: master to slave or slave to master
- * @param  ack: ack enabled or disabled
- * @retval Start condition status
- * @note   For private use
+ * @brief  Writes single byte in a 16-bit length register address
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  register_address: Register address where data will be written
+ * @param  data: Data byte to write
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-int16_t TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack);
+TM_I2C_Result_t TM_I2C_Write16(I2C_TypeDef* I2Cx, uint8_t device_address, uint16_t register_address, uint8_t data);
+
 
 /**
- * @brief  Stop condition on I2C
- * @param  *I2Cx: I2C used
- * @retval Stop condition status
- * @note   For private use
+ * @brief  Checks if device is connected to I2C port and ready to use
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-uint8_t TM_I2C_Stop(I2C_TypeDef* I2Cx);
-
-/**
- * @brief  Reads byte without ack
- * @param  *I2Cx: I2C used
- * @retval Byte from slave
- * @note   For private use
- */
-uint8_t TM_I2C_ReadNack(I2C_TypeDef* I2Cx);
-
-/**
- * @brief  Reads byte with ack
- * @param  *I2Cx: I2C used
- * @retval Byte from slave
- * @note   For private use
- */
-uint8_t TM_I2C_ReadAck(I2C_TypeDef* I2Cx);
-
-/**
- * @brief  Writes to slave
- * @param  *I2Cx: I2C used
- * @param  data: data to be sent
- * @retval None
- * @note   For private use
- */
-void TM_I2C_WriteData(I2C_TypeDef* I2Cx, uint8_t data);
+TM_I2C_Result_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address);
 
 /**
  * @brief  Callback for custom pins initialization.

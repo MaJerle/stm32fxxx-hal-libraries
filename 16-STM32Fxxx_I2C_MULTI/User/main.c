@@ -1,5 +1,5 @@
 /**
- * Keil project example for I2C - Single write and read bytes
+ * Keil project example for I2C - Multiple write and read bytes from SLAVE
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -23,7 +23,7 @@
 #define MPU6050_ADDRESS     0xD0
 
 /* Byte value read from external device */
-uint8_t read;
+uint8_t data_array[6];
 	
 int main(void) {
 	/* Init system clock for maximum system speed */
@@ -42,28 +42,20 @@ int main(void) {
 	/* For STM32F4xx and STM32F7xx lines */
 	TM_I2C_Init(I2C1, TM_I2C_PinsPack_2, 100000);
 	
-	/* Read one byte, device address = MPU6050_ADDRESS, register address = 0x1A */
-	TM_I2C_Read(I2C1, MPU6050_ADDRESS, 0x1A, &read);
+	/* Read 5 bytes, device address = MPU6050_ADDRESS, start from register address = 0x1A */
+	TM_I2C_ReadMulti(I2C1, MPU6050_ADDRESS, 0x1A, data_array, 5);
 	
-	/* Write single byte via I2C, device address = MPU6050_ADDRESS, register address = 0x0A, data = 0x12 */
-	TM_I2C_Write(I2C1, MPU6050_ADDRESS, 0x1A, 0x12);
+	/* Format data array to write to device */
+	data_array[0] = 0x1A; /* Register address where writing will start */
+	data_array[1] = 0x00; /* Data 0 */
+	data_array[2] = 0x00; /* Data 1 */
+	data_array[3] = 0x00; /* Data 2 */
+	data_array[4] = 0x00; /* Data 3 */
+	data_array[5] = 0x00; /* Data 4 */
 	
-	/* Read one byte, device address = MPU6050_ADDRESS, register address = 0x1A */
-	TM_I2C_Read(I2C1, MPU6050_ADDRESS, 0x1A, &read);
-	
-	/* Check value */
-	if (read == 0x12) {
-		TM_DISCO_LedOn(LED_GREEN);
-	} else {
-		/* Toggle LED, indicate wrong */
-		while (1) {
-			/* Toggle LED */
-			TM_DISCO_LedToggle(LED_ALL);
-			
-			/* Delay 100ms */
-			Delayms(100);
-		}
-	}
+	/* Write 5 bytes via I2C, device address = MPU6050_ADDRESS, register address is passed in array as first element */
+	/* We want to write 5 bytes, but array has 6 elements because of writing start address */
+	TM_I2C_WriteMulti(I2C1, MPU6050_ADDRESS, data_array, 5);
 	
 	while (1) {
 		

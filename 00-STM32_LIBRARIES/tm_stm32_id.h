@@ -102,12 +102,20 @@ extern C {
 /**
  * @brief  Unique ID register address location
  */
+#if defined(STM32F7xx)
+#define ID_UNIQUE_ADDRESS       0x1FF0F420
+#else
 #define ID_UNIQUE_ADDRESS		0x1FFF7A10
+#endif
 
 /**
  * @brief  Flash size register address
  */
+#if defined(STM32F7xx)
+#define ID_FLASH_ADDRESS        0x1FF0F442
+#else
 #define ID_FLASH_ADDRESS		0x1FFF7A22
+#endif
 
 /**
  * @brief  Device ID register address

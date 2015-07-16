@@ -18,35 +18,36 @@
  */
 #include "tm_stm32_i2c.h"
 
-/* Private variables */
-static uint32_t TM_I2C_Timeout;
-static uint32_t TM_I2C_INT_Clocks[3] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
-
-/* Private defines */
-#define I2C_TRANSMITTER_MODE   0
-#define I2C_RECEIVER_MODE      1
-#define I2C_ACK_ENABLE         1
-#define I2C_ACK_DISABLE        0
+/* Timeout value */
+#define I2C_TIMEOUT_VALUE              1000
 
 /* Handle values for I2C */
 #ifdef I2C1
-static I2C_HandleTypeDef I2C1Handle;
+static I2C_HandleTypeDef I2C1Handle = {I2C1};
 #endif
 #ifdef I2C2
-static I2C_HandleTypeDef I2C2Handle;
+static I2C_HandleTypeDef I2C2Handle = {I2C2};
 #endif
 #ifdef I2C3
-static I2C_HandleTypeDef I2C3Handle;
+static I2C_HandleTypeDef I2C3Handle = {I2C3};
 #endif
 #ifdef I2C4
-static I2C_HandleTypeDef I2C4Handle;
+static I2C_HandleTypeDef I2C4Handle = {I2C4};
 #endif
 
 /* Private functions */
+#ifdef I2C1
 static void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+#endif
+#ifdef I2C2
 static void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+#endif
+#ifdef I2C3
 static void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+#endif
+#ifdef I2C4
 static void TM_I2C4_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+#endif
 
 static I2C_HandleTypeDef* TM_I2C_GetHandle(I2C_TypeDef* I2Cx) {
 #ifdef I2C1
@@ -69,15 +70,36 @@ static I2C_HandleTypeDef* TM_I2C_GetHandle(I2C_TypeDef* I2Cx) {
 		return &I2C4Handle;
 	}
 #endif
+	
+	/* Return invalid */
+	return 0;
 }
 
-void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed) {
+static void TM_I2C_FillSettings(I2C_HandleTypeDef* Handle, uint32_t clockSpeed) {
 #if defined(STM32F7xx)
 	/* 100kHz @ 50MHz APB clock */
 	uint32_t I2C_Timing = 0x40912732;
 #endif
-	/* Disable I2C first */
-	I2Cx->CR1 &= ~I2C_CR1_PE;
+
+	Handle->Init.OwnAddress2 = 0x00;
+	Handle->Init.OwnAddress1 = 0x00;
+	Handle->Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+	Handle->Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+	Handle->Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+	Handle->Init.NoStretchMode = I2C_NOSTRETCH_DISABLE; 
+#if defined(STM32F7xx)
+	Handle->Init.Timing = I2C_Timing;
+#else
+	Handle->Init.ClockSpeed = clockSpeed;
+	Handle->Init.DutyCycle = I2C_DUTYCYCLE_2;
+#endif
+}
+
+TM_I2C_Result_t TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed) {	
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+	
+	/* Fill instance value */
+	Handle->Instance = I2Cx;
 	
 #ifdef I2C1
 	if (I2Cx == I2C1) {
@@ -86,26 +108,8 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		
 		/* Enable pins */
 		TM_I2C1_INT_InitPins(pinspack);
-				
-		I2C1Handle.Instance = I2C1;
-		I2C1Handle.Init.OwnAddress2 = 0xFF;
-		I2C1Handle.Init.OwnAddress1 = 0x00;
-		I2C1Handle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-		I2C1Handle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-		I2C1Handle.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-		I2C1Handle.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE; 
-#if defined(STM32F7xx)
-		I2C1Handle.Init.Timing = I2C_Timing;
-#else
-		I2C1Handle.Init.ClockSpeed = clockSpeed;
-		I2C1Handle.Init.DutyCycle = I2C_DUTYCYCLE_2;
-#endif
-	
-		/* Initialize I2C */
-		HAL_I2C_Init(&I2C1Handle);
 	}
 #endif
-	
 #ifdef I2C2	
 	if (I2Cx == I2C2) {
 		/* Enable clock */
@@ -113,26 +117,8 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		
 		/* Enable pins */
 		TM_I2C2_INT_InitPins(pinspack);
-		
-		I2C2Handle.Instance = I2C2;
-		I2C2Handle.Init.OwnAddress2 = 0xFF;
-		I2C2Handle.Init.OwnAddress1 = 0x00;
-		I2C2Handle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-		I2C2Handle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-		I2C2Handle.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-		I2C2Handle.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE; 
-#if defined(STM32F7xx)
-		I2C2Handle.Init.Timing = I2C_Timing;
-#else
-		I2C2Handle.Init.ClockSpeed = clockSpeed;
-		I2C2Handle.Init.DutyCycle = I2C_DUTYCYCLE_2;
-#endif
-	
-		/* Initialize I2C */
-		HAL_I2C_Init(&I2C2Handle);
 	} 
 #endif
-	
 #ifdef I2C3
 	if (I2Cx == I2C3) {
 		/* Enable clock */
@@ -140,26 +126,8 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		
 		/* Enable pins */
 		TM_I2C3_INT_InitPins(pinspack);
-		
-		I2C3Handle.Instance = I2C3;
-		I2C3Handle.Init.OwnAddress2 = 0xFF;
-		I2C3Handle.Init.OwnAddress1 = 0x00;
-		I2C3Handle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-		I2C3Handle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-		I2C3Handle.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-		I2C3Handle.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE; 
-#if defined(STM32F7xx)
-		I2C3Handle.Init.Timing = I2C_Timing;
-#else
-		I2C3Handle.Init.ClockSpeed = clockSpeed;
-		I2C3Handle.Init.DutyCycle = I2C_DUTYCYCLE_2;
-#endif
-	
-		/* Initialize I2C */
-		HAL_I2C_Init(&I2C3Handle);
 	}
 #endif
-	
 #ifdef I2C4
 	if (I2Cx == I2C4) {
 		/* Enable clock */
@@ -167,106 +135,262 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		
 		/* Enable pins */
 		TM_I2C4_INT_InitPins(pinspack);
-		
-		I2C4Handle.Instance = I2C4;
-		I2C4Handle.Init.OwnAddress2 = 0xFF;
-		I2C4Handle.Init.OwnAddress1 = 0x00;
-		I2C4Handle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-		I2C4Handle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-		I2C4Handle.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-		I2C4Handle.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE; 
-#if defined(STM32F7xx)
-		I2C4Handle.Init.Timing = I2C_Timing;
-#else
-		I2C4Handle.Init.ClockSpeed = clockSpeed;
-		I2C4Handle.Init.DutyCycle = I2C_DUTYCYCLE_2;
-#endif
-	
-		/* Initialize I2C */
-		HAL_I2C_Init(&I2C4Handle);
 	}
 #endif
 	
-	/* Enable I2C */
-	I2Cx->CR1 |= I2C_CR1_PE;
+	/* Fill settings */
+	TM_I2C_FillSettings(Handle, clockSpeed);
+	
+	/* Initialize I2C */
+	HAL_I2C_Init(Handle);
+		
+	/* Enable analog filter */
+	HAL_I2CEx_ConfigAnalogFilter(Handle, I2C_ANALOGFILTER_ENABLE);
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
 }
 
-uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg) {
-	uint8_t data;
+TM_I2C_Result_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t register_address, uint8_t* data) {
 	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
 	
-	/* Receive 1 byte from I2C */
-	
 	/* Send address */
-	HAL_I2C_Master_Transmit(Handle, address, &reg, 1, 1000);
-	
-	/* Receive single byte */
-	HAL_I2C_Master_Receive(Handle, address, &data, 1, 1000);
-	
-	/* Return data */
-	return data;
-}
-
-void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
-	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
-	
-	/* Receive 1 byte from I2C */
-	
-	/* Send address */
-	HAL_I2C_Master_Transmit(Handle, address, &reg, 1, 1000);
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, &register_address, 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
 	
 	/* Receive multiple byte */
-	HAL_I2C_Master_Receive(Handle, address, data, count, 1000);
+	if (HAL_I2C_Master_Receive(Handle, device_address, data, 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
 }
 
-uint8_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t address) {
-	uint8_t data;
+TM_I2C_Result_t TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t register_address, uint8_t* data, uint16_t count) {
 	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
 	
-	/* Receive 1 byte from I2C */
+	/* Send register address */
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, &register_address, 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
 	
-	/* Receive single byte */
-	HAL_I2C_Master_Receive(Handle, address, &data, 1, 1000);
+	/* Receive multiple byte */
+	if (HAL_I2C_Master_Receive(Handle, device_address, data, count, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
 	
-	/* Return data */
-	return data;
+	/* Return OK */
+	return TM_I2C_Result_Ok;
 }
 
-void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count) {
+TM_I2C_Result_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data) {
 	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+
+	/* Receive single byte without specifying  */
+	if (HAL_I2C_Master_Receive(Handle, (uint16_t)device_address, data, 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
 	
-	/* Receive multi bytes from I2C */
-	
-	/* Receive single byte */
-	HAL_I2C_Master_Receive(Handle, address, data, 1, 1000);
+	/* Return OK */
+	return TM_I2C_Result_Ok;
 }
 
-void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data) {
+TM_I2C_Result_t TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data, uint16_t count) {
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+
+	/* Receive multi bytes without specifying  */
+	if (HAL_I2C_Master_Receive(Handle, (uint16_t)device_address, data, count, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t register_address, uint8_t data) {
 	uint8_t d[2];
 	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
 		
-	/* Format array */
-	d[0] = reg;
+	/* Format array to send */
+	d[0] = register_address;
 	d[1] = data;
 	
-	HAL_I2C_Master_Transmit(Handle, address, &reg, 1, 1000);
-	HAL_I2C_Master_Transmit(Handle, address, &data, 1, 1000);
-}
-
-void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
-
-}
-
-void TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data) {
-
-}
-
-void TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count) {
-
-}
-
-uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
+	/* Try to transmit via I2C */
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, (uint8_t *)d, 2, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	} 
 	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data, uint16_t count) {
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+	
+	/* Try to transmit via I2C, count + 1 because number of all bytes is one large as data count is because of device start register address */
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, data, count + 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	} 
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t data) {
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+	
+	/* Try to transmit via I2C */
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, &data, 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	} 
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data, uint16_t count) {
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+	
+	/* Try to transmit via I2C */
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, data, 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	} 
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_Write16(I2C_TypeDef* I2Cx, uint8_t device_address, uint16_t register_address, uint8_t data) {
+	uint8_t d[3];
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+		
+	/* Format array to send */
+	d[0] = (register_address >> 8) & 0xFF; /* High byte */
+	d[1] = (register_address) & 0xFF;      /* Low byte */
+	d[2] = data;                           /* Data byte */
+	
+	/* Try to transmit via I2C */
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, (uint8_t *)d, 3, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	} 
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_Read16(I2C_TypeDef* I2Cx, uint8_t device_address, uint16_t register_address, uint8_t* data) {
+	uint8_t adr[2];
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+	
+	/* Format I2C address */
+	adr[0] = (register_address >> 8) & 0xFF; /* High byte */
+	adr[1] = (register_address) & 0xFF;      /* Low byte */
+	
+	/* Send address */
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, adr, 2, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
+	
+	/* Receive multiple byte */
+	if (HAL_I2C_Master_Receive(Handle, device_address, data, 1, 1000) != HAL_OK) {
+		/* Check error */
+		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
+			
+		}
+		
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t device_address) {
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+	
+	/* Check if device is ready for communication */
+	if (HAL_I2C_IsDeviceReady(Handle, device_address, 2, 5) != HAL_OK) {
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
 }
 
 __weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction) {
@@ -345,6 +469,25 @@ static void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 #endif
 #ifdef I2C4
 static void TM_I2C4_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
+	/* Init pins */
+#if defined(GPIOD)
+	if (pinspack == TM_I2C_PinsPack_1) {
+		TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_12 | GPIO_PIN_13, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF4_I2C4);
+	}
+#endif
+#if defined(GPIOF)
+	if (pinspack == TM_I2C_PinsPack_2) {
+		TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_1 | GPIO_PIN_0, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF4_I2C4);
+	}
+	if (pinspack == TM_I2C_PinsPack_3) {
+		TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF4_I2C4);
+	}
+#endif
+#if defined(GPIOH)
+	if (pinspack == TM_I2C_PinsPack_4) {
+		TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF4_I2C4);
+	}
+#endif
 	/* Init pins */
 	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */

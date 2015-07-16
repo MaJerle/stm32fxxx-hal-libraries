@@ -1,5 +1,5 @@
 /**
- * Keil project example for I2C - Single write and read bytes
+ * Keil project example for I2C - Custom pins for I2C
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -38,34 +38,20 @@ int main(void) {
 	/* Init delay */
 	TM_DELAY_Init();
 	
-	/* Init I2C, SCL = PB8, SDA = PB9, available on Arduino headers and on all discovery boards */
+	/* Init I2C, use custom pins, callback function will be caleed */
 	/* For STM32F4xx and STM32F7xx lines */
-	TM_I2C_Init(I2C1, TM_I2C_PinsPack_2, 100000);
-	
-	/* Read one byte, device address = MPU6050_ADDRESS, register address = 0x1A */
-	TM_I2C_Read(I2C1, MPU6050_ADDRESS, 0x1A, &read);
-	
-	/* Write single byte via I2C, device address = MPU6050_ADDRESS, register address = 0x0A, data = 0x12 */
-	TM_I2C_Write(I2C1, MPU6050_ADDRESS, 0x1A, 0x12);
-	
-	/* Read one byte, device address = MPU6050_ADDRESS, register address = 0x1A */
-	TM_I2C_Read(I2C1, MPU6050_ADDRESS, 0x1A, &read);
-	
-	/* Check value */
-	if (read == 0x12) {
-		TM_DISCO_LedOn(LED_GREEN);
-	} else {
-		/* Toggle LED, indicate wrong */
-		while (1) {
-			/* Toggle LED */
-			TM_DISCO_LedToggle(LED_ALL);
-			
-			/* Delay 100ms */
-			Delayms(100);
-		}
-	}
+	TM_I2C_Init(I2C1, TM_I2C_PinsPack_Custom, 100000);
 	
 	while (1) {
 		
+	}
+}
+
+/* Called if TM_I2C_PinsPack_Custom is selected when initializing I2C */
+void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction) {
+	/* Check for proper I2C */
+	if (I2Cx == I2C1) {
+		/* Init pins PB8 and PB9 for I2C1 */
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_8 | GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low, AlternateFunction);
 	}
 }
