@@ -1890,6 +1890,11 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
             </File>
             <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
+            </File>
+            <File>
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
@@ -3940,6 +3945,11 @@
               <FileName>tm_stm32_touch_ts3510.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_fonts.c</FileName>
@@ -5994,6 +6004,11 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
             </File>
             <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
+            </File>
+            <File>
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
@@ -8044,6 +8059,11 @@
               <FileName>tm_stm32_touch_ts3510.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_fonts.c</FileName>
@@ -10098,6 +10118,11 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
             </File>
             <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
+            </File>
+            <File>
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
@@ -12148,6 +12173,11 @@
               <FileName>tm_stm32_touch_ts3510.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_fonts.c</FileName>
@@ -14202,6 +14232,11 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
             </File>
             <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
+            </File>
+            <File>
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
@@ -16252,6 +16287,11 @@
               <FileName>tm_stm32_touch_ts3510.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_fonts.c</FileName>
@@ -18306,6 +18346,11 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
             </File>
             <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
+            </File>
+            <File>
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
@@ -20356,6 +20401,11 @@
               <FileName>tm_stm32_touch_ts3510.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_fonts.c</FileName>
@@ -22410,6 +22460,11 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
             </File>
             <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
+            </File>
+            <File>
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
@@ -24201,6 +24256,11 @@
               <FileName>tm_stm32_touch_ts3510.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_fonts.c</FileName>
@@ -26364,6 +26424,11 @@
               <FileName>tm_stm32_touch_ts3510.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ts3510.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_touch_ft5336.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_touch_ft5336.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_fonts.c</FileName>
