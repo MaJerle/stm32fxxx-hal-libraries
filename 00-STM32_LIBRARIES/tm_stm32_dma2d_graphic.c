@@ -650,11 +650,12 @@ void TM_INT_DMA2DGRAPHIC_InitAndTransfer(void) {
 	/* Wait until transfer is done first from other calls */
 	DMA2D_WAIT;
 	
+	/* Format DMA2D settings */
 	DMA2DHandle.Init.Mode = DMA2D_R2M;
 	DMA2DHandle.Init.ColorMode = DMA2D_RGB565;
-	DMA2DHandle.Init.OutputOffset = DIS.CurrentWidth - DMA2D_Width;
+	DMA2DHandle.Init.OutputOffset = DIS.Width - DMA2D_Width;
 
-	// DMA2D Initialization
+	/* DMA2D Initialization */
 	if (HAL_DMA2D_Init(&DMA2DHandle) == HAL_OK) {
 		if (HAL_DMA2D_ConfigLayer(&DMA2DHandle, 0) == HAL_OK) {
 			if (HAL_DMA2D_Start(&DMA2DHandle, DMA2D_Color, (uint32_t)DMA2D_StartAddress, DMA2D_Width, DMA2D_Height) == HAL_OK) {        

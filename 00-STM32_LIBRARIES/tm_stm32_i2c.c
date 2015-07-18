@@ -49,7 +49,7 @@ static void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack);
 static void TM_I2C4_INT_InitPins(TM_I2C_PinsPack_t pinspack);
 #endif
 
-static I2C_HandleTypeDef* TM_I2C_GetHandle(I2C_TypeDef* I2Cx) {
+I2C_HandleTypeDef* TM_I2C_GetHandle(I2C_TypeDef* I2Cx) {
 #ifdef I2C1
 	if (I2Cx == I2C1) {
 		return &I2C1Handle;
@@ -308,7 +308,7 @@ TM_I2C_Result_t TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t device_ad
 	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
 	
 	/* Try to transmit via I2C */
-	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, data, 1, 1000) != HAL_OK) {
+	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, data, count, 1000) != HAL_OK) {
 		/* Check error */
 		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
 			
@@ -385,6 +385,34 @@ TM_I2C_Result_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t device_addre
 	
 	/* Check if device is ready for communication */
 	if (HAL_I2C_IsDeviceReady(Handle, device_address, 2, 5) != HAL_OK) {
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
+	
+	/* Return OK */
+	return TM_I2C_Result_Ok;
+}
+
+TM_I2C_Result_t TM_I2C_WriteReadRepeatedStart(
+	I2C_TypeDef* I2Cx,
+	uint8_t device_address, 
+	uint8_t write_register_address, 
+	uint8_t* write_data,
+	uint16_t write_count, 
+	uint8_t read_register_address, 
+	uint8_t* read_data,
+	uint16_t read_count
+) {
+	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
+	
+	/* Write command to device */
+	if (HAL_I2C_Mem_Write(Handle, device_address, write_register_address, I2C_MEMADD_SIZE_8BIT, write_data, write_count, 1000) != HAL_OK) {
+		/* Return error */
+		return TM_I2C_Result_Error;
+	}
+	
+	/* Read data from controller */
+	if (HAL_I2C_Mem_Read(Handle, device_address, read_register_address, I2C_MEMADD_SIZE_8BIT, read_data, read_count, 1000) != HAL_OK) {
 		/* Return error */
 		return TM_I2C_Result_Error;
 	}

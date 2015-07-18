@@ -36,7 +36,7 @@ int main(void) {
 		TM_DISCO_LedToggle(LED_ALL);
 		
 		/* Delay 500ms */
-		Delayms(100);
+		Delayms(500);
 	}
 }
 

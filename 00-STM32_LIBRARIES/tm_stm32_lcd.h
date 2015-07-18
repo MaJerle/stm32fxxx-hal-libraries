@@ -62,9 +62,20 @@ extern C {
 #define LCD_USE_STM32F429_DISCOVERY
 #define SDRAM_USE_STM32F429_DISCOVERY
 @endverbatim
- * 
- * In addition, to use LCD on STM32F429-Discovery, you will also need my TM SPI library.
  *
+ * \par Supported LCD orientations
+ * 
+ * Library supports changeable orientation for LCD using @ref TM_LCD_SetOrientation where you can use these values:
+ *
+@verbatim
+- 0: 180 degrees, default mode inverted
+- 1: Normal mode, default selected
+- 2: 90 degrees
+- 3: 270 degrees
+@endverbatim
+ *
+ *
+ * In addition, to use LCD on STM32F429-Discovery, you will also need my TM SPI library.
  *
  * \par Changelog
  *
@@ -275,14 +286,16 @@ uint32_t TM_LCD_GetFrameBuffer(void);
 
 /**
  * @brief  Sets LCD orientation
- * @param  orientation: LCD orientation you wanna use, values 0 to 3 are available where:
- *            - 0: 180 degrees, default mode inverted
- *            - 1: Normal mode, default selected
- *            - 2: 90 degrees
- *            - 3: 270 degrees
+ * @param  orientation: LCD orientation you wanna use, values 0 to 3 are available
  * @retval Member of @ref TM_LCD_Result_t enumeration
  */
 TM_LCD_Result_t TM_LCD_SetOrientation(uint8_t orientation);
+
+/**
+ * @brief  Gets LCD orientation
+ * @retval LCD orientation
+ */
+uint8_t TM_LCD_GetOrientation(void);
 
 /**
  * @defgroup TM_LCD_String_Functions

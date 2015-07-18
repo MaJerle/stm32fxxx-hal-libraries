@@ -268,6 +268,36 @@ TM_I2C_Result_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address);
 void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction);
 
 /**
+ * @brief  Gets pointer to I2C handle structure for specific I2C
+ * @param  *I2Cx: Pointer to I2Cx used for handle
+ * @retval Pointer to I2C Handle structure
+ */
+I2C_HandleTypeDef* TM_I2C_GetHandle(I2C_TypeDef* I2Cx);
+
+/**
+ * @brief  Writes and receives amount of data via I2C using repeated start condition
+ * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
+ * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  write_register_address: Register address to start writing to
+ * @param  *write_data: Pointer to data array where data for write are stored
+ * @param  write_count: Number of elements to write
+ * @param  read_register_address: Register address where reading will start
+ * @param  *read_data: Pointer to array where data will be saved
+ * @param  read_count: Number of elements to read
+ * @retval Member of @ref TM_I2C_Result_t enumeration
+ */
+TM_I2C_Result_t TM_I2C_WriteReadRepeatedStart(
+	I2C_TypeDef* I2Cx,
+	uint8_t device_address, 
+	uint8_t write_register_address, 
+	uint8_t* write_data,
+	uint16_t write_count, 
+	uint8_t read_register_address, 
+	uint8_t* read_data,
+	uint16_t read_count
+);
+
+/**
  * @}
  */
  

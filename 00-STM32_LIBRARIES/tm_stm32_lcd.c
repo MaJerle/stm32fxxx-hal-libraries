@@ -503,6 +503,10 @@ uint32_t TM_LCD_GetFrameBuffer(void) {
 	return LCD.FrameStart;
 }
 
+uint8_t TM_LCD_GetOrientation(void) {
+	return LCD.Orientation;
+}
+
 /* Private functions */
 static void TM_LCD_INT_InitLTDC(void) {
 	RCC_PeriphCLKInitTypeDef  periph_clk_init_struct;
