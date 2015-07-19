@@ -57,10 +57,7 @@ int main(void) {
 	TM_LCD_Fill(0xFFFF);
 	
 	/* Set custom orientation for LCD */
-	TM_LCD_SetOrientation(3);
-	
-	/* Draw rectangle */
-	TM_LCD_DrawFilledRectangle(10, 10, 100, 100, 0x1234);
+	TM_LCD_SetOrientation(1);
 	
 	/* Get orientation from LCD and save to Touch Screen structure */
 	TS.Orientation = TM_LCD_GetOrientation();
@@ -76,20 +73,19 @@ int main(void) {
 		if (TS.NumPresses) {
 			/* Go through all presses on LCD */
 			for (i = 0; i < TS.NumPresses; i++) {
-				sprintf(str, "X: %3d Y: %3d", TS.X[i], TS.Y[i]);
 				/* Draw circle */
 				TM_LCD_DrawFilledCircle(TS.X[i], TS.Y[i], 5, TOUCH_Colors[i]);
+				
+				/* Format string */
+				sprintf(str, "X: %3d Y: %3d", TS.X[i], TS.Y[i]);
+				
+				/* Print on LCD */
 				TM_LCD_SetXY(10, 10 + i * 20);
 				TM_LCD_Puts(str);
 			}
 		}
 		
-		sprintf(str, "MX: %3d; MY: %3d", TS.MaxX, TS.MaxY);
-		TM_LCD_SetXY(10, 100);
-		TM_LCD_Puts(str);
-		
-		
-		Delayms(10);
+		Delayms(5);
 	}
 }
 
