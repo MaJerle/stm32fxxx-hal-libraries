@@ -1,5 +1,5 @@
-/**.
- * Keil project template
+/**
+ * Keil project example for SPI communication
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -20,6 +20,7 @@
 #include "tm_stm32_spi.h"
 #include "string.h"
 
+/* Data for send and receive */
 uint8_t Transmit[15], Receive[15];
 
 int main(void) {

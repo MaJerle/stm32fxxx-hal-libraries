@@ -61,8 +61,8 @@ DATA		PD1				Data line
  *
 @verbatim
 //Select custom pin for AM2301 sensor
-#define AM2301_PORT				GPIOD
-#define AM2301_PIN				GPIO_PIN_1
+#define AM2301_PORT         GPIOD
+#define AM2301_PIN          GPIO_PIN_1
 @endverbatim
  *
  * \par Data output
@@ -86,16 +86,6 @@ DATA		PD1				Data line
  - defines.h
 @endverbatim
  */
-/**
- * Dependencies
- * - STM32F4xx
- * - defines.h
- * - TM DELAY
- * - TM GPIO
- */
-/**
- * Includes
- */
 #include "stm32fxxx_hal.h"
 #include "defines.h"
 #include "tm_stm32_delay.h"
@@ -115,13 +105,6 @@ DATA		PD1				Data line
 #define AM2301_PIN				GPIO_PIN_1
 #endif
 
-/* Pin settings */
-#define AM2301_PIN_LOW(str)     TM_GPIO_SetPinLow((str)->GPIOx, (str)->GPIO_Pin)
-#define AM2301_PIN_HIGH(str)    TM_GPIO_SetPinHigh((str)->GPIOx, (str)->GPIO_Pin)
-#define AM2301_PIN_IN(str)      TM_GPIO_SetPinAsInput((str)->GPIOx, (str)->GPIO_Pin)
-#define AM2301_PIN_OUT(str)     TM_GPIO_SetPinAsOutput((str)->GPIOx, (str)->GPIO_Pin)
-#define AM2301_PIN_READ(str)    TM_GPIO_GetInputPinValue((str)->GPIOx, (str)->GPIO_Pin)
-
 /**
  * @}
  */
@@ -139,15 +122,15 @@ DATA		PD1				Data line
  * If TM_AM2301_OK is returned from read function then you have valid data.
  */
 typedef enum {
-	TM_AM2301_OK = 0x00,           /*!< Everything OK */
-	TM_AM2301_ERROR,               /*!< An error occurred */
-	TM_AM2301_CONNECTION_ERROR,    /*!< Device is not connected */
-	TM_AM2301_WAITHIGH_ERROR,      /*!< Wait high pulse timeout */
-	TM_AM2301_WAITLOW_ERROR,       /*!< Wait low pulse timeout */
-	TM_AM2301_WAITHIGH_LOOP_ERROR, /*!< Loop error for high pulse */
- 	TM_AM2301_WAITLOW_LOOP_ERROR,  /*!< Loop error for low pulse */
-	TM_AM2301_PARITY_ERROR         /*!< Data read fail */
-} TM_AM2301_t;
+	TM_AM2301_Result_Ok = 0x00,           /*!< Everything OK */
+	TM_AM2301_Result_Error,               /*!< An error occurred */
+	TM_AM2301_Result_CONNECTION_ERROR,    /*!< Device is not connected */
+	TM_AM2301_Result_WAITHIGH_ERROR,      /*!< Wait high pulse timeout */
+	TM_AM2301_Result_WAITLOW_ERROR,       /*!< Wait low pulse timeout */
+	TM_AM2301_Result_WAITHIGH_LOOP_ERROR, /*!< Loop error for high pulse */
+ 	TM_AM2301_Result_WAITLOW_LOOP_ERROR,  /*!< Loop error for low pulse */
+	TM_AM2301_Result_PARITY_ERROR         /*!< Data read fail */
+} TM_AM2301_Result_t;
 
 /**
  * @brief  AM2301 working structure		
@@ -178,7 +161,7 @@ typedef struct {
  * @param  GPIO_Pin: GPIO pin used in your port for sensor pin
  * @retval TM_AM2301_OK
  */
-TM_AM2301_t TM_AM2301_Init(TM_AM2301_t* AMStruct, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+TM_AM2301_Result_t TM_AM2301_Init(TM_AM2301_t* AMStruct, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
  * @brief  Reads data from sensor
@@ -187,7 +170,7 @@ TM_AM2301_t TM_AM2301_Init(TM_AM2301_t* AMStruct, GPIO_TypeDef* GPIOx, uint16_t 
  *            - TM_AM2301_OK: Data valid
  *            - Else: Data not valid
  */
-TM_AM2301_t TM_AM2301_Read(TM_AM2301_t* AMStruct);
+TM_AM2301_Result_t TM_AM2301_Read(TM_AM2301_t* AMStruct);
 
 /**
  * @}

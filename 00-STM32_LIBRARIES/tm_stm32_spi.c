@@ -18,6 +18,20 @@
  */
 #include "tm_stm32_spi.h"
 
+/* Defines for alternate functions */
+#if defined(STM32F4xx) || defined(STM32F7xx)
+#define GPIO_AFx_SPI1    GPIO_AF5_SPI1
+#define GPIO_AFx_SPI2    GPIO_AF5_SPI2
+#define GPIO_AFx_SPI3    0x05
+#define GPIO_AFx_SPI4    GPIO_AF5_SPI4
+#define GPIO_AFx_SPI5    GPIO_AF5_SPI5
+#define GPIO_AFx_SPI6    GPIO_AF5_SPI6
+#endif
+#if defined(STM32F0xx)
+#define GPIO_AFx_SPI1    GPIO_AF0_SPI1
+#define GPIO_AFx_SPI2    GPIO_AF0_SPI2
+#endif
+
 /* Private functions */
 static void TM_SPIx_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit);
 void TM_SPI1_INT_InitPins(TM_SPI_PinsPack_t pinspack);
@@ -469,17 +483,17 @@ void TM_SPI1_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOA)
 	if (pinspack == TM_SPI_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI1);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI1);
 	}
 #endif
 #if defined(GPIOB)
 	if (pinspack == TM_SPI_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI1);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI1);
 	}
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI1, GPIO_AF5_SPI1);
+		TM_SPI_InitCustomPinsCallback(SPI1, GPIO_AFx_SPI1);
 	}
 }
 #endif
@@ -489,29 +503,29 @@ void TM_SPI2_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOB) && defined(GPIOC)
 	if (pinspack == TM_SPI_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
-		TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_2 | GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI2);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_2 | GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI2);
 	}
 #endif
 #if defined(GPIOB)
 	if (pinspack == TM_SPI_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI2);
 	}
 #endif
 #if defined(GPIOI)
 	if (pinspack == TM_SPI_PinsPack_3) {
-		TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_0 | GPIO_PIN_2 | GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
+		TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_0 | GPIO_PIN_2 | GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI2);
 	}
 #endif
 #if defined(GPIOB) && defined(GPIOI)
 	if (pinspack == TM_SPI_PinsPack_4) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
-		TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI2);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI2);
+		TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI2);
 	}
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI2, GPIO_AF5_SPI2);
+		TM_SPI_InitCustomPinsCallback(SPI2, GPIO_AFx_SPI2);
 	}
 }
 #endif
@@ -521,17 +535,17 @@ void TM_SPI3_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Enable SPI pins */
 #if defined(GPIOB)
 	if (pinspack == TM_SPI_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, 0x05);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI3);
 	}
 #endif
 #if defined(GPIOC)
 	if (pinspack == TM_SPI_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, 0x05);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI3);
 	}
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI3, 0x05);
+		TM_SPI_InitCustomPinsCallback(SPI3, GPIO_AFx_SPI3);
 	}
 }
 #endif
@@ -541,17 +555,17 @@ void TM_SPI4_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOE)
 	if (pinspack == TM_SPI_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_2 | GPIO_PIN_5 | GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI4);
+		TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_2 | GPIO_PIN_5 | GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI4);
 	}
 #endif
 #if defined(GPIOE)
 	if (pinspack == TM_SPI_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI4);
+		TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI4);
 	}
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI4, GPIO_AF5_SPI4);
+		TM_SPI_InitCustomPinsCallback(SPI4, GPIO_AFx_SPI4);
 	}
 }
 #endif
@@ -561,18 +575,18 @@ void TM_SPI5_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOF)
 	if (pinspack == TM_SPI_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI5);
+		TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI5);
 	}
 #endif
 #if defined(GPIOF) && defined(GPIOH)
 	if (pinspack == TM_SPI_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI5);
-		TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_6 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI5);
+		TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI5);
+		TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_6 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI5);
 	}
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI5, GPIO_AF5_SPI5);
+		TM_SPI_InitCustomPinsCallback(SPI5, GPIO_AFx_SPI5);
 	}
 }
 #endif
@@ -582,12 +596,12 @@ void TM_SPI6_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #if defined(GPIOG)
 	if (pinspack == TM_SPI_PinsPack_1) {
 		/* Init SPI pins */
-		TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF5_SPI6);
+		TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AFx_SPI6);
 	}
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI6, GPIO_AF5_SPI6);
+		TM_SPI_InitCustomPinsCallback(SPI6, GPIO_AFx_SPI6);
 	}
 }
 #endif
