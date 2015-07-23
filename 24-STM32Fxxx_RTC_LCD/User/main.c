@@ -18,6 +18,7 @@
 #include "tm_stm32_disco.h"
 #include "tm_stm32_delay.h"
 #include "tm_stm32_rtc.h"
+#include "tm_stm32_lcd.h"
 
 /* RTC structure */
 TM_RTC_t RTCD;
@@ -44,12 +45,25 @@ int main(void) {
 	/* Init button */
 	TM_DISCO_ButtonInit();
 	
+	/* Init LCD */
+	TM_LCD_Init();
+	
+#if defined(STM32F429_DISCOVERY)
+	/* Rotate LCD */
+	TM_LCD_SetOrientation(2);
+#endif
+	
+	/* Set write location */
+	TM_LCD_SetXY(10, 10);
+	
 	/* Init RTC */
 	if (TM_RTC_Init(TM_RTC_ClockSource_External)) {
 		/* RTC was already initialized and time is running */
+		TM_LCD_Puts("RTC already initialized!");
 	} else {
 		/* RTC was now initialized */
 		/* If you need to set new time, now is the time to do it */
+		TM_LCD_Puts("RTC initialized first time!");
 	}
 	
 	/* Wakeup IRQ every 1 second */
@@ -66,8 +80,20 @@ int main(void) {
 			/* Format date */
 			sprintf(str, "Date: %02d.%02d.%04d", RTCD.Day, RTCD.Month, RTCD.Year + 2000);
 			
+			/* Set LCD location */
+			TM_LCD_SetXY(10, 50);
+			
+			/* Print time to LCD */
+			TM_LCD_Puts(str);
+			
 			/* Format time */
 			sprintf(str, "Time: %02d.%02d.%02d", RTCD.Hours, RTCD.Minutes, RTCD.Seconds);
+			
+			/* Set LCD location */
+			TM_LCD_SetXY(10, 70);
+			
+			/* Print time to LCD */
+			TM_LCD_Puts(str);
 		}
 		
 		/* Check if button pressed */
@@ -105,7 +131,9 @@ void TM_RTC_WakeupHandler(void) {
 
 /* Handle Alarm A event */
 void TM_RTC_AlarmAHandler(void) {
-	/* Alarm A triggered */
+	/* Print to LCD */
+	TM_LCD_SetXY(10, 90);
+	TM_LCD_Puts("ALARM TRIGGERED!");
 	
 	/* Disable alarm */
 	TM_RTC_DisableAlarm(TM_RTC_Alarm_A);
