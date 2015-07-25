@@ -60,7 +60,7 @@
  *     - Blue button on PA0
  * - NUCLEO-F401: (STM32F401RE) - <code>NUCLEO_F401</code>
  * - NUCLEO-F411: (STM32F411RE) - <code>NUCLEO_F411</code>
- * - NUCLEO-F446: (STM32F411RE) - <code>NUCLEO_F446</code>
+ * - NUCLEO-F446: (STM32F446RE) - <code>NUCLEO_F446</code>
  * - NUCLEO-F091: (STM32F091RC) - <code>NUCLEO_F091</code>
  *   - Led:
  *     - LED_GREEN   on PA5

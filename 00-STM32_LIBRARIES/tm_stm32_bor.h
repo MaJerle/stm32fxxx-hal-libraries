@@ -53,6 +53,8 @@ extern C {
  *  - Level 2: According to the datasheet, from 2.4 to 2.7 V
  *  - Level 3: According to the datasheet, from 2.7 to 3.6 V
  *
+ * @warning It does not work on STM32F0xx series
+ *
  * \par Changelog
  *
 @verbatim
