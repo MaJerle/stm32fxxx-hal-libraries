@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-01-rcc-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern C {
 
 /**
  * @defgroup TM_RCC
- * @brief    TM RCC Library for STM32Fxxx
+ * @brief    RCC Library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-01-rcc-for-stm32fxxx/
  * @{
  *
  * \par Changelog
