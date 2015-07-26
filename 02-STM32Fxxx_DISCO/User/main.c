@@ -1,5 +1,5 @@
 /**
- * Keil project template for LEDS and buttons on evaluation boards
+ * Keil project example for LEDS and buttons on evaluation boards
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -19,8 +19,6 @@
 #include "tm_stm32_delay.h"
 
 int main(void) {
-	__IO uint32_t i;
-	
 	/* Init system clock for maximum system speed */
 	TM_RCC_InitSystem();
 	

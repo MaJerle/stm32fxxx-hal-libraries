@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-2-leds-and-button-for-stm32-boards/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -66,7 +66,7 @@
  *     - LED_GREEN   on PA5
  *   - Button: (LOW when pressed)
  *     - Blue button on PC13
- * - STM324x9-Eval (STM32F439NI) - <code>STM324x9_EVAL</code>
+ * - STM324x9-Eval (STM32F439NI) - <code>STM32F439_EVAL</code>
  *   - Leds:
  *     - LED_GREEN   on PG6
  *     - LED_ORANGE  on PG7
@@ -241,9 +241,9 @@ void TM_DISCO_ButtonInit(void);
  * @retval None
  */
 #ifndef TM_DISCO_SWAP_LOGIC
-	#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
+#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
 #else
-	#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))
+#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))
 #endif
 
 /**
@@ -258,9 +258,9 @@ void TM_DISCO_ButtonInit(void);
  * @retval None
  */
 #ifndef TM_DISCO_SWAP_LOGIC
-	#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (uint16_t)(led))
+#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (uint16_t)(led))
 #else
-	#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
+#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
 #endif
 
 /**
