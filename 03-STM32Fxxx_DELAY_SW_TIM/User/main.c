@@ -1,5 +1,5 @@
 /**
- * Keil project template for software timers with delay library
+ * Keil project example for software timers with delay library
  *
  * Before you start, select your target, on the right of the "Load" button
  *

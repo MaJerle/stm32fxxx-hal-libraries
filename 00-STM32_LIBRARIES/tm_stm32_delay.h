@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-3-delay-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern C {
 
 /**
  * @defgroup TM_DELAY
- * @brief    Delay library for STM32Fxxx devices
+ * @brief    Delay library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/07/hal-library-3-delay-for-stm32fxxx/
  * @{
  *
  * \par Milliseconds delay

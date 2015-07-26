@@ -1,5 +1,5 @@
 /**
- * Keil project template for delay functions
+ * Keil project example for delay functions
  *
  * Before you start, select your target, on the right of the "Load" button
  *
