@@ -31,7 +31,7 @@
 #define TM_FATFS_H 100
 
 /**
- * @addtogroup TM_STM32F4xx_Libraries
+ * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
  */
 

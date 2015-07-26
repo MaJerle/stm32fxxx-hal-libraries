@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-4-exti-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern C {
 
 /**
  * @defgroup TM_EXTI
- * @brief    External interrupts library for STM32Fxxx devices
+ * @brief    External interrupts library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/07/hal-library-4-exti-for-stm32fxxx/
  * @{
  *
  * This library allows you to easy enable external interrupt on specific pin.
@@ -56,7 +56,7 @@ extern C {
  * So only PA0 at one time, or PD0 or PC0, but one a time.
  * 
  * You can still use more lines at the same time. So let's say PA0 is line0 and PC13 is line13.
- * This 2 interrupts can be used simultaneouly without problems.
+ * This 2 interrupts can be used simultaneously without problems.
  *
  * \par Handling interrupts
  *
@@ -98,24 +98,6 @@ extern C {
  * \par Changelog
  *
 @verbatim
- Version 1.4
-  - June 22, 2015
-  - Added support for clearing all external interrupt with DeInit function
-  
- Version 1.3
-  - March 23 2015 - Totally independent from HAL / SPD drivers
-  - Library can be used with any drivers or totally itself
-  - Now only one function handler TM_EXTI_Handler for all lines. No separate handlers anymore.
-  
- Version 1.2
-  - March 10, 2015
-  - TM GPIO Library supported
-
- Version 1.1
-  - March 08, 2015
-  - Added function TM_EXTI_Handler, which is called anytime EXTI interrupt occur,
-       no matter on which GPIO_Pin. GPIO_Pin_x is passed as argument where x is 0 to 15
-
  Version 1.0
   - First release
 @endverbatim

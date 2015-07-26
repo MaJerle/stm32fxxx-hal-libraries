@@ -1,5 +1,5 @@
 /**
- * Keil project template for EXTI interrupts
+ * Keil project example for EXTI interrupts
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -17,7 +17,6 @@
 #include "defines.h"
 #include "tm_stm32_exti.h"
 #include "tm_stm32_disco.h"
-#include "tm_stm32_delay.h"
 
 int main(void) {
 	__IO uint32_t i;
