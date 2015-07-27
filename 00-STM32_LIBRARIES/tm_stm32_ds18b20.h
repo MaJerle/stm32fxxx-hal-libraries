@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_DS12820
- * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors
+ * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors -http://stm32f4-discovery.com/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
  * @{
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits and check if device is DS18B20.

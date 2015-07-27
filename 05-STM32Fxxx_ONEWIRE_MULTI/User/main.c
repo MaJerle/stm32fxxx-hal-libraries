@@ -33,7 +33,7 @@ int main(void) {
 	/* Init leds */
 	TM_DISCO_LedInit();
 	
-	/* Init ONEWIRE port on PB4 pin */
+	/* Init ONEWIRE port on PB4 and PC6 pins */
 	TM_OneWire_Init(&OW1, GPIOB, GPIO_PIN_4);
 	TM_OneWire_Init(&OW2, GPIOC, GPIO_PIN_6);
 	

@@ -45,7 +45,7 @@ int main(void) {
 		
 		/* Search for next devices */
 		do {
-			/* Read rom from device */
+			/* Read ROM from device */
 			//TM_OneWire_GetFullROM(&OW, &array_8_bytes[0]);
 		} while (TM_OneWire_Next(&OW));
 	} else {

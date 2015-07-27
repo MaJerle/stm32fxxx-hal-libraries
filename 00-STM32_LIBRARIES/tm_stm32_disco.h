@@ -66,7 +66,7 @@
  *     - LED_GREEN   on PA5
  *   - Button: (LOW when pressed)
  *     - Blue button on PC13
- * - STM324x9-Eval (STM32F439NI) - <code>STM32F439_EVAL</code>
+ * - STM32439-Eval (STM32F439NI) - <code>STM32F439_EVAL</code>
  *   - Leds:
  *     - LED_GREEN   on PG6
  *     - LED_ORANGE  on PG7
@@ -74,6 +74,11 @@
  *     - LED_BLUE    on PG12
  *   - Button: (HIGH when pressed)
  *     - Blue button on PA0
+ * - STM32F7-Discovery: (STM32F746) - <code>STM32F7_DISCOVERY</code>
+ *   - Leds:
+ *     - LED_GREEN   on PI1
+ *   - Button: (LOW when pressed)
+ *     - Blue button on PI16
  *
  * \par Select your board
  *

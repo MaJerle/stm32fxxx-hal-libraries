@@ -1,5 +1,5 @@
 /**
- * Keil project template
+ * Keil project example for DS18B20 temperature sensor
  *
  * Before you start, select your target, on the right of the "Load" button
  *
