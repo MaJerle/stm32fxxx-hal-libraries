@@ -1,5 +1,5 @@
 /**
- * Keil project template
+ * Keil project example for UART peripheral
  *
  * Before you start, select your target, on the right of the "Load" button
  *

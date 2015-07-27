@@ -1,5 +1,5 @@
 /**
- * Keil project template
+ * Keil project example for custom pins initialization
  *
  * Before you start, select your target, on the right of the "Load" button
  *
