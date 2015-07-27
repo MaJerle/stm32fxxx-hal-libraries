@@ -1,5 +1,5 @@
 /**
- * Keil project template for delay functions
+ * Keil project example for delay functions for counting time
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -32,7 +32,7 @@ int main(void) {
 	TM_DELAY_Init();
 	
 	while (1) {
-		/* Each 1us */
+		/* Each 500ms */
 		if (TM_DELAY_Time() >= 500) {
 			/* Reset time */
 			TM_DELAY_SetTime(0);

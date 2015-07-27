@@ -27,8 +27,6 @@ void SWTIM1_Callback(TM_DELAY_Timer_t* SWTIM, void* UserParameters);
 void SWTIM2_Callback(TM_DELAY_Timer_t* SWTIM, void* UserParameters);
 
 int main(void) {
-	__IO uint32_t i;
-	
 	/* Init system clock for maximum system speed */
 	TM_RCC_InitSystem();
 	
@@ -49,7 +47,7 @@ int main(void) {
 	/* 100ms with autoreload enabled, and start after it is created */
 	SWTIM1 = TM_DELAY_TimerCreate(100, 1, 1, SWTIM1_Callback, NULL);
 	
-	/* 100ms with autoreload enabled, and start after it is created */
+	/* 150ms with autoreload enabled, and start after it is created */
 	SWTIM2 = TM_DELAY_TimerCreate(150, 1, 1, SWTIM2_Callback, NULL);
 	
 	while (1) {
