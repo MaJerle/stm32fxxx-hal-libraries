@@ -16,7 +16,6 @@
 /* Include my libraries here */
 #include "defines.h"
 #include "tm_stm32_disco.h"
-#include "tm_stm32_delay.h"
 #include "tm_stm32_spi.h"
 #include "string.h"
 
@@ -31,6 +30,9 @@ int main(void) {
 	
 	/* Init HAL layer */
 	HAL_Init();
+	
+	/* Init leds */
+	TM_DISCO_LedInit();
 
 	/* Init SPI */
 #if defined(STM32F7_DISCOVERY)
@@ -40,6 +42,8 @@ int main(void) {
 	/* Use PB13,14,15 pins for SPI */
 	TM_SPI_Init(SPI2, TM_SPI_PinsPack_2);
 #endif
+
+	/* Connect MOSI and MISO pins together! */
 	
 	/* Send multi bytes */
 	for (i = 0; i < 15; i++) {
@@ -48,9 +52,6 @@ int main(void) {
 		/* Check for receive */
 		Receive[i] = TM_SPI_Send(SPI2, Transmit[i]);
 	}
-	
-	/* Init leds */
-	TM_DISCO_LedInit();
 	
 	/* Memory compare */
 	if (memcmp(Transmit, Receive, 15) == 0) {

@@ -2,11 +2,11 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-08-spi-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   SPI library for STM32F4xx
+ * @brief   SPI library for STM32Fxxx
  *	
 @verbatim
    ----------------------------------------------------------------------
@@ -41,7 +41,7 @@ extern C {
 
 /**
  * @defgroup TM_SPI
- * @brief    SPI library for STM32F4xx
+ * @brief    SPI library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-08-spi-for-stm32fxxx/
  * @{
  *
  * It supports all 6 SPIs in master with 3 Lines Full Duplex mode
