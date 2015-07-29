@@ -19,8 +19,6 @@
 #include "tm_stm32_disco.h"
 
 int main(void) {
-	__IO uint32_t i;
-	
 	/* Init system clock for maximum system speed */
 	TM_RCC_InitSystem();
 	

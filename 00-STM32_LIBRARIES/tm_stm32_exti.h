@@ -73,6 +73,7 @@ extern C {
  * By default, all handlers for lines are enabled. Disabled then with adding lines below in defines.h file:
  * 
 @verbatim
+//These works for STM32F4xx and STM32F7xx series
 //Disable EXTI0_IRQHandler function
 #define EXTI_DISABLE_DEFAULT_HANDLER_0
 //Disable EXTI1_IRQHandler function
@@ -87,12 +88,20 @@ extern C {
 #define EXTI_DISABLE_DEFAULT_HANDLER_9_5
 //Disable EXTI15_10_IRQHandler function
 #define EXTI_DISABLE_DEFAULT_HANDLER_15_10
+
+//These works for STM32F0xx series
+//Disable EXTI0_1_IRQHandler function
+#define EXTI_DISABLE_DEFAULT_HANDLER_0_1
+//Disable EXTI2_3_IRQHandler function
+#define EXTI_DISABLE_DEFAULT_HANDLER_2_3
+//Disable EXTI4_15_IRQHandler function
+#define EXTI_DISABLE_DEFAULT_HANDLER_4_15
 @endverbatim
  * 
  * If you need higher priority for external interrupts in NVIC, add lines below in defines.h file and edit them
 @verbatim
 //Set custom NVIC priority
-#define EXTI_NVIC_PRIORITY      0x0A
+#define EXTI_NVIC_PRIORITY      0x04
 @endverbatim
  *
  * \par Changelog

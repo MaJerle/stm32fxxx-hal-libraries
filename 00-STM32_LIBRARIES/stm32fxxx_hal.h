@@ -47,7 +47,11 @@
 #ifndef STM32F0xx
 #define STM32F0xx
 #endif
+#ifndef STM32F0XX
+#define STM32F0XX
+#endif
 #include "stm32f0xx.h"
+#include "stm32f0xx_hal.h"
 #endif
 
 /* STM32F4xx */
@@ -76,7 +80,7 @@
 
 /* Check if anything defined */
 #if !defined(STM32F0xx) && !defined(STM32F4xx) && !defined(STM32F7xx)
-#error "There is not selected STM32 family used. Check stm32fxxx.h file for configuration!"
+#error "There is not selected STM32 family used. Check stm32fxxx_hal.h file for configuration!"
 #endif
 
 /* Init main libraries */
