@@ -1879,6 +1879,21 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3890,6 +3905,21 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5903,6 +5933,21 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7914,6 +7959,21 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -9927,6 +9987,21 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -11938,6 +12013,21 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -13951,6 +14041,21 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -15962,6 +16067,21 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -17975,6 +18095,21 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -19986,6 +20121,21 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -21999,6 +22149,21 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -22146,7 +22311,7 @@
         <TargetCommonOption>
           <Device>STM32F746NGHx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F7xx_DFP.1.0.0</PackID>
+          <PackID>Keil.STM32F7xx_DFP.1.2.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x100000) IROM2(0x00200000,0x100000) IRAM(0x20010000,0x40000) IRAM2(0x20000000,0x10000) CPUTYPE("Cortex-M7") FPU3(SFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -23751,6 +23916,21 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -25874,6 +26054,21 @@
               <FileName>tm_stm32_disco.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_ssd1306.c</FilePath>
             </File>
           </Files>
         </Group>

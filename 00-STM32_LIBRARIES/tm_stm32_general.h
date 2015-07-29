@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-09-general-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern C {
 
 /**
  * @defgroup TM_GENERAL
- * @brief    GENERAL library for STM32Fxxx devices
+ * @brief    GENERAL library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/07/hal-library-09-general-for-stm32fxxx/
  * @{
  *
  * This is a simple library, where its content can be used in a lot of places in your project.

@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-11-sdram-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_SDRAM
- * @brief    Connect external SDRAM to STM32Fxxx devices with integrated FMC peripheral
+ * @brief    Connect external SDRAM to STM32Fxxx devices with integrated FMC peripheral - http://stm32f4-discovery.com/2015/07/hal-library-11-sdram-for-stm32fxxx/
  * @{
  *
  * This library allows you to connect and use external SDRAM.
@@ -62,6 +62,9 @@
 
 //Use SDRAM on STM32F7-Discovery board
 #define SDRAM_USE_STM32F7_DISCOVERY
+
+//Use SDRAM on STM32F429-Discovery board
+#define SDRAM_USE_STM32F429_DISCOVERY
 @endverbatim
  *
  * \par STM32F7-Discovery pinout

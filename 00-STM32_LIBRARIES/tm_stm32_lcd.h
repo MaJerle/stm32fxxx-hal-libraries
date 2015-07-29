@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-12-lcd-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern C {
 
 /**
  * @defgroup TM_LCD
- * @brief    LCD library for STM32F7-Discovery, STM32F429-Discovery and STM32F439-Eval boards
+ * @brief    LCD library for STM32F7-Discovery, STM32F429-Discovery and STM32F439-Eval boards - http://stm32f4-discovery.com/2015/07/hal-library-12-lcd-for-stm32fxxx/
  * @{
  *
  * This single library which supports multiple LCD devices depends on settings you have in your project.

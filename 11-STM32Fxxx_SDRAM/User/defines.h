@@ -39,4 +39,10 @@
 //#define RCC_PLLQ              7                      /*!< Used for PLL Q parameter */
 //#define RCC_PLLR              10                     /*!< Used for PLL R parameter, available on STM32F446xx */
 
+
+//Select used board. I've done that in global defines in Keil uVision
+//#define SDRAM_USE_STM32F439_EVAL
+//#define SDRAM_USE_STM32F7_DISCOVERY
+//#define SDRAM_USE_STM32F429_DISCOVERY
+
 #endif
