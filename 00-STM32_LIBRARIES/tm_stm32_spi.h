@@ -352,18 +352,18 @@ void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_M
  * @param  SPI_BaudRatePrescaler: SPI baudrate prescaler. This parameter can be a value of @ref SPI_BaudRatePrescaler
  * @param  SPI_Mode_t: SPI mode you will use. This parameter can be a value of @ref TM_SPI_Mode_t enumeration
  * @param  SPI_Mode: SPI mode you will use:
- *            - SPI_Mode_Master: SPI in master mode (default)
- *            - SPI_Mode_Slave: SPI in slave mode
+ *            - SPI_MODE_MASTER: SPI in master mode (default)
+ *            - SPI_MODE_SLAVE: SPI in slave mode
  * @param  SPI_FirstBit: select first bit for SPI
  *            - SPI_FIRSTBIT_MSB: MSB is first bit (default)
- *            - SPI_FirstBit_LSB: LSB is first bit
+ *            - SPI_FIRSTBIT_LSB: LSB is first bit
  * @retval None
  */
 void TM_SPI_InitFull(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI_BaudRatePrescaler, TM_SPI_Mode_t SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);
 
 /**
  * @brief  Calculates bits for SPI prescaler register to get minimal prescaler value for SPI peripheral
- * @note   SPI has 8 prescalers available, 2,4,6,...,128,256
+ * @note   SPI has 8 prescalers available, 2,4,8,...,128,256
  * @note   This function will return you a bits you must set in your CR1 register.
  *
  * @note   Imagine, you can use 20MHz max clock in your system, your system is running on 168MHz, and you use SPI on APB2 bus.
