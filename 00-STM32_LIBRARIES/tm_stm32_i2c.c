@@ -268,11 +268,11 @@ TM_I2C_Result_t TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t 
 	return TM_I2C_Result_Ok;
 }
 
-TM_I2C_Result_t TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t* data, uint16_t count) {
+TM_I2C_Result_t TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint16_t register_address, uint8_t* data, uint16_t count) {
 	I2C_HandleTypeDef* Handle = TM_I2C_GetHandle(I2Cx);
-	
-	/* Try to transmit via I2C, count + 1 because number of all bytes is one large as data count is because of device start register address */
-	if (HAL_I2C_Master_Transmit(Handle, (uint16_t)device_address, data, count + 1, 1000) != HAL_OK) {
+
+	/* Try to transmit via I2C */
+	if (HAL_I2C_Mem_Write(Handle, device_address, register_address, register_address > 0xFF ? I2C_MEMADD_SIZE_16BIT : I2C_MEMADD_SIZE_8BIT, data, count, 1000) != HAL_OK) {
 		/* Check error */
 		if (HAL_I2C_GetError(Handle) != HAL_I2C_ERROR_AF) {
 			
@@ -280,7 +280,7 @@ TM_I2C_Result_t TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uin
 		
 		/* Return error */
 		return TM_I2C_Result_Error;
-	} 
+	}
 	
 	/* Return OK */
 	return TM_I2C_Result_Ok;

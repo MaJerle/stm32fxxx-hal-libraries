@@ -206,16 +206,12 @@ TM_I2C_Result_t TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t 
  * @brief  Writes multiple data to device
  * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
  * @param  device_address: 7-bit, left aligned device address used for communication
+ * @param  register_address: Register address where data will be written
  * @param  *data: Data to be written to device.
- *            Data to be stored to device has this structure:
- *            - data[0] = register_address
- *            - data[1] = data0
- *            - data[n + 1] = datan
- * @param  count: Number of elements to write, excluding register address
- *            In case you want to write 5 bytes, set this parameter to 5, and pass data pointer with at least 6 elements
+ * @param  count: Number of elements to write starting at register register_address
  * @retval Member of @ref TM_I2C_Result_t enumeration
  */
-TM_I2C_Result_t TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint8_t *data, uint16_t count);
+TM_I2C_Result_t TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t device_address, uint16_t register_address, uint8_t *data, uint16_t count);
 
 /**
  * @brief  Writes single byte to device without specifying register address, can be used for command write

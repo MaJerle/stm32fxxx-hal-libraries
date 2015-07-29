@@ -46,16 +46,15 @@ int main(void) {
 	TM_I2C_ReadMulti(I2C1, MPU6050_ADDRESS, 0x1A, data_array, 5);
 	
 	/* Format data array to write to device */
-	data_array[0] = 0x1A; /* Register address where writing will start */
-	data_array[1] = 0x00; /* Data 0 */
-	data_array[2] = 0x00; /* Data 1 */
-	data_array[3] = 0x00; /* Data 2 */
-	data_array[4] = 0x00; /* Data 3 */
-	data_array[5] = 0x00; /* Data 4 */
+	data_array[0] = 0x00; /* Data 0 */
+	data_array[1] = 0x00; /* Data 1 */
+	data_array[2] = 0x00; /* Data 2 */
+	data_array[3] = 0x00; /* Data 3 */
+	data_array[4] = 0x00; /* Data 4 */
 	
-	/* Write 5 bytes via I2C, device address = MPU6050_ADDRESS, register address is passed in array as first element */
-	/* We want to write 5 bytes, but array has 6 elements because of writing start address */
-	TM_I2C_WriteMulti(I2C1, MPU6050_ADDRESS, data_array, 5);
+	/* Write 5 bytes via I2C, device address = MPU6050_ADDRESS, register address is 0x1A */
+	/* We want to write 5 bytes */
+	TM_I2C_WriteMulti(I2C1, MPU6050_ADDRESS, 0x1A, data_array, 5);
 	
 	while (1) {
 		
