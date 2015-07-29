@@ -47,7 +47,7 @@ int main(void) {
 		randval = TM_RNG_Get();
 		
 		/* Format string */
-		sprintf(buff, "Value: 0x%08X", randval);
+		sprintf(buff, "Value: 0x%08X\n", randval);
 		
 		/* Send via USART */
 		TM_USART_Puts(USART6, buff);
