@@ -192,6 +192,10 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
  * @}
  */
 #else
+/* Make define */
+#ifndef SDRAM_USE_STM32F429_DISCOVERY
+#define SDRAM_USE_STM32F429_DISCOVERY
+#endif
 /**
  * @defgroup TM_SDRAM_STM32F429_Discovery_Macros
  * @brief    Macros for STM32F429-Discovery board
