@@ -30,6 +30,11 @@
 #ifndef TM_DISCO_H
 #define TM_DISCO_H 100
 
+/* C++ detection */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
@@ -350,5 +355,10 @@ uint8_t TM_DISCO_ButtonOnReleased(void);
 /**
  * @}
  */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
