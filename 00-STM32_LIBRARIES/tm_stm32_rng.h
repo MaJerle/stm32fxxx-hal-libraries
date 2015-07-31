@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-18-rng-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -29,6 +29,12 @@
  */
 #ifndef TM_RNG_H
 #define TM_RNG_H 100
+
+/* C++ detection */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
@@ -36,7 +42,7 @@
 
 /**
  * @defgroup TM_RNG
- * @brief    Random number generator library for STM32Fxxx devices
+ * @brief    Random number generator library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/07/hal-library-18-rng-for-stm32fxxx/
  * @{
  *
  * \par Changelog
@@ -94,6 +100,11 @@ uint32_t TM_RNG_Get(void);
 /**
  * @}
  */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -103,12 +103,17 @@ void TM_FFT_SetBuffers_F32(TM_FFT_F32_t* FFT, float32_t* InputBuffer, float32_t*
 }
 
 uint8_t TM_FFT_AddToBuffer(TM_FFT_F32_t* FFT, float32_t sampleValue) {
+	/* Return function status */
+	return TM_FFT_AddToBufferWithImag(FFT, sampleValue, 0);
+}
+
+uint8_t TM_FFT_AddToBufferWithImag(TM_FFT_F32_t* FFT, float32_t Real, float32_t Imag) {
 	/* Check if memory available */
 	if (FFT->Count < FFT->FFT_Size) {
 		/* Add to buffer, real part */
-		FFT->Input[2 * FFT->Count] = sampleValue;
+		FFT->Input[2 * FFT->Count] = Real;
 		/* Imaginary part set to 0 */
-		FFT->Input[2 * FFT->Count + 1] = 0;
+		FFT->Input[2 * FFT->Count + 1] = Imag;
 		
 		/* Increase count */
 		FFT->Count++;

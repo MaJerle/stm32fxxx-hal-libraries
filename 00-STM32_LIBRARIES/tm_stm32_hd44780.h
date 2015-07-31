@@ -2,11 +2,11 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-15-hd44780-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   HD44780 LCD driver library for STM32F4xx
+ * @brief   HD44780 LCD driver library for STM32Fxxx
  *	
 @verbatim
    ----------------------------------------------------------------------
@@ -28,20 +28,26 @@
 @endverbatim
  */
 #ifndef TM_HD44780_H
-#define TM_HD44780_H 10
+#define TM_HD44780_H 100
+
+/* C++ detection */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
- * @addtogroup TM_STM32Fxxx__HALLibraries
+ * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
  */
 
 /**
  * @defgroup TM_HD44780
- * @brief    HD44780 LCD driver library for STM32Fxxx
+ * @brief    HD44780 LCD driver library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-15-hd44780-for-stm32fxxx/
  * @{
  *
  *	It also supports all HD44780 compatible LCD drivers.
  *
- *	\par Default pinout
+ * \par Default pinout
  *	
 @verbatim
 LCD		STM32Fxxx		DESCRIPTION
@@ -51,17 +57,17 @@ VCC		+5V				Power supply for LCD
 V0		Potentiometer	Contrast voltage. Connect to potentiometer
 RS		PB2				Register select, can be overwritten in your project's defines.h file
 RW		GND				Read/write
-E		PB7				Enable pin, can be overwritten in your project's defines.h file
-D0		-				Data 0 - doesn't care
-D1		-				Data 1 - doesn't care
-D2		-				Data 2 - doesn't care
-D3		-				Data 3 - doesn't  care
-D4		PC12			Data 4, can be overwritten in your project's defines.h file
-D5		PC13			Data 5, can be overwritten in your project's defines.h file
-D6		PB12			Data 6, can be overwritten in your project's defines.h file
-D7		PB13			Data 7, can be overwritten in your project's defines.h file
-A		+3V3			Back light positive power
-K		GND				Ground for back light
+E		  PB7				Enable pin, can be overwritten in your project's defines.h file
+D0		-         Data 0 - doesn't care
+D1		-         Data 1 - doesn't care
+D2		-         Data 2 - doesn't care
+D3		-         Data 3 - doesn't  care
+D4		PC12      Data 4, can be overwritten in your project's defines.h file
+D5		PC13      Data 5, can be overwritten in your project's defines.h file
+D6		PB12      Data 6, can be overwritten in your project's defines.h file
+D7		PB13      Data 7, can be overwritten in your project's defines.h file
+A     +3V3      Back light positive power
+K     GND       Ground for back light
 @endverbatim	
  *	
  * If you want to change pinout, do this in your defines.h file with lines below and set your own settings:
@@ -160,8 +166,8 @@ K		GND				Ground for back light
 
 /**
  * @brief  Initializes HD44780 LCD
- * @brief  cols: width of lcd
- * @param  rows: height of lcd
+ * @brief  cols: Width of lcd
+ * @param  rows: Height of lcd
  * @retval None
  */
 void TM_HD44780_Init(uint8_t cols, uint8_t rows);
@@ -189,8 +195,8 @@ void TM_HD44780_Clear(void);
 
 /**
  * @brief  Puts string on lcd
- * @param  x location
- * @param  y location
+ * @param  x: X location where string will start
+ * @param  y; Y location where string will start
  * @param  *str: pointer to string to display
  * @retval None
  */
@@ -248,6 +254,8 @@ void TM_HD44780_CreateChar(uint8_t location, uint8_t* data);
 
 /**
  * @brief  Puts custom created character on LCD
+ * @param  x: X location where character will be shown
+ * @param  y: Y location where character will be shown
  * @param  location: Location on LCD where character is stored, 0 - 7
  * @retval None
  */
@@ -265,5 +273,9 @@ void TM_HD44780_PutCustom(uint8_t x, uint8_t y, uint8_t location);
  * @}
  */
 
+/* C++ detection */
+#ifdef __cplusplus
+}
 #endif
 
+#endif

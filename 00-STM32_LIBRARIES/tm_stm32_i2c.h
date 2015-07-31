@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-16-i2c-for-stm32fxxx-devices/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -29,6 +29,12 @@
  */
 #ifndef TM_I2C_H
 #define TM_I2C_H 100
+
+/* C++ detection */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
@@ -36,7 +42,7 @@
 
 /**
  * @defgroup TM_I2C
- * @brief    I2C library for STM32Fxxx
+ * @brief    I2C library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-16-i2c-for-stm32fxxx-devices/
  * @{
  *
  *	\par Pinout
@@ -191,7 +197,6 @@ TM_I2C_Result_t TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t device_add
  */
 TM_I2C_Result_t TM_I2C_Read16(I2C_TypeDef* I2Cx, uint8_t device_address, uint16_t register_address, uint8_t* data);
 
-
 /**
  * @brief  Writes single byte to device
  * @param  *I2Cx: Pointer to I2Cx peripheral to be used in communication
@@ -304,6 +309,11 @@ TM_I2C_Result_t TM_I2C_WriteReadRepeatedStart(
 /**
  * @}
  */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

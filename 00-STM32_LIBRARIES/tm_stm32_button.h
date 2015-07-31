@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-13-buttons-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_BUTTON
- * @brief    Button library for STM32Fxxx devices
+ * @brief    Button library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/07/hal-library-13-buttons-for-stm32fxxx/
  * @{
  *
  * This library works with external buttons.
@@ -163,7 +163,7 @@ TM_BUTTON_t* TM_BUTTON_SetPressTime(TM_BUTTON_t* ButtonStruct, uint16_t Normal, 
 
 /**
  * @brief  Updates buttons. This function have to be called periodically
- * @note   Function will automatically call callback functions for buttons
+ * @note   Function will automatically call callback functions for buttons if needed
  * @param  None
  * @retval None
  */

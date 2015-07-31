@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/05/library-62-fast-fourier-transform-fft-for-stm32f4xx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_FFT
- * @brief    FFT library for STM32Fxxx devices
+ * @brief    FFT library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/05/library-62-fast-fourier-transform-fft-for-stm32f4xx/
  * @{
  *
  * This library allows you to calculate FFT in your signal.
@@ -156,6 +156,17 @@ void TM_FFT_SetBuffers_F32(TM_FFT_F32_t* FFT, float32_t* InputBuffer, float32_t*
  *            - > 0: Input buffer is full and samples are ready to be calculated
  */
 uint8_t TM_FFT_AddToBuffer(TM_FFT_F32_t* FFT, float32_t sampleValue);
+
+/**
+ * @brief  Adds new sample (real and imaginary part if needed) to input buffer in FFT array 
+ * @param  *FFT: Pointer to @ref TM_FFT_F32_t structure where new sample will be added
+ * @param  Real: A new sample to be added to buffer, real part.
+ * @param  Imag: A new sample to be added to buffer, imaginary part.
+ * @retval FFT calculation status:
+ *            - 0: Input buffer is not full yet
+ *            - > 0: Input buffer is full and samples are ready to be calculated
+ */
+uint8_t TM_FFT_AddToBufferWithImag(TM_FFT_F32_t* FFT, float32_t Real, float32_t Imag);
 
 /**
  * @brief  Processes and calculates FFT from InputBuffer and saves data to Output buffer

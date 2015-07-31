@@ -257,7 +257,7 @@ TM_LCD_Result_t TM_LCD_Fill(uint32_t color);
 TM_LCD_Result_t TM_LCD_DisplayOn(void);
 
 /**
- * @brief  Sets display ON
+ * @brief  Sets display OFF
  * @param  None
  * @retval Member of @ref TM_LCD_Result_t enumeration
  */

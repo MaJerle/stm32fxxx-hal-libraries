@@ -37,6 +37,10 @@ int main(void) {
 	
 	/* Init button, PORT, PIN, STATE when PRESSED */
 	MyButton = TM_BUTTON_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_DISCO_BUTTON_PRESSED, BUTTON_Callback);
+
+	/* Init all your buttons you have in project if needed */
+	//MyButton2 = TM_BUTTON_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_DISCO_BUTTON_PRESSED, BUTTON_Callback);
+	//MyButton3 = TM_BUTTON_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_DISCO_BUTTON_PRESSED, BUTTON_Callback);
 	
 	/* Set time how button is detected, 30 ms for normal press, 2000 ms for long press */
 	TM_BUTTON_SetPressTime(MyButton, 30, 2000);
@@ -58,4 +62,3 @@ static void BUTTON_Callback(TM_BUTTON_t* ButtonPtr, TM_BUTTON_PressType_t PressT
 		TM_DISCO_LedOff(LED_ALL);
 	}
 }
-
