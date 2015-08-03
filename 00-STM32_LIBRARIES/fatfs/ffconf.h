@@ -154,7 +154,7 @@
 
 
 #define _STR_VOLUME_ID	1
-#define _VOLUME_STRS	"SD","USB","SDRAM","SPIFLASH","RFU1","RFU2","RFU3","USER1","USER2"
+#define _VOLUME_STRS	"SD","USBFS","USBHS","SDRAM","SPIFLASH","RFU1","RFU2","USER1","USER2"
 /* _STR_VOLUME_ID option switches string volume ID feature.
 /  When _STR_VOLUME_ID is set to 1, also pre-defined strings can be used as drive
 /  number in the path name. _VOLUME_STRS defines the drive ID strings for each

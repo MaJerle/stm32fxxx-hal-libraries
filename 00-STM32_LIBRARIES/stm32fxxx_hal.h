@@ -24,14 +24,12 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- *
- * Different compilers uses different special keywords for functions/variables. etc.
- * For this purpose that file has been made. On one place to all possible attributes used in my libs.
  */
 #ifndef TM_STM32Fxxx_H
 #define TM_STM32Fxxx_H
 
 /* Defines for family used with libraries */
+/* Uncomment line for your family used with HAL libraries */
 //#define STM32F0xx /*!< Use STM32F0xx libraries */
 //#define STM32F4xx /*!< Use STM32F4xx libraries */
 //#define STM32F7xx /*!< Use STM32F7xx libraries */
@@ -83,7 +81,7 @@
 #error "There is not selected STM32 family used. Check stm32fxxx_hal.h file for configuration!"
 #endif
 
-/* Init main libraries */
+/* Init main libraries used everywhere */
 #include "tm_stm32_rcc.h"
 #include "tm_stm32_gpio.h"
 

@@ -97,10 +97,13 @@ typedef struct _TM_LCD_INT_t {
 	uint32_t FrameStart;
 	uint32_t FrameOffset;
 	uint8_t CurrentLayer;
-	TM_FONT_t* CurrentFont;
+	
+	/* Strings */
 	uint32_t ForegroundColor;
 	uint32_t BackgroundColor;
+	TM_FONT_t* CurrentFont;
 	uint16_t CurrentX;
+	uint16_t StartX;
 	uint16_t CurrentY;
 } TM_LCD_INT_t;
 static TM_LCD_INT_t LCD;
@@ -253,9 +256,20 @@ TM_LCD_Result_t TM_LCD_SetXY(uint16_t X, uint16_t Y) {
 	/* Set new values */
 	LCD.CurrentX = X;
 	LCD.CurrentY = Y;
+	LCD.StartX = X;
 	
 	/* Return OK */
 	return TM_LCD_Result_Ok;
+}
+
+uint16_t TM_LCD_GetCurrentX(void) {
+	/* Return current X location for strings */
+	return LCD.CurrentX;
+}
+
+uint16_t TM_LCD_GetCurrentY(void) {
+	/* Return current Y location for strings */
+	return LCD.CurrentY;
 }
 
 TM_LCD_Result_t TM_LCD_SetFont(TM_FONT_t* Font) {
@@ -264,6 +278,11 @@ TM_LCD_Result_t TM_LCD_SetFont(TM_FONT_t* Font) {
 	
 	/* Return OK */
 	return TM_LCD_Result_Ok;
+}
+
+TM_FONT_t* TM_LCD_GetFont(void) {
+	/* Return pointer to font */
+	return LCD.CurrentFont;
 }
 
 TM_LCD_Result_t TM_LCD_SetColors(uint32_t Foreground, uint32_t Background) {
@@ -279,10 +298,15 @@ TM_LCD_Result_t TM_LCD_Putc(char c) {
 	uint32_t i, b, j;
 	
 	/* Check current coordinates */
-	if ((LCD.CurrentX + LCD.CurrentFont->FontWidth) >= LCD.CurrentWidth) {
+	if ((LCD.CurrentX + LCD.CurrentFont->FontWidth) >= LCD.CurrentWidth || c == '\n') {
 		/* If at the end of a line of display, go to new line and set x to 0 position */
 		LCD.CurrentY += LCD.CurrentFont->FontHeight;
-		LCD.CurrentX = 0;
+		LCD.CurrentX = LCD.StartX;
+		
+		/* Check X */
+		if ((LCD.CurrentX + LCD.CurrentFont->FontWidth) >= LCD.CurrentWidth) {
+			LCD.CurrentX = 0;
+		}
 		
 		/* Check for Y position */
 		if (LCD.CurrentY >= LCD.CurrentHeight) {
@@ -291,20 +315,23 @@ TM_LCD_Result_t TM_LCD_Putc(char c) {
 		}
 	}
 	
-	/* Draw all pixels */
-	for (i = 0; i < LCD.CurrentFont->FontHeight; i++) {
-		b = LCD.CurrentFont->data[(c - 32) * LCD.CurrentFont->FontHeight + i];
-		for (j = 0; j < LCD.CurrentFont->FontWidth; j++) {
-			if ((b << j) & 0x8000) {
-				TM_DMA2DGRAPHIC_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.ForegroundColor);
-			} else {
-				TM_DMA2DGRAPHIC_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.BackgroundColor);
+	/* Draw character */
+	if (c != '\n') {
+		/* Draw all pixels */
+		for (i = 0; i < LCD.CurrentFont->FontHeight; i++) {
+			b = LCD.CurrentFont->data[(c - 32) * LCD.CurrentFont->FontHeight + i];
+			for (j = 0; j < LCD.CurrentFont->FontWidth; j++) {
+				if ((b << j) & 0x8000) {
+					TM_DMA2DGRAPHIC_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.ForegroundColor);
+				} else {
+					TM_DMA2DGRAPHIC_DrawPixel(LCD.CurrentX + j, (LCD.CurrentY + i), LCD.BackgroundColor);
+				}
 			}
 		}
-	}
 	
-	/* Go to new X location */
-	TM_LCD_SetXY(LCD.CurrentX + LCD.CurrentFont->FontWidth, LCD.CurrentY);
+		/* Set new current X location */
+		LCD.CurrentX += LCD.CurrentFont->FontWidth;
+	}
 	
 	/* Return OK */
 	return TM_LCD_Result_Ok;
@@ -762,7 +789,8 @@ static void TM_LCD_INT_InitPins(void) {
 	TM_GPIO_Init(ILI9341_WRX_PORT, ILI9341_WRX_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Medium);
 	TM_GPIO_Init(ILI9341_CS_PORT, ILI9341_CS_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Medium);
 	TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF14_LTDC);
-	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF14_LTDC);
+	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF14_LTDC);
+	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_0 | GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF9_LTDC);
 	TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF14_LTDC);
 	TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_3 | GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF14_LTDC);
 	TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF14_LTDC);

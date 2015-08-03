@@ -312,11 +312,32 @@ uint8_t TM_LCD_GetOrientation(void);
 TM_LCD_Result_t TM_LCD_SetXY(uint16_t X, uint16_t Y);
 
 /**
+ * @brief  Gets current X location for LCD strings
+ * @param  None
+ * @retval Current X location for string operations
+ */
+uint16_t TM_LCD_GetCurrentX(void);
+
+/**
+ * @brief  Gets current Y location for LCD strings
+ * @param  None
+ * @retval Current Y location for string operations
+ */
+uint16_t TM_LCD_GetCurrentY(void);
+
+/**
  * @brief  Sets active font for character drawings
  * @param  *Font: Pointer to @ref TM_FONT_t structure with font
  * @retval Member of @ref TM_LCD_Result_t enumeration
  */
 TM_LCD_Result_t TM_LCD_SetFont(TM_FONT_t* Font);
+
+/**
+ * @brief  Gets active font for character drawings
+ * @param  None
+ * @retval Pointer to @ref TM_FONT_t structure with font
+ */
+TM_FONT_t* TM_LCD_GetFont(void);
 
 /**
  * @brief  Sets foreground and background colors for character drawings

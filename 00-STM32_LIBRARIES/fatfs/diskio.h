@@ -11,6 +11,7 @@
 #include "integer.h"
 #include "defines.h"
 #include "attributes.h"
+#include "ffconf.h"
 
 /* Status of Disk Functions */
 typedef BYTE DSTATUS;
@@ -103,31 +104,36 @@ void TM_FATFS_AddDriver(DISKIO_LowLevelDriver_t* Driver, TM_FATFS_Driver_t Drive
 /* Drivers function declarations */
 DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void);
 DSTATUS TM_FATFS_SD_disk_initialize(void);
-DSTATUS TM_FATFS_USB_disk_initialize(void);
+DSTATUS TM_FATFS_USBFS_disk_initialize(void);
+DSTATUS TM_FATFS_USBHS_disk_initialize(void);
 DSTATUS TM_FATFS_SDRAM_disk_initialize(void);
 DSTATUS TM_FATFS_SPI_FLASH_disk_initialize(void);
 
 DSTATUS TM_FATFS_SD_SDIO_disk_status(void);
 DSTATUS TM_FATFS_SD_disk_status(void);
-DSTATUS TM_FATFS_USB_disk_status(void);
+DSTATUS TM_FATFS_USBFS_disk_status(void);
+DSTATUS TM_FATFS_USBHS_disk_status(void);
 DSTATUS TM_FATFS_SDRAM_disk_status(void);
 DSTATUS TM_FATFS_SPI_FLASH_disk_status(void);
 
 DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff);
 DRESULT TM_FATFS_SD_disk_ioctl(BYTE cmd, void *buff);
-DRESULT TM_FATFS_USB_disk_ioctl(BYTE cmd, void *buff);
+DRESULT TM_FATFS_USBFS_disk_ioctl(BYTE cmd, void *buff);
+DRESULT TM_FATFS_USBHS_disk_ioctl(BYTE cmd, void *buff);
 DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void *buff);
 DRESULT TM_FATFS_SPI_FLASH_disk_ioctl(BYTE cmd, void *buff);
 
 DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SD_disk_read(BYTE *buff, DWORD sector, UINT count);
-DRESULT TM_FATFS_USB_disk_read(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_USBFS_disk_read(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_USBHS_disk_read(BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SDRAM_disk_read(BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SPI_FLASH_disk_read(BYTE *buff, DWORD sector, UINT count);
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(const BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SD_disk_write(const BYTE *buff, DWORD sector, UINT count);
-DRESULT TM_FATFS_USB_disk_write(const BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_USBFS_disk_write(const BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_USBHS_disk_write(const BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SDRAM_disk_write(const BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SPI_FLASH_disk_write(const BYTE *buff, DWORD sector, UINT count);
 

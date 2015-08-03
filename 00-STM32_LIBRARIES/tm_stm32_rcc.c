@@ -22,19 +22,9 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 	RCC_ClkInitTypeDef RCC_ClkInitStruct;
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 
-#if defined(STM32F7xx)
-	/* Invalidate I-Cache : ICIALLU register */
-	SCB_InvalidateICache();
-
-	/* Enable branch prediction */
-	SCB->CCR |= (1 <<18);
-	__DSB();
-
+#if defined(STM32F7xx) && !defined(DISABLE_CACHE)
 	/* Enable I-Cache */
 	SCB_EnableICache();
-
-	/* Invalidate I-Cache */
-	SCB_InvalidateDCache();
 	
 	/* Enable D-Cache */
 	SCB_EnableDCache();
@@ -95,7 +85,9 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 
 #if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || defined(STM32F446xx) || defined(STM32F7xx)
 	/* Activate the Over-Drive mode */
-	HAL_PWREx_EnableOverDrive();
+	if (HAL_PWREx_EnableOverDrive() != HAL_OK) {
+		return TM_RCC_Result_Error;
+	}
 #endif
 
 	/* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 clocks dividers */
@@ -130,7 +122,7 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 #if defined(STM32F0xx)
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK) {
 #else
-	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK) {
+	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_6) != HAL_OK) {
 #endif
 		return TM_RCC_Result_Error;
 	}

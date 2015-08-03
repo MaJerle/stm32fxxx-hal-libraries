@@ -221,7 +221,7 @@ uint8_t BSP_SD_Init(void) {
 #endif
 #else
 #if FATFS_SDIO_4BIT == 1
-			if (HAL_SD_WideBusOperation_Config(&uSdHandle, SDMMC_BUS_WIDE_4B) != SD_OK) {
+		if (HAL_SD_WideBusOperation_Config(&uSdHandle, SDMMC_BUS_WIDE_4B) != SD_OK) {
 #else
 		if (HAL_SD_WideBusOperation_Config(&uSdHandle, SDMMC_BUS_WIDE_1B) != SD_OK) {	
 #endif

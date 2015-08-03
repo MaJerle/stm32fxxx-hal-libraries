@@ -1,5 +1,5 @@
 /**
- * Keil project template
+ * Keil project example for CPU load monitor
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -61,7 +61,7 @@ int main(void) {
 			while (i++ < 0x1FFF);
 		}
 		
-		/* Go low power mode, sleep mode until interrupt, measure CPU load */
+		/* Go low power mode, sleep mode until next interrupt (Systick or anything else), measure CPU load */
 		TM_CPULOAD_GoToSleepMode(&CPU_LOAD);
 	}
 }

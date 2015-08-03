@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/08/hal-library-20-fatfs-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_FATFS
- * @brief    FATFS implementation for STM32Fxxx devices
+ * @brief    FATFS implementation for STM32Fxxx devices - http://stm32f4-discovery.com/2015/08/hal-library-20-fatfs-for-stm32fxxx/
  * @{
  *
  * FatFs implementation for STM32F4xx devices
@@ -143,15 +143,14 @@
  *
  * \par Write protect and Card detect pins
  *
- * Library has support for Write protect and Card detect pins. This two pins are by default on pins below.
+ * Library has support for Card detect pin.
  *
- * They are the same for any communication used, and are disabled by default.
+ * It is the same for any communication used and is disabled by default.
  * 
 @verbatim
-NAME	STM32F4XX	DESCRIPTION
+NAME    STM32Fxxx   DESCRIPTION
 	
-WP		PB7			Write protect pin. Pin low when write is enabled
-CD		PB6			Card detect pin. Pin low when card detected
+CD      PB6         Card detect pin. Pin low when card detected
 @endverbatim
  *
  * Like I said before, these 2 pins are disabled by default. If you want to use it, you have to add 2 lines in your defines.h file:
@@ -159,9 +158,6 @@ CD		PB6			Card detect pin. Pin low when card detected
 @verbatim
 //Enable Card detect pin
 #define FATFS_USE_DETECT_PIN          1
-
-//Enable Write protect pin
-#define FATFS_USE_WRITEPROTECT_PIN    1
 @endverbatim
  * 
  * WP and CD pins are now enabled with default configuration.
@@ -172,10 +168,6 @@ CD		PB6			Card detect pin. Pin low when card detected
 //Default CD pin			
 #define FATFS_DETECT_PORT          GPIOB
 #define FATFS_DETECT_PIN           GPIO_PIN_6
-
-//Default WP pin			
-#define FATFS_WRITEPROTECT_PORT    GPIOB
-#define FATFS_WRITEPROTECT_PIN     GPIO_PIN_7
 @endverbatim
  *
  * \par Timing function for files
@@ -387,7 +379,6 @@ f_open(&fil, "SD:my_file_sd.txt", FA...);
  - TM SPI           (only when SPI)
  - TM DELAY         (only when SPI)
  - TM GPIO
- - TM SDRAM         (only when SDRAM)
  - FatFS by Chan
 @endverbatim
  */

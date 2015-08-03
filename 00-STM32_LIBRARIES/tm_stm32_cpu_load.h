@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/08/hal-library-19-cpu-load-monitor-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_CPULOAD
- * @brief    CPU load monitoring for STM32F4/7xx
+ * @brief    CPU load monitoring for STM32F4/7xx - http://stm32f4-discovery.com/2015/08/hal-library-19-cpu-load-monitor-for-stm32fxxx/
  * @{
  *
  * \par Changelog
@@ -61,7 +61,7 @@ extern "C" {
 @endverbatim
  */
 
-#include "stm32f4xx.h"
+#include "stm32fxxx_hal.h"
 #include "defines.h"
 #include "tm_stm32_general.h"
 
@@ -85,10 +85,10 @@ extern "C" {
  * @brief  CPU LOAD structure
  */
 typedef struct {
-	uint32_t WCNT;   /*!< Number of working cycles in one period */
-	uint32_t SCNT;   /*!< Number of sleeping cycles in one period */
 	float Load;      /*!< CPU load percentage */
 	uint8_t Updated; /*!< Set to 1 when new CPU load is calculated */
+	uint32_t WCNT;   /*!< Number of working cycles in one period. Meant for private use */
+	uint32_t SCNT;   /*!< Number of sleeping cycles in one period. Meant for private use */
 } TM_CPULOAD_t;
 
 /**
