@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Library template 
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_NRF24L01_H
 #define TM_NRF24L01_H 100
@@ -51,7 +51,7 @@ extern "C" {
  * 
  * \par Default pinout
  * 	
-@verbatim
+\verbatim
 NRF24L01+	STM32Fxxx	DESCRIPTION
 
 GND			GND			Ground
@@ -62,7 +62,7 @@ SCK			PC10		SCK pin for SPI
 MOSI		PC12		MOSI pin for SPI
 MISO		PC11		MISO pin for SPI
 IRQ			Not used	Interrupt pin. Goes low when active. Pin functionality is active, but not used in library
-@endverbatim 	
+\endverbatim 	
  *
  * IRQ pin is not used in this library, but it's functionality is enabled by this software.
  *
@@ -74,7 +74,7 @@ IRQ			Not used	Interrupt pin. Goes low when active. Pin functionality is active,
  *
  * Add lines below in your defines.h file if you want to change default pinout:
  *
-@verbatim
+\code
 //Change SPI used. Refer to TM SPI library to check which pins are for SPI
 #define NRF24L01_SPI				SPI3
 #define NRF24L01_SPI_PINS			TM_SPI_PinsPack_2
@@ -86,23 +86,23 @@ IRQ			Not used	Interrupt pin. Goes low when active. Pin functionality is active,
 //Change CE pin. This pin is used to enable/disable transmitter/receiver functionality
 #define NRF24L01_CE_PORT			GPIOD
 #define NRF24L01_CE_PIN				GPIO_Pin_8
-@endverbatim
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM SPI
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

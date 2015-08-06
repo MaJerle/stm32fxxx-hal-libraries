@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   GENERAL library for STM32F4xx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_GENERAL_H
 #define TM_GENERAL_H 100
@@ -50,7 +50,7 @@ extern "C" {
  *
  * \par Supported actions with library
  *
-@verbatim
+\verbatim
 - Support for software reset with callback
 - Get reset source, what resets your MCU
 - Disable or enable global NVIC interrupts
@@ -59,22 +59,22 @@ extern "C" {
 - Check if number is odd or even and if it is power of 2
 - Round float number with selectable decimal places
 - Convert float number to integer and decimal part with selectable decimal places
-@endverbatim
+\endverbatim
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - attributes.h
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

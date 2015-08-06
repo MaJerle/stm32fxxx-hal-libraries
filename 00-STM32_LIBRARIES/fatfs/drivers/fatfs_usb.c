@@ -23,41 +23,40 @@
 #define PDRV_HS    0
 
 /* Function implementations */
-static DSTATUS TM_FATFS_USB_disk_status_lowlevel(USBH_HandleTypeDef* USBHandle, uint8_t pdrv);
-static DRESULT TM_FATFS_USB_disk_read_lowlevel( BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle, uint8_t pdrv);
-static DRESULT TM_FATFS_USB_disk_write_lowlevel(const BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle, uint8_t pdrv);
-static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_HandleTypeDef* USBHandle, uint8_t pdrv);
+static DSTATUS TM_FATFS_USB_disk_initialize_lowlevel(USBH_HandleTypeDef* USBHandle);
+static DSTATUS TM_FATFS_USB_disk_status_lowlevel(USBH_HandleTypeDef* USBHandle);
+static DRESULT TM_FATFS_USB_disk_read_lowlevel( BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle);
+static DRESULT TM_FATFS_USB_disk_write_lowlevel(const BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle);
+static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_HandleTypeDef* USBHandle);
 
 /*-----------------------------------------------------------------------*/
 /* Initialize USB                                                        */
 /*-----------------------------------------------------------------------*/
 DSTATUS TM_FATFS_USBFS_disk_initialize(void) {
-	/* Return OK */
-	return RES_OK;
+	return TM_FATFS_USB_disk_initialize_lowlevel(&hUSBHost_FS);
 }
 DSTATUS TM_FATFS_USBHS_disk_initialize(void) {
-	/* Return OK */
-	return RES_OK;
+	return TM_FATFS_USB_disk_initialize_lowlevel(&hUSBHost_HS);
 }
 
 /*-----------------------------------------------------------------------*/
 /* Get Disk Status                                                       */
 /*-----------------------------------------------------------------------*/
 DSTATUS TM_FATFS_USBFS_disk_status(void) {
-	return TM_FATFS_USB_disk_status_lowlevel(&hUSBHost_FS, PDRV_FS);
+	return TM_FATFS_USB_disk_status_lowlevel(&hUSBHost_FS);
 }
 DSTATUS TM_FATFS_USBHS_disk_status(void) {
-	return TM_FATFS_USB_disk_status_lowlevel(&hUSBHost_HS, PDRV_HS);
+	return TM_FATFS_USB_disk_status_lowlevel(&hUSBHost_HS);
 }
 
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */
 /*-----------------------------------------------------------------------*/
 DRESULT TM_FATFS_USBFS_disk_read(BYTE *buff, DWORD sector, UINT count) {
-	return TM_FATFS_USB_disk_read_lowlevel(buff, sector, count, &hUSBHost_FS, PDRV_FS);
+	return TM_FATFS_USB_disk_read_lowlevel(buff, sector, count, &hUSBHost_FS);
 }
 DRESULT TM_FATFS_USBHS_disk_read(BYTE *buff, DWORD sector, UINT count) {
-	return TM_FATFS_USB_disk_read_lowlevel(buff, sector, count, &hUSBHost_HS, PDRV_HS);
+	return TM_FATFS_USB_disk_read_lowlevel(buff, sector, count, &hUSBHost_HS);
 }
 
 /*-----------------------------------------------------------------------*/
@@ -65,10 +64,10 @@ DRESULT TM_FATFS_USBHS_disk_read(BYTE *buff, DWORD sector, UINT count) {
 /*-----------------------------------------------------------------------*/
 #if _USE_WRITE
 DRESULT TM_FATFS_USBFS_disk_write(const BYTE *buff, DWORD sector, UINT count) {
-	return TM_FATFS_USB_disk_write_lowlevel(buff, sector, count, &hUSBHost_FS, PDRV_FS);
+	return TM_FATFS_USB_disk_write_lowlevel(buff, sector, count, &hUSBHost_FS);
 }
 DRESULT TM_FATFS_USBHS_disk_write(const BYTE *buff, DWORD sector, UINT count) {
-	return TM_FATFS_USB_disk_write_lowlevel(buff, sector, count, &hUSBHost_HS, PDRV_HS);
+	return TM_FATFS_USB_disk_write_lowlevel(buff, sector, count, &hUSBHost_HS);
 }
 #endif
 
@@ -78,39 +77,58 @@ DRESULT TM_FATFS_USBHS_disk_write(const BYTE *buff, DWORD sector, UINT count) {
 /*-----------------------------------------------------------------------*/
 #if _USE_IOCTL
 DRESULT TM_FATFS_USBFS_disk_ioctl (BYTE cmd, void *buff) {
-	return TM_FATFS_USB_disk_ioctl_lowlevel(cmd, buff, &hUSBHost_FS, PDRV_FS);
+	return TM_FATFS_USB_disk_ioctl_lowlevel(cmd, buff, &hUSBHost_FS);
 }
 DRESULT TM_FATFS_USBHS_disk_ioctl (BYTE cmd, void *buff) {
-	return TM_FATFS_USB_disk_ioctl_lowlevel(cmd, buff, &hUSBHost_HS, PDRV_HS);
+	return TM_FATFS_USB_disk_ioctl_lowlevel(cmd, buff, &hUSBHost_HS);
 }
 #endif
 
 /********************************************************************/
 /*                         LOW LEVEL DRIVERS                        */
 /********************************************************************/
-static DSTATUS TM_FATFS_USB_disk_status_lowlevel(USBH_HandleTypeDef* USBHandle, uint8_t pdrv) {
-	DRESULT res = RES_ERROR;
-
-	/* Check if MSC is ready */
-	if (USBH_MSC_UnitIsReady(USBHandle, pdrv)) {
-		res = RES_OK;
-	} else {
-		res = RES_ERROR;
-	}
-
-	return res;
+static DSTATUS TM_FATFS_USB_disk_initialize_lowlevel(USBH_HandleTypeDef* USBHandle) {
+	return RES_OK;
 }
 
-static DRESULT TM_FATFS_USB_disk_read_lowlevel(BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle, uint8_t pdrv) {
+static DSTATUS TM_FATFS_USB_disk_status_lowlevel(USBH_HandleTypeDef* USBHandle) {
+	MSC_HandleTypeDef *MSC_Handle;
+	
+	/* Check active class */
+	if (USBHandle->pActiveClass != USBH_MSC_CLASS) {
+		return RES_ERROR;
+	}
+	
+	/* Create MSC handle */
+	MSC_Handle = (MSC_HandleTypeDef *) USBHandle->pActiveClass->pData;
+	
+	/* Check if MSC is ready */
+	if (USBH_MSC_UnitIsReady(USBHandle, MSC_Handle->current_lun)) {
+		return RES_OK;
+	}
+
+	return RES_ERROR;
+}
+
+static DRESULT TM_FATFS_USB_disk_read_lowlevel(BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle) {
 	DRESULT res = RES_ERROR;
 	MSC_LUNTypeDef info;
 	USBH_StatusTypeDef  status = USBH_OK;
 	DWORD scratch [_MAX_SS / 4];
+	MSC_HandleTypeDef *MSC_Handle;
+	
+	/* Check active class */
+	if (USBHandle->pActiveClass != USBH_MSC_CLASS) {
+		return RES_ERROR;
+	}
+
+	/* Create MSC handle */
+	MSC_Handle = (MSC_HandleTypeDef *) USBHandle->pActiveClass->pData;
 
 	/* DMA Alignment issue, do single up to aligned buffer */
 	if ((DWORD)buff & 3) { 
 		while ((count--) && (status == USBH_OK)) {
-			status = USBH_MSC_Read(USBHandle, pdrv, sector + count, (uint8_t *)scratch, 1);
+			status = USBH_MSC_Read(USBHandle, MSC_Handle->current_lun, sector + count, (uint8_t *)scratch, 1);
 			if (status == USBH_OK) {
 				memcpy(&buff[count * _MAX_SS], scratch, _MAX_SS);
 			} else {
@@ -118,13 +136,13 @@ static DRESULT TM_FATFS_USB_disk_read_lowlevel(BYTE *buff, DWORD sector, UINT co
 			}
 		}
 	} else {
-		status = USBH_MSC_Read(USBHandle, pdrv, sector, buff, count);
+		status = USBH_MSC_Read(USBHandle, MSC_Handle->current_lun, sector, buff, count);
 	}
 
 	if (status == USBH_OK) {
 		res = RES_OK;
 	} else {
-		USBH_MSC_GetLUNInfo(USBHandle, pdrv, &info); 
+		USBH_MSC_GetLUNInfo(USBHandle, MSC_Handle->current_lun, &info); 
 
 		switch (info.sense.asc) {
 			case SCSI_ASC_LOGICAL_UNIT_NOT_READY:
@@ -144,30 +162,39 @@ static DRESULT TM_FATFS_USB_disk_read_lowlevel(BYTE *buff, DWORD sector, UINT co
 }
 
 #if _USE_WRITE
-static DRESULT TM_FATFS_USB_disk_write_lowlevel(const BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle, uint8_t pdrv) {
+static DRESULT TM_FATFS_USB_disk_write_lowlevel(const BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle) {
 	DRESULT res = RES_ERROR; 
 	MSC_LUNTypeDef info;
 	USBH_StatusTypeDef  status = USBH_OK;  
-	DWORD scratch [_MAX_SS / 4];  
+	DWORD scratch [_MAX_SS / 4];
+	MSC_HandleTypeDef *MSC_Handle;
+	
+	/* Check active class */
+	if (USBHandle->pActiveClass != USBH_MSC_CLASS) {
+		return RES_ERROR;
+	}
+
+	/* Create MSC handle */
+	MSC_Handle = (MSC_HandleTypeDef *) USBHandle->pActiveClass->pData;
 
 	/* DMA Alignment issue, do single up to aligned buffer */
 	if ((DWORD)buff & 3) {
 		while (count--) {
 			memcpy(scratch, &buff[count * _MAX_SS], _MAX_SS);
 
-			status = USBH_MSC_Write(USBHandle, pdrv, sector + count, (BYTE *)scratch, 1);
+			status = USBH_MSC_Write(USBHandle, MSC_Handle->current_lun, sector + count, (BYTE *)scratch, 1);
 			if (status == USBH_FAIL) {
 				break;
 			}
 		}
 	} else {
-		status = USBH_MSC_Write(USBHandle, pdrv, sector, (BYTE *)buff, count);
+		status = USBH_MSC_Write(USBHandle, MSC_Handle->current_lun, sector, (BYTE *)buff, count);
 	}
 
 	if (status == USBH_OK) {
 		res = RES_OK;
 	} else {
-		USBH_MSC_GetLUNInfo(USBHandle, pdrv, &info); 
+		USBH_MSC_GetLUNInfo(USBHandle, MSC_Handle->current_lun, &info); 
 
 		switch (info.sense.asc) {
 			case SCSI_ASC_WRITE_PROTECTED:
@@ -192,10 +219,19 @@ static DRESULT TM_FATFS_USB_disk_write_lowlevel(const BYTE *buff, DWORD sector, 
 }
 #endif
 
-static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_HandleTypeDef* USBHandle, uint8_t pdrv) {
+static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_HandleTypeDef* USBHandle) {
 	DRESULT res = RES_OK;
 	MSC_LUNTypeDef info;
-
+	MSC_HandleTypeDef *MSC_Handle;
+	
+	/* Check active class */
+	if (USBHandle->pActiveClass != USBH_MSC_CLASS) {
+		return RES_ERROR;
+	}
+	
+	/* Create MSC handle */
+	MSC_Handle = (MSC_HandleTypeDef *) USBHandle->pActiveClass->pData;
+	
 	switch (cmd) {
 		/* Make sure that no pending write process */  
 		case CTRL_SYNC:		
@@ -204,7 +240,7 @@ static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_Hand
 
 		/* Get number of sectors on the disk (DWORD) */ 
 		case GET_SECTOR_COUNT:	
-			if (USBH_MSC_GetLUNInfo(USBHandle, pdrv, &info) == USBH_OK) {
+			if (USBH_MSC_GetLUNInfo(USBHandle, MSC_Handle->current_lun, &info) == USBH_OK) {
 				*(DWORD *)buff = info.capacity.block_nbr;
 				res = RES_OK;
 			} else {
@@ -214,7 +250,7 @@ static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_Hand
 
 		/* Get R/W sector size (WORD) */
 		case GET_SECTOR_SIZE :	
-			if (USBH_MSC_GetLUNInfo(USBHandle, pdrv, &info) == USBH_OK) {
+			if (USBH_MSC_GetLUNInfo(USBHandle, MSC_Handle->current_lun, &info) == USBH_OK) {
 				*(DWORD *)buff = info.capacity.block_size;
 				res = RES_OK;
 			} else {
@@ -224,7 +260,7 @@ static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_Hand
 
 		/* Get erase block size in unit of sector (DWORD) */  
 		case GET_BLOCK_SIZE:	
-			if (USBH_MSC_GetLUNInfo(USBHandle, pdrv, &info) == USBH_OK) {
+			if (USBH_MSC_GetLUNInfo(USBHandle, MSC_Handle->current_lun, &info) == USBH_OK) {
 				*(DWORD *)buff = info.capacity.block_size;
 				res = RES_OK;
 			} else {

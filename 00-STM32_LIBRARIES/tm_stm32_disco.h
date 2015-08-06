@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Leds and button library for all STM32F4 boards and STM32F7 boards (discovery/nucleo)
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_DISCO_H
 #define TM_DISCO_H 100
@@ -92,32 +92,55 @@ extern "C" {
  *   - Add define for your board in compiler's global settings
  *     - For Keil uVision you have "Options for Target" and "C/C++" tab where you can set this.
  *
+ * @note  If you are using my other libs, for example SDRAM or LCD where pins and settings depend on board used, 
+ *        then I recommend you select your board using this library.
+ *        If you use, for example STM32F429-Discovery board, then add global define "STM32F429_DISCOVERY" in defines.h file
+ *        and all other libraries which will detect this define will know you are using this board and default settings (if exists) 
+ *        will be automatically detected. For example, SDRAM/LCD/USB are 3 of many libraries which needs special
+ *        defines according to board used in your project. Using global define for your board, libs will detect settings needed for work.
+ *
  * Imagine, we want to work with STM324x9-Eval board. Then, you can open <code>defines.h</code> file and add define:
  *
-@verbatim
+\code
 //Select STM32F439-Eval for DISCO library
 #define STM32F439_EVAL
-@endverbatim
+\endcode
  * Or if you want STM32F429-Discovery, do this:
-@verbatim
+\code
 //Select STM32F429-Discovery for DISCO library
 #define STM32F429_DISCOVERY
-@endverbatim
+\endcode
+ *
+ * \par All boards and its defines
+ *
+\code{.c}
+//Use proper define for your board
+#define STM32F429_DISCOVERY
+#define STM32F401_DISCOVERY
+#define STM32F411_DISCOVERY
+#define STM32F4_DISCOVERY
+#define NUCLEO_F401
+#define NUCLEO_F411
+#define NUCLEO_F446
+#define NUCLEO_F091
+#define STM32F439_EVAL
+#define STM32F7_DISCOVERY
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

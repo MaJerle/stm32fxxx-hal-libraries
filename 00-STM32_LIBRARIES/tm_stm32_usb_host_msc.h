@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   USB HOST for MSC devices library
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_USBH_MSC_H
 #define TM_USBH_MSC_H 100
@@ -47,14 +47,14 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM USB
@@ -62,7 +62,7 @@ extern "C" {
  - USB Host Stack
  - USB Host MSC class
  - TM FATFS
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"
@@ -100,24 +100,24 @@ extern "C" {
 
 /**
  * @brief  Initializes USB HOST MSC class for specific USB mode (PORT)
- * @param  USB_Mode: USB mode where MSC HOST class will be registered. This parameter can be a value of @ref TM_USBH_t enumeration
+ * @param  USB_Mode: USB mode where MSC HOST class will be registered. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBH_Result_t enumeration
  */
-TM_USBH_Result_t TM_USBH_MSC_Init(TM_USBH_t USB_Mode);
+TM_USBH_Result_t TM_USBH_MSC_Init(TM_USB_t USB_Mode);
 
 /**
  * @brief  Checks if connecteed device on USB mode is type of MSC class
- * @param  USB_Mode: USB mode where device will be checked. This parameter can be a value of @ref TM_USBH_t enumeration
+ * @param  USB_Mode: USB mode where device will be checked. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBH_Result_t enumeration
  */
-TM_USBH_Result_t TM_USBH_MSC_IsConnected(TM_USBH_t USB_Mode);
+TM_USBH_Result_t TM_USBH_MSC_IsConnected(TM_USB_t USB_Mode);
 
 /**
  * @brief  Checks if connecteed MSC device on USB mode is ready to be used with FATFS
- * @param  USB_Mode: USB mode where device will be checked. This parameter can be a value of @ref TM_USBH_t enumeration
+ * @param  USB_Mode: USB mode where device will be checked. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBH_Result_t enumeration
  */
-TM_USBH_Result_t TM_USBH_MSC_IsReady(TM_USBH_t USB_Mode);
+TM_USBH_Result_t TM_USBH_MSC_IsReady(TM_USB_t USB_Mode);
 
 /**
  * @}

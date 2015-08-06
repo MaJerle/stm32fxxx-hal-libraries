@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Brown-Out settings for STM32Fxxx
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_BOR_H
 #define TM_BOR_H 100
@@ -57,17 +57,17 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

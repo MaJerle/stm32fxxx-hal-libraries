@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Basic library for AM2301 (DHT21) temperature and humidity sensor
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_AM2301_H
 #define TM_AM2301_H 100
@@ -36,7 +36,7 @@ extern "C" {
 #endif
 
 /**
- * @addtogroup TM_STM32F4xx_Libraries
+ * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
  */
 
@@ -49,42 +49,44 @@ extern "C" {
  * 
  * \par Default pinout
  *
-@verbatim
-AM2301		STM32F4xx		Description
+\verbatim
+AM2301  STM32Fxxx   Description
 
-VCC			3V3-5V			Supply voltage from 3V3 to 5V
-GND			GND				Ground
-DATA		PD1				Data line
-@endverbatim
+VCC     3V3-5V      Supply voltage from 3V3 to 5V
+GND     GND         Ground
+DATA    PD1         Data line
+\endverbatim
  *
  * By default, PD1 pin is used for data. If you want to change it, use lines below in defines.h to and edit them:
  *
-@verbatim
+\code
 //Select custom pin for AM2301 sensor
-#define AM2301_PORT         GPIOD
-#define AM2301_PIN          GPIO_PIN_1
-@endverbatim
+#define AM2301_PORT      GPIOD
+#define AM2301_PIN       GPIO_PIN_1
+\endcode
  *
  * \par Data output
  *
  * Temperature and humidity are returned from sensor in x10 multiplier, so like 55.5% humidity,
- * sensor will return 555 and 27.3°C, sensor will return 273.
+ * sensor will return 555 and for 27.3 degrees, sensor will return 273.
  *
- * @note This values are also returned from my library, you have to manually convert them (divide by 10)
+ * @note This values are also returned from my library, you have to manually convert them (divide by 10) if needed.
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
-@endverbatim
+ - TM DELAY
+ - TM GPIO
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

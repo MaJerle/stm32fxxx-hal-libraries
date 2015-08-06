@@ -81,8 +81,8 @@ TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReloadC
 	/* Fill settings */
 	tmp->ARR = ReloadValue;
 	tmp->CNT = tmp->ARR;
-	tmp->AR = AutoReloadCmd;
-	tmp->CTRL = StartTimer;
+	tmp->Flags.F.AREN = AutoReloadCmd;
+	tmp->Flags.F.CNTEN = StartTimer;
 	tmp->Callback = TM_DELAY_CustomTimerCallback;
 	tmp->UserParameters = UserParameters;
 	
@@ -139,7 +139,7 @@ void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer) {
 
 TM_DELAY_Timer_t* TM_DELAY_TimerStop(TM_DELAY_Timer_t* Timer) {
 	/* Disable timer */
-	Timer->CTRL = 0;
+	Timer->Flags.F.CNTEN = 0;
 	
 	/* Return pointer */
 	return Timer;
@@ -147,7 +147,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerStop(TM_DELAY_Timer_t* Timer) {
 
 TM_DELAY_Timer_t* TM_DELAY_TimerStart(TM_DELAY_Timer_t* Timer) {
 	/* Enable timer */
-	Timer->CTRL = 1;
+	Timer->Flags.F.CNTEN = 1;
 	
 	/* Return pointer */
 	return Timer;
@@ -163,7 +163,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerReset(TM_DELAY_Timer_t* Timer) {
 
 TM_DELAY_Timer_t* TM_DELAY_TimerAutoReloadCommand(TM_DELAY_Timer_t* Timer, uint8_t AutoReloadCommand) {
 	/* Set new auto reload command */
-	Timer->AR = AutoReloadCommand;
+	Timer->Flags.F.AREN = AutoReloadCommand ? 1 : 0;
 	
 	/* Return pointer */
 	return Timer;
@@ -205,12 +205,13 @@ void HAL_IncTick(void) {
 	for (i = 0; i < CustomTimers.Count; i++) {
 		/* Check if timer is enabled */
 		if (
-			CustomTimers.Timers[i] &&          /*!< Pointer exists */
-			CustomTimers.Timers[i]->CTRL &&    /*!< Timer is enabled */
-			CustomTimers.Timers[i]->CNT > 0    /*!< Counter is not NULL */
+			CustomTimers.Timers[i] &&             /*!< Pointer exists */
+			CustomTimers.Timers[i]->Flags.F.CNTEN /*!< Timer is enabled */
 		) {
-			/* Decrease counter */
-			CustomTimers.Timers[i]->CNT--;
+			/* Decrease counter if needed */
+			if (CustomTimers.Timers[i]->CNT) {
+				CustomTimers.Timers[i]->CNT--;
+			}
 			
 			/* Check if count is zero */
 			if (CustomTimers.Timers[i]->CNT == 0) {
@@ -221,9 +222,9 @@ void HAL_IncTick(void) {
 				CustomTimers.Timers[i]->CNT = CustomTimers.Timers[i]->ARR;
 				
 				/* Disable timer if auto reload feature is not used */
-				if (!CustomTimers.Timers[i]->AR) {
+				if (!CustomTimers.Timers[i]->Flags.F.AREN) {
 					/* Disable counter */
-					CustomTimers.Timers[i]->CTRL = 0;
+					CustomTimers.Timers[i]->Flags.F.CNTEN = 0;
 				}
 			}
 		}
@@ -239,7 +240,14 @@ void HAL_Delay(uint32_t Delay) {
 	if (__get_IPSR() == 0) {
 		/* Called from thread mode */
 		uint32_t tickstart = HAL_GetTick();
-		while ((HAL_GetTick() - tickstart) < Delay);
+		
+		/* Count interrupts */
+		while ((HAL_GetTick() - tickstart) < Delay) {
+#ifdef DELAY_SLEEP
+			/* Go sleep, wait systick interrupt */
+			__WFI();
+#endif
+		}
 	} else {
 		/* Called from interrupt mode */
 		while (Delay) {
@@ -252,5 +260,6 @@ void HAL_Delay(uint32_t Delay) {
 }
 
 uint32_t HAL_GetTick(void) {
+	/* Return current time in milliseconds */
 	return TM_Time;
 }

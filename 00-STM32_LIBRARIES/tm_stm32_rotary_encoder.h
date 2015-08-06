@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Rotary encoder library for STM32F4xx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_RE_H
 #define TM_RE_H 100
@@ -55,20 +55,20 @@
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - misc.h
  - defines.h
  - TM EXTI
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

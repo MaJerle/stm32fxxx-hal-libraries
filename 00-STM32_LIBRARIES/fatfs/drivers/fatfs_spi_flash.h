@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   SPI based flash low level implementation for FATFS
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_FATFS_SPI_FLASH_H
 #define TM_FATFS_SPI_FLASH_H 100
@@ -36,7 +36,7 @@ extern C {
 #endif
 
 /**
- * @addtogroup TM_STM32F4xx_Libraries
+ * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
  */
 
@@ -47,21 +47,21 @@ extern C {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32F4xx
  - defines.h
  - TM SDRAM
-@endverbatim
+\endverbatim
  */
 
-#include "stm32f4xx.h"
+#include "stm32fxxx_hal.h"
 #include "defines.h"
 #include "diskio.h"
 
@@ -99,11 +99,13 @@ extern C {
  * @brief    Library Functions
  * @{
  */
+
 DSTATUS TM_FATFS_SPI_FLASH_disk_initialize(void);
 DSTATUS TM_FATFS_SPI_FLASH_disk_status(void);
 DRESULT TM_FATFS_SPI_FLASH_disk_ioctl(BYTE cmd, void *buff);
 DRESULT TM_FATFS_SPI_FLASH_disk_read(BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SPI_FLASH_disk_write(const BYTE *buff, DWORD sector, UINT count);
+
 /**
  * @}
  */

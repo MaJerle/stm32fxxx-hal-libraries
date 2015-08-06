@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Library for interfacing DS18B20 temperature sensor from Dallas semiconductors.
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_DS18B20_H
 #define TM_DS18B20_H 100
@@ -46,19 +46,19 @@
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - TM ONEWIRE
  - TM GPIO
  - defines.h
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"
@@ -233,12 +233,12 @@ uint8_t TM_DS18B20_DisableAlarmTemperature(TM_OneWire_t* OneWireStruct, uint8_t*
  *            - 0: No device found with alarm flag set
  *            - > 0: Device is found with alarm flag
  * @note   To get all devices on one onewire channel with alarm flag set, you can do this:
-@verbatim
+\verbatim
 while (TM_DS18B20_AlarmSearch(&OneWireStruct)) {
 	//Read device ID here 
 	//Print to user device by device
 }
-@endverbatim 
+\endverbatim 
  * @retval 1 if any device has flag, otherwise 0
  */
 uint8_t TM_DS18B20_AlarmSearch(TM_OneWire_t* OneWireStruct);

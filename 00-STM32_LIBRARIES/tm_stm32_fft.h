@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   FFT library for float 32 and Cortex-M4/7 little endian MCUs
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_FFT_H
 #define TM_FFT_H 100
@@ -51,19 +51,19 @@ extern "C" {
  * 
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - ARM MATH
  - ARM CONST STRUCTS
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

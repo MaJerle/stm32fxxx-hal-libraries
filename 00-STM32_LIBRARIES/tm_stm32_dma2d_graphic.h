@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Graphic library for LCD using DMA2D for transferring graphic data to memory for LCD display
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_DMA2DGRAPHIC_H
 #define TM_DMA2DGRAPHIC_H 100
@@ -66,17 +66,17 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
-@endverbatim
+\endverbatim
  */
  
 #include "stm32fxxx_hal.h"

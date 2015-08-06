@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   USB library for STM32Fxxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_USB_H
 #define TM_USB_H 100
@@ -47,18 +47,18 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"
@@ -150,6 +150,15 @@ typedef enum {
 } TM_USB_Result_t;
 
 /**
+ * @brief  USB modes enumeration
+ */
+typedef enum {
+	TM_USB_FS = 0x00, /*!< USB Full Speed mode */
+	TM_USB_HS = 0x01, /*!< USB High Speed mode */
+	TM_USB_Both       /*!< USB both modes */
+} TM_USB_t;
+
+/**
  * @}
  */
 
@@ -182,6 +191,19 @@ TM_USB_Result_t TM_USB_InitFS(void);
  * @retval Member of @ref TM_USB_Result_t enumeration
  */
 TM_USB_Result_t TM_USB_InitHS(void);
+
+/**
+ * @brief  Enables or disabled VBUS (Power supply) for USB communication
+ * @note   This functions has sense only if you have external hardware which can be controlled to enable/disable VBUS
+ * @note   Functions has sense only when HOST mode is used with USB
+ * @param  USB_Mode: USB Mode where VBUS should be enabled or disabled
+ * @param  state: State to use for VBUS
+ *            - 0: VBUS should be disabled, USB deactivated 
+ *            - 1: VBUS should be enabled, USB activated
+ * @retval None
+ * @note   With __weak parameter to prevent link errors if not defined by user
+ */
+void TM_USB_DriveVBUSCallback(TM_USB_t USB_Mode, uint8_t state);
 
 /**
  * @}

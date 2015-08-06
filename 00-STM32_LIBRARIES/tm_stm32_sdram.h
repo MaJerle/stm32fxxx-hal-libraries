@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   External SDRAM for STM32F429-Discovery, STM32F439-EVAL or STM32F7-Discovery boards
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_SDRAM_H
 #define TM_SDRAM_H 100
@@ -52,11 +52,14 @@
  *
  * @par Set your target
  * 
+ * @note   If you follow my description in @ref TM_DISCO library on how to select your used board, then this library will automatically select your "target".
+ *
  * By default, STM32F429-Discovery configuration is used, because this board is cheap and most users uses this.
  *
- * If you are working with STM324x9-EVAL board, you can add define in defines.h file and enable configuration for SDRAM on this board.
+ * If you are working with STM324x9-EVAL board, you can add define in defines.h file and enable configuration for SDRAM on this board. 
+ * Other boards are supported below. 
  *
-@verbatim
+\code
 //Use SDRAM on STM32F439-EVAL board
 #define SDRAM_USE_STM32F439_EVAL
 
@@ -65,11 +68,11 @@
 
 //Use SDRAM on STM32F429-Discovery board
 #define SDRAM_USE_STM32F429_DISCOVERY
-@endverbatim
+\endcode
  *
  * \par STM32F7-Discovery pinout
  *
-@verbatim
+\verbatim
 PC3  <-> FMC_SDCKE0 | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10    | PH3  <-> FMC_SDNE0
                     | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11    | PH5  <-> FMC_SDNWE
                     | PD3  <->          | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_BA0    |
@@ -81,11 +84,11 @@ PC3  <-> FMC_SDCKE0 | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0  
                     |                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                     |    
                     |                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                     |
                     |                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                     |
-@endverbatim 
+\endverbatim 
  *
  * \par STM32F429-Discovery pinout
  *
-@verbatim
+\verbatim
 PB5  <-> FMC_SDCKE | PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10
 PB6  <-> FMC_SDNE1 |                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11
                    |                    | PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_BA0
@@ -97,11 +100,11 @@ PB6  <-> FMC_SDNE1 |                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1 
                    |                    |                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |    
                    |                    |                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |
                    |                    |                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |
-@endverbatim
+\endverbatim
  *
  * \par STM32439-EVAL pinout
  * 
-@verbatim
+\verbatim
 PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10   | PH2  <-> FMC_SDCKE0| PI0  <-> FMC_D24  
 PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11   | PH3  <-> FMC_SDNE0 | PI1  <-> FMC_D25   
 PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_A14   | PH5  <-> FMC_SDNW  | PI2  <-> FMC_D26  
@@ -113,23 +116,23 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH14 <-> FMC_D22   | PI9  <-> FMC_D30  
                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH15 <-> FMC_D23   | PI10 <-> FMC_D31
                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    |                    |
-@endverbatim                                                                                            
+\endverbatim                                                                                            
  *          
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - attributes.h
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   RCC Library for STM32F4xx and STM32F7xx devices
  *
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_RCC_H
 #define TM_RCC_H 100
@@ -45,20 +45,23 @@ extern "C" {
  * @brief    RCC Library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-01-rcc-for-stm32fxxx/
  * @{
  *
+ * RCC library provides initialization of clock at the beginning. Function @ref TM_RCC_InitSystem should be called at beginning of @ref main function to initialize system.
+ *
+ * @note  In case of STM32F7xx is used, this library also enabled CACHE for Instructions and Data.
+ *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
-  - March 08, 2015
   - Initial release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

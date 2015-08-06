@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Library for 128x64 SSD1306 I2C LCD
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_SSD1306_H
 #define TM_SSD1306_H 100
@@ -53,20 +53,20 @@ extern "C" {
  *
  * \par Default pinout
  *
-@verbatim
-SSD1306    |STM32F4xx    |DESCRIPTION
+\verbatim
+SSD1306    |STM32Fxxx    |DESCRIPTION
 
 VCC        |3.3V         |
 GND        |GND          |
 SCL        |PA8          |Serial clock line
 SDA        |PC9          |Serial data line
-@endverbatim
+\endverbatim
  *
  * \par Select custom I2C settings
  *
  * Use defines.h file for custom settings
  *
-@verbatim
+\code
 //Select custom I2C
 #define SSD1306_I2C              I2C3
 #define SSD1306_I2C_PINSPACK     TM_I2C_PinsPack_1
@@ -77,18 +77,18 @@ SDA        |PC9          |Serial data line
 //Select custom width and height if your LCD differs in size
 #define SSD1306_WIDTH            128
 #define SSD1306_HEIGHT           64
-@endverbatim
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM I2C
@@ -96,7 +96,7 @@ SDA        |PC9          |Serial data line
  - TM DELAY
  - string.h
  - stdlib.h
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

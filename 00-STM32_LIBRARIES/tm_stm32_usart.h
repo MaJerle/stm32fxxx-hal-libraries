@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   USART Library for STM32Fxxx with receive interrupt
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_USART_H
 #define TM_USART_H 100
@@ -51,28 +51,33 @@ extern "C" {
  *
  * Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer.
  * If you want to use your own receive handler, then you have to open defines.h files and set a define.
-@verbatim
+\code
 //Use custom IRQ Receive handler
 //Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
 #define TM_X_USE_CUSTOM_IRQ
-@endverbatim
+\endcode
+ *
  * After you set define, you have to create a function, which will handle custom request
-@verbatim
+ *
+\code
 //Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
 //Parameter c is a received character
 void TM_X_ReceiveHandler(uint8_t c) {
    //Do your stuff here when byte is received
 }
-@endverbatim
+\endcode
+ *
  * @note If you use custom receive interrupt handler, then incoming data is not stored in internal buffer
  *
  * \par USART Internal cyclic buffer
  *
  * In your project you can set internal cyclic buffer length, default is 32Bytes, with:
-@verbatim
+ *
+\code
 //Set buffer sie for all buffers
 #define TM_USART_BUFFER_SIZE number_of_bytes
-@endverbatim
+\endcode
+ *
  * in your project's defines.h file. This will set default length for each buffer.
  * So if you are working with F429 (it has 8 U(S)ARTs) then you will use 8kB RAM if 
  * you set define above to 1024.
@@ -81,10 +86,12 @@ void TM_X_ReceiveHandler(uint8_t c) {
  * If you don't change anything, then all USART's have buffer length of value, stored in
  * <code>TM_USART_BUFFER_SIZE</code> define. If you want let's say just for USART1 to be 1kB, but others default value,
  * you can add define below in defines.h file:
-@verbatim
+ *
+\code
 //Buffer length for USART1 is 1kB, for others is still TM_USART_BUFFER_SIZE
 #define TM_USART1_BUFFER_SIZE 1024
-@endverbatim
+\endcode
+ *
  *
  * Other possible settings are (for other U(S)ARTs):
  *   - TM_USART1_BUFFER_SIZE
@@ -103,7 +110,7 @@ void TM_X_ReceiveHandler(uint8_t c) {
  *
  * \par Pinout
  *
-@verbatim
+\verbatim
              |PINSPACK 1     |PINSPACK 2     |PINSPACK 3	
 U(S)ARTX     |TX     RX      |TX     RX      |TX     RX
 
@@ -115,7 +122,7 @@ UART5        |PC12   PD2     |-      -       |-      -
 USART6       |PC6    PC7     |PG14   PG9     |-      -
 UART7        |PE8    PE7     |PF7    PF6     |-      -
 UART8        |PE1    PE0     |-      -       |-      -
-@endverbatim
+\endverbatim
  *
  * In case these pins are not good for you, you can use
  * TM_USART_PinsPack_Custom in function and callback function will be called,
@@ -127,7 +134,7 @@ UART8        |PE1    PE0     |-      -       |-      -
  * Do this only in case you know what are you doing!
  * 
  * Open \ref defines.h file, copy define you want to change and fill settings
-@verbatim
+\code
 //Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
 //Set flow control
 #define TM_X_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
@@ -139,24 +146,24 @@ UART8        |PE1    PE0     |-      -       |-      -
 #define TM_X_STOP_BITS					USART_STOPBITS_1
 //Set USART datasize
 #define TM_X_WORD_LENGTH				UART_WORDLENGTH_8B
-@endverbatim
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
    - First release
-@endverbatim
+\endverbatim
  *
  * \b Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - STM32Fxxx HAL UART
  - attributes.h
  - defines.h
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "attributes.h"

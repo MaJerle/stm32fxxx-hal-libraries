@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   I2C library for STM32Fxxx
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_I2C_H
 #define TM_I2C_H 100
@@ -47,7 +47,7 @@ extern "C" {
  *
  *	\par Pinout
  *	
-@verbatim
+\verbatim
        |PINSPACK 1   |PINSPACK 2   |PINSPACK 3   |PINSPACK 4
 I2CX   |SCL   SDA    |SCL   SDA    |SCL   SDA    |SCL   SDA
        |             |             |             |
@@ -55,7 +55,7 @@ I2C1   |PB6   PB7    |PB8   PB9    |PB6   PB9    |
 I2C2   |PB10  PB11   |PF1   PF0    |PH4   PH5    |
 I2C3   |PA8   PC9    |PH7   PH8    |-     -      |
 I2C4   |PD12  PD13   |PF1   PF0    |PF14  PF15   |PH11  PH12
-@endverbatim
+\endverbatim
  *
  * I2C4 is not available on all devices. Please check if it is available for your device before using it!
  *
@@ -67,19 +67,19 @@ I2C4   |PD12  PD13   |PF1   PF0    |PF14  PF15   |PH11  PH12
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - attributes.h
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

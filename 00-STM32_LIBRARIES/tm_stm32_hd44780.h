@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   HD44780 LCD driver library for STM32Fxxx
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_HD44780_H
 #define TM_HD44780_H 100
@@ -49,7 +49,7 @@ extern "C" {
  *
  * \par Default pinout
  *	
-@verbatim
+\verbatim
 LCD		STM32Fxxx		DESCRIPTION
 
 GND		GND				Ground
@@ -68,11 +68,11 @@ D6		PB12      Data 6, can be overwritten in your project's defines.h file
 D7		PB13      Data 7, can be overwritten in your project's defines.h file
 A     +3V3      Back light positive power
 K     GND       Ground for back light
-@endverbatim	
+\endverbatim	
  *	
  * If you want to change pinout, do this in your defines.h file with lines below and set your own settings:
  *	
-@verbatim
+\code
 //RS - Register select pin
 #define HD44780_RS_PORT     GPIOB
 #define HD44780_RS_PIN      GPIO_PIN_2
@@ -91,23 +91,23 @@ K     GND       Ground for back light
 //D7 - Data 7 pin
 #define HD44780_D7_PORT     GPIOB
 #define HD44780_D7_PIN      GPIO_PIN_13
-@endverbatim
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM DELAY
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"

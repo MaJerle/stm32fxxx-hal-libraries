@@ -41,18 +41,18 @@ int main(void) {
 	TM_USB_Init();
 	
 	/* Init VCP on FS port */
-	TM_USBD_CDC_Init(TM_USBD_FS);
+	TM_USBD_CDC_Init(TM_USB_FS);
 	
 	/* Init VCP on HS port */
-	TM_USBD_CDC_Init(TM_USBD_HS);
+	TM_USBD_CDC_Init(TM_USB_HS);
 	
 	/* Start VCP */
-	TM_USBD_Start(TM_USBD_FS);
-	TM_USBD_Start(TM_USBD_HS);
+	TM_USBD_Start(TM_USB_FS);
+	TM_USBD_Start(TM_USB_HS);
 	
 	while (1) {
 		/* Process USB CDC device, send remaining data if needed */
-		//TM_USBD_CDC_Process(TM_USBD_Both);
+		//TM_USBD_CDC_Process(TM_USB_Both);
 	}
 }
 

@@ -18,3 +18,4 @@
  */
 #include "tm_stm32_id.h"
 
+/* Nothing is needed here. Everything is done in header file with macros! */

@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Fatfs implementation for STM32Fxxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_FATFS_H
 #define TM_FATFS_H 100
@@ -56,7 +56,7 @@
  * 
  * SD CARD PINS
  * 	   
-@verbatim
+\verbatim
    _________________
   / 1 2 3 4 5 6 7 8 |  NR   |SDIO INTERFACE                               |SPI INTERFACE
  /                  |       |NAME     STM32Fxxx     DESCRIPTION           |NAME   STM32Fxxx   DESCRIPTION 
@@ -71,21 +71,21 @@
 |                   |   7   |DAT0     PC8    PC8    Connector data line 0 |MISO   PA6         Data output for SPI 
 |                   |   8   |DAT1     PC9    -      Connector data line 1 |-      -           - 
 |___________________|   9   |DAT2     PC10   -      Connector data line 2 |-      -           - 
-@endverbatim
+\endverbatim
  *	
  * \par SDIO Communication
  * 
  * By default, SDIO with 4-bit communication is used.
  * If you want to use SDIO 1-bit communication, set defines below in your defines.h file:
  * 
-@verbatim
+\code
 //Set SDIO with 1-bit communication
 #define FATFS_SDIO_4BIT   0
-@endverbatim
+\endcode
  * 
  * For SDIO communication, you will need at least these files:
  *
-@verbatim
+\verbatim
 - tm_stm32_fatfs.h
 - tm_stm32_fatfs.c
 - fatfs/diskio.h
@@ -98,20 +98,20 @@
 - fatfs/option/unicode.c
 - fatfs/drivers/fatfs_sd_sdio.h
 - fatfs/drivers/fatfs_sd_sdio.c
-@endverbatim 
+\endverbatim 
  *
  * \par SPI Communication
  * 
  * Or, if you want to use SPI communication, you have to add lines below in your defines.h file
  *	
-@verbatim
+\code
 //Enable SPI communication, disable SDIO
 #define FATFS_USE_SDIO   0
-@endverbatim
+\endcode
  *	
  * Files, needed for SPI:
  *
-@verbatim
+\verbatim
 - tm_stm32_fatfs.h
 - tm_stm32_fatfs.c
 - fatfs/diskio.h
@@ -124,14 +124,14 @@
 - fatfs/option/unicode.c
 - fatfs/drivers/fatfs_sd.h
 - fatfs/drivers/fatfs_sd.c
-@endverbatim 
+\endverbatim 
  * 
  * \par Overwriting default pinout
  * 
  * SDIO interface pins are fixed, and can not be changed.
  * If you want to change SPI pins, you have to set these defines in your defines.h file:
  * 
-@verbatim
+\code
 //Set your SPI, for corresponding pins look at TM SPI library
 #define FATFS_SPI               SPI1
 #define FATFS_SPI_PINSPACK      TM_SPI_PinsPack_1
@@ -139,7 +139,7 @@
 //Set your CS pin for SPI			
 #define FATFS_CS_PORT           GPIOB
 #define FATFS_CS_PIN            GPIO_PIN_5
-@endverbatim
+\endcode
  *
  * \par Write protect and Card detect pins
  *
@@ -147,28 +147,28 @@
  *
  * It is the same for any communication used and is disabled by default.
  * 
-@verbatim
+\verbatim
 NAME    STM32Fxxx   DESCRIPTION
 	
 CD      PB6         Card detect pin. Pin low when card detected
-@endverbatim
+\endverbatim
  *
  * Like I said before, these 2 pins are disabled by default. If you want to use it, you have to add 2 lines in your defines.h file:
  *
-@verbatim
+\code
 //Enable Card detect pin
 #define FATFS_USE_DETECT_PIN          1
-@endverbatim
+\endcode
  * 
  * WP and CD pins are now enabled with default configuration.
  *
  * Add lines below to your defines.h file only if you want to overwrite default pin settings:
  *
-@verbatim
+\code
 //Default CD pin			
 #define FATFS_DETECT_PORT          GPIOB
 #define FATFS_DETECT_PIN           GPIO_PIN_6
-@endverbatim
+\endcode
  *
  * \par Timing function for files
  * 
@@ -176,14 +176,14 @@ CD      PB6         Card detect pin. Pin low when card detected
  * 
  * By default, function returns 0, but if you want to create your own function, you have to set defines in defines.h file:
  * 
-@verbatim
+\code
 //Use custom get_fattime() function
 #define FATFS_CUSTOM_FATTIME	1
-@endverbatim
+\endcode
  *
  * And then somewhere in your project, add function like below:
  * 
-@verbatim
+\code
 //Use custom get_fattime function
 //Implement RTC get time here if you need it
 DWORD get_fattime (void) {
@@ -196,7 +196,7 @@ DWORD get_fattime (void) {
 			| ((DWORD)0 << 5)				// Min 0
 			| ((DWORD)0 >> 1);				// Sec 0
 }
-@endverbatim
+\endcode
  * 
  * Added support for USB MSC HOST interface with FatFS library.
  * More about, how to configure USB MSC HOST to work properly, you should take a look at 
@@ -206,7 +206,7 @@ DWORD get_fattime (void) {
  * 
  * Files, needed for USB communication and FatFS:
  *
-@verbatim
+\verbatim
 - tm_stm32_fatfs.h
 - tm_stm32_fatfs.c
 - fatfs/diskio.h
@@ -219,36 +219,36 @@ DWORD get_fattime (void) {
 - fatfs/option/unicode.c
 - fatfs/drivers/fatfs_usb.h
 - fatfs/drivers/fatfs_usb.c
-@endverbatim 
+\endverbatim 
  * 
  * After you have your files included in project, open project's defines.h file and add line below:
  * 
-@verbatim
+\code
 //Enable USB in FatFS library
 #define FATFS_USE_USB      1
-@endverbatim
+\endcode
  * 
  * This will enable USB functions to work with FatFS module. Also, when you make define 2 lines above, SD card settings become inactive.
  * 
  * If you want to use SD card and USB storage at the same time for some reason, you have to enable SD card functionality back. Add lines below in your defines.h file:
  * 
-@verbatim
+\code
 //Enable SDIO communication for SD card
 #define FATFS_USE_SDIO		1
 
 //Enable SPI communication for SD card
 #define FATFS_USE_SDIO		0
-@endverbatim
+\endcode
  *	
  * And also, you should know, that USB has 1: partition and SD card has 0: partition. So when you mount SD card, you should use:
  * 
-@verbatim
+\code
 //Mount SD card
 f_mount(&sd_fs, "0:", 1);
 
 //Mount USB storage
 f_mount(&usb_fs, "1:", 1);
-@endverbatim
+\endcode
 
  * This allows you to copy data from one SD card to USB and back too and use of 2 different physical drives at the same time.
  *
@@ -258,17 +258,17 @@ f_mount(&usb_fs, "1:", 1);
  *
  * To enable this feature, you will have to open defines.h file and add define:
  *
-@verbatim
+\code
 //Enable SDRAM
 #define FATFS_USE_SDRAM   1
-@endverbatim
+\endcode
  *
  * @note  After that, again, SDCARD will be disabled by default, if you want to use it too (with SDCARD together) you have to do 
  * the same as you have to do when you use USB with FATFS, otherwise, if you will try to read/write from SDCARD, you will get errors.
  *
  * Files, you will need for running SDRAM driver are:
  *
-@verbatim
+\verbatim
 - tm_stm32_fatfs.h
 - tm_stm32_fatfs.c
 - fatfs/diskio.h
@@ -283,7 +283,7 @@ f_mount(&usb_fs, "1:", 1);
 - fatfs/drivers/fatfs_sdram.c
 - tm_stm32f4_sdram.h
 - tm_stm32f4_sdram.c
-@endverbatim 
+\endverbatim 
  *
  * @note SDRAM is not a memory which holds data when power is off. For that reason, you will have to use @ref f_mkfs() function to 
  *       create file system object on your SDRAM drive. This will have to be done when you initialize your SDRAM or when you first time
@@ -302,29 +302,29 @@ f_mount(&usb_fs, "1:", 1);
  * If you want to use them both at a time, you always have to keep in mind to 
  * use different numbers for drivers, for example (notice number in the second parameter):
  *
-@verbatim
+\code
 //Mount SDCARD
 f_mount(&fsSD, "0:", 1);
 //Mount USB 
 f_mount(&fsUSB, "1:", 1);
-@endverbatim
+\endcode
  *
  * As of version 1.7, you can now use the same as before, or like that:
  *
-@verbatim
+\code
 //Mount SDCARD
 f_mount(&fsSD, "SD:", 1);
 //Mount USB 
 f_mount(&fsUSB, "USB:", 1);
-@endverbatim
+\endcode
  *
  * If you want to open file, fox example on USB, you can do like this:
  *
-@verbatim
+\code
 //Open file on USB key
 //Mount first
 f_open(&fil, "USB:my_file.txt", FA...);
-@endverbatim
+\endcode
  *
  * \par All supported names
  *
@@ -337,19 +337,19 @@ f_open(&fil, "USB:my_file.txt", FA...);
  *
  * Example for opening files:
  *
-@verbatim
+\code
 //Open file on SDRAM
 f_open(&fil, "SDRAM:my_file_sdram.txt", FA...);
 //Open file on SDCARD
 f_open(&fil, "SD:my_file_sd.txt", FA...);
 //and more files
-@endverbatim
+\endcode
  *
  * \par Example of using all 4 possible drivers in your project
  *
  * To use all available data sources (physical drivers) for FATFS, you will have to open defines.h file, and add these defines:
  *
-@verbatim
+\code
 //Enable all possible FATFS sources implemented in library
 
 //Enable USB
@@ -362,25 +362,25 @@ f_open(&fil, "SD:my_file_sd.txt", FA...);
 //SDCARD is enabled by default, but when you enable anything else too, SDCARD is disabled
 //If you want to enable it too, you have to tell that!
 #define FATFS_USE_SDIO      1 //Set to 0 if you want to use SDCARD with SPI
-@endverbatim
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM SPI           (only when SPI)
  - TM DELAY         (only when SPI)
  - TM GPIO
  - FatFS by Chan
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

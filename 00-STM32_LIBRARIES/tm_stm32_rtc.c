@@ -399,7 +399,7 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 		HAL_RTCEx_SetWakeUpTimer_IT(&hRTC, int_val, RTC_WAKEUPCLOCK_RTCCLK_DIV8);
 		
 		/* Set NVIC */
-		HAL_NVIC_SetPriority(RTC_WKUP_IRQn, RTC_PRIORITY, RTC_WAKEUP_SUBPRIORITY);
+		HAL_NVIC_SetPriority(RTC_WKUP_IRQn, RTC_NVIC_PRIORITY, RTC_NVIC_WAKEUP_SUBPRIORITY);
 		HAL_NVIC_EnableIRQ(RTC_WKUP_IRQn);
 	}
 }
@@ -541,7 +541,7 @@ void TM_RTC_EnableAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* DataTime, TM_R
 	}
 	
 	/* Enable NVIC */
-	HAL_NVIC_SetPriority(RTC_Alarm_IRQn, RTC_PRIORITY, RTC_ALARM_SUBPRIORITY);
+	HAL_NVIC_SetPriority(RTC_Alarm_IRQn, RTC_NVIC_PRIORITY, RTC_NVIC_ALARM_SUBPRIORITY);
 	HAL_NVIC_EnableIRQ(RTC_Alarm_IRQn);
 }
 

@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   External interrupts library for STM32Fxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_EXTI_H
 #define TM_EXTI_H 100
@@ -72,7 +72,7 @@ extern "C" {
  * If you open defines.h file and add any of lines below, you will disable handler line for interrupts.
  * By default, all handlers for lines are enabled. Disabled then with adding lines below in defines.h file:
  * 
-@verbatim
+\code
 //These works for STM32F4xx and STM32F7xx series
 //Disable EXTI0_IRQHandler function
 #define EXTI_DISABLE_DEFAULT_HANDLER_0
@@ -96,29 +96,29 @@ extern "C" {
 #define EXTI_DISABLE_DEFAULT_HANDLER_2_3
 //Disable EXTI4_15_IRQHandler function
 #define EXTI_DISABLE_DEFAULT_HANDLER_4_15
-@endverbatim
+\endcode
  * 
  * If you need higher priority for external interrupts in NVIC, add lines below in defines.h file and edit them
-@verbatim
+\code
 //Set custom NVIC priority
 #define EXTI_NVIC_PRIORITY      0x04
-@endverbatim
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - attributes.h
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "attributes.h"

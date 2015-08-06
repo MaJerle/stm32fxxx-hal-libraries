@@ -7,7 +7,7 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GPS NMEA standard data parser for STM32Fxxx devices
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -24,12 +24,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_GPS_H
 #define TM_GPS_H 100
+
+/* C++ detection */
+#ifdef __cplusplus
+extern C {
+#endif
+
 /**
- * @addtogroup TM_STM32F4xx_Libraries
+ * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
  */
 
@@ -77,7 +83,7 @@
  * If you disable any of statements, then you will loose data, corresponding to statement.
  *
  * Add lines below in your defines.h file and uncomment your settings
-@verbatim
+\code
 //Disable GPGGA statement
 #define GPS_DISABLE_GPGGA
 //Disable GPRMC statement
@@ -86,16 +92,17 @@
 #define GPS_DISABLE_GPGSA
 //Disable GPGSV statement
 #define GPS_DISABLE_GPGSV
-@endverbatim
+\endcode
+ *
  * \par Pinout
  *
  * To communicate with GPS, USART is commonly used. By default, my library uses USART1,
  * but if you want your own USARTx, add lines below in your defines.h file:
  *
-@verbatim
+\code
 #define GPS_USART				USART1
 #define GPS_USART_PINSPACK		TM_USART_PinsPack_2
-@endverbatim
+\endcode
  *
  * With default pinout:
  *
@@ -116,21 +123,21 @@
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM USART
  - TM GPIO
  - defines.h
  - math.h
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "tm_stm32_usart.h"
@@ -500,6 +507,11 @@ TM_GPS_Custom_t * TM_GPS_AddCustom(TM_GPS_t* GPS_Data, char* GPG_Statement, uint
 /**
  * @}
  */ 
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

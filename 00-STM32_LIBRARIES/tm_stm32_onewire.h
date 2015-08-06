@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Onewire library for STM32Fxxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_ONEWIRE_H
 #define TM_ONEWIRE_H 100
@@ -47,19 +47,19 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM DELAY
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"
@@ -195,7 +195,7 @@ void TM_OneWire_ResetSearch(TM_OneWire_t* OneWireStruct);
 /**
  * @brief  Starts search, reset states first
  * @note   When you want to search for ALL devices on one onewire port, you should first use this function.
-@verbatim
+\verbatim
 /...Initialization before
 status = TM_OneWire_First(&OneWireStruct);
 while (status) {
@@ -204,7 +204,7 @@ while (status) {
 	//Check for new device
 	status = TM_OneWire_Next(&OneWireStruct);
 }
-@endverbatim
+\endverbatim
  * @param  *OneWireStruct: Pointer to @ref TM_OneWire_t working onewire where to reset search values
  * @param  Device status:
  *            - 0: No devices detected

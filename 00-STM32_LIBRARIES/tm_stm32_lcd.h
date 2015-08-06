@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Library template 
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_LCD_H
 #define TM_LCD_H 100
@@ -49,7 +49,13 @@ extern "C" {
  *
  * It uses LTDC and DMA2D for data transfer, so any LCD with these specifications can be used.
  *
-@verbatim
+ * \par Set your target
+ *
+ * @note  If you follow my description in @ref TM_DISCO library on how to select your used board, then this library will automatically select your "target".
+ *
+ * You will need to set bottom defines in case you don't use my @ref TM_DISCO library configuration for board used.
+ *
+\code
 //USE STM32F7-Discovery board, make these defines in defines.h file:
 #define LCD_USE_STM32F7_DISCOVERY
 #define SDRAM_USE_STM32F7_DISCOVERY
@@ -61,32 +67,35 @@ extern "C" {
 //USE STM32F429-Discovery board, make these defines in defines.h file:
 #define LCD_USE_STM32F429_DISCOVERY
 #define SDRAM_USE_STM32F429_DISCOVERY
-@endverbatim
+\endcode
+ *
+ * @note  To use LCD on STM32F429-Discovery, you will also need @ref TM_SPI library for LCD configurations.
  *
  * \par Supported LCD orientations
  * 
  * Library supports changeable orientation for LCD using @ref TM_LCD_SetOrientation where you can use these values:
  *
-@verbatim
+\verbatim
 - 0: 180 degrees, default mode inverted
 - 1: Normal mode, default selected
 - 2: 90 degrees
 - 3: 270 degrees
-@endverbatim
+\endverbatim
  *
+ * \par Supported fonts for strings
  *
- * In addition, to use LCD on STM32F429-Discovery, you will also need my TM SPI library.
+ * For list of all supported fonts, check @ref TM_FONTS library with description.
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM GPIO
@@ -94,7 +103,7 @@ extern "C" {
  - TM DMA2D GRAPHIC
  - TM FONTS
  - TM SPI in case STM32F429-Discovery is used
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

@@ -128,10 +128,10 @@ uint8_t USBD_CDC_Buffer_Data_HS_TX[USBD_CDC_TRANSMIT_BUFFER_SIZE_HS];
 /************************************************/
 /*            USER PUBLIC FUNCTIONS             */
 /************************************************/
-TM_USBD_Result_t TM_USBD_CDC_Init(TM_USBD_t USB_Mode) {
+TM_USBD_Result_t TM_USBD_CDC_Init(TM_USB_t USB_Mode) {
 #ifdef USB_USE_FS
 	/* Init FS mode */
-	if (USB_Mode == TM_USBD_FS || USB_Mode == TM_USBD_Both) {
+	if (USB_Mode == TM_USB_FS || USB_Mode == TM_USB_Both) {
 		/* Init FS */
 		USBD_Init(&hUSBDevice_FS, &VCP_Desc, USB_ID_FS);
 
@@ -149,7 +149,7 @@ TM_USBD_Result_t TM_USBD_CDC_Init(TM_USBD_t USB_Mode) {
 	
 #ifdef USB_USE_HS
 	/* Init HS mode */
-	if (USB_Mode == TM_USBD_HS || USB_Mode == TM_USBD_Both) {
+	if (USB_Mode == TM_USB_HS || USB_Mode == TM_USB_Both) {
 		/* Init HS */
 		USBD_Init(&hUSBDevice_HS, &VCP_Desc, USB_ID_HS);
 
@@ -169,11 +169,11 @@ TM_USBD_Result_t TM_USBD_CDC_Init(TM_USBD_t USB_Mode) {
 	return TM_USBD_Result_Ok;
 }
 
-uint16_t TM_USBD_CDC_Puts(TM_USBD_t USB_Mode, const char* str) {
+uint16_t TM_USBD_CDC_Puts(TM_USB_t USB_Mode, const char* str) {
 	/* Add string to TX buffers */
 	
 #ifdef USB_USE_FS
-	if (USB_Mode == TM_USBD_FS || USB_Mode == TM_USBD_Both) {
+	if (USB_Mode == TM_USB_FS || USB_Mode == TM_USB_Both) {
 		/* Add to FS TX buffer */
 		TM_BUFFER_Write(&USBD_CDC_Buffer_FS_TX, (uint8_t *)str, strlen(str));
 		
@@ -182,7 +182,7 @@ uint16_t TM_USBD_CDC_Puts(TM_USBD_t USB_Mode, const char* str) {
 #endif
 	
 #ifdef USB_USE_HS
-	if (USB_Mode == TM_USBD_HS || USB_Mode == TM_USBD_Both) {
+	if (USB_Mode == TM_USB_HS || USB_Mode == TM_USB_Both) {
 		/* Add to HS TX buffer */
 		TM_BUFFER_Write(&USBD_CDC_Buffer_HS_TX, (uint8_t *)str, strlen(str));
 		
@@ -191,11 +191,11 @@ uint16_t TM_USBD_CDC_Puts(TM_USBD_t USB_Mode, const char* str) {
 #endif
 }
 
-uint16_t TM_USBD_CDC_Putc(TM_USBD_t USB_Mode, char ch) {
+uint16_t TM_USBD_CDC_Putc(TM_USB_t USB_Mode, char ch) {
 	/* Add string to TX buffers */
 	
 #ifdef USB_USE_FS
-	if (USB_Mode == TM_USBD_FS || USB_Mode == TM_USBD_Both) {
+	if (USB_Mode == TM_USB_FS || USB_Mode == TM_USB_Both) {
 		/* Add to FS TX buffer */
 		TM_BUFFER_Write(&USBD_CDC_Buffer_FS_TX, (uint8_t *)&ch, 1);
 		
@@ -204,7 +204,7 @@ uint16_t TM_USBD_CDC_Putc(TM_USBD_t USB_Mode, char ch) {
 #endif
 	
 #ifdef USB_USE_HS
-	if (USB_Mode == TM_USBD_HS || USB_Mode == TM_USBD_Both) {
+	if (USB_Mode == TM_USB_HS || USB_Mode == TM_USB_Both) {
 		/* Add to HS TX buffer */
 		TM_BUFFER_Write(&USBD_CDC_Buffer_HS_TX, (uint8_t *)&ch, 1);
 		

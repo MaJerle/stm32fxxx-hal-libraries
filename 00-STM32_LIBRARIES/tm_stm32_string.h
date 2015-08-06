@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   String library for STM32Fxxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_STRING_H
 #define TM_STRING_H 100
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_STRING
- * @brief    String library for STM32F4xx devices
+ * @brief    String library for STM32Fxxx devices
  * @{
  *
  * This library allows you to dynamically operate with strings in HEAP memory.
@@ -56,19 +56,19 @@ extern "C" {
  * 
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - string.h
  - stdlib.h
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

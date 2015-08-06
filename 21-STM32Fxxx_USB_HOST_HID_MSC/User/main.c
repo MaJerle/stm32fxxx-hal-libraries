@@ -60,65 +60,70 @@ int main(void) {
 	TM_USB_Init();
 	
 	/* Init USB Host, FS and HS modes */
-	TM_USBH_Init(TM_USBH_Both);
+	TM_USBH_Init(TM_USB_Both);
 	
 	/* Enable HID HOST class for USB FS mode */
-	TM_USBH_HID_Init(TM_USBH_FS);
+	TM_USBH_HID_Init(TM_USB_FS);
 	
 	/* Enable MSC HOST class for USB HS mode */
-	TM_USBH_MSC_Init(TM_USBH_HS);
+	TM_USBH_MSC_Init(TM_USB_HS);
 	
 	/* Start USB host on FS and HS */
-	TM_USBH_Start(TM_USBH_Both);
+	TM_USBH_Start(TM_USB_Both);
 	
 	while (1) {
 		/* Process USB host FS and HS modes */
-		TM_USBH_Process(TM_USBH_Both);
+		TM_USBH_Process(TM_USB_Both);
 		
 		/* Check if device connected on FS port */
-		if (TM_USBH_IsConnected(TM_USBH_FS) == TM_USBH_Result_Ok) {
-			/* If not printed yet */
-			if (!FS_Printed) {
-				/* Check if any HID devie is connected to FS port */
-				if (TM_USBH_HID_GetConnected(TM_USBH_FS) == TM_USBH_HID_Keyboard) {
-					/* Keyboard is connected */
+		if (TM_USBH_IsConnected(TM_USB_FS) == TM_USBH_Result_Ok) {
+			/* Check if any HID devie is connected to FS port */
+			if (TM_USBH_HID_GetConnected(TM_USB_FS) == TM_USBH_HID_Keyboard) {
+				/* Keyboard is connected on FS port */
+				
+				/* If not printed yet */
+				if (!FS_Printed) {
 					/* Print to LCD */
-					printf("USB FS: Keyboard connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USBH_FS), TM_USBH_GetPID(TM_USBH_FS));
-					
-					/* Set flag */
-					FS_Printed = 1;
-				} else if (TM_USBH_HID_GetConnected(TM_USBH_FS) == TM_USBH_HID_Keyboard) {
-					/* Mouse is connected */
-					/* Print to LCD */
-					printf("USB FS: Mouse connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USBH_FS), TM_USBH_GetPID(TM_USBH_FS));
+					printf("USB FS: Keyboard connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_FS), TM_USBH_GetPID(TM_USB_FS));
 					
 					/* Set flag */
 					FS_Printed = 1;
 				}
+			} else if (TM_USBH_HID_GetConnected(TM_USB_FS) == TM_USBH_HID_Mouse) {
+				/* Mouse is connected on FS port */
 				
-				/* Turn on green LED */
-				TM_DISCO_LedOn(LED_GREEN);
-			} else {
-				/* Check if no device connected */
-				if (TM_USBH_HID_GetConnected(TM_USBH_FS) == TM_USBH_HID_None) {
-					/* Mouse is connected */
+				/* If not printed yet */
+				if (!FS_Printed) {
 					/* Print to LCD */
-					printf("USB FS: Device disconnected\n");
+					printf("USB FS: Mouse connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_FS), TM_USBH_GetPID(TM_USB_FS));
 					
-					/* Clear flag */
-					FS_Printed = 0;
+					/* Turn on green LED */
+					TM_DISCO_LedOn(LED_GREEN);
 				
-					/* Turn off green LED */
-					TM_DISCO_LedOff(LED_GREEN);
+					/* Set flag */
+					FS_Printed = 1;
 				}
+			}
+		} else if (FS_Printed) {
+			/* Check if no device connected */
+			if (TM_USBH_HID_GetConnected(TM_USB_FS) == TM_USBH_HID_None) {
+				/* Mouse is connected */
+				/* Print to LCD */
+				printf("USB FS: Device disconnected\n");
+				
+				/* Clear flag */
+				FS_Printed = 0;
+			
+				/* Turn off green LED */
+				TM_DISCO_LedOff(LED_GREEN);
 			}
 		}
 		
 		/* Check MSC host on HS port */
 		if (
-			TM_USBH_IsConnected(TM_USBH_HS) == TM_USBH_Result_Ok &&     /*!< Check if any device connected to USB HS port */
-			TM_USBH_MSC_IsConnected(TM_USBH_HS) == TM_USBH_Result_Ok && /*!< Device connected to USB port is MSC type */
-			TM_USBH_MSC_IsReady(TM_USBH_HS) == TM_USBH_Result_Ok        /*!< Device is ready */
+			TM_USBH_IsConnected(TM_USB_HS) == TM_USBH_Result_Ok &&     /*!< Check if any device connected to USB HS port */
+			TM_USBH_MSC_IsConnected(TM_USB_HS) == TM_USBH_Result_Ok && /*!< Device connected to USB port is MSC type */
+			TM_USBH_MSC_IsReady(TM_USB_HS) == TM_USBH_Result_Ok        /*!< Device is ready */
 		) {
 			/* Device is connected on HS port */
 			/* Connected device is MSC type */
@@ -127,7 +132,7 @@ int main(void) {
 			if (!HS_Printed) {
 				/* Print to LCD */
 				printf("--------------------------\n");
-				printf("USB HS: USB MSC device connected with VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USBH_HS), TM_USBH_GetPID(TM_USBH_HS));
+				printf("USB HS: USB MSC device connected with VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_HS), TM_USBH_GetPID(TM_USB_HS));
 				
 				/* Set flag */
 				HS_Printed = 1;

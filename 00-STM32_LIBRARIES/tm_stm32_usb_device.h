@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   USB Device library for STM32Fxxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_USBD_LIB_H
 #define TM_USBD_LIB_H 100
@@ -47,19 +47,19 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM USB
  - USB Device Stack
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"
@@ -97,15 +97,6 @@ typedef enum {
 } TM_USBD_Result_t;
 
 /**
- * @brief  USB modes enumeration
- */
-typedef enum {
-	TM_USBD_FS = 0x00, /*!< USB Full Speed mode */
-	TM_USBD_HS = 0x01, /*!< USB High Speed mode */
-	TM_USBD_Both       /*!< USB both modes */
-} TM_USBD_t;
-
-/**
  * @}
  */
 
@@ -117,38 +108,38 @@ typedef enum {
 
 /**
  * @brief  Initializes USB Device for specific mode
- * @param  USB_Mode: USB Mode to be initialized. This parameter can be a value of @ref TM_USBD_t enumeration
+ * @param  USB_Mode: USB Mode to be initialized. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBD_Result_t enumeration
  */
-TM_USBD_Result_t TM_USBD_Init(TM_USBD_t USB_Mode);
+TM_USBD_Result_t TM_USBD_Init(TM_USB_t USB_Mode);
 
 /**
  * @brief  Starts USB Device for specific mode
- * @param  USB_Mode: USB Mode to be started. This parameter can be a value of @ref TM_USBD_t enumeration
+ * @param  USB_Mode: USB Mode to be started. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBD_Result_t enumeration
  */
-TM_USBD_Result_t TM_USBD_Start(TM_USBD_t USB_Mode);
+TM_USBD_Result_t TM_USBD_Start(TM_USB_t USB_Mode);
 
 /**
  * @brief  Restarts USB Device for specific mode
- * @param  USB_Mode: USB Mode to be restarted. This parameter can be a value of @ref TM_USBD_t enumeration
+ * @param  USB_Mode: USB Mode to be restarted. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBD_Result_t enumeration
  */
-TM_USBD_Result_t TM_USBD_Restart(TM_USBD_t USB_Mode);
+TM_USBD_Result_t TM_USBD_Restart(TM_USB_t USB_Mode);
 
 /**
  * @brief  Initializes USB Device for specific mode
- * @param  USB_Mode: USB Mode to be initialized. This parameter can be a value of @ref TM_USBD_t enumeration
+ * @param  USB_Mode: USB Mode to be initialized. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBD_Result_t enumeration
  */
-TM_USBD_Result_t TM_USBD_Stop(TM_USBD_t USB_Mode);
+TM_USBD_Result_t TM_USBD_Stop(TM_USB_t USB_Mode);
 
 /**
  * @brief  Gets pointer to USB handle
  * @note   This function is not meant for public use
  * @retval Pointer to @ref USBD_HandleTypeDef structure
  */
-USBD_HandleTypeDef* TM_USBD_GetUSBPointer(TM_USBD_t USB_Mode);
+USBD_HandleTypeDef* TM_USBD_GetUSBPointer(TM_USB_t USB_Mode);
 
 /**
  * @}

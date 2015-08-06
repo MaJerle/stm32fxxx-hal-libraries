@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   USB CDC Device library for STM32Fxxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_USBD_CDC_H
 #define TM_USBD_CDC_H 100
@@ -47,14 +47,14 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM BUFFER
@@ -63,7 +63,7 @@ extern "C" {
  - TM USB DEVICE
  - USB Device Stack
  - USB Device CDC
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"
@@ -126,9 +126,9 @@ extern "C" {
  * @{
  */
 
-TM_USBD_Result_t TM_USBD_CDC_Init(TM_USBD_t USB_Mode);
-uint16_t TM_USBD_CDC_Puts(TM_USBD_t USB_Mode, const char* str);
-uint16_t TM_USBD_CDC_Putc(TM_USBD_t USB_Mode, char ch);
+TM_USBD_Result_t TM_USBD_CDC_Init(TM_USB_t USB_Mode);
+uint16_t TM_USBD_CDC_Puts(TM_USB_t USB_Mode, const char* str);
+uint16_t TM_USBD_CDC_Putc(TM_USB_t USB_Mode, char ch);
 
 
 /* Private functions */

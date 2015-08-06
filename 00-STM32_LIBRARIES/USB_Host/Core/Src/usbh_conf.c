@@ -103,7 +103,7 @@ void HAL_HCD_SOF_Callback(HCD_HandleTypeDef *hhcd) {
   */
 void HAL_HCD_Connect_Callback(HCD_HandleTypeDef *hhcd) {
 	USBH_LL_Connect(hhcd->pData);
-	HAL_Delay(50);
+	//HAL_Delay(50);
 }
 
 /**
@@ -385,27 +385,17 @@ USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe
   * @retval USBH Status
   */
 USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state) {
-#if defined(USB_USE_FS) && defined(USB_FS_USE_ENABLE_PIN)
+#if defined(USB_USE_FS)
+	/* Call user functions */
 	if (phost->id == USB_ID_FS) {
-		if (state == 0) {
-			/* Enable output */
-			TM_GPIO_SetPinValue(USB_FS_ENABLE_PORT, USB_FS_ENABLE_PIN, !USB_FS_ENABLE_STATE);
-		} else {
-			/* Disable output */
-			TM_GPIO_SetPinValue(USB_FS_ENABLE_PORT, USB_FS_ENABLE_PIN, USB_FS_ENABLE_STATE);
-		}
+		TM_USB_DriveVBUSCallback(TM_USB_FS, state);
 	}
 #endif
-
-#if defined(USB_USE_HS) && defined(USB_HS_USE_ENABLE_PIN)
-	if (phost->id == USB_ID_HS) {
-		if (state == 0) {
-			/* Disable output */
-			TM_GPIO_SetPinValue(USB_HS_ENABLE_PORT, USB_HS_ENABLE_PIN, !USB_HS_ENABLE_STATE);
-		} else {
-			/* Enable output */
-			TM_GPIO_SetPinValue(USB_HS_ENABLE_PORT, USB_HS_ENABLE_PIN, USB_HS_ENABLE_STATE);
-		}
+	
+#if defined(USB_USE_HS)
+	/* Call user functions */
+	if (phost->id == USB_ID_FS) {
+		TM_USB_DriveVBUSCallback(TM_USB_HS, state);
 	}
 #endif
 	

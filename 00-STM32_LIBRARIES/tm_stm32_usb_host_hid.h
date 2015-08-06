@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   USB HOST for HID devices library
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_USBH_HID_H
 #define TM_USBH_HID_H 100
@@ -47,21 +47,21 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM USB
  - TM USB HOST
  - USB Host Stack
  - USB Host HID class
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"
@@ -107,17 +107,17 @@ typedef enum _TM_USBH_HID_t {
 
 /**
  * @brief  Initializes USB HOST HID class for specific USB mode (PORT)
- * @param  USB_Mode: USB mode where HID HOST class will be registered. This parameter can be a value of @ref TM_USBH_t enumeration
+ * @param  USB_Mode: USB mode where HID HOST class will be registered. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBH_Result_t enumeration
  */
-TM_USBH_Result_t TM_USBH_HID_Init(TM_USBH_t USB_Mode);
+TM_USBH_Result_t TM_USBH_HID_Init(TM_USB_t USB_Mode);
 
 /**
  * @brief  Gets connected device on specific USB port of type HID DEVICE
- * @param  USB_Mode: USB mode where to check for connected HID device. This parameter can be a value of @ref TM_USBH_t enumeration
+ * @param  USB_Mode: USB mode where to check for connected HID device. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Member of @ref TM_USBH_HID_t enumeration
  */
-TM_USBH_HID_t TM_USBH_HID_GetConnected(TM_USBH_t USB_Mode);
+TM_USBH_HID_t TM_USBH_HID_GetConnected(TM_USB_t USB_Mode);
 
 /**
  * @}

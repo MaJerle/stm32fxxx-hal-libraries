@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Touch library for all touch screen controllers
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_TOUCH_H
 #define TM_TOUCH_H 100
@@ -49,13 +49,13 @@ extern "C" {
  *
  * \par Set driver
  * 
-@verbatim
+\code
 //Use touch driver on STM32F7-Discovery, FT5336 controller
 #define TOUCH_USE_STM32F7_DISCOVERY
 	
 //Use touch driver on STM32F439-Eval board, TS3510 controller
 #define TOUCH_USE_STM32F439_EVAL
-@endverbatim
+\endcode
  *
  * When selecting "built-in" drivers, you also have to include some libs.
  * - TM TOUCH TS3510 library for STM32F439-Eval
@@ -63,21 +63,21 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - TM TOUCH TS3510
  - TM TOUCH FT5336
  - TM I2C
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   SPI library for STM32Fxxx
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -24,7 +24,7 @@
     
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-@endverbatim
+\endverbatim
  */
 #ifndef TM_SPI_H
 #define TM_SPI_H 100
@@ -59,7 +59,7 @@ extern "C" {
  *	
  *	\par Pinout
  *
-@verbatim
+\verbatim
         |PINS PACK 1            |PINS PACK 2            |PINS PACK 3           |PINS PACK 4
 SPIX    |MOSI   MISO    SCK     |MOSI   MISO    SCK     |MOSI   MISO    SCK    |MOSI   MISO    SCK
         |                                                                           
@@ -69,7 +69,7 @@ SPI3    |PB5    PB4     PB3     |PC12   PC11    PC10    |                      |
 SPI4    |PE6    PE5     PE2     |PE14   PE13    PE12    |                      |
 SPI5    |PF9    PF8     PF7     |PF11   PH7     PH6     |                      |
 SPI6    |PG14   PG12    PG13    |
-@endverbatim
+\endverbatim
  *
  *	In case these pins are not good for you, you can use
  *	TM_SPI_PinsPack_Custom in function and callback function will be called,
@@ -79,7 +79,7 @@ SPI6    |PG14   PG12    PG13    |
  *	
  *	Change x with 1-6, to match your SPI
  *
-@verbatim
+\code
 //Default prescaler
 #define TM_SPIx_PRESCALER   SPI_BAUDRATEPRESCALER_32
 //Specify datasize
@@ -90,23 +90,23 @@ SPI6    |PG14   PG12    PG13    |
 #define TM_SPIx_MASTERSLAVE SPI_MODE_MASTER
 //Specify mode of operation, clock polarity and clock phase
 #define TM_SPIx_MODE        TM_SPI_Mode_0
-@endverbatim
+\endcode
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - attributes.h
  - TM GPIO
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"

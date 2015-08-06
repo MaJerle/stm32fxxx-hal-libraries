@@ -20,23 +20,40 @@
 
 void TM_CRC_Init(void) {
 	/* Enable CRC clock */
-	RCC->AHB1ENR |= RCC_AHB1ENR_CRCEN;
+	__HAL_RCC_CRC_CLK_ENABLE();
 }
 
 void TM_CRC_DeInit(void) {
 	/* Disable CRC clock */
-	RCC->AHB1ENR &= ~RCC_AHB1ENR_CRCEN;
+	__HAL_RCC_CRC_CLK_DISABLE();
 }
 
 uint32_t TM_CRC_Calculate8(uint8_t* arr, uint32_t count, uint8_t reset) {
+	uint32_t cnt;
+	
 	/* Reset CRC data register if necessary */
 	if (reset) {
 		/* Reset generator */
 		CRC->CR = CRC_CR_RESET;
 	}
 	
-	/* Calculate CRC */
-	while (count--) {
+	/* Calculate number of 32-bit blocks */
+	cnt = count >> 2;
+	
+	/* Calculate */
+	while (cnt--) {
+		/* Set new value */
+		CRC->DR = *(uint32_t *)arr;
+		
+		/* Increase by 4 */
+		arr += 4;
+	}
+	
+	/* Calculate remaining data as 8-bit */
+	cnt = count % 4;
+	
+	/* Calculate */
+	while (cnt--) {
 		/* Set new value */
 		CRC->DR = *arr++;
 	}
@@ -46,14 +63,31 @@ uint32_t TM_CRC_Calculate8(uint8_t* arr, uint32_t count, uint8_t reset) {
 }
 
 uint32_t TM_CRC_Calculate16(uint16_t* arr, uint32_t count, uint8_t reset) {
+	uint32_t cnt;
+	
 	/* Reset CRC data register if necessary */
 	if (reset) {
 		/* Reset generator */
 		CRC->CR = CRC_CR_RESET;
 	}
 	
-	/* Calculate CRC */
-	while (count--) {
+	/* Calculate number of 32-bit blocks */
+	cnt = count >> 1;
+	
+	/* Calculate */
+	while (cnt--) {
+		/* Set new value */
+		CRC->DR = *(uint32_t *)arr;
+		
+		/* Increase by 2 */
+		arr += 2;
+	}
+	
+	/* Calculate remaining data as 8-bit */
+	cnt = count % 2;
+	
+	/* Calculate */
+	while (cnt--) {
 		/* Set new value */
 		CRC->DR = *arr++;
 	}

@@ -18,10 +18,10 @@
  */
 #include "tm_stm32_usb_host_hid.h"
 
-TM_USBH_Result_t TM_USBH_HID_Init(TM_USBH_t USB_Mode) {
+TM_USBH_Result_t TM_USBH_HID_Init(TM_USB_t USB_Mode) {
 #ifdef USB_USE_FS
 	/* Init HID class for FS */
-	if (USB_Mode == TM_USBH_FS || USB_Mode == TM_USBH_Both) {
+	if (USB_Mode == TM_USB_FS || USB_Mode == TM_USB_Both) {
 		/* Add class for HID to FS */
 		USBH_RegisterClass(&hUSBHost_FS, USBH_HID_CLASS);
 	}
@@ -29,7 +29,7 @@ TM_USBH_Result_t TM_USBH_HID_Init(TM_USBH_t USB_Mode) {
 	
 #ifdef USB_USE_HS
 	/* Init HID class for HS */
-	if (USB_Mode == TM_USBH_HS || USB_Mode == TM_USBH_Both) {
+	if (USB_Mode == TM_USB_HS || USB_Mode == TM_USB_Both) {
 		/* Add class for HID to HS */
 		USBH_RegisterClass(&hUSBHost_HS, USBH_HID_CLASS);
 	}
@@ -39,7 +39,7 @@ TM_USBH_Result_t TM_USBH_HID_Init(TM_USBH_t USB_Mode) {
 	return TM_USBH_Result_Ok;
 }
 
-TM_USBH_HID_t TM_USBH_HID_GetConnected(TM_USBH_t USB_Mode) {
+TM_USBH_HID_t TM_USBH_HID_GetConnected(TM_USB_t USB_Mode) {
 	HID_TypeTypeDef type;
 	USBH_HandleTypeDef* USBHandle = TM_USBH_GetUSBPointer(USB_Mode);
 	

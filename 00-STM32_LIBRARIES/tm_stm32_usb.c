@@ -132,6 +132,35 @@ TM_USB_Result_t TM_USB_InitHS(void) {
 }
 
 /**************************************************/
+/*          USB ENABLE/DISABLE CALLBACKS          */
+/**************************************************/
+__weak void TM_USB_DriveVBUSCallback(TM_USB_t USB_Mode, uint8_t state) {
+#if defined(USB_USE_FS) && defined(USB_FS_ENABLE_PIN)
+	if (USB_Mode == TM_USB_FS) {
+		if (state == 0) {
+			/* Disable output */
+			TM_GPIO_SetPinValue(USB_FS_ENABLE_PORT, USB_FS_ENABLE_PIN, !USB_FS_ENABLE_STATE);
+		} else {
+			/* Enable output */
+			TM_GPIO_SetPinValue(USB_FS_ENABLE_PORT, USB_FS_ENABLE_PIN, USB_FS_ENABLE_STATE);
+		}
+	}
+#endif
+	
+#if defined(USB_USE_HS) && defined(USB_HS_ENABLE_PIN)
+	if (USB_Mode == TM_USB_HS) {
+		if (state == 0) {
+			/* Disable output */
+			TM_GPIO_SetPinValue(USB_HS_ENABLE_PORT, USB_HS_ENABLE_PIN, !USB_HS_ENABLE_STATE);
+		} else {
+			/* Enable output */
+			TM_GPIO_SetPinValue(USB_HS_ENABLE_PORT, USB_HS_ENABLE_PIN, USB_HS_ENABLE_STATE);
+		}
+	}
+#endif
+}
+
+/**************************************************/
 /*               USB FS IRQ HANDLER               */
 /**************************************************/
 void OTG_FS_IRQHandler(void) {

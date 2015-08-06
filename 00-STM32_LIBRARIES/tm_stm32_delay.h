@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Library template 
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_DELAY_H
 #define TM_DELAY_H 100
@@ -55,17 +55,17 @@ extern "C" {
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
   - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
-@endverbatim
+\endverbatim
  */
 
 #include "stm32fxxx_hal.h"
@@ -110,10 +110,15 @@ extern "C" {
  * @brief  Custom timer structure
  */
 typedef struct _TM_DELAY_Timer_t {
+	union {
+		struct {			
+			uint8_t AREN:1;  /*!< Auto-reload enabled */
+			uint8_t CNTEN:1; /*!< Count enabled */
+		} F;
+		uint8_t FlagsVal;
+	} Flags;
 	uint32_t ARR;                                        /*!< Auto reload value */
-	uint32_t AR;                                         /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
 	uint32_t CNT;                                        /*!< Counter value, counter counts down */
-	uint8_t CTRL;                                        /*!< Set to 1 when timer is enabled */
 	void (*Callback)(struct _TM_DELAY_Timer_t*, void *); /*!< Callback which will be called when timer reaches zero */
 	void* UserParameters;                                /*!< Pointer to user parameters used for callback function */
 } TM_DELAY_Timer_t;
@@ -127,8 +132,10 @@ typedef struct _TM_DELAY_Timer_t {
  * @brief    Library variables
  * @{
  */
-extern __IO uint32_t TM_Time2;
+
 extern __IO uint32_t TM_Time;
+extern __IO uint32_t TM_Time2;
+
 /**
  * @}
  */

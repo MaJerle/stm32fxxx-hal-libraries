@@ -8,7 +8,7 @@
  * @license GNU GPL v3
  * @brief   Internal RTC library for STM32Fxxx devices
  *	
-@verbatim
+\verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015
     
@@ -25,7 +25,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
-@endverbatim
+\endverbatim
  */
 #ifndef TM_RTC_H
 #define TM_RTC_H 100
@@ -47,7 +47,7 @@ extern "C" {
  *
  * \par Features
  *
-@verbatim
+\verbatim
 - Support Internal or external clock source
   - PC14 and PC15 pins are used for external crystal oscillator
   - STM32F4/429 Discovery does not have RTC crystal onboard. Check board's manual on how to set it up
@@ -62,31 +62,31 @@ extern "C" {
 - Support to write data in string format
 - Date and time are checked before saved for valid input data
 - Get days in month and year
-@endverbatim
+\endverbatim
  *
  * \par Pinout for RTC external 32768Hz crystal
  *
-@verbatim
+\verbatim
  STM32F4XX  Oscillator   Description
 	
  PC14       OSC1         Oscillator terminal 1
  PC15       OSC2         Oscillator terminal 2
-@endverbatim
+\endverbatim
  *
  * \par Changelog
  *
-@verbatim
+\verbatim
  Version 1.0
    - First release
-@endverbatim
+\endverbatim
  *
  * \par Dependencies
  *
-@verbatim
+\verbatim
  - STM32Fxxx HAL
  - defines.h
  - attributes.h
-@endverbatim
+\endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"
@@ -104,23 +104,23 @@ extern "C" {
 /* RTC clock is: f_clk = RTCCLK(LSI or LSE) / ((RTC_SYNC_PREDIV + 1) * (RTC_ASYNC_PREDIV + 1)) */
 /* Sync pre division for clock */
 #ifndef RTC_SYNC_PREDIV
-#define RTC_SYNC_PREDIV					0x3FF
+#define RTC_SYNC_PREDIV                 0x3FF
 #endif
 /* Async pre division for clock */
 #ifndef RTC_ASYNC_PREDIV
-#define RTC_ASYNC_PREDIV				0x1F
+#define RTC_ASYNC_PREDIV                0x1F
 #endif
 /* NVIC global Priority set */
-#ifndef RTC_PRIORITY
-#define RTC_PRIORITY					0x04
+#ifndef RTC_NVIC_PRIORITY
+#define RTC_NVIC_PRIORITY               0x04
 #endif
 /* Sub priority for wakeup trigger */
-#ifndef RTC_WAKEUP_SUBPRIORITY
-#define RTC_WAKEUP_SUBPRIORITY			0x00
+#ifndef RTC_NVIC_WAKEUP_SUBPRIORITY
+#define RTC_NVIC_WAKEUP_SUBPRIORITY     0x00
 #endif
 /* Sub priority for alarm trigger */
-#ifndef RTC_ALARM_SUBPRIORITY
-#define RTC_ALARM_SUBPRIORITY			0x01
+#ifndef RTC_NVIC_ALARM_SUBPRIORITY
+#define RTC_NVIC_ALARM_SUBPRIORITY      0x01
 #endif
 
  /**
