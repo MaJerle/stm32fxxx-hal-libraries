@@ -44,6 +44,9 @@ void TM_PVD_Enable(TM_PVD_Level_t Level, TM_PVD_Trigger_t Trigger) {
 void TM_PVD_Disable(void) {
 	/* Disable PVD */
 	HAL_PWR_DisablePVD();
+	
+	/* Disable EXTI interrupt for PVD */
+	__HAL_PWR_PVD_EXTI_DISABLE_IT();
 
 	/* Disable NVIC */
 	NVIC_DisableIRQ(PVD_IRQn);

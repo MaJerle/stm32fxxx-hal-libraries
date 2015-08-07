@@ -82,7 +82,6 @@ void TM_X_ReceiveHandler(uint8_t c) {
  * So if you are working with F429 (it has 8 U(S)ARTs) then you will use 8kB RAM if 
  * you set define above to 1024.
  *
- * As of version 2.0, you can now set different buffer sizes for different U(S)ARTs.
  * If you don't change anything, then all USART's have buffer length of value, stored in
  * <code>TM_USART_BUFFER_SIZE</code> define. If you want let's say just for USART1 to be 1kB, but others default value,
  * you can add define below in defines.h file:
@@ -91,7 +90,6 @@ void TM_X_ReceiveHandler(uint8_t c) {
 //Buffer length for USART1 is 1kB, for others is still TM_USART_BUFFER_SIZE
 #define TM_USART1_BUFFER_SIZE 1024
 \endcode
- *
  *
  * Other possible settings are (for other U(S)ARTs):
  *   - TM_USART1_BUFFER_SIZE
@@ -105,7 +103,6 @@ void TM_X_ReceiveHandler(uint8_t c) {
  *	
  * \par Custom string delimiter for @ref TM_USART_Gets() function
  * 
- * As of version 2.5, you can now set custom string delimiter for @ref TM_USART_Gets() function.
  * By default, LF (Line Feed) character was used, but now you can select custom character using @ref TM_USART_SetCustomStringEndCharacter() function.
  *
  * \par Pinout

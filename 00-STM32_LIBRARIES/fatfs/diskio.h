@@ -25,9 +25,6 @@ typedef enum {
 	RES_PARERR		/* 4: Invalid Parameter */
 } DRESULT;
 
-//#define FATFS_DEBUG_SEND_USART(x)	TM_USART_Puts(USART6, x); TM_USART_Puts(USART6, "\n");
-#define FATFS_DEBUG_SEND_USART(x)
-
 /*---------------------------------------*/
 /* Prototypes for disk control functions */
 

@@ -45,9 +45,18 @@ extern "C" {
  * @brief    Touch library for touch screen controllers
  * @{
  *
- * By default, tt supports STM32F7-Discovery and STM32F439-Eval board, but can be easily switched for any touch you have in mind.
+ * This library is a "high" level library for working with touch screens.
+ * It needs low level drivers (read/write functions) specially for your touch controller.
  *
- * \par Set driver
+ * When you have your driver written, 2 functions are needed:
+ *  - Function for touch initialization
+ *  - Function for touch read coordinates
+ * 
+ * When you call @ref TM_TOUCH_Init function, you also have to specify some parameters for low level functions.
+ *
+ * \par Set built-in driver
+ *
+ * @note  If you follow my description in @ref TM_DISCO library on how to select your used board, then this library will automatically select your "target".
  * 
 \code
 //Use touch driver on STM32F7-Discovery, FT5336 controller
@@ -57,9 +66,49 @@ extern "C" {
 #define TOUCH_USE_STM32F439_EVAL
 \endcode
  *
- * When selecting "built-in" drivers, you also have to include some libs.
- * - TM TOUCH TS3510 library for STM32F439-Eval
- * - TM TOUCH FT5336 library for STM32F7-Discovery
+ * @note  When selecting "built-in" drivers, you also have to include some libs.
+ *           - TM TOUCH TS3510 library for STM32F439-Eval
+ *           - TM TOUCH FT5336 library for STM32F7-Discovery
+ *
+ * \par Set custom driver
+ *
+ * Setting custom driver needs special structure @TM_TOUCH_DRIVER_t where you pass pointers to your low level driver functions.
+ * 
+ * You can see example on how to do that.
+ *
+\code
+//Create variable with structure
+TM_TOUCH_DRIVER_t MyDriver;
+
+//Working touch screen structure
+TM_TOUCH_t TS;
+
+//Create functions for custom TOUCH driver
+//Init function
+uint8_t MYDRIVER_Init(TM_TOUCH_t* TS) {
+  //Initialize your custom driver here.
+}
+
+//Read function
+uint8_t MYDRIVER_Read(TM_TOUCH_t* TS) {
+  //Read coordinates and check if pressed here
+}
+
+//In main function for example:
+int main() { 
+  //Pass init and read functions
+  MyDriver.Init = MYDRIVER_Init;
+  MyDriver.Read = MYDRIVER_Read;
+
+  //Init touch library
+  TM_TOUCH_Init(&MyDriver, &TS);
+
+  while (1) {
+    //Read touch and process
+    TM_TOUCH_Read(&TS);
+  }
+}
+\endcode
  *
  * \par Changelog
  *
@@ -106,10 +155,10 @@ typedef struct {
 	uint8_t NumPresses;   /*!< Number of touches (fingers) detected */
 	uint16_t X[10];       /*!< X positions for touches */
 	uint16_t Y[10];       /*!< Y positions for touches */
-	uint8_t Events;       /*!< Events if any */
-	uint8_t Orientation;  /*!< Touch orientation to match LCD orientation */
-	uint16_t MaxX;        /*!< Touch MAX X value */
-	uint16_t MaxY;        /*!< Touch MAX Y value */
+	uint8_t Events;       /*!< Events, if any. For example, touch has detected "zoom" with fingers or similar */
+	uint8_t Orientation;  /*!< Touch orientation to match LCD orientation if needed */
+	uint16_t MaxX;        /*!< Touch MAX X value. Maximal value for touch X coordinate */
+	uint16_t MaxY;        /*!< Touch MAX Y value. Maximal value for touch Y coordinate */
 } TM_TOUCH_t;
 
 /**

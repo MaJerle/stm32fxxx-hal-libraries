@@ -267,7 +267,7 @@ TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str) {
 	return TM_RTC_SetDateTime(&tmp, TM_RTC_Format_BIN);
 }
 
-void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
+TM_RTC_Result_t TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
 	uint32_t unix;
 
 	/* Get time */
@@ -301,6 +301,9 @@ void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
 	/* Calculate unix offset */
 	unix = TM_RTC_GetUnixTimeStamp(data);
 	data->Unix = unix;
+
+	/* Return OK */
+	return TM_RTC_Result_Ok;
 }
 
 uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year) {
@@ -326,36 +329,34 @@ void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct;
 
-	/* Init LSE and LSI oscillators */
-	RCC_OscInitStruct.OscillatorType =  RCC_OSCILLATORTYPE_LSI | RCC_OSCILLATORTYPE_LSE;
+
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-	
-	/* Check for proper oscillator */
+
+	/* LSI is used as RTC clock */
 	if (source == TM_RTC_ClockSource_Internal) {
-		RCC_OscInitStruct.LSEState = RCC_LSE_OFF;
+		RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI;
 		RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+
+		PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
 	} else {
+		/* LSE is used */
+		RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSE;
 		RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-		RCC_OscInitStruct.LSIState = RCC_LSI_OFF;
+
+		PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
 	}
 	
 	/* Config oscillator */
 	HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
 	/* Select peripheral clock */
-	PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC;
-	if (source == TM_RTC_ClockSource_Internal) {
-		PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
-	} else {
-		PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
-	}
 	HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct);
 	
 	/* Enable RTC Clock */ 
 	__HAL_RCC_RTC_ENABLE(); 
 }
 
-void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
+TM_RTC_Result_t TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	uint32_t int_val;
 	
 	/* Disable wakeup interrupt */
@@ -402,6 +403,9 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 		HAL_NVIC_SetPriority(RTC_WKUP_IRQn, RTC_NVIC_PRIORITY, RTC_NVIC_WAKEUP_SUBPRIORITY);
 		HAL_NVIC_EnableIRQ(RTC_WKUP_IRQn);
 	}
+
+	/* Return OK */
+	return TM_RTC_Result_Ok;
 }
 
 uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data) {
@@ -431,7 +435,7 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data) {
 	return seconds;
 }
 
-void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix) {
+TM_RTC_Result_t TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix) {
 	uint16_t year;
 	
 	/* Store unix time to unix in struct */
@@ -487,9 +491,12 @@ void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix) {
 	/* Get date */
 	/* Date starts with 1 */
 	data->Day = unix + 1;
+
+	/* Return OK */
+	return TM_RTC_Result_Ok;
 }
 
-void TM_RTC_EnableAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* DataTime, TM_RTC_Format_t format) {
+TM_RTC_Result_t TM_RTC_EnableAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* DataTime, TM_RTC_Format_t format) {
 	RTC_AlarmTypeDef salarmstructure;
 	
 	/* Alarm type is every week the same day in a week */
@@ -543,14 +550,20 @@ void TM_RTC_EnableAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* DataTime, TM_R
 	/* Enable NVIC */
 	HAL_NVIC_SetPriority(RTC_Alarm_IRQn, RTC_NVIC_PRIORITY, RTC_NVIC_ALARM_SUBPRIORITY);
 	HAL_NVIC_EnableIRQ(RTC_Alarm_IRQn);
+
+	/* Return Ok */
+	return TM_RTC_Result_Ok;
 }
 
-void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm) {
+TM_RTC_Result_t TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm) {
 	if (Alarm == TM_RTC_Alarm_A) {	
 		HAL_RTC_DeactivateAlarm(&hRTC, RTC_ALARM_A);
 	} else {
 		HAL_RTC_DeactivateAlarm(&hRTC, RTC_ALARM_B);
 	}
+
+	/* Return Ok */
+	return TM_RTC_Result_Ok;
 }
 
 void TM_RTC_WriteBackupRegister(uint8_t location, uint32_t value) {

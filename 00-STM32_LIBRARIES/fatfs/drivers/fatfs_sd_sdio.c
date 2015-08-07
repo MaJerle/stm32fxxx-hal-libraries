@@ -64,12 +64,42 @@ void    BSP_SD_MspDeInit(SD_HandleTypeDef *hsd, void *Params);
 /* Status of SDCARD */
 static volatile DSTATUS Stat = STA_NOINIT;
 
+/**************************************************************/
+/*                  SDCARD WP AND DETECT                      */
+/**************************************************************/
+/* SDCARD detect function */
+static uint8_t SDCARD_IsDetected(void) {
+#if FATFS_USE_DETECT_PIN
+	/* Check if detected, pin LOW if detected */
+	return !TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN);
+#endif
+	
+	/* Card is not write protected */
+	return 0;
+}
+
+/* SDCARD write protect function */
+static uint8_t SDCARD_IsWriteEnabled(void) {
+#if FATFS_USE_WRITEPROTECT_PIN
+	/* Check if write enabled, pin LOW if write enabled */
+	return !TM_GPIO_GetInputPinValue(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN);
+#endif
+	
+	/* Card is not write protected */
+	return 0;
+}
+
+/**************************************************************/
+/*                    LOW LEVEL FUNCTIONS                     */
+/**************************************************************/
 DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void) {
 	Stat = STA_NOINIT;
 
-	/* Configure the uSD device */
+	/* Configure the SDCARD device */
 	if (BSP_SD_Init() == MSD_OK) {
 		Stat &= ~STA_NOINIT;
+	} else {
+		Stat |= STA_NOINIT;
 	}
 
 	return Stat;
@@ -78,8 +108,18 @@ DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void) {
 DSTATUS TM_FATFS_SD_SDIO_disk_status(void) {
 	Stat = STA_NOINIT;
 
+	/* Check SDCARD status */
 	if (BSP_SD_GetStatus() == MSD_OK) {
 		Stat &= ~STA_NOINIT;
+	} else {
+		Stat |= STA_NOINIT;
+	}
+
+	/* Check if write enabled */
+	if (SDCARD_IsWriteEnabled()) {
+		Stat &= ~STA_PROTECT;
+	} else {
+		Stat |= STA_PROTECT;
 	}
 
 	return Stat;
@@ -241,16 +281,7 @@ uint8_t BSP_SD_Init(void) {
  * @retval Returns if SD is detected or not
  */
 uint8_t BSP_SD_IsDetected(void) {
-	__IO uint8_t status = SD_PRESENT;
-
-#if FATFS_USE_DETECT_PIN == 1
-	/* Check pin if high */
-	if (TM_GPIO_GetInputPinValue(FATFS_DETECT_PORT, FATFS_DETECT_PIN)) {
-		status = SD_NOT_PRESENT;
-	}
-#endif
-	
-	return status;
+	return SDCARD_IsDetected();
 }
 
 /**

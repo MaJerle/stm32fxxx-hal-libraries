@@ -126,7 +126,7 @@ extern TM_FONT_t TM_Font_16x26;
  */
  
 /**
- * @defgroup TM_FONT_Functions
+ * @defgroup TM_FONTS_Functions
  * @brief    Library functions
  * @{
  */

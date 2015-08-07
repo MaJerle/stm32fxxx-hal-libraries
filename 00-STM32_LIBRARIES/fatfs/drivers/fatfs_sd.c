@@ -31,6 +31,31 @@ static volatile DSTATUS TM_FATFS_SD_Stat = STA_NOINIT;	/* Physical drive status 
 
 static BYTE TM_FATFS_SD_CardType;			/* Card type flags */
 
+/**************************************************************/
+/*                  SDCARD WP AND DETECT                      */
+/**************************************************************/
+/* SDCARD detect function */
+static uint8_t SDCARD_IsDetected(void) {
+#if FATFS_USE_DETECT_PIN
+	/* Check if detected, pin LOW if detected */
+	return !TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN);
+#endif
+	
+	/* Card is not write protected */
+	return 0;
+}
+
+/* SDCARD write protect function */
+static uint8_t SDCARD_IsWriteEnabled(void) {
+#if FATFS_USE_WRITEPROTECT_PIN
+	/* Check if write enabled, pin LOW if write enabled */
+	return !TM_GPIO_GetInputPinValue(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN);
+#endif
+	
+	/* Card is not write protected */
+	return 0;
+}
+
 /* Initialize MMC interface */
 static void init_spi (void) {
 	/* Init delay functions */
@@ -87,11 +112,7 @@ static int wait_ready (	/* 1:Ready, 0:Timeout */
 	do {
 		d = TM_SPI_Send(FATFS_SPI, 0xFF);
 	} while (d != 0xFF && TM_DELAY_Time2());	/* Wait for card goes ready or timeout */
-	if (d == 0xFF) {
-		FATFS_DEBUG_SEND_USART("wait_ready: OK");
-	} else {
-		FATFS_DEBUG_SEND_USART("wait_ready: timeout");
-	}
+	
 	return (d == 0xFF) ? 1 : 0;
 }
 
@@ -105,7 +126,6 @@ static void deselect (void)
 {
 	FATFS_CS_HIGH;			/* CS = H */
 	TM_SPI_Send(FATFS_SPI, 0xFF);			/* Dummy clock (force DO hi-z for multiple slave SPI) */
-	FATFS_DEBUG_SEND_USART("deselect: ok");
 }
 
 
@@ -120,10 +140,8 @@ static int select (void)	/* 1:OK, 0:Timeout */
 	TM_SPI_Send(FATFS_SPI, 0xFF);	/* Dummy clock (force DO enabled) */
 
 	if (wait_ready(500)) {
-		FATFS_DEBUG_SEND_USART("select: OK");
 		return 1;	/* OK */
 	}
-	FATFS_DEBUG_SEND_USART("select: no");
 	deselect();
 	return 0;	/* Timeout */
 }
@@ -149,7 +167,6 @@ static int rcvr_datablock (	/* 1:OK, 0:Error */
 		// This loop will take a time. Insert rot_rdq() here for multitask envilonment. 
 	} while ((token == 0xFF) && TM_DELAY_Time2());
 	if (token != 0xFE) {
-		FATFS_DEBUG_SEND_USART("rcvr_datablock: token != 0xFE");
 		return 0;		// Function fails if invalid DataStart token or timeout 
 	}
 
@@ -171,14 +188,10 @@ static int xmit_datablock (	/* 1:OK, 0:Failed */
 )
 {
 	BYTE resp;
-	
-	FATFS_DEBUG_SEND_USART("xmit_datablock: inside");
 
 	if (!wait_ready(500)) {
-		FATFS_DEBUG_SEND_USART("xmit_datablock: not ready");
 		return 0;		/* Wait for card ready */
 	}
-	FATFS_DEBUG_SEND_USART("xmit_datablock: ready");
 
 	TM_SPI_Send(FATFS_SPI, token);					/* Send token */
 	if (token != 0xFD) {				/* Send data if token is other than StopTran */
@@ -247,29 +260,13 @@ void TM_FATFS_InitPins(void) {
 	
 	/* Detect pin */
 #if FATFS_USE_DETECT_PIN > 0
-	TM_GPIO_Init(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(FATFS_DETECT_PORT, FATFS_DETECT_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 #endif
 
 	/* Write protect pin */
 #if FATFS_USE_WRITEPROTECT_PIN > 0
-	TM_GPIO_Init(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(FATFS_WRITEPROTECT_PORT, FATFS_WRITEPROTECT_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 #endif
-}
-
-uint8_t TM_FATFS_Detect(void) {
-#if FATFS_USE_DETECT_PIN > 0
-	return !TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN);
-#else
-	return 1;
-#endif
-}
-
-uint8_t TM_FATFS_WriteEnabled(void) {
-#if FATFS_USE_WRITEPROTECT_PIN > 0
-	return !TM_GPIO_GetInputPinValue(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN);
-#else
-	return 1;
-#endif	
 }
 
 DSTATUS TM_FATFS_SD_disk_initialize (void) {
@@ -279,9 +276,10 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 	TM_FATFS_InitPins();
 	init_spi();
 	
-	if (!TM_FATFS_Detect()) {
+	if (!SDCARD_IsDetected()) {
 		return STA_NODISK;
 	}
+	
 	for (n = 10; n; n--) {
 		TM_SPI_Send(FATFS_SPI, 0xFF);
 	}
@@ -322,7 +320,7 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 		TM_FATFS_SD_Stat = STA_NOINIT;
 	}
 
-	if (!TM_FATFS_WriteEnabled()) {
+	if (!SDCARD_IsWriteEnabled()) {
 		TM_FATFS_SD_Stat |= STA_PROTECT;
 	} else {
 		TM_FATFS_SD_Stat &= ~STA_PROTECT;
@@ -338,14 +336,13 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 /*-----------------------------------------------------------------------*/
 
 DSTATUS TM_FATFS_SD_disk_status (void) {
-	
 	/* Check card detect pin if enabled */
-	if (!TM_FATFS_Detect()) {
+	if (!SDCARD_IsDetected()) {
 		return STA_NOINIT;
 	}
 	
 	/* Check if write is enabled */
-	if (!TM_FATFS_WriteEnabled()) {
+	if (!SDCARD_IsWriteEnabled()) {
 		TM_FATFS_SD_Stat |= STA_PROTECT;
 	} else {
 		TM_FATFS_SD_Stat &= ~STA_PROTECT;
@@ -353,8 +350,6 @@ DSTATUS TM_FATFS_SD_disk_status (void) {
 	
 	return TM_FATFS_SD_Stat;	/* Return disk status */
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */
@@ -366,8 +361,7 @@ DRESULT TM_FATFS_SD_disk_read (
 	UINT count		/* Number of sectors to read (1..128) */
 )
 {
-	FATFS_DEBUG_SEND_USART("disk_read: inside");
-	if (!TM_FATFS_Detect() || (TM_FATFS_SD_Stat & STA_NOINIT)) {
+	if (!SDCARD_IsDetected() || (TM_FATFS_SD_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
 	}
 
@@ -408,12 +402,10 @@ DRESULT TM_FATFS_SD_disk_write (
 	UINT count			/* Number of sectors to write (1..128) */
 )
 {
-	FATFS_DEBUG_SEND_USART("disk_write: inside");
-	if (!TM_FATFS_Detect()) {
+	if (!SDCARD_IsDetected()) {
 		return RES_ERROR;
 	}
-	if (!TM_FATFS_WriteEnabled()) {
-		FATFS_DEBUG_SEND_USART("disk_write: Write protected!!! \n---------------------------------------------");
+	if (!SDCARD_IsWriteEnabled()) {
 		return RES_WRPRT;
 	}
 	if (TM_FATFS_SD_Stat & STA_NOINIT) {
@@ -469,7 +461,7 @@ DRESULT TM_FATFS_SD_disk_ioctl (
 	if (TM_FATFS_SD_Stat & STA_NOINIT) {
 		return RES_NOTRDY;	/* Check if drive is ready */
 	}
-	if (!TM_FATFS_Detect()) {
+	if (!SDCARD_IsDetected()) {
 		return RES_NOTRDY;
 	}
 

@@ -50,24 +50,24 @@ extern "C" {
  * \par Default pinout
  *	
 \verbatim
-LCD		STM32Fxxx		DESCRIPTION
+LCD   STM32Fxxx         DESCRIPTION
 
-GND		GND				Ground
-VCC		+5V				Power supply for LCD
-V0		Potentiometer	Contrast voltage. Connect to potentiometer
-RS		PB2				Register select, can be overwritten in your project's defines.h file
-RW		GND				Read/write
-E		  PB7				Enable pin, can be overwritten in your project's defines.h file
-D0		-         Data 0 - doesn't care
-D1		-         Data 1 - doesn't care
-D2		-         Data 2 - doesn't care
-D3		-         Data 3 - doesn't  care
-D4		PC12      Data 4, can be overwritten in your project's defines.h file
-D5		PC13      Data 5, can be overwritten in your project's defines.h file
-D6		PB12      Data 6, can be overwritten in your project's defines.h file
-D7		PB13      Data 7, can be overwritten in your project's defines.h file
-A     +3V3      Back light positive power
-K     GND       Ground for back light
+GND   GND               Ground
+VCC   +5V               Power supply for LCD
+V0    Potentiometer	    Contrast voltage. Connect to potentiometer
+RS    PB2               Register select, can be overwritten in your project's defines.h file
+RW    GND               Read/write
+E     PB7               Enable pin, can be overwritten in your project's defines.h file
+D0    -                 Data 0 - doesn't care
+D1    -                 Data 1 - doesn't care
+D2    -                 Data 2 - doesn't care
+D3    -                 Data 3 - doesn't  care
+D4    PC12              Data 4, can be overwritten in your project's defines.h file
+D5    PC13              Data 5, can be overwritten in your project's defines.h file
+D6    PB12              Data 6, can be overwritten in your project's defines.h file
+D7    PB13              Data 7, can be overwritten in your project's defines.h file
+A     +3V3              Back light positive power
+K     GND               Ground for back light
 \endverbatim	
  *	
  * If you want to change pinout, do this in your defines.h file with lines below and set your own settings:

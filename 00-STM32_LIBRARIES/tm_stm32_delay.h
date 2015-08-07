@@ -48,10 +48,24 @@ extern "C" {
  * \par Milliseconds delay
  * 
  * Milliseconds delay range is done using Systick interrupts which are made each 1ms.
+ * Interrupt handler @ref Systick_Handler() function can be found in project file stm32fxxx_it.c file which should call HAL_IncTick().
+ * This function is build in HAL drivers, but has <code>weak</code> parameter which means it can be replaced. 
+ * It is replaced in @ref TM_DELAY library.
  *
  * \par Microseconds delay
  * 
- * Microseconds delay range is done using DWT cycle counter to get maximum possible accuracy in 1us delay range
+ * Microseconds delay range is done using DWT cycle counter to get maximum possible accuracy in 1us delay range.
+ * This delay is not supported on STM32F0xx series, because Cortex-M0 does not have DWT section built-in.
+ *
+ * \par Software timers
+ *
+ * As mentioned in Milliseconds delay section, library has active Systick timer, which makes interrupt every 1 ms.
+ * This allows you also, to make software timers, which has resolution of 1 ms.
+ * I've added some support functions for software timers.
+ *
+ * The main idea of software timers is that when timer reaches zero (timers are down-counters), callback function is called where
+ * user can do its work which should be done periodically, or only once if needed. 
+ * Check @ref TM_DELAY_Timer_Functions group with all functions which can be used for timers.
  *
  * \par Changelog
  *

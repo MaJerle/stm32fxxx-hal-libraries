@@ -1884,6 +1884,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2048,6 +2053,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3931,6 +3941,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4095,6 +4110,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5978,6 +5998,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6142,6 +6167,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -8025,6 +8055,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8189,6 +8224,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -10072,6 +10112,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -10236,6 +10281,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -12119,6 +12169,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -12283,6 +12338,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -14166,6 +14226,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -14330,6 +14395,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -16213,6 +16283,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -16377,6 +16452,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -18260,6 +18340,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -18424,6 +18509,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -20307,6 +20397,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -20471,6 +20566,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -22354,6 +22454,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -22519,6 +22624,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
             </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -22531,7 +22641,7 @@
         <TargetCommonOption>
           <Device>STM32F746NGHx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F7xx_DFP.1.2.0</PackID>
+          <PackID>Keil.STM32F7xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x100000) IROM2(0x00200000,0x100000) IRAM(0x20010000,0x40000) IRAM2(0x20000000,0x10000) CPUTYPE("Cortex-M7") FPU3(SFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -24142,6 +24252,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -24306,6 +24421,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -26300,6 +26420,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -26464,6 +26589,11 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
             </File>
           </Files>
         </Group>

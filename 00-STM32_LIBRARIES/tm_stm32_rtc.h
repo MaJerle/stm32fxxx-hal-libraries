@@ -243,42 +243,42 @@ typedef struct {
 uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
 
 /**
- * @brief  Get number of seconds from date and time since 01.01.1970 00:00:00
+ * @brief  Gets number of seconds from date and time since 01.01.1970 00:00:00
  * @param  *data: Pointer to @ref TM_RTC_t data structure
  * @retval Calculated seconds from date and time since 01.01.1970 00:00:00
  */
 uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data);
 
 /**
- * @brief  Get formatted time from seconds till 01.01.1970 00:00:00
+ * @brief  Gets formatted time from seconds till 01.01.1970 00:00:00
  *         It fills struct with valid data
  * @note   Valid if year is greater or equal (>=) than 2000
  * @param  *data: Pointer to @ref TM_RTC_Time_t struct to store formatted data in
  * @param  unix: Seconds from 01.01.1970 00:00:00 to calculate user friendly time
- * @retval None
+ * @retval Member of @ref TM_RTC_Result_t enumeration
  */
-void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix);
+TM_RTC_Result_t TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix);
 
 /**
- * @brief  Select RTC wakeup interrupts interval
+ * @brief  Selects RTC wakeup interrupts interval
  * @note   This function can also be used to disable interrupt
  * @param  int_value: Look for @ref TM_RTC_Int_t for valid inputs
- * @retval None
+ * @retval Member of @ref TM_RTC_Result_t enumeration
  */
-void TM_RTC_Interrupts(TM_RTC_Int_t int_value);
+TM_RTC_Result_t TM_RTC_Interrupts(TM_RTC_Int_t int_value);
 
 /**
- * @brief  Set date and time to internal RTC registers
+ * @brief  Sets date and time to internal RTC registers
  * @param  *data: Pointer to filled @ref TM_RTC_t structure with date and time
  * @param  format: Format of your structure. This parameter can be a value of @ref TM_RTC_Format_t enumeration
- * @retval RTC datetime status @ref TM_RTC_Result_t:
+ * @retval Member of @ref TM_RTC_Result_t enumeration
  *            - @ref TM_RTC_Result_Ok: Date and Time set OK
  *            - @ref TM_RTC_Result_Error: Date and time is wrong
  */
 TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
 /**
- * @brief  Set date and time using string formatted date time
+ * @brief  Sets date and time using string formatted date time
  * @note   Valid string format is: <b>dd.mm.YY.x;HH:ii:ss</b>
  *            - <b>dd</b>: date, 2 digits, decimal
  *            - <b>mm</b>: month, 2 digits, decimal
@@ -295,15 +295,15 @@ TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
 
 /**
- * @brief  Get date and time from internal RTC registers
+ * @brief  Gets date and time from internal RTC registers
  * @param  *data: Pointer to @ref TM_RTC_t structure to save data to
  * @param  format: Format of your structure. This parameter can be a value of @ref TM_RTC_Format_t enumeration
- * @retval None
+ * @retval Member of @ref TM_RTC_Result_t enumeration
  */
-void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
+TM_RTC_Result_t TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
 /**
- * @brief  Get number of days in month
+ * @brief  Gets number of days in month
  * @note   This function also detects if it is leap year and returns different number for February
  * @param  month: Month number in year, valid numbers are 1 - 12 
  * @param  year: Year number where you want to get days in month, last 2 digits
@@ -312,7 +312,7 @@ void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year);
 
 /**
- * @brief  Get number of days in specific year
+ * @brief  Gets number of days in specific year
  * @note   This function also detects if it is leap year
  * @param  year: Year number where you want to get days in month, last 2 digits
  * @retval Number of days in year
@@ -320,7 +320,7 @@ uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year);
 uint16_t TM_RTC_GetDaysInYear(uint8_t year);
 
 /**
- * @brief  Write RTC backup register value.
+ * @brief  Writes RTC backup register value.
  *            This method allows you to write 32bit value from backup register 0 - 18 for STM32F4xx and 0 - 30 for STM32F7xx
  * @note   RTC has backup registers where you can store data which will be available all the time RTC is running and has power.
  *
@@ -334,7 +334,7 @@ uint16_t TM_RTC_GetDaysInYear(uint8_t year);
 void TM_RTC_WriteBackupRegister(uint8_t location, uint32_t value);
 
 /**
- * @brief  Read RTC backup register value.
+ * @brief  Reads RTC backup register value.
  *            This method allows you to read 32bit value from backup register 0 - 18 for STM32F4xx and 0 - 30 for STM32F7xx
  * @note   RTC has backup registers where you can store data which will be available all the time RTC is running and has power.
  *
@@ -351,16 +351,16 @@ uint32_t TM_RTC_ReadBackupRegister(uint8_t location);
  * @param  Alarm: Specify which alarm to set. This parameter can be a value of @ref TM_RTC_Alarm_t enumeration
  * @param  *AlarmTime: Pointer to @ref TM_RTC_AlarmTime_t structure to get data from.
  * @param  format: RTC date and time format. This parameter can be a value of @ref TM_RTC_Format_t enumeration.
- * @retval None
+ * @retval Member of @ref TM_RTC_Result_t enumeration
  */
-void TM_RTC_EnableAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* AlarmTime, TM_RTC_Format_t format);
+TM_RTC_Result_t TM_RTC_EnableAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* AlarmTime, TM_RTC_Format_t format);
 
 /**
  * @brief  Disables specific alarm
  * @param  Alarm: Select which alarm you want to disable. This parameter can be a value of @ref TM_RTC_Alarm_t enumeration
- * @retval None
+ * @retval Member of @ref TM_RTC_Result_t enumeration
  */
-void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
+TM_RTC_Result_t TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
 
 /**
  * @brief  RTC Wakeup handler function. Called when wakeup interrupt is triggered

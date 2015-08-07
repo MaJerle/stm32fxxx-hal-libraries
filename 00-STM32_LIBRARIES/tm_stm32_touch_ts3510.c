@@ -62,7 +62,7 @@ uint8_t TM_TOUCH_TS3510_Read(TM_TOUCH_t* TS) {
 		
 		/* Check values */
 		if (X2 != 0xFFFF && Y2 != 0xFFFF) {
-			/* At least one is detected */
+			/* Second is also detected */
 			TS->NumPresses++;
 			TS->X[1] = X2;
 			TS->Y[1] = Y2;	

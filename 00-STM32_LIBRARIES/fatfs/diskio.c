@@ -313,3 +313,4 @@ __weak DRESULT TM_FATFS_USBFS_disk_write(const BYTE *buff, DWORD sector, UINT co
 __weak DRESULT TM_FATFS_USBHS_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
 __weak DRESULT TM_FATFS_SDRAM_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
 __weak DRESULT TM_FATFS_SPI_FLASH_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+

@@ -6,7 +6,7 @@
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   Library template 
+ * @brief   FT5336 low level library
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -42,8 +42,25 @@ extern "C" {
 
 /**
  * @defgroup TM_TOUCH_FT5336
- * @brief    Library description here
+ * @brief    FT5336 low level library
  * @{
+ *
+ * This is a low-level driver for FT5336 touch screen controller.
+ *
+ * To use this library, check @ref TM_TOUCH library on how to use it properly.
+ *
+ * \par Select custom I2C
+ *
+ * This touch controller is used on STM32F7-Discovery board and settings for I2C are for this board by default.
+ * If you have own board and you need custom pins for I2C, open defines.h file and add/edit following lines.
+ *
+\code
+//Select I2C for FT5336 conroller
+#define TOUCH_FT5336_I2C      I2C3
+#define TOUCH_FT5336_I2C_PP   TM_I2C_PinsPack_2
+\endcode
+ *
+ * @note  Check @ref TM_I2C library for corresponding pins for selected I2C peripheral and pinspack
  *
  * \par Changelog
  *
@@ -57,16 +74,19 @@ extern "C" {
 \verbatim
  - STM32Fxxx HAL
  - defines.h
+ - TM TOUCH
+ - TM I2C
+ - TM GPIO
 \endverbatim
  */
-
 #include "stm32fxxx_hal.h"
 #include "defines.h"
-#include "tm_stm32_i2c.h"
 #include "tm_stm32_touch.h"
+#include "tm_stm32_i2c.h"
+#include "tm_stm32_gpio.h"
 
 /**
- * @defgroup TM_LIB_Macros
+ * @defgroup TM_TOUCH_FT5336_Macros
  * @brief    Library defines
  * @{
  */
@@ -100,7 +120,22 @@ extern "C" {
  * @{
  */
 
+/**
+ * @brief  Initializes FT5336 touch controller
+ * @param  *TS: Pointer to @ref TM_TOUCH_t structure with settings
+ * @retval Touch status:
+ *            - 0: OK
+ *            - > 0: Error
+ */
 uint8_t TM_TOUCH_FT5336_Init(TM_TOUCH_t* TS);
+
+/**
+ * @brief  Reads touch data from FT5336 touch controller
+ * @param  *TS: Pointer to @ref TM_TOUCH_t to save data into
+ * @retval Touch status:
+ *            - 0: OK
+ *            - > 0: Error
+ */
 uint8_t TM_TOUCH_FT5336_Read(TM_TOUCH_t* TS);
 
 /**

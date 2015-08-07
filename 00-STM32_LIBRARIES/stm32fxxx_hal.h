@@ -82,6 +82,7 @@
 #endif
 
 /* Init main libraries used everywhere */
+#include "defines.h"
 #include "tm_stm32_rcc.h"
 #include "tm_stm32_gpio.h"
 

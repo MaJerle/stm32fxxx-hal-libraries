@@ -47,10 +47,7 @@ extern "C" {
  *
  * PVD can detect voltage changes in your system. It features 8 different voltage levels between 2 and 3 volts. For detailed voltages, check datasheet.
  *
- * Library supports STm32F4xx, STM32F7xx and STM32F0xx devices. For F0xx series, not all devices are supported!
- * 
- * To ensure there is no problem when using lib, I've included both functions which are active only when proper series is selected. 
- * Both functions always calls @ref TM_PVD_Handler callback function. For more info how to use it, check its description
+ * Library supports STM32F4xx, STM32F7xx and STM32F0xx devices. For F0xx series, not all devices are supported!
  *
  * \par Changelog
  *
@@ -139,7 +136,7 @@ typedef enum {
 void TM_PVD_Enable(TM_PVD_Level_t Level, TM_PVD_Trigger_t Trigger);
 
 /**
- * @brief  Disables PVD feature
+ * @brief  Disables PVD feature, disables NVIC interrupt and EXTI interrupt
  * @param  None
  * @retval None
  */

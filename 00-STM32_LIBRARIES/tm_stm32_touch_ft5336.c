@@ -24,7 +24,7 @@
 /* Start locations for reading pressed touches */
 static uint8_t FT5336_DataRegs[] = {0x03, 0x09, 0x0F, 0x15, 0x1B};
 
-/* Delay */
+/* Delay function */
 static void FT_Delay(__IO uint32_t d) {
 	while (d--);
 }
@@ -53,7 +53,7 @@ uint8_t TM_TOUCH_FT5336_Init(TM_TOUCH_t* TS) {
 	
 	/* Check if OK */
 	if (deviceID != 0x51) {
-		/* Connected device is not correct */
+		/* Connected device is not FT5336 */
 		return 2;
 	}
 	
