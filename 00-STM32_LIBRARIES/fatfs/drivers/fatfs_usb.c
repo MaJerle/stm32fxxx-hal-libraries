@@ -17,58 +17,77 @@
  * |----------------------------------------------------------------------
  */
 #include "fatfs_usb.h"
+#include "tm_stm32_usb_host_msc.h"
 
 /* Driver values for USB ports */
 #define PDRV_FS    0
 #define PDRV_HS    0
 
 /* Function implementations */
+#if defined(USB_USE_FS) || defined(USB_USE_HS)
 static DSTATUS TM_FATFS_USB_disk_initialize_lowlevel(USBH_HandleTypeDef* USBHandle);
 static DSTATUS TM_FATFS_USB_disk_status_lowlevel(USBH_HandleTypeDef* USBHandle);
 static DRESULT TM_FATFS_USB_disk_read_lowlevel( BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle);
 static DRESULT TM_FATFS_USB_disk_write_lowlevel(const BYTE *buff, DWORD sector, UINT count, USBH_HandleTypeDef* USBHandle);
 static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_HandleTypeDef* USBHandle);
+#endif
 
 /*-----------------------------------------------------------------------*/
 /* Initialize USB                                                        */
 /*-----------------------------------------------------------------------*/
+#ifdef USB_USE_FS
 DSTATUS TM_FATFS_USBFS_disk_initialize(void) {
 	return TM_FATFS_USB_disk_initialize_lowlevel(&hUSBHost_FS);
 }
+#endif
+#ifdef USB_USE_HS
 DSTATUS TM_FATFS_USBHS_disk_initialize(void) {
 	return TM_FATFS_USB_disk_initialize_lowlevel(&hUSBHost_HS);
 }
+#endif
 
 /*-----------------------------------------------------------------------*/
 /* Get Disk Status                                                       */
 /*-----------------------------------------------------------------------*/
+#ifdef USB_USE_FS
 DSTATUS TM_FATFS_USBFS_disk_status(void) {
 	return TM_FATFS_USB_disk_status_lowlevel(&hUSBHost_FS);
 }
+#endif
+#ifdef USB_USE_HS
 DSTATUS TM_FATFS_USBHS_disk_status(void) {
 	return TM_FATFS_USB_disk_status_lowlevel(&hUSBHost_HS);
 }
+#endif
 
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */
 /*-----------------------------------------------------------------------*/
+#ifdef USB_USE_FS
 DRESULT TM_FATFS_USBFS_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	return TM_FATFS_USB_disk_read_lowlevel(buff, sector, count, &hUSBHost_FS);
 }
+#endif
+#ifdef USB_USE_HS
 DRESULT TM_FATFS_USBHS_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	return TM_FATFS_USB_disk_read_lowlevel(buff, sector, count, &hUSBHost_HS);
 }
+#endif
 
 /*-----------------------------------------------------------------------*/
 /* Write Sector(s)                                                       */
 /*-----------------------------------------------------------------------*/
 #if _USE_WRITE
+#ifdef USB_USE_FS
 DRESULT TM_FATFS_USBFS_disk_write(const BYTE *buff, DWORD sector, UINT count) {
 	return TM_FATFS_USB_disk_write_lowlevel(buff, sector, count, &hUSBHost_FS);
 }
+#endif
+#ifdef USB_USE_HS
 DRESULT TM_FATFS_USBHS_disk_write(const BYTE *buff, DWORD sector, UINT count) {
 	return TM_FATFS_USB_disk_write_lowlevel(buff, sector, count, &hUSBHost_HS);
 }
+#endif
 #endif
 
 
@@ -76,17 +95,22 @@ DRESULT TM_FATFS_USBHS_disk_write(const BYTE *buff, DWORD sector, UINT count) {
 /* Miscellaneous Functions                                               */
 /*-----------------------------------------------------------------------*/
 #if _USE_IOCTL
+#ifdef USB_USE_FS
 DRESULT TM_FATFS_USBFS_disk_ioctl (BYTE cmd, void *buff) {
 	return TM_FATFS_USB_disk_ioctl_lowlevel(cmd, buff, &hUSBHost_FS);
 }
+#endif
+#ifdef USB_USE_HS
 DRESULT TM_FATFS_USBHS_disk_ioctl (BYTE cmd, void *buff) {
 	return TM_FATFS_USB_disk_ioctl_lowlevel(cmd, buff, &hUSBHost_HS);
 }
+#endif
 #endif
 
 /********************************************************************/
 /*                         LOW LEVEL DRIVERS                        */
 /********************************************************************/
+#if defined(USB_USE_FS) || defined(USB_USE_HS)
 static DSTATUS TM_FATFS_USB_disk_initialize_lowlevel(USBH_HandleTypeDef* USBHandle) {
 	return RES_OK;
 }
@@ -274,4 +298,4 @@ static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_Hand
 
 	return res;
 }
-
+#endif

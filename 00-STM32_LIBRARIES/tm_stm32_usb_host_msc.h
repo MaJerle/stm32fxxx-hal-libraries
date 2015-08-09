@@ -42,8 +42,14 @@ extern "C" {
 
 /**
  * @defgroup TM_USBH_MSC
- * @brief    Library description here
+ * @brief    USB HOST MSC for storage devices like USB flash keys
  * @{
+ *
+ * This library is high level library for checking for MSC connected devices and if they are ready.
+ *
+ * @note  Check @ref TM_USB library for configuration settings first!
+ *
+ * For writing/reading from devices, you will also need @ref TM_FATFS library with driver for USB FS and/or HS modes.
  *
  * \par Changelog
  *

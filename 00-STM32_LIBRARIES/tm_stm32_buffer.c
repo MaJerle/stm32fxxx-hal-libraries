@@ -26,6 +26,7 @@ uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr, u
 	Buffer->Size = Size;
 	Buffer->Flags = 0;
 	Buffer->Buffer = BufferPtr;
+	Buffer->StringDelimiter = '\n';
 	
 	/* Check if malloc is used */
 	if (UseMalloc) {
@@ -53,6 +54,11 @@ uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr, u
 }
 
 void TM_BUFFER_Free(TM_BUFFER_t* Buffer) {
+	/* Check buffer structure */
+	if (Buffer == NULL) {
+		return;
+	}
+	
 	/* If malloc was used for allocation */
 	if (Buffer->Flags & BUFFER_MALLOC) {
 		/* Free memory */
@@ -66,6 +72,11 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer) {
 
 uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	uint16_t i;
+	
+	/* Check buffer structure */
+	if (Buffer == NULL) {
+		return 0;
+	}
 	
 	/* Go through all elements */
 	for (i = 0; i < count; i++) {
@@ -94,6 +105,11 @@ uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	uint16_t i;
 	
+	/* Check buffer structure */
+	if (Buffer == NULL) {
+		return 0;
+	}
+	
 	/* Go through all elements */
 	for (i = 0; i < count; i++) {
 		/* Check if memory available */
@@ -119,16 +135,31 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 }
 
 uint16_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer) {
+	/* Check buffer structure */
+	if (Buffer == NULL) {
+		return 0;
+	}
+	
 	/* Return number of free memory in buffer */
 	return (Buffer->Size - Buffer->Num);
 }
 
 uint16_t TM_BUFFER_GetFull(TM_BUFFER_t* Buffer) {
+	/* Check buffer structure */
+	if (Buffer == NULL) {
+		return 0;
+	}
+	
 	/* Return number of elements in buffer */
 	return Buffer->Num;
 }
 
 void TM_BUFFER_Reset(TM_BUFFER_t* Buffer) {
+	/* Check buffer structure */
+	if (Buffer == NULL) {
+		return;
+	}
+	
 	/* Reset values */
 	Buffer->In = 0;
 	Buffer->Out = 0;
@@ -137,6 +168,11 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer) {
 
 uint8_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
 	uint16_t Num, Out;
+	
+	/* Check buffer structure */
+	if (Buffer == NULL) {
+		return 0;
+	}
 	
 	/* Create temporary variables */
 	Num = Buffer->Num;
@@ -161,4 +197,51 @@ uint8_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
 	
 	/* Character is not in buffer */
 	return 0;
+}
+
+uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize) {
+	uint16_t i = 0;
+	char ch;
+	
+	/* Check value buffer */
+	if (Buffer == NULL) {
+		return 0;
+	}
+	
+	/* Check for any data on USART */
+	if (
+		Buffer->Num == 0 ||                         /*!< Buffer empty */
+		(
+			!TM_BUFFER_FindElement(Buffer, '\n') && /*!< String delimiter not in buffer */
+			Buffer->Num != Buffer->Size &&          /*!< Buffer is not full */
+			Buffer->Num < buffsize                  /*!< User buffer size is larger than number of elements in buffer */
+		)
+	) {
+		/* Return 0 */
+		return 0;
+	}
+	
+	/* If available buffer size is more than 0 characters */
+	while (i < (buffsize - 1)) {
+		/* We have available data */
+		TM_BUFFER_Read(Buffer, (uint8_t *)&ch, 1);
+		
+		/* Save character */
+		buff[i] = (char)ch;
+		
+		/* Check for end of string */
+		if ((char)buff[i] == (char)Buffer->StringDelimiter) {
+			/* Done */
+			break;
+		}
+		
+		/* Increase */
+		i++;
+	}
+	
+	/* Add zero to the end of string */
+	buff[++i] = 0;               
+
+	/* Return number of characters in buffer */
+	return i;
 }

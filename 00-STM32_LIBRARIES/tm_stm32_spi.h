@@ -71,13 +71,13 @@ SPI5    |PF9    PF8     PF7     |PF11   PH7     PH6     |                      |
 SPI6    |PG14   PG12    PG13    |
 \endverbatim
  *
- *	In case these pins are not good for you, you can use
- *	TM_SPI_PinsPack_Custom in function and callback function will be called,
- *	where you can initialize your custom pinout for your SPI peripheral
+ * In case these pins are not good for you, you can use
+ * TM_SPI_PinsPack_Custom in function and callback function will be called,
+ * where you can initialize your custom pinout for your SPI peripheral
  *	
- *	Possible changes to each SPI. Set this defines in your defines.h file.
+ * Possible changes to each SPI. Set this defines in your defines.h file.
  *	
- *	Change x with 1-6, to match your SPI
+ * Change x with 1-6, to match your SPI
  *
 \code
 //Default prescaler

@@ -45,6 +45,23 @@ extern "C" {
  * @brief    USB Host library for STM32Fxxx devices
  * @{
  *
+ * This is a USB HOST library and is used always when USB HOST is used in project.
+ *
+ * @note  Check @ref TM_USB library for configuration settings first!
+ *
+ * Its main purpose is to handle and check for HOST connections, to read data from connected device to STM32F4/7xx.
+ *
+ * \par Main features
+ *
+\verbatim
+- Starts USB HOST on FS, HS or both modes
+- Stops USB HOST on FS, HS or both modes
+- Restarts USB HOST on FS, HS or both modes
+- Processes incoming/outgoing data for USB HOST on FS, HS or both modes
+- Checks if device is connected on FS or HS mode
+- Reads VID and PID of connected device on FS or HS mode
+\endverbatim
+ *
  * \par Changelog
  *
 \verbatim
@@ -68,8 +85,12 @@ extern "C" {
 #include "usbh_core.h"
 
 /* External variables */
+#ifdef USB_USE_FS
 extern USBH_HandleTypeDef hUSBHost_FS;
+#endif
+#ifdef USB_USE_HS
 extern USBH_HandleTypeDef hUSBHost_HS;
+#endif
 
 /**
  * @defgroup TM_USBH_Macros
@@ -82,7 +103,7 @@ extern USBH_HandleTypeDef hUSBHost_HS;
  */
  
 /**
- * @defgroup TM_USB_typedefs
+ * @defgroup TM_USBH_Typedefs
  * @brief    Library Typedefs
  * @{
  */

@@ -152,6 +152,7 @@ __weak void TimingDelay_Decrement(void) {
 void SysTick_Handler(void) {
 	/* Increase tick counter for HAL drivers */
 	HAL_IncTick();
+	HAL_SYSTICK_IRQHandler();
 }
 
 /******************************************************************************/

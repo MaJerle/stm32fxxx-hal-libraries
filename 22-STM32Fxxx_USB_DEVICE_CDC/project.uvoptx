@@ -186,66 +186,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>195</LineNumber>
+          <LineNumber>198</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134241050</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
+          <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Src\usbd_cdc_if.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>199</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Src\usbd_cdc_if.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>52</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\User\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>58</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\User\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\project\../00-STM32_LIBRARIES/USB_Device/Class/CDC/Src/usbd_cdc_if.c\198</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -262,7 +214,7 @@
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>pbuf</ItemText>
+          <ItemText>pbuf[3]</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
@@ -1633,6 +1585,58 @@
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>18</CpuCode>
+      <Books>
+        <Book>
+          <Number>0</Number>
+          <Title>User Manual (STM32756G-EVAL)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\DM00188617.pdf</Path>
+        </Book>
+        <Book>
+          <Number>1</Number>
+          <Title>Bill of Materials (STM32756G-EVAL)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_bom.zip</Path>
+        </Book>
+        <Book>
+          <Number>2</Number>
+          <Title>Gerber Files (STM32756G-EVAL)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_gerber.zip</Path>
+        </Book>
+        <Book>
+          <Number>3</Number>
+          <Title>Schematics (STM32756G-EVAL)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_sch.zip</Path>
+        </Book>
+        <Book>
+          <Number>4</Number>
+          <Title>User Manual (STM32F746G-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\DM00190424.pdf</Path>
+        </Book>
+        <Book>
+          <Number>5</Number>
+          <Title>Bill of Materials (STM32F746G-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_bom.zip</Path>
+        </Book>
+        <Book>
+          <Number>6</Number>
+          <Title>Gerber Files (STM32F746G-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_gerber.zip</Path>
+        </Book>
+        <Book>
+          <Number>7</Number>
+          <Title>Schematics (STM32F746G-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_sch.zip</Path>
+        </Book>
+        <Book>
+          <Number>8</Number>
+          <Title>STM32756G_EVAL Evaluation Board Web Page (STM32756G-EVAL)</Title>
+          <Path>http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF261640</Path>
+        </Book>
+        <Book>
+          <Number>9</Number>
+          <Title>STM32F746G_Discovery Web Page (STM32F746G-Discovery)</Title>
+          <Path>http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1848/PF261641</Path>
+        </Book>
+      </Books>
       <DebugOpt>
         <uSim>0</uSim>
         <uTrg>1</uTrg>
@@ -1700,72 +1704,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 ) -FN1 -FC10000 -FD20010000 -FF0STM32F7x_1024 -FL0100000 -FS08000000 -FP0($$Device:STM32F746NGHx$CMSIS\Flash\STM32F7x_1024.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>195</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Src\usbd_cdc_if.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>199</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Src\usbd_cdc_if.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>52</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\User\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>58</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\User\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -1802,6 +1741,31 @@
           <WinNumber>1</WinNumber>
           <ItemText>RXBuff,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buff</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>string_array</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>linecoding,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>pbuf</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>pdev</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -1835,6 +1799,12 @@
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
       <bLintAuto>0</bLintAuto>
+      <DebugDescription>
+        <Enable>1</Enable>
+        <EnableLog>0</EnableLog>
+        <Protocol>2</Protocol>
+        <DbgClock>10000000</DbgClock>
+      </DebugDescription>
     </TargetOption>
   </Target>
 
@@ -4361,7 +4331,7 @@
 
   <Group>
     <GroupName>User</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

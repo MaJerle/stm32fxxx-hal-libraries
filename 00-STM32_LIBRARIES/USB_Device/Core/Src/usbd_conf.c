@@ -136,7 +136,7 @@ void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd) {
 	USBD_SpeedTypeDef speed = USBD_SPEED_FULL;
 
 	/* Set USB Current Speed */
-	switch(hpcd->Init.speed) {
+	switch (hpcd->Init.speed) {
 		case PCD_SPEED_HIGH:
 			speed = USBD_SPEED_HIGH;
 			break;
@@ -259,17 +259,18 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev) {
 		hpcd_HS.Init.dev_endpoints = 6;
 		hpcd_HS.Init.use_dedicated_ep1 = 0;
 		hpcd_HS.Init.ep0_mps = 0x40;
-		hpcd_HS.Init.dma_enable = 1;
+		hpcd_HS.Init.dma_enable = 0;
 		hpcd_HS.Init.low_power_enable = 0;
 		hpcd_HS.Init.lpm_enable = 0;
 #ifdef USB_USE_ULPI_PHY
 		hpcd_HS.Init.phy_itface = PCD_PHY_ULPI; 
-#else  
-		hpcd_HS.Init.phy_itface = PCD_PHY_EMBEDDED; 
-#endif 
-		hpcd_HS.Init.Sof_enable = 0;
 		hpcd_HS.Init.speed = PCD_SPEED_HIGH;
-		hpcd_HS.Init.vbus_sensing_enable = 1;
+#else
+		hpcd_HS.Init.phy_itface = PCD_PHY_EMBEDDED; 
+		hpcd_HS.Init.speed = PCD_SPEED_HIGH_IN_FULL;
+#endif
+		hpcd_HS.Init.Sof_enable = 0;
+		hpcd_HS.Init.vbus_sensing_enable = 0;
 
 		/* Link The driver to the stack */
 		hpcd_HS.pData = pdev;
@@ -282,7 +283,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev) {
 		HAL_PCDEx_SetTxFiFo(&hpcd_HS, 0, 0x80);
 		HAL_PCDEx_SetTxFiFo(&hpcd_HS, 1, 0x174);
 	}
-#endif 
+#endif
 	
 	/* Return OK */
 	return USBD_OK;
@@ -392,7 +393,7 @@ USBD_StatusTypeDef USBD_LL_ClearStallEP(USBD_HandleTypeDef *pdev, uint8_t ep_add
 uint8_t USBD_LL_IsStallEP(USBD_HandleTypeDef *pdev, uint8_t ep_addr) {
 	PCD_HandleTypeDef *hpcd = pdev->pData;
 
-	if((ep_addr & 0x80) == 0x80) {
+	if ((ep_addr & 0x80) == 0x80) {
 		return hpcd->IN_ep[ep_addr & 0x7F].is_stall;
 	} else {
 		return hpcd->OUT_ep[ep_addr & 0x7F].is_stall;

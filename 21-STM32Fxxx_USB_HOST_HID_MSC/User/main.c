@@ -35,6 +35,10 @@ FRESULT fres;
 /* Flags */
 uint8_t FS_Printed = 0, HS_Printed = 0;
 uint8_t mounted = 0;
+
+/* USB HID HOST related */
+TM_USBH_HID_Keyboard_t KbdInfo;
+TM_USBH_HID_Mouse_t MouseInfo;
 	
 int main(void) {
 	/* Init system */
@@ -54,6 +58,11 @@ int main(void) {
 	TM_LCD_Init();
 	TM_LCD_SetFont(&TM_Font_7x10);
 	TM_LCD_SetXY(5, 5);
+	
+#if defined(STM32F7_DISCOVERY)
+	/* Rotate LCD */
+	TM_LCD_SetOrientation(2);
+#endif
 #endif
 	
 	/* Init USB */
@@ -89,6 +98,23 @@ int main(void) {
 					/* Set flag */
 					FS_Printed = 1;
 				}
+				
+				/* Read pressed button if any */
+				if (TM_USBH_HID_GetKeyboard(TM_USB_FS, &KbdInfo) == TM_USBH_HID_Keyboard) {
+					/* Something pressed on keyboard */
+					
+					/* Print on LCD if character is valid */
+					if (KbdInfo.C) {
+						printf("Character: %c\n", KbdInfo.C);
+					}
+					
+					/* Print others */
+					printf("LS: %d ", KbdInfo.Special.S.LShift);
+					printf("LC: %d ", KbdInfo.Special.S.LCtrl);
+					printf("LA: %d ", KbdInfo.Special.S.LAlt);
+					printf("LG: %d ", KbdInfo.Special.S.LGUI);
+					printf("\n");
+				}
 			} else if (TM_USBH_HID_GetConnected(TM_USB_FS) == TM_USBH_HID_Mouse) {
 				/* Mouse is connected on FS port */
 				
@@ -102,6 +128,13 @@ int main(void) {
 				
 					/* Set flag */
 					FS_Printed = 1;
+				}
+				
+				/* Read mouse if any */
+				if (TM_USBH_HID_GetMouse(TM_USB_FS, &MouseInfo) == TM_USBH_HID_Mouse) {
+					/* Something pressed on keyboard */
+					printf("Abs X: %d; Abs Y: %d; Rel X: %d; Rel Y %d\n", MouseInfo.AbsoluteX, MouseInfo.AbsoluteY, MouseInfo.RelativeX, MouseInfo.RelativeY);
+					printf("Btn1: %d; Btn2: %d; Btn3: %d\n", MouseInfo.Buttons[0], MouseInfo.Buttons[1], MouseInfo.Buttons[2]);
 				}
 			}
 		} else if (FS_Printed) {

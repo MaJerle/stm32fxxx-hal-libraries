@@ -20,9 +20,9 @@
 #include "tm_stm32_usb_device.h"
 #include "tm_stm32_usb_device_cdc.h"
 
-/* Flags */
-uint8_t FS_Printed = 0, HS_Printed = 0;
-uint8_t mounted = 0;
+/* Character value */
+char ch;
+char string_array[30];
 	
 int main(void) {
 	/* Init system */
@@ -40,19 +40,40 @@ int main(void) {
 	/* Init USB peripheral */
 	TM_USB_Init();
 	
-	/* Init VCP on FS port */
+	/* Init VCP on FS and HS ports.. */
 	TM_USBD_CDC_Init(TM_USB_FS);
-	
-	/* Init VCP on HS port */
 	TM_USBD_CDC_Init(TM_USB_HS);
 	
-	/* Start VCP */
+	/* ..or use single call for both modes */
+	//TM_USBD_CDC_Init(TM_USB_Both);
+	
+	/* Start USB device mode on FS and HS ports.. */
 	TM_USBD_Start(TM_USB_FS);
 	TM_USBD_Start(TM_USB_HS);
 	
+	/* .. or use single call for both modes */
+	//TM_USBD_Start(TM_USB_Both);
+	
 	while (1) {
 		/* Process USB CDC device, send remaining data if needed */
-		//TM_USBD_CDC_Process(TM_USB_Both);
+		/* It is better if you call this in periodic timer, like each ms in SYSTICK handler */
+		TM_USBD_CDC_Process(TM_USB_Both);
+		
+		/* Check if anything received on FS port */
+		if (TM_USBD_CDC_Getc(TM_USB_FS, &ch)) {
+			/* One character received */
+			
+			/* Send it back */
+			TM_USBD_CDC_Putc(TM_USB_FS, ch);
+		}
+		
+		/* Check if any string received on HS port */
+		if (TM_USBD_CDC_Gets(TM_USB_HS, string_array, sizeof(string_array))) {
+			/* One character received */
+			
+			/* Send it back */
+			TM_USBD_CDC_Puts(TM_USB_HS, string_array);
+		}
 	}
 }
 

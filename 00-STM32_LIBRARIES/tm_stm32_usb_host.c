@@ -19,11 +19,27 @@
 #include "tm_stm32_usb_host.h"
 
 /* Variables for HCD and main for USB */
+#ifdef USB_USE_FS
 USBH_HandleTypeDef hUSBHost_FS;
+#endif
+#ifdef USB_USE_HS
 USBH_HandleTypeDef hUSBHost_HS;
+#endif
 
 /* Create variable with pointers */
-static USBH_HandleTypeDef* hUSBHosts[3] = {&hUSBHost_FS, &hUSBHost_HS};
+static USBH_HandleTypeDef* hUSBHosts[3] = {
+#ifdef USB_USE_FS
+	&hUSBHost_FS,
+#else
+	0,
+#endif
+#ifdef USB_USE_HS
+	&hUSBHost_HS,
+#else
+	0,
+#endif
+	0
+};
 
 /* Private functions */
 static void USBH_ProcessCallback(USBH_HandleTypeDef* hUSB, uint8_t id);

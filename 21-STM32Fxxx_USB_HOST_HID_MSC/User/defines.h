@@ -46,7 +46,7 @@
 #define FATFS_USE_USB           1
 
 /* USB settings */
-#define USB_USE_FS
+//#define USB_USE_FS
 #define USB_USE_HS
 #define USB_USE_HOST
 //#define USB_USE_DEVICE

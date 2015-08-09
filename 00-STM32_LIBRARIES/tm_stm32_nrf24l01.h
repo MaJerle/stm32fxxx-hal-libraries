@@ -66,7 +66,7 @@ IRQ			Not used	Interrupt pin. Goes low when active. Pin functionality is active,
  *
  * IRQ pin is not used in this library, but it's functionality is enabled by this software.
  *
- * You can still set any pin on F4xx to be an external interrupt and handle interrupts from nRF24L01+ module.
+ * You can still set any pin on Fxxx to be an external interrupt and handle interrupts from nRF24L01+ module.
  *
  * The easiest way to that is to use TM EXTI library and attach interrupt functionality to this pin
  * 

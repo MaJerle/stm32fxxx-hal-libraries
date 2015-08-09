@@ -136,7 +136,7 @@ void PendSV_Handler(void)
 
 /**
   * @brief  This function decrement timing variable
-  *	@with __weak parameter to prevent errors
+  *	@with   __weak parameter to prevent errors
   * @param  None
   * @retval None
   */

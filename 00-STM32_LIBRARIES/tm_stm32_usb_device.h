@@ -69,8 +69,12 @@ extern "C" {
 #include "usbd_core.h"
 
 /* External variables */
+#ifdef USB_USE_FS
 extern USBD_HandleTypeDef hUSBDevice_FS;
+#endif
+#ifdef USB_USE_HS
 extern USBD_HandleTypeDef hUSBDevice_HS;
+#endif
 
 /**
  * @defgroup TM_USBD_Macros

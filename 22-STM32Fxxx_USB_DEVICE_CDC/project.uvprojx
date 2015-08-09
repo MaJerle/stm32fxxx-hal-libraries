@@ -6583,7 +6583,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F411xE,USE_HAL_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,STM32F411_DISCOVERY,HSE_VALUE=8000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLM=8,RCC_PLLN=400,RCC_PLLP=4,RCC_PLLQ=7,</Define>
+              <Define>STM32F411xE,USE_HAL_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,STM32F411_DISCOVERY,HSE_VALUE=8000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLM=8,RCC_PLLN=384,RCC_PLLP=4,RCC_PLLQ=7,</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Inc</IncludePath>
             </VariousControls>
@@ -10374,7 +10374,7 @@
         <TargetCommonOption>
           <Device>STM32F746NGHx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F7xx_DFP.1.2.0</PackID>
+          <PackID>Keil.STM32F7xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x100000) IROM2(0x00200000,0x100000) IRAM(0x20010000,0x40000) IRAM2(0x20000000,0x10000) CPUTYPE("Cortex-M7") FPU3(SFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -10727,7 +10727,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F746xx,USE_HAL_DRIVER,ARM_MATH_CM7,__FPU_PRESENT=1,STM32F7XX,STM32F7_DISCOVERY,HSE_VALUE=25000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLSOURCE=RCC_PLLSOURCE_HSE,RCC_PLLM=25,RCC_PLLN=400,RCC_PLLP=2,RCC_PLLQ=8</Define>
+              <Define>STM32F746xx,USE_HAL_DRIVER,ARM_MATH_CM7,__FPU_PRESENT=1,STM32F7XX,STM32F7_DISCOVERY,HSE_VALUE=25000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLSOURCE=RCC_PLLSOURCE_HSE,RCC_PLLM=25,RCC_PLLN=432,RCC_PLLP=2,RCC_PLLQ=8</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F7xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Inc</IncludePath>
             </VariousControls>

@@ -101,8 +101,6 @@ extern "C" {
 /**
  * @defgroup TM_ID_Macros
  * @brief    Library defines
- *
- * Defines for register locations inside STM32F4xx devices
  * @{
  */
 

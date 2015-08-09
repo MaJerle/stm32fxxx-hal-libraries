@@ -24,8 +24,12 @@
 #include "tm_stm32_usb_host.h"
 
 /* Format external variables */
+#ifdef USB_USE_FS
 extern HCD_HandleTypeDef hhcd_FS;
+#endif
+#ifdef USB_USE_HS
 extern HCD_HandleTypeDef hhcd_HS;
+#endif
 #endif
 
 /* If DEVICE mode is used */
@@ -34,8 +38,12 @@ extern HCD_HandleTypeDef hhcd_HS;
 #include "tm_stm32_usb_device.h"
 
 /* Format external variables */
+#ifdef USB_USE_FS
 extern PCD_HandleTypeDef hpcd_FS;
+#endif
+#ifdef USB_USE_HS
 extern PCD_HandleTypeDef hpcd_HS;
+#endif
 #endif
 
 TM_USB_Result_t TM_USB_Init(void) {
@@ -88,6 +96,7 @@ TM_USB_Result_t TM_USB_InitFS(void) {
 }
 
 TM_USB_Result_t TM_USB_InitHS(void) {
+#if defined(USB_USE_HS)
 #if defined(USB_USE_ULPI_PHY)
 	/* Use external ULPI PHY */
 	
@@ -129,6 +138,10 @@ TM_USB_Result_t TM_USB_InitHS(void) {
 	
 	/* Return OK */
 	return TM_USB_Result_Ok;
+#else
+	/* Return ERROR */
+	return TM_USB_Result_Error;
+#endif
 }
 
 /**************************************************/
@@ -163,6 +176,7 @@ __weak void TM_USB_DriveVBUSCallback(TM_USB_t USB_Mode, uint8_t state) {
 /**************************************************/
 /*               USB FS IRQ HANDLER               */
 /**************************************************/
+#ifdef USB_USE_FS
 void OTG_FS_IRQHandler(void) {
 #ifdef USB_USE_HOST
 	/* Process HCD IRQ */
@@ -174,10 +188,12 @@ void OTG_FS_IRQHandler(void) {
 	HAL_PCD_IRQHandler(&hpcd_FS);
 #endif
 }
+#endif
 
 /**************************************************/
 /*               USB HS IRQ HANDLER               */
 /**************************************************/
+#ifdef USB_USE_HS
 void OTG_HS_IRQHandler(void) {
 #ifdef USB_USE_HOST
 	/* Process HCD IRQ */
@@ -189,4 +205,4 @@ void OTG_HS_IRQHandler(void) {
 	HAL_PCD_IRQHandler(&hpcd_HS);
 #endif
 }
-
+#endif

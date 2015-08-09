@@ -1481,7 +1481,7 @@
           <Type>0</Type>
           <LineNumber>486</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134280652</Address>
+          <Address>134281938</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -1523,6 +1523,26 @@
           <count>5</count>
           <WinNumber>1</WinNumber>
           <ItemText>LCD,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>k_minfo</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>HID_Handle</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>i</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>f</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -4279,7 +4299,7 @@
 
   <Group>
     <GroupName>USB HOST</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -4459,7 +4479,7 @@
 
   <Group>
     <GroupName>FATFS</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

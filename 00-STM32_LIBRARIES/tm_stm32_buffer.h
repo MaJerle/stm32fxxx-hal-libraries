@@ -87,12 +87,13 @@ extern "C" {
  * @brief  Buffer structure
  */
 typedef struct _TM_BUFFER_t {
-	uint16_t Size;   /*!< Size of buffer in units of bytes */
-	uint16_t In;     /*!< Input pointer to save next value */
-	uint16_t Out;    /*!< Output pointer to read next value */
-	uint16_t Num;    /*!< Number of elements in buffer */
-	uint8_t* Buffer; /*!< Pointer to buffer data array */
-	uint8_t Flags;   /*!< Flags for buffer */
+	uint16_t Size;           /*!< Size of buffer in units of bytes */
+	uint16_t In;             /*!< Input pointer to save next value */
+	uint16_t Out;            /*!< Output pointer to read next value */
+	uint16_t Num;            /*!< Number of elements in buffer */
+	uint8_t* Buffer;         /*!< Pointer to buffer data array */
+	uint8_t Flags;           /*!< Flags for buffer */
+	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string */
 } TM_BUFFER_t;
 
 /**
@@ -168,8 +169,28 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer);
  * @brief  Checks if specific element value is stored in buffer
  * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
  * @param  uint8_t Element: Element to check
+ * @retval Status of element:
+ *            - 0: Element was not found
+ *            - > 0: Element found
  */
 uint8_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
+
+/**
+ * @brief  Sets string delimiter character when reading from buffer as string
+ * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
+ * @param  StringDelimter: Character as string delimiter
+ * @retval None
+ */
+#define TM_BUFFER_SetStringDelimiter(Buffer, StringDelimiter)  ((Buffer)->StringDelimiter = (StringDelimter))
+
+/**
+ * @brief  Reads from buffer as string
+ * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
+ * @param  *buff: Pointer to buffer where string will be stored
+ * @param  buffsize: Buffer size in units of bytes
+ * @retval Number of characters in string
+ */
+uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize);
 
 /**
  * @}

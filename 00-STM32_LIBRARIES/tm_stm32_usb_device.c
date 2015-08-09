@@ -19,11 +19,27 @@
 #include "tm_stm32_usb_device.h"
 
 /* Variables for HCD and main for USB */
+#ifdef USB_USE_FS
 USBD_HandleTypeDef hUSBDevice_FS;
+#endif
+#ifdef USB_USE_HS
 USBD_HandleTypeDef hUSBDevice_HS;
+#endif
 
 /* Create variable with pointers */
-static USBD_HandleTypeDef* hUSBDevices[3] = {&hUSBDevice_FS, &hUSBDevice_HS};
+static USBD_HandleTypeDef* hUSBDevices[3] = {
+#ifdef USB_USE_FS
+	&hUSBDevice_FS, 
+#else
+	0,
+#endif
+#ifdef USB_USE_HS
+	&hUSBDevice_HS,
+#else
+	0,
+#endif
+	0
+};
 
 TM_USBD_Result_t TM_USBD_Start(TM_USB_t USB_Mode) {
 #ifdef USB_USE_FS
