@@ -42,8 +42,20 @@ extern "C" {
 
 /**
  * @defgroup TM_USBD_CDC
- * @brief    USB Device library for STM32Fxxx devices
+ * @brief    USB CDC Device library for STM32Fxxx devices
  * @{
+ *
+ * This library is designed to allow STM32Fxxx device to acts like CDC device to your computer (Virtual COM port).
+ *
+ * @note  Check @ref TM_USB library for configuration settings first!
+ *
+ * \par Main features
+ *
+\verbatim
+- Works on USB FS or HS mode
+- Can receive/transmit single character, string or custom array
+- Buffer sizes can be selected for user needs
+\endverbatim
  *
  * \par Changelog
  *
@@ -123,6 +135,33 @@ extern "C" {
  * @{
  */
 
+typedef struct {
+	uint32_t Baudrate; /*!< Baudrate, which is set by user on terminal. 
+                            Value is number of bits per second, for example: 115200 */
+    uint8_t Stopbits;  /*!< Stop bits, which is set by user on terminal.
+                            Possible values:
+                               - 0: 1 stop bit
+                               - 1: 1.5 stop bits
+                               - 2: 2 stop bits */
+    uint8_t DataBits;  /*!< Data bits, which is set by user on terminal.
+                            Possible values:
+                               - 5: 5 data bits
+                               - 6: 6 data bits
+                               - 7: 7 data bits
+                               - 8: 8 data bits
+                               - 9: 9 data bits */
+    uint8_t Parity;    /*!< Parity, which is set by user on terminal.
+                            Possible values:
+                               - 0: No parity
+                               - 1: Odd parity
+                               - 2: Even parity
+                               - 3: Mark parity
+                               - 4: Space parity */
+    uint8_t Updated;   /*!< When you check for settings in my function, 
+                            this will be set to 1 if user has changed parameters,
+                            so you can reinitialize USART peripheral if you need to. */
+} TM_USBD_CDC_Settings_t;
+
 /**
  * @}
  */
@@ -173,12 +212,21 @@ uint8_t TM_USBD_CDC_Getc(TM_USB_t USB_Mode, char* ch);
 
 /**
  * @brief  Gets string from USB CDC RX buffer
+ * @note   Check @ref TM_BUFFER library for more info on how strings are returned
  * @param  USB_Mode: USB Mode where string will be read. This parameter can be a value of @ref TM_USB_t enumeration 
  * @param  *buff: Pointer to buffer where string will be saved
  * @param  buffsize: Buffer size in units of bytes
  * @retval Number of elements in string
  */
 uint16_t TM_USBD_CDC_Gets(TM_USB_t USB_Mode, char* buff, uint16_t buffsize);
+
+/**
+ * @brief  Reads current settings set from user terminal
+ * @param  USB_Mode: USB mode where to read settings. This parameter can be a value of @ref TM_USB_t enumeration 
+ * @param  *Settings: Pointer to @ref TM_USBD_CDC_Settings_t struture to fill data into
+ * @retval None
+ */
+void TM_USBD_CDC_GetSettings(TM_USB_t USB_Mode, TM_USBD_CDC_Settings_t* Settings);
 
 /* Private functions */
 void TM_USBD_CDC_INT_AddToBuffer(USBD_HandleTypeDef* pdev, uint8_t* Values, uint16_t Num);

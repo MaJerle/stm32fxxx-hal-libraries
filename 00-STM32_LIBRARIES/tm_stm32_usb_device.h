@@ -27,8 +27,8 @@
    ----------------------------------------------------------------------
 \endverbatim
  */
-#ifndef TM_USBD_LIB_H
-#define TM_USBD_LIB_H 100
+#ifndef TM_USBD_H
+#define TM_USBD_H 100
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -45,6 +45,19 @@ extern "C" {
  * @brief    USB Device library for STM32Fxxx devices
  * @{
  *
+ * This is main USB DEVICE library, whos job is to control device. It can:
+ *
+\verbatim
+- Start USB as device
+- Stop USB as device
+- Restart USB as device
+- Control USB FS and HS modes
+\endverbatim
+ *
+ * @note  All DEVICE related libraries (like @ref TM_USBD_CDC) includes this library!
+ *
+ * @note  Check @ref TM_USB library for configuration settings first!
+ *
  * \par Changelog
  *
 \verbatim
@@ -58,6 +71,7 @@ extern "C" {
  - STM32Fxxx HAL
  - defines.h
  - TM USB
+ - USB Stack
  - USB Device Stack
 \endverbatim
  */
@@ -137,6 +151,13 @@ TM_USBD_Result_t TM_USBD_Restart(TM_USB_t USB_Mode);
  * @retval Member of @ref TM_USBD_Result_t enumeration
  */
 TM_USBD_Result_t TM_USBD_Stop(TM_USB_t USB_Mode);
+
+/**
+ * @brief  Checks if connected device to HOST mode is configured and ready to use
+ * @param  USB_Mode: USB port where to check for ready status. This parameter can be a value of @ref TM_USB_t enumeration
+ * @retval Member of @ref TM_USBD_Result_t enumeration
+ */
+TM_USBD_Result_t TM_USBD_IsDeviceReady(TM_USB_t USB_Mode);
 
 /**
  * @brief  Gets pointer to USB handle

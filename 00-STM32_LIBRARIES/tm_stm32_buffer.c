@@ -65,7 +65,7 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer) {
 		free(Buffer->Buffer);
 	}
 	
-	/* Clear flag */
+	/* Clear flags */
 	Buffer->Flags = 0;
 	Buffer->Size = 0;
 }

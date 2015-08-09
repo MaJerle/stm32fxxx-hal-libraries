@@ -111,6 +111,9 @@ __ALIGN_BEGIN uint8_t USBD_StrDesc[USBD_MAX_STR_DESC_SIZ] __ALIGN_END;
 static void IntToUnicode (uint32_t value , uint8_t *pbuf , uint8_t len);
 static void Get_SerialNum(void);
 
+/* External variable */
+extern USBD_CDC_LineCodingTypeDef linecoding[];
+
 /* Buffer structure for received data */
 #ifdef USB_USE_FS
 TM_BUFFER_t USBD_CDC_Buffer_FS_RX;
@@ -365,6 +368,41 @@ uint16_t TM_USBD_CDC_GetArray(TM_USB_t USB_Mode, uint8_t* buff, uint16_t buffsiz
 	return TM_BUFFER_Read(Buffer, buff, buffsize);
 }
 
+void TM_USBD_CDC_GetSettings(TM_USB_t USB_Mode, TM_USBD_CDC_Settings_t* Settings) {
+	USBD_CDC_LineCodingTypeDef* LineCoding;
+	
+#ifdef USB_USE_FS
+	if (USB_Mode == TM_USB_FS) {
+		LineCoding = &linecoding[0];
+	}
+#endif
+#ifdef USB_USE_HS
+	if (USB_Mode == TM_USB_HS) {
+		LineCoding = &linecoding[1];
+	}
+#endif
+	
+	/* Check if valid */
+	if (LineCoding &&
+		(
+			Settings->Baudrate != LineCoding->bitrate ||
+			Settings->DataBits != LineCoding->datatype ||
+			Settings->Parity != LineCoding->paritytype ||
+			Settings->Stopbits != LineCoding->format
+		)
+	) {
+		Settings->Baudrate = LineCoding->bitrate;
+		Settings->DataBits = LineCoding->datatype;
+		Settings->Parity = LineCoding->paritytype;
+		Settings->Stopbits = LineCoding->format;
+		
+		/* Settings are updated */
+		Settings->Updated = 1;
+	} else {
+		/* Settings not updated */
+		Settings->Updated = 0;
+	}
+}
 
 /************************************************/
 /*               PRIVATE FUNCTIONS              */

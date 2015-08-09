@@ -1890,11 +1890,6 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_fatfs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
@@ -4045,11 +4040,6 @@
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32_fatfs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_spi.c</FileName>
@@ -6294,11 +6284,6 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_fatfs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
@@ -8541,11 +8526,6 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_fatfs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
@@ -10743,11 +10723,6 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_fatfs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
@@ -12594,11 +12569,6 @@
               <FileName>tm_stm32_fonts.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32_fatfs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fatfs.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_spi.c</FileName>

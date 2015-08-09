@@ -170,6 +170,13 @@ TM_USBH_Result_t TM_USBH_Process(TM_USB_t USB_Mode);
 TM_USBH_Result_t TM_USBH_IsConnected(TM_USB_t USB_Mode);
 
 /**
+ * @brief  Checks if USB device is connected and class is ready to use
+ * @param  USB_Mode: USB Mode to be checked for ready device. This parameter can be a value of @ref TM_USB_t enumeration
+ * @retval Member of @ref TM_USBH_Result_t enumeration
+ */
+TM_USBH_Result_t TM_USBH_IsDeviceReady(TM_USB_t USB_Mode);
+
+/**
  * @brief  Gets Vendor ID (Allocated by USB association) of connected USB device on specific USB PORT
  * @param  USB_Mode: USB Mode where VID will be checked. This parameter can be a value of @ref TM_USB_t enumeration
  * @retval Vendor ID number

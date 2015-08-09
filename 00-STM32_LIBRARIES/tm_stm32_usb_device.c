@@ -83,6 +83,17 @@ TM_USBD_Result_t TM_USBD_Stop(TM_USB_t USB_Mode) {
 	return TM_USBD_Result_Ok;
 }
 
+TM_USBD_Result_t TM_USBD_IsDeviceReady(TM_USB_t USB_Mode) {
+	USBD_HandleTypeDef* Handle = TM_USBD_GetUSBPointer(USB_Mode);
+	
+	/* Check if ready */
+	if (Handle && Handle->dev_state == USBD_STATE_CONFIGURED) {
+		return TM_USBD_Result_Ok;
+	}
+	
+	/* Device is not ready */
+	return TM_USBD_Result_Error;
+}
 
 USBD_HandleTypeDef* TM_USBD_GetUSBPointer(TM_USB_t USB_Mode) {
 	/* Return pointer to USB handle */

@@ -26,6 +26,9 @@ USBH_HandleTypeDef hUSBHost_FS;
 USBH_HandleTypeDef hUSBHost_HS;
 #endif
 
+/* Device ready to use and class active status */
+static uint8_t USBH_DeviceReady[2] = {0, 0};
+
 /* Create variable with pointers */
 static USBH_HandleTypeDef* hUSBHosts[3] = {
 #ifdef USB_USE_FS
@@ -160,6 +163,19 @@ TM_USBH_Result_t TM_USBH_IsConnected(TM_USB_t USB_Mode) {
 	return TM_USBH_Result_Error;
 }
 
+TM_USBH_Result_t TM_USBH_IsDeviceReady(TM_USB_t USB_Mode) {
+	if (
+		hUSBHosts[(uint8_t)USB_Mode]->device.is_connected && /*!< Device is connected */
+		USBH_DeviceReady[hUSBHosts[(uint8_t)USB_Mode]->id]   /*!< Class is ready */
+	) {
+		/* Return OK */
+		return TM_USBH_Result_Ok;
+	}
+	
+	/* Return error */
+	return TM_USBH_Result_Error;
+}
+
 USBH_HandleTypeDef* TM_USBH_GetUSBPointer(TM_USB_t USB_Mode) {
 	/* Return pointer to USB handle */
 	return hUSBHosts[(uint8_t)USB_Mode];
@@ -178,12 +194,15 @@ uint16_t TM_USBH_GetPID(TM_USB_t USB_Mode) {
 /* Private functions */	
 static void USBH_ProcessCallback(USBH_HandleTypeDef* hUSB, uint8_t id) {
 	/* TO-DO: Call user function */
+	/* Reset first */
 	switch (id) { 
 		case HOST_USER_SELECT_CONFIGURATION:
 			break;
 		case HOST_USER_DISCONNECTION:
+			USBH_DeviceReady[hUSB->id] = 0;
 			break;
 		case HOST_USER_CLASS_ACTIVE:
+			USBH_DeviceReady[hUSB->id] = 1;
 			break;
 		case HOST_USER_CONNECTION:
 			break;

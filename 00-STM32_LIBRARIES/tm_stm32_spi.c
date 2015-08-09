@@ -24,7 +24,7 @@
 #define GPIO_AFx_SPI2    GPIO_AF5_SPI2
 #define GPIO_AFx_SPI3    0x05
 #define GPIO_AFx_SPI4    GPIO_AF5_SPI4
-#define GPIO_AFx_SPI5    GPIO_AF5_SPI5
+#define GPIO_AFx_SPI5    0x05
 #define GPIO_AFx_SPI6    GPIO_AF5_SPI6
 #endif
 #if defined(STM32F0xx)

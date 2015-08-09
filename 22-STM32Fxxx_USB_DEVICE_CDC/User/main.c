@@ -1,6 +1,8 @@
 /**
  * Keil project example for USB CDC device (Virtual COM Port)
  *
+ * @note      Check defines.h file for configuration settings!
+ *
  * Before you start, select your target, on the right of the "Load" button
  *
  * @author    Tilen Majerle
@@ -19,6 +21,9 @@
 #include "tm_stm32_delay.h"
 #include "tm_stm32_usb_device.h"
 #include "tm_stm32_usb_device_cdc.h"
+
+/* USB CDC settings */
+TM_USBD_CDC_Settings_t USB_FS_Settings;
 
 /* Character value */
 char ch;
@@ -58,6 +63,22 @@ int main(void) {
 		/* Process USB CDC device, send remaining data if needed */
 		/* It is better if you call this in periodic timer, like each ms in SYSTICK handler */
 		TM_USBD_CDC_Process(TM_USB_Both);
+		
+		/* Check if device is ready, if drivers are installed if needed */
+		if (TM_USBD_IsDeviceReady(TM_USB_FS) == TM_USBD_Result_Ok) {
+			TM_DISCO_LedOn(LED_GREEN);
+		} else {
+			TM_DISCO_LedOff(LED_GREEN);
+		}
+		
+		/* Check if user has changed parameter for COM port */
+		TM_USBD_CDC_GetSettings(TM_USB_FS, &USB_FS_Settings);
+		
+		/* Check if updated */
+		if (USB_FS_Settings.Updated) {
+			/* Update settings for UART here if needed */
+			TM_USBD_CDC_Puts(TM_USB_FS, "USB FS settings changed!\n");
+		}
 		
 		/* Check if anything received on FS port */
 		if (TM_USBD_CDC_Getc(TM_USB_FS, &ch)) {

@@ -385,16 +385,16 @@ USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe
   * @retval USBH Status
   */
 USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state) {
-#if defined(USB_USE_FS)
+#ifdef USB_USE_FS
 	/* Call user functions */
 	if (phost->id == USB_ID_FS) {
 		TM_USB_DriveVBUSCallback(TM_USB_FS, state);
 	}
 #endif
 	
-#if defined(USB_USE_HS)
+#ifdef USB_USE_HS
 	/* Call user functions */
-	if (phost->id == USB_ID_FS) {
+	if (phost->id == USB_ID_HS) {
 		TM_USB_DriveVBUSCallback(TM_USB_HS, state);
 	}
 #endif

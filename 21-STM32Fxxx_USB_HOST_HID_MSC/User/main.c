@@ -1,6 +1,8 @@
 /**
  * Keil project example for USB HID and MSC at the same time
  *
+ * @note      Check defines.h file for configuration settings!
+ *
  * Example has enabled 2 USB ports (FS and HS).
  * On FS port, HID device is expected where you will see on LCD which type is connected.
  * In case of HS port, USB flash key should be connected where text will be written to file!

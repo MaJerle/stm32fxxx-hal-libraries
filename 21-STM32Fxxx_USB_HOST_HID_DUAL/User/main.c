@@ -1,9 +1,9 @@
 /**
  * Keil project example for USB HID and MSC at the same time
  *
- * Example has enabled 2 USB ports (FS and HS).
- * On FS port, HID device is expected where you will see on LCD which type is connected.
- * In case of HS port, USB flash key should be connected where text will be written to file!
+ * @note      Check defines.h file for configuration settings!
+ *
+ * Example shows how to use 2 USB HID devices at a time!
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -23,9 +23,7 @@
 #include "tm_stm32_delay.h"
 #include "tm_stm32_usb_host.h"
 #include "tm_stm32_usb_host_hid.h"
-#include "tm_stm32_usb_host_msc.h"
 #include "tm_stm32_lcd.h"
-#include "tm_stm32_fatfs.h"
 
 /* Check if we should use LCD */
 #if defined(STM32F429_DISCOVERY) || defined(STM32F7_DISCOVERY) || defined(STM32F439_EVAL)
@@ -34,14 +32,8 @@
 #define USE_LCD     0
 #endif
 
-/* FATFS related */
-FATFS FATFS_USB;
-FIL fil;
-FRESULT fres;
-
 /* Flags */
 uint8_t FS_Printed = 0, HS_Printed = 0;
-uint8_t mounted = 0;
 	
 int main(void) {
 	/* Init system */
@@ -88,7 +80,10 @@ int main(void) {
 				/* If not printed yet */
 				if (!FS_Printed) {
 					/* Print to LCD */
-					printf("USB FS: Keyboard connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_FS), TM_USBH_GetPID(TM_USB_FS));
+					printf("FS: Keyboard connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_FS), TM_USBH_GetPID(TM_USB_FS));
+					
+					/* Turn on green LED */
+					TM_DISCO_LedOn(LED_GREEN);
 					
 					/* Set flag */
 					FS_Printed = 1;
@@ -99,7 +94,7 @@ int main(void) {
 				/* If not printed yet */
 				if (!FS_Printed) {
 					/* Print to LCD */
-					printf("USB FS: Mouse connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_FS), TM_USBH_GetPID(TM_USB_FS));
+					printf("FS: Mouse connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_FS), TM_USBH_GetPID(TM_USB_FS));
 					
 					/* Turn on green LED */
 					TM_DISCO_LedOn(LED_GREEN);
@@ -111,12 +106,60 @@ int main(void) {
 		} else if (FS_Printed) {
 			/* Check if no device connected */
 			if (TM_USBH_HID_GetConnected(TM_USB_FS) == TM_USBH_HID_None) {
-				/* Mouse is connected */
+				/* Nothing connected anymore */
 				/* Print to LCD */
-				printf("USB FS: Device disconnected\n");
+				printf("FS: Device disconnected\n");
 				
 				/* Clear flag */
 				FS_Printed = 0;
+			
+				/* Turn off green LED */
+				TM_DISCO_LedOff(LED_GREEN);
+			}
+		}
+		
+		
+		/* Check if device connected on HS port */
+		if (TM_USBH_IsConnected(TM_USB_HS) == TM_USBH_Result_Ok) {
+			/* Check if any HID devie is connected to HS port */
+			if (TM_USBH_HID_GetConnected(TM_USB_HS) == TM_USBH_HID_Keyboard) {
+				/* Keyboard is connected on HS port */
+				
+				/* If not printed yet */
+				if (!HS_Printed) {
+					/* Print to LCD */
+					printf("HS: Keyboard connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_HS), TM_USBH_GetPID(TM_USB_HS));
+					
+					/* Turn on green LED */
+					TM_DISCO_LedOn(LED_GREEN);
+					
+					/* Set flag */
+					HS_Printed = 1;
+				}
+			} else if (TM_USBH_HID_GetConnected(TM_USB_HS) == TM_USBH_HID_Mouse) {
+				/* Mouse is connected on HS port */
+				
+				/* If not printed yet */
+				if (!HS_Printed) {
+					/* Print to LCD */
+					printf("HS: Mouse connected! VID: %04X; PID: %04X\n", TM_USBH_GetVID(TM_USB_HS), TM_USBH_GetPID(TM_USB_HS));
+					
+					/* Turn on green LED */
+					TM_DISCO_LedOn(LED_GREEN);
+				
+					/* Set flag */
+					HS_Printed = 1;
+				}
+			}
+		} else if (HS_Printed) {
+			/* Check if no device connected */
+			if (TM_USBH_HID_GetConnected(TM_USB_HS) == TM_USBH_HID_None) {
+				/* Nothing connected anymore */
+				/* Print to LCD */
+				printf("HS: Device disconnected\n");
+				
+				/* Clear flag */
+				HS_Printed = 0;
 			
 				/* Turn off green LED */
 				TM_DISCO_LedOff(LED_GREEN);

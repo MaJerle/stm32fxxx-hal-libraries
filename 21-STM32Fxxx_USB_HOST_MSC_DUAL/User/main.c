@@ -1,6 +1,8 @@
 /**
  * Keil project example for USB MSC on both USB ports at the same time
  *
+ * @note      Check defines.h file for configuration settings!
+ *
  * Before you start, select your target, on the right of the "Load" button
  *
  * @author    Tilen Majerle
