@@ -128,6 +128,25 @@ uint8_t USBD_CDC_Buffer_Data_HS_RX[USBD_CDC_RECEIVE_BUFFER_SIZE_HS];
 uint8_t USBD_CDC_Buffer_Data_HS_TX[USBD_CDC_TRANSMIT_BUFFER_SIZE_HS];
 #endif
 
+/* Returns pointer to RX buffer for USB */
+static TM_BUFFER_t* TM_UCBD_CDC_INT_GetRXBuffer(TM_USB_t USB_Mode) {
+	TM_BUFFER_t* Buffer = 0;
+	
+#ifdef USB_USE_FS
+	if (USB_Mode == TM_USB_FS) {
+		Buffer = &USBD_CDC_Buffer_FS_TX;
+	}
+#endif
+#ifdef USB_USE_HS
+	if (USB_Mode == TM_USB_HS) {
+		Buffer = &USBD_CDC_Buffer_HS_TX;
+	}
+#endif
+
+	/* Return pointer */
+	return Buffer;
+}
+
 /************************************************/
 /*            USER PUBLIC FUNCTIONS             */
 /************************************************/
@@ -227,76 +246,9 @@ void TM_USBD_CDC_Process(TM_USB_t USB_Mode) {
 #endif
 }
 
-uint16_t TM_USBD_CDC_Puts(TM_USB_t USB_Mode, const char* str) {
-	uint16_t ret;
-	TM_BUFFER_t* Buffer = 0;
-	
-#ifdef USB_USE_FS
-	if (USB_Mode == TM_USB_FS) {
-		Buffer = &USBD_CDC_Buffer_FS_TX;
-	}
-#endif
-#ifdef USB_USE_HS
-	if (USB_Mode == TM_USB_HS) {
-		Buffer = &USBD_CDC_Buffer_HS_TX;
-	}
-#endif
-	
-	/* Write to buffer */
-	ret = TM_BUFFER_Write(Buffer, (uint8_t *)str, strlen(str));
-	
-	/* Process */
-	if (ret) {
-		TM_USBD_CDC_Process(USB_Mode);
-	}
-	
-	/* Return number of elements added to buffer */
-	return ret;
-}
-
-uint16_t TM_USBD_CDC_PutArray(TM_USB_t USB_Mode, uint8_t* buff, uint16_t buffsize) {
-	TM_BUFFER_t* Buffer = 0;
-	uint16_t ret;
-	
-#ifdef USB_USE_FS
-	if (USB_Mode == TM_USB_FS) {
-		Buffer = &USBD_CDC_Buffer_FS_TX;
-	}
-#endif
-#ifdef USB_USE_HS
-	if (USB_Mode == TM_USB_HS) {
-		Buffer = &USBD_CDC_Buffer_HS_TX;
-	}
-#endif
-	
-	/* Write array to buffer */
-	ret = TM_BUFFER_Write(Buffer, buff, buffsize);
-	
-	/* Process */
-	if (ret) {
-		TM_USBD_CDC_Process(USB_Mode);
-	}
-	
-	/* Return number of elements added to array */
-	return ret;
-}
-
 uint16_t TM_USBD_CDC_Putc(TM_USB_t USB_Mode, char ch) {
-	TM_BUFFER_t* Buffer = 0;
-	
-#ifdef USB_USE_FS
-	if (USB_Mode == TM_USB_FS) {
-		Buffer = &USBD_CDC_Buffer_FS_TX;
-	}
-#endif
-#ifdef USB_USE_HS
-	if (USB_Mode == TM_USB_HS) {
-		Buffer = &USBD_CDC_Buffer_HS_TX;
-	}
-#endif
-	
 	/* Check for write */
-	if (TM_BUFFER_Write(Buffer, (uint8_t *)&ch, 1)) {
+	if (TM_BUFFER_Write(TM_UCBD_CDC_INT_GetRXBuffer(USB_Mode), (uint8_t *)&ch, 1)) {
 		/* Process */
 		TM_USBD_CDC_Process(USB_Mode);
 		
@@ -308,22 +260,39 @@ uint16_t TM_USBD_CDC_Putc(TM_USB_t USB_Mode, char ch) {
 	return 0;
 }
 
+uint16_t TM_USBD_CDC_Puts(TM_USB_t USB_Mode, const char* str) {
+	uint16_t ret;
+	
+	/* Write to buffer */
+	ret = TM_BUFFER_Write(TM_UCBD_CDC_INT_GetRXBuffer(USB_Mode), (uint8_t *)str, strlen(str));
+	
+	/* Process */
+	if (ret) {
+		TM_USBD_CDC_Process(USB_Mode);
+	}
+	
+	/* Return number of elements added to buffer */
+	return ret;
+}
+
+uint16_t TM_USBD_CDC_PutArray(TM_USB_t USB_Mode, uint8_t* buff, uint16_t count) {
+	uint16_t ret;
+
+	/* Write array to buffer */
+	ret = TM_BUFFER_Write(TM_UCBD_CDC_INT_GetRXBuffer(USB_Mode), buff, count);
+	
+	/* Process */
+	if (ret) {
+		TM_USBD_CDC_Process(USB_Mode);
+	}
+	
+	/* Return number of elements added to array */
+	return ret;
+}
+
 uint8_t TM_USBD_CDC_Getc(TM_USB_t USB_Mode, char* ch) {
-	TM_BUFFER_t* Buffer = 0;
-	
-#ifdef USB_USE_FS
-	if (USB_Mode == TM_USB_FS) {
-		Buffer = &USBD_CDC_Buffer_FS_RX;
-	}
-#endif
-#ifdef USB_USE_HS
-	if (USB_Mode == TM_USB_HS) {
-		Buffer = &USBD_CDC_Buffer_HS_RX;
-	}
-#endif
-	
 	/* Try to read from buffer */
-	if (TM_BUFFER_Read(Buffer, (uint8_t *)ch, 1)) {
+	if (TM_BUFFER_Read(TM_UCBD_CDC_INT_GetRXBuffer(USB_Mode), (uint8_t *)ch, 1)) {
 		/* Character read */
 		return 1;
 	}
@@ -333,39 +302,13 @@ uint8_t TM_USBD_CDC_Getc(TM_USB_t USB_Mode, char* ch) {
 }
 
 uint16_t TM_USBD_CDC_Gets(TM_USB_t USB_Mode, char* buff, uint16_t buffsize) {
-	TM_BUFFER_t* Buffer = 0;
-	
-#ifdef USB_USE_FS
-	if (USB_Mode == TM_USB_FS) {
-		Buffer = &USBD_CDC_Buffer_FS_RX;
-	}
-#endif
-#ifdef USB_USE_HS
-	if (USB_Mode == TM_USB_HS) {
-		Buffer = &USBD_CDC_Buffer_HS_RX;
-	}
-#endif
-	
 	/* Return buffer value */
-	return TM_BUFFER_ReadString(Buffer, (char *)buff, buffsize);
+	return TM_BUFFER_ReadString(TM_UCBD_CDC_INT_GetRXBuffer(USB_Mode), (char *)buff, buffsize);
 }
 
-uint16_t TM_USBD_CDC_GetArray(TM_USB_t USB_Mode, uint8_t* buff, uint16_t buffsize) {
-	TM_BUFFER_t* Buffer = 0;
-	
-#ifdef USB_USE_FS
-	if (USB_Mode == TM_USB_FS) {
-		Buffer = &USBD_CDC_Buffer_FS_RX;
-	}
-#endif
-#ifdef USB_USE_HS
-	if (USB_Mode == TM_USB_HS) {
-		Buffer = &USBD_CDC_Buffer_HS_RX;
-	}
-#endif
-	
+uint16_t TM_USBD_CDC_GetArray(TM_USB_t USB_Mode, uint8_t* buff, uint16_t count) {
 	/* Return buffer value */
-	return TM_BUFFER_Read(Buffer, buff, buffsize);
+	return TM_BUFFER_Read(TM_UCBD_CDC_INT_GetRXBuffer(USB_Mode), buff, count);
 }
 
 void TM_USBD_CDC_GetSettings(TM_USB_t USB_Mode, TM_USBD_CDC_Settings_t* Settings) {

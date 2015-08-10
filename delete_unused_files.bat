@@ -6,7 +6,6 @@ del /s *.axf
 del /s *.dep
 del /s *.uvoptx
 del /s *.tilz0R
-del /s *.htm
 del /s *.map
 del /s *.lnp
 del /s *.iex

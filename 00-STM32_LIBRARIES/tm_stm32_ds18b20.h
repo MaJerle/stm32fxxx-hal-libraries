@@ -37,12 +37,12 @@
 
 /**
  * @defgroup TM_DS12820
- * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors -http://stm32f4-discovery.com/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
+ * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors - http://stm32f4-discovery.com/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
  * @{
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits and check if device is DS18B20.
  * 
- * Pin for STM32Fxxx is the same as set with TM ONEWIRE library.
+ * Pin for STM32Fxxx is the same as set with @ref TM_ONEWIRE library.
  *
  * \par Changelog
  *

@@ -148,7 +148,7 @@ PB13 <-> VBUS
 PC4  <-> VBUS_EN
 \endverbatim
  *
- * \par STM32F4-Discovery pinout
+ * \par STM32F7-Discovery pinout
  *
  * Micro USB connectors are on USB FS mode and on real USB HS mode with external PHY chip
  *

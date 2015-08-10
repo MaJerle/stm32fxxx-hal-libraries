@@ -247,7 +247,7 @@ uint8_t TM_SDRAM_Init(void);
  * @param  None
  * @retval SDRAM memory size in bytes
  */
-#define TM_SDRAM_GetSize()                  (SDRAM_MEMORY_SIZE)
+#define TM_SDRAM_GetSize()                    (SDRAM_MEMORY_SIZE)
 
 /**
  * @brief  Writes 8-bit value to SDRAM
@@ -256,7 +256,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Write8(address, value)		(*(__IO uint8_t *) (SDRAM_START_ADR + (address)) = (value))
+#define TM_SDRAM_Write8(address, value)       (*(__IO uint8_t *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads 8-bit value from SDRAM
@@ -264,7 +264,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval 8-bit value stored at desired location
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Read8(address)				(*(__IO uint8_t *) (SDRAM_START_ADR + (address)))
+#define TM_SDRAM_Read8(address)               (*(__IO uint8_t *) (SDRAM_START_ADR + (address)))
 
 /**
  * @brief  Writes 16-bit value to SDRAM
@@ -273,7 +273,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Write16(address, value)	(*(__IO uint16_t *) (SDRAM_START_ADR + (address)) = (value))
+#define TM_SDRAM_Write16(address, value)      (*(__IO uint16_t *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads 16-bit value from SDRAM
@@ -281,7 +281,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval 16-bit value stored at desired location
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Read16(address)			(*(__IO uint16_t *) (SDRAM_START_ADR + (address)))
+#define TM_SDRAM_Read16(address)              (*(__IO uint16_t *) (SDRAM_START_ADR + (address)))
 
 /**
  * @brief  Writes 32-bit value to SDRAM
@@ -290,7 +290,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Write32(address, value)	(*(__IO uint32_t *) (SDRAM_START_ADR + (address)) = (value))
+#define TM_SDRAM_Write32(address, value)      (*(__IO uint32_t *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads 32-bit value from SDRAM
@@ -298,7 +298,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval 32-bit value stored at desired location
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Read32(address)			(*(__IO uint32_t *) (SDRAM_START_ADR + (address)))
+#define TM_SDRAM_Read32(address)              (*(__IO uint32_t *) (SDRAM_START_ADR + (address)))
 
 /**
  * @brief  Writes float value to SDRAM
@@ -307,7 +307,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_WriteFloat(address, value)	(*(__IO float *) (SDRAM_START_ADR + (address)) = (value))
+#define TM_SDRAM_WriteFloat(address, value)   (*(__IO float *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads float value from SDRAM
@@ -315,7 +315,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval float value stored at desired location
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_ReadFloat(address)			(*(__IO float *) (SDRAM_START_ADR + (address)))
+#define TM_SDRAM_ReadFloat(address)           (*(__IO float *) (SDRAM_START_ADR + (address)))
 
 /**
  * @brief  Initialize custom pins callback.

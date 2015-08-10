@@ -64,7 +64,7 @@ int main(void) {
 		/* It is better if you call this in periodic timer, like each ms in SYSTICK handler */
 		TM_USBD_CDC_Process(TM_USB_Both);
 		
-		/* Check if device is ready, if drivers are installed if needed */
+		/* Check if device is ready, if drivers are installed if needed on FS port */
 		if (TM_USBD_IsDeviceReady(TM_USB_FS) == TM_USBD_Result_Ok) {
 			TM_DISCO_LedOn(LED_GREEN);
 		} else {
@@ -88,6 +88,13 @@ int main(void) {
 			TM_USBD_CDC_Putc(TM_USB_FS, ch);
 		}
 		
+		/* Check if device is ready, if drivers are installed if needed on HS port */
+		if (TM_USBD_IsDeviceReady(TM_USB_HS) == TM_USBD_Result_Ok) {
+			//TM_DISCO_LedOn(LED_GREEN);
+		} else {
+			//TM_DISCO_LedOff(LED_GREEN);
+		}		
+
 		/* Check if any string received on HS port */
 		if (TM_USBD_CDC_Gets(TM_USB_HS, string_array, sizeof(string_array))) {
 			/* One character received */

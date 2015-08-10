@@ -50,20 +50,12 @@ extern "C" {
  * \par Default pinout
  *
 \verbatim
-AM2301  STM32Fxxx   Description
+AM2301  STM32Fxxx      Description
 
-VCC     3V3-5V      Supply voltage from 3V3 to 5V
-GND     GND         Ground
-DATA    PD1         Data line
+VCC     3V3-5V         Supply voltage from 3V3 to 5V
+GND     GND            Ground
+DATA    User selected  Data line
 \endverbatim
- *
- * By default, PD1 pin is used for data. If you want to change it, use lines below in defines.h to and edit them:
- *
-\code
-//Select custom pin for AM2301 sensor
-#define AM2301_PORT      GPIOD
-#define AM2301_PIN       GPIO_PIN_1
-\endcode
  *
  * \par Data output
  *

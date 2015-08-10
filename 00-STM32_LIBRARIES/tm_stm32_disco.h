@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_DISCO
- * @brief    Leds and buttons for discovery, nucleo and eval boards
+ * @brief    Leds and buttons for discovery, nucleo and eval boards - http://stm32f4-discovery.com/2015/07/hal-library-2-leds-and-button-for-stm32-boards/
  * @{
  *	
  * \par Supported boards
