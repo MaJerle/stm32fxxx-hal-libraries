@@ -205,6 +205,45 @@ return  ((DWORD)(2014 - 1980) << 25)  // Year 2014
         | ((DWORD)0 >> 1);            // Sec 0
 }
 \endcode
+ *
+ * \par Use FATFS with USB MSC Host library.
+ * 
+ * You can use this library also with @ref TM_USBH_MSC Library if you want to ready USB Flash keys when needed. 
+ *
+ * First, files you will need for implementation based on FATFS are:
+ *
+\verbatim
+- tm_stm32_fatfs.h
+- tm_stm32_fatfs.c
+- fatfs/diskio.h
+- fatfs/diskio.c
+- fatfs/ff.h
+- fatfs/ff.c
+- fatfs/ffconf.h
+- fatfs/integer.h
+- fatfs/option/syscall.c
+- fatfs/option/unicode.c
+- fatfs/drivers/fatfs_usb.h
+- fatfs/drivers/fatfs_usb.c
+- Entire USB MSC Host stack and TM USB library
+\endverbatim 
+ *
+ * \par Operate with USB MSC Host libraries.
+ *
+ * Because my USB MSC Host library supports both USB modes at the same time, I've made 2 different names for logical drivers.
+ * So, when you wanna mount/read/write/etc, you have 2 possible drive names:
+ *
+\code
+//Mount USB Flash memory connected on USB FS port
+f_mount(&fatfs_FS, "FS:", 1);
+
+//Mount USB Flash memory connected on USB HS port
+f_mount(&fatfs_HS, "HS:", 1);
+\endcode
+ *
+ * Like SDCARD has "SD:" name, here are 2 different names, which allows you flexibility in your code.
+ * This also means, that you can use SDCARD and 2 USB flash drives at the same time without any problems, just specifying drive name
+ * when performing read and write operations.
  * 
  * \par Changelog
  *

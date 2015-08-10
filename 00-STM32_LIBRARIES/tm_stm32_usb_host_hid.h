@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/08/hal-library-21-multi-purpose-usb-library-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_USBH_HID
- * @brief    USB HOST for HID devices library
+ * @brief    USB HOST for HID devices library - http://stm32f4-discovery.com/2015/08/hal-library-21-multi-purpose-usb-library-for-stm32fxxx/
  * @{
  *
  * This library is high level implementation for USB HOST HID devices. It allows you to read keyboard and mouse data which are connected to USB FS or HS port.
