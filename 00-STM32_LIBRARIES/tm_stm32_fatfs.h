@@ -235,10 +235,10 @@ return  ((DWORD)(2014 - 1980) << 25)  // Year 2014
  *
 \code
 //Mount USB Flash memory connected on USB FS port
-f_mount(&fatfs_FS, "FS:", 1);
+f_mount(&fatfs_FS, "USBFS:", 1);
 
 //Mount USB Flash memory connected on USB HS port
-f_mount(&fatfs_HS, "HS:", 1);
+f_mount(&fatfs_HS, "USBHS:", 1);
 \endcode
  *
  * Like SDCARD has "SD:" name, here are 2 different names, which allows you flexibility in your code.
