@@ -41,8 +41,8 @@ static uint8_t SDCARD_IsDetected(void) {
 	return !TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN);
 #endif
 	
-	/* Card is not write protected */
-	return 0;
+	/* Card is detected */
+	return 1;
 }
 
 /* SDCARD write protect function */
@@ -53,7 +53,7 @@ static uint8_t SDCARD_IsWriteEnabled(void) {
 #endif
 	
 	/* Card is not write protected */
-	return 0;
+	return 1;
 }
 
 /* Initialize MMC interface */

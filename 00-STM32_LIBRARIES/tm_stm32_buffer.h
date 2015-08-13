@@ -133,7 +133,7 @@ typedef struct _TM_BUFFER_t {
  * @param  UseMalloc: Set to 1 if you want to allocate buffer using malloc. In case of parameter is 1, BufferPtr param can be NULL
  * @retval Buffer initialization status:
  *            - 0: Buffer iintialized OK
- *            - 0: Buffer iintialized error. Malloc has failed with allocation
+ *            - > 0: Buffer initialization error. Malloc has failed with allocation
  */
 uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr, uint8_t UseMalloc);
 

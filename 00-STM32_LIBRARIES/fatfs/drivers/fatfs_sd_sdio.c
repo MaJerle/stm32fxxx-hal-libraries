@@ -71,22 +71,22 @@ static volatile DSTATUS Stat = STA_NOINIT;
 static uint8_t SDCARD_IsDetected(void) {
 #if FATFS_USE_DETECT_PIN
 	/* Check if detected, pin LOW if detected */
-	return !TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN);
+	return !TM_GPIO_GetInputPinValue(FATFS_DETECT_PORT, FATFS_DETECT_PIN);
 #endif
 	
-	/* Card is not write protected */
-	return 0;
+	/* Card is detected */
+	return 1;
 }
 
 /* SDCARD write protect function */
 static uint8_t SDCARD_IsWriteEnabled(void) {
 #if FATFS_USE_WRITEPROTECT_PIN
 	/* Check if write enabled, pin LOW if write enabled */
-	return !TM_GPIO_GetInputPinValue(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN);
+	return !TM_GPIO_GetInputPinValue(FATFS_WRITEPROTECT_PORT, FATFS_WRITEPROTECT_PIN);
 #endif
 	
 	/* Card is not write protected */
-	return 0;
+	return 1;
 }
 
 /**************************************************************/

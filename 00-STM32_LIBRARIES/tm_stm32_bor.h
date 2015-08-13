@@ -6,7 +6,7 @@
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   Brown-Out settings for STM32Fxxx
+ * @brief   Brown-Out detection for STM32Fxxx
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -53,7 +53,10 @@ extern "C" {
  *  - Level 2: According to the datasheet, from 2.4 to 2.7 V
  *  - Level 3: According to the datasheet, from 2.7 to 3.6 V
  *
- * @warning It does not work on STM32F0xx series
+ * @warning It does not work on STM32F0xx series, they don't have this feature.
+ *
+ * @note  If you set brown out detection to level 3, and your power supply is 1.8V for example, then your MCu won't start,
+ *           because BOR section in device will hold it in reset state waiting for voltage higher than 2.7V
  *
  * \par Changelog
  *
@@ -120,7 +123,7 @@ typedef enum {
 /**
  * @brief  Sets new brown-out detection level
  * @note   New value will be set only in case current value is different than user wants
- * @param  BORValue: Value level for brown-out. This parameter can be a value of @ref TM_BOR_Level_t enumeration
+ * @param  BORValue: Value level for brown-out detection. This parameter can be a value of @ref TM_BOR_Level_t enumeration
  * @retval Member of @ref TM_BOR_Result_t
  */
 TM_BOR_Result_t TM_BOR_Set(TM_BOR_Level_t BORValue);
