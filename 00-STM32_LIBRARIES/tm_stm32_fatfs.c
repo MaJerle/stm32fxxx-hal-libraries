@@ -94,7 +94,7 @@ uint8_t TM_FATFS_CheckCardDetectPin(void) {
 	uint8_t status = 1;
 	
 #if FATFS_USE_DETECT_PIN > 0
-	if (TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN) != 0) {
+	if (TM_GPIO_GetInputPinValue(FATFS_DETECT_PORT, FATFS_DETECT_PIN) != 0) {
 		status = 0;
 	}
 #endif

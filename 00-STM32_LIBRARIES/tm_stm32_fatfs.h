@@ -254,6 +254,38 @@ f_mount(&fatfs_HS, "USBHS:", 1);
  *
  * Second is @ref TM_FATFS_SearchCallback which is called anytime file/folder is found on system so user can do it's job with file.
  *
+\code
+int user_func(void) {
+	//Create working buffer
+	char working_buffer[200];
+	
+	FRESULT res;
+	TM_FATFS_Search_t FindStructure;
+	
+	//mount first
+	
+	if ((res = TM_FATFS_Search("SD:", working_buffer, sizeof(working_buffer), &FindStructure)) == FR_OK) {
+		//Search was OK
+	} else if (res == FR_NOT_ENOUGH_CORE) {
+		//Not enough memory for full search operation
+	}
+	
+	//unmount
+}
+
+uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* FindStructure) {
+	//Check for file/folder
+	if (if_file) {
+		printf("File: %s", path);
+	} else {
+		printf("Folder: %s", path);
+	}
+
+	//Allow next search
+	return 1;
+}
+\endcode
+ *
  * Check documentation for these 2 functions for more info.
  * 
  * \par Changelog
@@ -384,38 +416,6 @@ uint8_t TM_FATFS_CheckCardDetectPin(void);
 /**
  * @brief  Searches on SD card for files and folders
  * @note   It will search recursive till the end of everything or if tmp_buffer is full
- *
-\code{.c}
-int user_func(void) {
-	//Create working buffer
-	char working_buffer[200];
-	
-	FRESULT res;
-	TM_FATFS_Search_t FindStructure;
-	
-	//mount first
-	
-	if ((res = TM_FATFS_Search("SD:", working_buffer, sizeof(working_buffer), &FindStructure)) == FR_OK) {
-		//Search was OK
-	} else if (res == FR_NOT_ENOUGH_CORE) {
-		//Not enough memory for full search operation
-	}
-	
-	//unmount
-}
-
-uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* FindStructure) {
-	//Check for file/folder
-	if (if_file) {
-		printf("File: %s", path);
-	} else {
-		printf("Folder: %s", path);
-	}
-
-	//Allow next search
-	return 1;
-}
-\endcode
  * @param  *Folder: Folder start location where search will be performed
  * @param  *tmp_buffer: Pointer to empty buffer where temporary data for filepath will be stored. It's size must be larger than bigest filepath on FATFS.
  *            Set this parameter to NULL and function will use @ref LIB_ALLOC_FUNC() to allocate memory for tmp buffer of size @arg tmp_buffer_size
