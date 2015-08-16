@@ -45,6 +45,19 @@ extern "C" {
  * @brief    USB MSC Device library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/08/hal-library-21-multi-purpose-usb-library-for-stm32fxxx/
  * @{
  *
+ * With this library, your STM32Fxxx device can act like SDCARD reader who shows content on your computer using USB.
+ *
+ * @note  Check @ref TM_USB library for configuration settings first!
+ *
+ * \par Main features
+ *
+\verbatim
+- Works on USB FS or HS mode
+- Driver for SDCARDs is SDIO
+\endverbatim
+ *
+ * @note  For using this library, you will also need my SDCARD SDIO driver from @ref TM_FATFS library. Source files can be found in fatfs/drivers/fatfs_sd_sdio.h/c
+ *
  * \par Changelog
  *
 \verbatim
@@ -95,10 +108,29 @@ extern "C" {
  
 /**
  * @brief  Initializes USB DEVICE for MSC class on specific USB mode
+ * @note   Only one mode at a time can be used with MSC device mode
  * @param  USB_Mode: USB Mode where MSC DEVICE will be enabled. This parameter can be a value of @ref TM_USB_t enumeration 
  * @retval Member of @ref TM_USBD_Result_t enumeration
  */
 TM_USBD_Result_t TM_USBD_MSC_Init(TM_USB_t USB_Mode);
+
+/**
+ * @defgroup TM_USBD_MSC_Callbacks
+ * @brief    Library callback functions
+ * @{
+ */
+ 
+int8_t TM_USBD_MSC_InitCallback(USBD_HandleTypeDef* Handle, uint8_t lun);
+int8_t TM_USBD_MSC_GetCapacityCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint32_t* block_num, uint16_t* block_size);
+int8_t TM_USBD_MSC_IsReadyCallback(USBD_HandleTypeDef* Handle, uint8_t lun);
+int8_t TM_USBD_MSC_IsWriteProtectedCallback(USBD_HandleTypeDef* Handle, uint8_t lun);
+int8_t TM_USBD_MSC_ReadCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint8_t* buf, uint32_t blk_addr, uint16_t blk_len);
+int8_t TM_USBD_MSC_WriteCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint8_t* buf, uint32_t blk_addr, uint16_t blk_len);
+int8_t TM_USBD_MSC_GetMaxLunCallback(USBD_HandleTypeDef* Handle);
+
+/**
+ * @}
+ */
 
 /**
  * @}

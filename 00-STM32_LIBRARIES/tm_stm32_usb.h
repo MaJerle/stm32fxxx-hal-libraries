@@ -220,6 +220,16 @@ PD5  <-> VBUS_EN |
  * @{
  */
 
+/* Check for STM32F439-EVAL board */
+#if defined(STM32F439_EVAL) || defined(USB_USE_STM32F439_EVAL)
+#ifndef USB_USE_STM32F439_EVAL
+#define USB_USE_STM32F439_EVAL
+#endif
+	
+	/* Use ULPI PHY for HS */
+	#define USB_USE_ULPI_PHY
+#endif
+
 /* Check for STM32F7-Discovery board */
 #if defined(STM32F7_DISCOVERY) || defined(USB_USE_STM32F7_DISCOVERY)
 #ifndef USB_USE_STM32F7_DISCOVERY

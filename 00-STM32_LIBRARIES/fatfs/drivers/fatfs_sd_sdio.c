@@ -273,6 +273,15 @@ uint8_t BSP_SD_IsDetected(void) {
 }
 
 /**
+ * @brief  Detects if SD card is write protected
+ * @param  None
+ * @retval Returns if SD is write protected or not.
+ */
+uint8_t BSP_SD_IsWriteProtected(void) {
+	return !SDCARD_IsWriteEnabled();
+}
+
+/**
   * @brief  Reads block(s) from a specified address in an SD card, in polling mode.
   * @param  pData: Pointer to the buffer that will contain the data to transmit
   * @param  ReadAddr: Address from where data is to be read  
@@ -393,7 +402,6 @@ static void SD_MspInit(void) {
 	gpio_af = GPIO_AF12_SDMMC1;
 #endif
 	
-
 	/* Enable SDIO clock */
 	__HAL_RCC_SDIO_CLK_ENABLE();
 

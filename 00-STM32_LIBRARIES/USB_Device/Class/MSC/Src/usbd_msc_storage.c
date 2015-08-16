@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    usbd_msc_storage_template.c
+  * @file    usbd_msc_storage.c
   * @author  MCD Application Team
   * @version V2.4.1
   * @date    19-June-2015
@@ -29,7 +29,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_msc_storage.h"
 #include "fatfs_sd_sdio.h"
-
+#include "tm_stm32_usb_device_msc.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -44,16 +44,23 @@
 #define STORAGE_BLK_SIZ                  0x200
 
 /* Functions */
-int8_t STORAGE_Init (uint8_t lun);
-int8_t STORAGE_GetCapacity (uint8_t lun, uint32_t *block_num, uint16_t *block_size);
-int8_t STORAGE_IsReady(uint8_t lun);
-int8_t STORAGE_IsWriteProtected(uint8_t lun);
-int8_t STORAGE_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len);
-int8_t STORAGE_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len);
-int8_t STORAGE_GetMaxLun(void);
+int8_t STORAGE_FS_Init(uint8_t lun);
+int8_t STORAGE_FS_GetCapacity(uint8_t lun, uint32_t *block_num, uint16_t *block_size);
+int8_t STORAGE_FS_IsReady(uint8_t lun);
+int8_t STORAGE_FS_IsWriteProtected(uint8_t lun);
+int8_t STORAGE_FS_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len);
+int8_t STORAGE_FS_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len);
+int8_t STORAGE_FS_GetMaxLun(void);
+int8_t STORAGE_HS_Init(uint8_t lun);
+int8_t STORAGE_HS_GetCapacity(uint8_t lun, uint32_t *block_num, uint16_t *block_size);
+int8_t STORAGE_HS_IsReady(uint8_t lun);
+int8_t STORAGE_HS_IsWriteProtected(uint8_t lun);
+int8_t STORAGE_HS_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len);
+int8_t STORAGE_HS_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len);
+int8_t STORAGE_HS_GetMaxLun(void);
 
 /* USB Mass storage Standard Inquiry Data */
-int8_t  STORAGE_Inquirydata[] = {//36
+int8_t STORAGE_Inquirydata[] = {//36
   /* LUN 0 */
   0x00,		
   0x80,		
@@ -69,137 +76,113 @@ int8_t  STORAGE_Inquirydata[] = {//36
   '0', '.', '0' ,'1',                     /* Version      : 4 Bytes */
 }; 
 
-USBD_StorageTypeDef USBD_MSC_fops = {
-	STORAGE_Init,
-	STORAGE_GetCapacity,
-	STORAGE_IsReady,
-	STORAGE_IsWriteProtected,
-	STORAGE_Read,
-	STORAGE_Write,
-	STORAGE_GetMaxLun,
+USBD_StorageTypeDef USBD_MSC_fops[] = {{
+#if defined(USB_USE_FS)
+	STORAGE_FS_Init,
+	STORAGE_FS_GetCapacity,
+	STORAGE_FS_IsReady,
+	STORAGE_FS_IsWriteProtected,
+	STORAGE_FS_Read,
+	STORAGE_FS_Write,
+	STORAGE_FS_GetMaxLun,
 	STORAGE_Inquirydata
-};
-/*******************************************************************************
-* Function Name  : Read_Memory
-* Description    : Handle the Read operation from the microSD card.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int8_t STORAGE_Init (uint8_t lun) {
-	BSP_SD_Init();
-	return 0;
+#else
+	0,0,0,0,0,0,0,0
+#endif
+},{
+#if defined(USB_USE_HS)
+	STORAGE_HS_Init,
+	STORAGE_HS_GetCapacity,
+	STORAGE_HS_IsReady,
+	STORAGE_HS_IsWriteProtected,
+	STORAGE_HS_Read,
+	STORAGE_HS_Write,
+	STORAGE_HS_GetMaxLun,
+	STORAGE_Inquirydata
+#else
+	0,0,0,0,0,0,0,0
+#endif
+}};
+
+#if defined(USB_USE_FS)
+int8_t STORAGE_FS_Init(uint8_t lun) {
+	return TM_USBD_MSC_InitCallback(&hUSBDevice_FS, lun);
 }
-
-/*******************************************************************************
-* Function Name  : Read_Memory
-* Description    : Handle the Read operation from the STORAGE card.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int8_t STORAGE_GetCapacity(uint8_t lun, uint32_t *block_num, uint16_t *block_size) {
-	HAL_SD_CardInfoTypedef info;
-	int8_t ret = -1;  
-
-	if (BSP_SD_IsDetected()) {
-		BSP_SD_GetCardInfo(&info);
-
-		*block_num = (info.CardCapacity)/STORAGE_BLK_SIZ  - 1;
-		*block_size = STORAGE_BLK_SIZ;
-		ret = 0;
-	}
-	return ret;
+#endif
+#if defined(USB_USE_HS)
+int8_t STORAGE_HS_Init(uint8_t lun) {
+	return TM_USBD_MSC_InitCallback(&hUSBDevice_HS, lun);
 }
+#endif
 
-/*******************************************************************************
-* Function Name  : Read_Memory
-* Description    : Handle the Read operation from the STORAGE card.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int8_t  STORAGE_IsReady(uint8_t lun) {
-	static int8_t prev_status = 0;
-	int8_t ret = -1;
 
-	if (BSP_SD_IsDetected()) {
-		if (prev_status < 0) {
-			BSP_SD_Init();
-			prev_status = 0;
-		}
-		if (BSP_SD_GetStatus() == SD_TRANSFER_OK) {
-			ret = 0;
-		}
-	} else if (prev_status == 0) {
-		prev_status = -1;
-	}
-	return ret;
+#if defined(USB_USE_FS)
+int8_t STORAGE_FS_GetCapacity(uint8_t lun, uint32_t *block_num, uint16_t *block_size) {
+	return TM_USBD_MSC_GetCapacityCallback(&hUSBDevice_FS, lun, block_num, block_size);
 }
-
-/*******************************************************************************
-* Function Name  : Read_Memory
-* Description    : Handle the Read operation from the STORAGE card.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int8_t  STORAGE_IsWriteProtected(uint8_t lun)
-{
-  return  0;
+#endif
+#if defined(USB_USE_HS)
+int8_t STORAGE_HS_GetCapacity(uint8_t lun, uint32_t *block_num, uint16_t *block_size) {
+	return TM_USBD_MSC_GetCapacityCallback(&hUSBDevice_HS, lun, block_num, block_size);
 }
+#endif
 
-/*******************************************************************************
-* Function Name  : Read_Memory
-* Description    : Handle the Read operation from the STORAGE card.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int8_t STORAGE_Read(uint8_t lun, 
-                 uint8_t *buf, 
-                 uint32_t blk_addr,                       
-                 uint16_t blk_len)
-{
-	int8_t ret = -1;  
 
-	if (BSP_SD_IsDetected()) {  
-		BSP_SD_ReadBlocks_DMA((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
-		ret = 0;
-	}
-	return ret;
+#if defined(USB_USE_FS)
+int8_t STORAGE_FS_IsReady(uint8_t lun) {
+	return TM_USBD_MSC_IsReadyCallback(&hUSBDevice_FS, lun);
 }
-/*******************************************************************************
-* Function Name  : Write_Memory
-* Description    : Handle the Write operation to the STORAGE card.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int8_t STORAGE_Write(uint8_t lun, 
-                  uint8_t *buf, 
-                  uint32_t blk_addr,
-                  uint16_t blk_len)
-{
-	int8_t ret = -1;  
-
-	if (BSP_SD_IsDetected()) { 
-		BSP_SD_WriteBlocks_DMA((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
-		ret = 0;
-	}
-	return ret;
+#endif
+#if defined(USB_USE_HS)
+int8_t STORAGE_HS_IsReady(uint8_t lun) {
+	return TM_USBD_MSC_IsReadyCallback(&hUSBDevice_HS, lun);
 }
-/*******************************************************************************
-* Function Name  : Write_Memory
-* Description    : Handle the Write operation to the STORAGE card.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int8_t STORAGE_GetMaxLun (void)
-{
-  return (STORAGE_LUN_NBR - 1);
+#endif
+
+
+#if defined(USB_USE_FS)
+int8_t STORAGE_FS_IsWriteProtected(uint8_t lun) {
+	return TM_USBD_MSC_IsWriteProtectedCallback(&hUSBDevice_FS, lun);
 }
+#endif
+#if defined(USB_USE_HS)
+int8_t STORAGE_HS_IsWriteProtected(uint8_t lun) {
+	return TM_USBD_MSC_IsWriteProtectedCallback(&hUSBDevice_HS, lun);
+}
+#endif
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 
+#if defined(USB_USE_FS)
+int8_t STORAGE_FS_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len) {
+	return TM_USBD_MSC_ReadCallback(&hUSBDevice_FS, lun, buf, blk_addr, blk_len);
+}
+#endif
+#if defined(USB_USE_HS)
+int8_t STORAGE_HS_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len) {
+	return TM_USBD_MSC_ReadCallback(&hUSBDevice_HS, lun, buf, blk_addr, blk_len);
+}
+#endif
+
+
+#if defined(USB_USE_FS)
+int8_t STORAGE_FS_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len) {
+	return TM_USBD_MSC_ReadCallback(&hUSBDevice_FS, lun, buf, blk_addr, blk_len);
+}
+#endif
+#if defined(USB_USE_HS)
+int8_t STORAGE_HS_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len) {
+	return TM_USBD_MSC_ReadCallback(&hUSBDevice_HS, lun, buf, blk_addr, blk_len);
+}
+#endif
+
+
+#if defined(USB_USE_FS)
+int8_t STORAGE_FS_GetMaxLun(void) {
+	return TM_USBD_MSC_GetMaxLunCallback(&hUSBDevice_FS);
+}
+#endif
+#if defined(USB_USE_HS)
+int8_t STORAGE_HS_GetMaxLun(void) {
+	return TM_USBD_MSC_GetMaxLunCallback(&hUSBDevice_HS);
+}
+#endif

@@ -17,17 +17,22 @@
  * |----------------------------------------------------------------------
  */
 #include "tm_stm32_usb_device_msc.h"
+#include "fatfs_sd_sdio.h"
 
 /* External variables */
-extern USBD_StorageTypeDef USBD_MSC_fops;
+extern USBD_StorageTypeDef USBD_MSC_fops[];
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-#define         DEVICE_ID1          (0x1FFF7A10)
-#define         DEVICE_ID2          (0x1FFF7A14)
-#define         DEVICE_ID3          (0x1FFF7A18)
+#define DEVICE_ID1              (0x1FFF7A10)
+#define DEVICE_ID2              (0x1FFF7A14)
+#define DEVICE_ID3              (0x1FFF7A18)
 
-#define  USB_SIZ_STRING_SERIAL       0x1A
+#define USB_SIZ_STRING_SERIAL    0x1A
+
+#define STORAGE_LUN_NBR                  1  
+#define STORAGE_BLK_NBR                  0x10000  
+#define STORAGE_BLK_SIZ                  0x200
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
@@ -75,24 +80,24 @@ USBD_DescriptorsTypeDef MSC_Desc = {
   #pragma data_alignment=4   
 #endif
 __ALIGN_BEGIN uint8_t USBD_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END = {
-  0x12,                       /* bLength */
-  USB_DESC_TYPE_DEVICE,       /* bDescriptorType */
-  0x00,                       /* bcdUSB */
-  0x02,
-  0x00,                       /* bDeviceClass */
-  0x00,                       /* bDeviceSubClass */
-  0x00,                       /* bDeviceProtocol */
-  USB_MAX_EP0_SIZE,           /* bMaxPacketSize */
-  LOBYTE(USBD_VID),           /* idVendor */
-  HIBYTE(USBD_VID),           /* idVendor */
-  LOBYTE(USBD_PID),           /* idVendor */
-  HIBYTE(USBD_PID),           /* idVendor */
-  0x00,                       /* bcdDevice rel. 2.00 */
-  0x02,
-  USBD_IDX_MFC_STR,           /* Index of manufacturer string */
-  USBD_IDX_PRODUCT_STR,       /* Index of product string */
-  USBD_IDX_SERIAL_STR,        /* Index of serial number string */
-  USBD_MAX_NUM_CONFIGURATION  /* bNumConfigurations */
+	0x12,                       /* bLength */
+	USB_DESC_TYPE_DEVICE,       /* bDescriptorType */
+	0x00,                       /* bcdUSB */
+	0x02,
+	0x00,                       /* bDeviceClass */
+	0x00,                       /* bDeviceSubClass */
+	0x00,                       /* bDeviceProtocol */
+	USB_MAX_EP0_SIZE,           /* bMaxPacketSize */
+	LOBYTE(USBD_VID),           /* idVendor */
+	HIBYTE(USBD_VID),           /* idVendor */
+	LOBYTE(USBD_PID),           /* idVendor */
+	HIBYTE(USBD_PID),           /* idVendor */
+	0x00,                       /* bcdDevice rel. 2.00 */
+	0x02,
+	USBD_IDX_MFC_STR,           /* Index of manufacturer string */
+	USBD_IDX_PRODUCT_STR,       /* Index of product string */
+	USBD_IDX_SERIAL_STR,        /* Index of serial number string */
+	USBD_MAX_NUM_CONFIGURATION  /* bNumConfigurations */
 }; /* USB_DeviceDescriptor */
 
 /* USB Standard Device Descriptor */
@@ -100,16 +105,15 @@ __ALIGN_BEGIN uint8_t USBD_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END = {
   #pragma data_alignment=4   
 #endif
 __ALIGN_BEGIN uint8_t USBD_LangIDDesc[USB_LEN_LANGID_STR_DESC] __ALIGN_END = {
-  USB_LEN_LANGID_STR_DESC,         
-  USB_DESC_TYPE_STRING,       
-  LOBYTE(USBD_LANGID_STRING),
-  HIBYTE(USBD_LANGID_STRING), 
+	USB_LEN_LANGID_STR_DESC,         
+	USB_DESC_TYPE_STRING,       
+	LOBYTE(USBD_LANGID_STRING),
+	HIBYTE(USBD_LANGID_STRING), 
 };
 
-uint8_t USBD_StringSerial[USB_SIZ_STRING_SERIAL] =
-{
-  USB_SIZ_STRING_SERIAL,      
-  USB_DESC_TYPE_STRING,    
+uint8_t USBD_StringSerial[USB_SIZ_STRING_SERIAL] = {
+	USB_SIZ_STRING_SERIAL,      
+	USB_DESC_TYPE_STRING,    
 };
 
 
@@ -136,7 +140,7 @@ TM_USBD_Result_t TM_USBD_MSC_Init(TM_USB_t USB_Mode) {
 		USBD_RegisterClass(&hUSBDevice_FS, USBD_MSC_CLASS);
 
 		/* Add CDC Interface Class */
-		USBD_MSC_RegisterStorage(&hUSBDevice_FS, &USBD_MSC_fops);
+		USBD_MSC_RegisterStorage(&hUSBDevice_FS, &USBD_MSC_fops[0]);
 	}
 #endif
 	
@@ -150,12 +154,109 @@ TM_USBD_Result_t TM_USBD_MSC_Init(TM_USB_t USB_Mode) {
 		USBD_RegisterClass(&hUSBDevice_HS, USBD_MSC_CLASS);
 
 		/* Add CDC Interface Class */
-		USBD_MSC_RegisterStorage(&hUSBDevice_HS, &USBD_MSC_fops);
+		USBD_MSC_RegisterStorage(&hUSBDevice_HS, &USBD_MSC_fops[1]);
 	}
 #endif
 	
 	/* Return OK */
 	return TM_USBD_Result_Ok;
+}
+
+/************************************************/
+/*               DEVICE CALLBACKS               */
+/************************************************/
+int8_t TM_USBD_MSC_InitCallback(USBD_HandleTypeDef* Handle, uint8_t lun) {
+	/* Init SDCARD */
+	BSP_SD_Init();
+	
+	/* Return OK */
+	return 0;
+}
+
+int8_t TM_USBD_MSC_GetCapacityCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint32_t* block_num, uint16_t* block_size) {
+	HAL_SD_CardInfoTypedef info;
+
+	/* Check if card is detected */
+	if (BSP_SD_IsDetected()) {
+		/* Read card info */
+		BSP_SD_GetCardInfo(&info);
+
+		/* Calculate capacity and block size */
+		*block_num = (info.CardCapacity)/STORAGE_BLK_SIZ  - 1;
+		*block_size = STORAGE_BLK_SIZ;
+		
+		/* Return OK */
+		return 0;
+	}
+	
+	/* Return error */
+	return -1;
+}
+
+int8_t TM_USBD_MSC_IsReadyCallback(USBD_HandleTypeDef* Handle, uint8_t lun) {
+	static int8_t prev_status = 0;
+	int8_t ret = -1;
+
+	/* Check if card is detected */
+	if (BSP_SD_IsDetected()) {
+		/* Check flag */
+		if (prev_status < 0) {
+			/* Init again */
+			BSP_SD_Init();
+			
+			/* Reset flag */
+			prev_status = 0;
+		}
+		
+		/* Check if status is OK */
+		if (BSP_SD_GetStatus() == SD_TRANSFER_OK) {
+			ret = 0;
+		}
+	} else if (prev_status == 0) {
+		/* Reset status */
+		prev_status = -1;
+	}
+	
+	/* Return status */
+	return ret;
+}
+
+int8_t TM_USBD_MSC_IsWriteProtectedCallback(USBD_HandleTypeDef* Handle, uint8_t lun) {
+	/* Return if SDCARD is write protected */
+	return BSP_SD_IsWriteProtected();
+}
+
+int8_t TM_USBD_MSC_ReadCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint8_t* buf, uint32_t blk_addr, uint16_t blk_len) {
+	/* If SDCARD is detected */
+	if (BSP_SD_IsDetected()) { 
+		/* Start read with DMA */
+		BSP_SD_ReadBlocks_DMA((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
+		
+		/* Return OK */
+		return 0;
+	}
+	
+	/* Return error */
+	return -1;
+}
+
+int8_t TM_USBD_MSC_WriteCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint8_t* buf, uint32_t blk_addr, uint16_t blk_len) {
+	/* If SDCARD is detected */
+	if (BSP_SD_IsDetected()) { 
+		/* Start read with DMA */
+		BSP_SD_WriteBlocks_DMA((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
+		
+		/* Return OK */
+		return 0;
+	}
+	
+	/* Return error */
+	return -1;
+}
+
+int8_t TM_USBD_MSC_GetMaxLunCallback(USBD_HandleTypeDef* Handle) {
+	/* Number of LUNs */
+	return (STORAGE_LUN_NBR - 1);
 }
 
 /************************************************/

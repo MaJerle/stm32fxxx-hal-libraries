@@ -1,7 +1,10 @@
 /**
- * Keil project example for USB CDC device (Virtual COM Port)
+ * Keil project example for USB MSC device
  *
  * @note      Check defines.h file for configuration settings!
+ *
+ * This example shows how can you use USB MSC device as SDCARD reader.
+ * STM acts like SDCARD reader whos content is shown on computer with USB MSC device class
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -38,8 +41,10 @@ int main(void) {
 	/* Init USB peripheral */
 	TM_USB_Init();
 	
+	/* Init MSC device */
 	TM_USBD_MSC_Init(TM_USB_HS);
 	
+	/* Start MSC device */
 	TM_USBD_Start(TM_USB_HS);
 	
 	while (1) {

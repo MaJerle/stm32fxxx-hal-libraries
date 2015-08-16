@@ -109,7 +109,11 @@ TM_USB_Result_t TM_USB_InitHS(void) {
 	/* NXT */
 	TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_4, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF10_OTG_HS);
 	/* DIR */
+#if defined(USB_USE_STM32F7_DISCOVERY)
 	TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_2, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF10_OTG_HS);
+#else
+	TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF10_OTG_HS);
+#endif
 	
 	/* Enable ULPI clock */
 	__HAL_RCC_USB_OTG_HS_ULPI_CLK_ENABLE();

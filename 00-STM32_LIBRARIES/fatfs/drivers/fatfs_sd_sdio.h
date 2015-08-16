@@ -107,6 +107,7 @@ uint8_t BSP_SD_Erase(uint64_t StartAddr, uint64_t EndAddr);
 HAL_SD_TransferStateTypedef BSP_SD_GetStatus(void);
 void    BSP_SD_GetCardInfo(HAL_SD_CardInfoTypedef *CardInfo);
 uint8_t BSP_SD_IsDetected(void);
+uint8_t BSP_SD_IsWriteProtected(void);
 
 /**
  * @}

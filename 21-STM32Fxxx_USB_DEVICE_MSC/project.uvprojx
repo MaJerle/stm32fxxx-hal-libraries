@@ -10,6 +10,7 @@
       <TargetName>STM32F429_DISCOVERY</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F429ZITx</Device>
@@ -372,7 +373,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F429xx,USE_HAL_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,STM32F429_DISCOVERY,HSE_VALUE=8000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLSOURCE=RCC_PLLSOURCE_HSE,RCC_PLLM=8,RCC_PLLN=336,RCC_PLLP=2,RCC_PLLQ=7,</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Inc</IncludePath>
+              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\MSC\Inc;..\00-STM32_LIBRARIES\fatfs;..\00-STM32_LIBRARIES\fatfs\drivers;..\00-STM32_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1905,11 +1906,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usb_device_msc.c</FilePath>
             </File>
-            <File>
-              <FileName>tm_stm32_buffer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2122,6 +2118,7 @@
       <TargetName>STM32F4_DISCOVERY</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F407VGTx</Device>
@@ -2484,7 +2481,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F407xx,USE_HAL_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,STM32F4_DISCOVERY,HSE_VALUE=8000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLM=8,RCC_PLLN=336,RCC_PLLP=2,RCC_PLLQ=7,</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Inc</IncludePath>
+              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\MSC\Inc;..\00-STM32_LIBRARIES\fatfs;..\00-STM32_LIBRARIES\fatfs\drivers;..\00-STM32_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -4017,11 +4014,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usb_device_msc.c</FilePath>
             </File>
-            <File>
-              <FileName>tm_stm32_buffer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -4234,6 +4226,7 @@
       <TargetName>STM32F401_DISCOVERY</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F401VCTx</Device>
@@ -4596,7 +4589,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F401xC,USE_HAL_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,STM32F401_DISCOVERY,HSE_VALUE=8000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLM=8,RCC_PLLN=336,RCC_PLLP=4,RCC_PLLQ=7,</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Inc</IncludePath>
+              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\MSC\Inc;..\00-STM32_LIBRARIES\fatfs;..\00-STM32_LIBRARIES\fatfs\drivers;..\00-STM32_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -6129,11 +6122,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usb_device_msc.c</FilePath>
             </File>
-            <File>
-              <FileName>tm_stm32_buffer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -6346,6 +6334,7 @@
       <TargetName>STM32F411_DISCOVERY</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F411VETx</Device>
@@ -6708,7 +6697,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F411xE,USE_HAL_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,STM32F411_DISCOVERY,HSE_VALUE=8000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLM=8,RCC_PLLN=384,RCC_PLLP=4,RCC_PLLQ=7,</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Inc</IncludePath>
+              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\MSC\Inc;..\00-STM32_LIBRARIES\fatfs;..\00-STM32_LIBRARIES\fatfs\drivers;..\00-STM32_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -8241,11 +8230,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usb_device_msc.c</FilePath>
             </File>
-            <File>
-              <FileName>tm_stm32_buffer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -8458,6 +8442,7 @@
       <TargetName>STM32F439_EVAL</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F439NIHx</Device>
@@ -8820,7 +8805,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F439xx,USE_HAL_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,STM32F439_EVAL,HSE_VALUE=25000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLM=25,RCC_PLLN=336,RCC_PLLP=4,RCC_PLLQ=7,</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\CDC\Inc</IncludePath>
+              <IncludePath>.\User;.\TM;..\00-STM32_LIBRARIES;..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc;..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-HAL_DRIVERS\CMSIS\Include;..\00-STM32_LIBRARIES\USB_Device;..\00-STM32_LIBRARIES\USB_Device\Core\Inc;..\00-STM32_LIBRARIES\USB_Device\Class\MSC\Inc;..\00-STM32_LIBRARIES\fatfs;..\00-STM32_LIBRARIES\fatfs\drivers;..\00-STM32_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -10352,11 +10337,6 @@
               <FileName>tm_stm32_usb_device_msc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usb_device_msc.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32_buffer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -12206,11 +12186,6 @@
               <FileName>tm_stm32_usb_device_msc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usb_device_msc.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32_buffer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
