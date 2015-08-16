@@ -2,11 +2,11 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/08/hal-library-21-multi-purpose-usb-library-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   SDIO driver for reading SD cards
+ * @brief   USB MSC Device library for STM32Fxxx devices
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -27,12 +27,12 @@
    ----------------------------------------------------------------------
 \endverbatim
  */
-#ifndef TM_FATFS_SDIO_H
-#define TM_FATFS_SDIO_H 100
+#ifndef TM_USBD_MSC_H
+#define TM_USBD_MSC_H 100
 
 /* C++ detection */
 #ifdef __cplusplus
-extern C {
+extern "C" {
 #endif
 
 /**
@@ -41,8 +41,8 @@ extern C {
  */
 
 /**
- * @defgroup TM_FATFS_SDIO
- * @brief    SDIO driver for reading SD cards
+ * @defgroup TM_USBD_MSC
+ * @brief    USB MSC Device library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/08/hal-library-21-multi-purpose-usb-library-for-stm32fxxx/
  * @{
  *
  * \par Changelog
@@ -57,56 +57,48 @@ extern C {
 \verbatim
  - STM32Fxxx HAL
  - defines.h
- - diskio.h
+ - TM BUFFER
+ - TM DELAY
+ - TM USB
+ - TM USB DEVICE
+ - USB Device Stack
+ - USB Device MSC
+ - TM FATFS with SDCARD SDIO driver
 \endverbatim
  */
+
 #include "stm32fxxx_hal.h"
 #include "defines.h"
-#include "diskio.h"
+#include "tm_stm32_delay.h"
+#include "tm_stm32_usb.h"
+#include "tm_stm32_usb_device.h"
+#include "usbd_core.h"
+#include "usbd_msc.h"
+#include "usbd_msc_storage.h"
+#include "string.h"
 
 /**
- * @defgroup TM_LIB_Macros
+ * @defgroup TM_USBD_MSC_Macros
  * @brief    Library defines
  * @{
  */
 
-/* 4-bit SDIO */
-#ifndef FATFS_SDIO_4BIT
-#define FATFS_SDIO_4BIT     1
-#endif
-
-/**
- * @}
- */
- 
-/**
- * @defgroup TM_FATFS_SDIO_Typedefs
- * @brief    Library Typedefs
- * @{
- */
-/* Typedefs here */
 /**
  * @}
  */
 
 /**
- * @defgroup TM_FATFS_SDIO_Functions
+ * @defgroup TM_USBD_MSC_Functions
  * @brief    Library Functions
  * @{
  */
-
-
-/* Function declarations */
-uint8_t BSP_SD_Init(void);
-uint8_t BSP_SD_DeInit(void);
-uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint64_t ReadAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_WriteBlocks(uint32_t *pData, uint64_t WriteAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_ReadBlocks_DMA(uint32_t *pData, uint64_t ReadAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint64_t WriteAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_Erase(uint64_t StartAddr, uint64_t EndAddr);
-HAL_SD_TransferStateTypedef BSP_SD_GetStatus(void);
-void    BSP_SD_GetCardInfo(HAL_SD_CardInfoTypedef *CardInfo);
-uint8_t BSP_SD_IsDetected(void);
+ 
+/**
+ * @brief  Initializes USB DEVICE for MSC class on specific USB mode
+ * @param  USB_Mode: USB Mode where MSC DEVICE will be enabled. This parameter can be a value of @ref TM_USB_t enumeration 
+ * @retval Member of @ref TM_USBD_Result_t enumeration
+ */
+TM_USBD_Result_t TM_USBD_MSC_Init(TM_USB_t USB_Mode);
 
 /**
  * @}

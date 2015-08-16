@@ -180,7 +180,7 @@ uint8_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
 	
 	while (Num > 0) {
 		/* Check output overflow */
-		if (Out == Buffer->Size) {
+		if (Out >= Buffer->Size) {
 			Out = 0;
 		}
 		

@@ -25,24 +25,23 @@
 #else
 #define RTC_STATUS_REG      			RTC_BKP_DR19 /* Status Register */
 #endif
-#define RTC_STATUS_TIME_OK  			0x4321       /* RTC time OK */
-#define	RTC_STATUS_ZERO					0x0000
+#define RTC_STATUS_INIT_OK              0x1234       /* RTC initialised */
+#define RTC_STATUS_TIME_OK              0x4321       /* RTC time OK */
+#define	RTC_STATUS_ZERO                 0x0000
 
 /* Internal RTC defines */
-#define TM_RTC_LEAP_YEAR(year) 			((((year) % 4 == 0) && ((year) % 100 != 0)) || ((year) % 400 == 0))
-#define TM_RTC_DAYS_IN_YEAR(x)			TM_RTC_LEAP_YEAR(x) ? 366 : 365
-#define TM_RTC_OFFSET_YEAR				1970
-#define TM_RTC_SECONDS_PER_DAY			86400
-#define TM_RTC_SECONDS_PER_HOUR			3600
-#define TM_RTC_SECONDS_PER_MINUTE		60
-#define TM_RTC_BCD2BIN(x)				((((x) >> 4) & 0x0F) * 10 + ((x) & 0x0F))
-#define TM_RTC_CHAR2NUM(x)				((x) - '0')
-#define TM_RTC_CHARISNUM(x)				((x) >= '0' && (x) <= '9')
+#define RTC_LEAP_YEAR(year)             ((((year) % 4 == 0) && ((year) % 100 != 0)) || ((year) % 400 == 0))
+#define RTC_DAYS_IN_YEAR(x)             RTC_LEAP_YEAR(x) ? 366 : 365
+#define RTC_OFFSET_YEAR                 1970
+#define RTC_SECONDS_PER_DAY             86400
+#define RTC_SECONDS_PER_HOUR            3600
+#define RTC_SECONDS_PER_MINUTE          60
+#define RTC_BCD2BIN(x)                  ((((x) >> 4) & 0x0F) * 10 + ((x) & 0x0F))
+#define RTC_CHAR2NUM(x)                 ((x) - '0')
+#define RTC_CHARISNUM(x)                ((x) >= '0' && (x) <= '9')
 
 /* Internal functions */
 static void TM_RTC_Config(TM_RTC_ClockSource_t source);
-/* Default RTC status */
-uint32_t TM_RTC_Status = RTC_STATUS_ZERO;
 
 /* RTC Handle */
 static RTC_HandleTypeDef hRTC;
@@ -50,7 +49,7 @@ static RTC_DateTypeDef RTC_DateStruct;
 static RTC_TimeTypeDef RTC_TimeStruct;
 
 /* Days in a month */
-static uint8_t TM_RTC_Months[2][12] = {
+static uint8_t RTC_Months[2][12] = {
 	{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},	/* Not leap year */
 	{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}	/* Leap year */
 };
@@ -79,8 +78,6 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	
 	/* Check if RTC already initialized */
 	if (status == RTC_STATUS_TIME_OK) {
-		TM_RTC_Status = RTC_STATUS_TIME_OK;
-		
 		/* Start internal clock if we choose internal clock */
 		if (source == TM_RTC_ClockSource_Internal) {
 			TM_RTC_Config(TM_RTC_ClockSource_Internal);
@@ -137,13 +134,13 @@ TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
 	
 	/* Check date and time validation */
 	if (format == TM_RTC_Format_BCD) {
-		tmp.Day = TM_RTC_BCD2BIN(data->Day);
-		tmp.Month = TM_RTC_BCD2BIN(data->Month);
-		tmp.Year = TM_RTC_BCD2BIN(data->Year);
-		tmp.Hours = TM_RTC_BCD2BIN(data->Hours);
-		tmp.Minutes = TM_RTC_BCD2BIN(data->Minutes);
-		tmp.Seconds = TM_RTC_BCD2BIN(data->Seconds);
-		tmp.WeekDay = TM_RTC_BCD2BIN(data->WeekDay);
+		tmp.Day = RTC_BCD2BIN(data->Day);
+		tmp.Month = RTC_BCD2BIN(data->Month);
+		tmp.Year = RTC_BCD2BIN(data->Year);
+		tmp.Hours = RTC_BCD2BIN(data->Hours);
+		tmp.Minutes = RTC_BCD2BIN(data->Minutes);
+		tmp.Seconds = RTC_BCD2BIN(data->Seconds);
+		tmp.WeekDay = RTC_BCD2BIN(data->WeekDay);
 	} else {
 		tmp.Day = data->Day;
 		tmp.Month = data->Month;
@@ -160,7 +157,7 @@ TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
 		tmp.Month == 0 || 
 		tmp.Month > 12 ||
 		tmp.Day == 0 ||
-		tmp.Day > TM_RTC_Months[TM_RTC_LEAP_YEAR(2000 + tmp.Year) ? 1 : 0][tmp.Month - 1] ||
+		tmp.Day > RTC_Months[RTC_LEAP_YEAR(2000 + tmp.Year) ? 1 : 0][tmp.Month - 1] ||
 		tmp.Hours > 23 ||
 		tmp.Minutes > 59 ||
 		tmp.Seconds > 59 ||
@@ -209,56 +206,56 @@ TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str) {
 	
 	/* Get date */
 	tmp.Day = 0;
-	while (TM_RTC_CHARISNUM(*(str + i))) {
-		tmp.Day = tmp.Day * 10 + TM_RTC_CHAR2NUM(*(str + i));
+	while (RTC_CHARISNUM(*(str + i))) {
+		tmp.Day = tmp.Day * 10 + RTC_CHAR2NUM(*(str + i));
 		i++;
 	}
 	i++;
 	
 	/* Get month */
 	tmp.Month = 0;
-	while (TM_RTC_CHARISNUM(*(str + i))) {
-		tmp.Month = tmp.Month * 10 + TM_RTC_CHAR2NUM(*(str + i));
+	while (RTC_CHARISNUM(*(str + i))) {
+		tmp.Month = tmp.Month * 10 + RTC_CHAR2NUM(*(str + i));
 		i++;
 	}
 	i++;
 	
 	/* Get year */
 	tmp.Year = 0;
-	while (TM_RTC_CHARISNUM(*(str + i))) {
-		tmp.Year = tmp.Year * 10 + TM_RTC_CHAR2NUM(*(str + i));
+	while (RTC_CHARISNUM(*(str + i))) {
+		tmp.Year = tmp.Year * 10 + RTC_CHAR2NUM(*(str + i));
 		i++;
 	}
 	i++;
 	
 	/* Get day in a week */
 	tmp.WeekDay = 0;
-	while (TM_RTC_CHARISNUM(*(str + i))) {
-		tmp.WeekDay = tmp.WeekDay * 10 + TM_RTC_CHAR2NUM(*(str + i));
+	while (RTC_CHARISNUM(*(str + i))) {
+		tmp.WeekDay = tmp.WeekDay * 10 + RTC_CHAR2NUM(*(str + i));
 		i++;
 	}
 	i++;
 	
 	/* Get hours */
 	tmp.Hours = 0;
-	while (TM_RTC_CHARISNUM(*(str + i))) {
-		tmp.Hours = tmp.Hours * 10 + TM_RTC_CHAR2NUM(*(str + i));
+	while (RTC_CHARISNUM(*(str + i))) {
+		tmp.Hours = tmp.Hours * 10 + RTC_CHAR2NUM(*(str + i));
 		i++;
 	}
 	i++;
 	
 	/* Get minutes */
 	tmp.Minutes = 0;
-	while (TM_RTC_CHARISNUM(*(str + i))) {
-		tmp.Minutes = tmp.Minutes * 10 + TM_RTC_CHAR2NUM(*(str + i));
+	while (RTC_CHARISNUM(*(str + i))) {
+		tmp.Minutes = tmp.Minutes * 10 + RTC_CHAR2NUM(*(str + i));
 		i++;
 	}
 	i++;
 	
 	/* Get seconds */
 	tmp.Seconds = 0;
-	while (TM_RTC_CHARISNUM(*(str + i))) {
-		tmp.Seconds = tmp.Seconds * 10 + TM_RTC_CHAR2NUM(*(str + i));
+	while (RTC_CHARISNUM(*(str + i))) {
+		tmp.Seconds = tmp.Seconds * 10 + RTC_CHAR2NUM(*(str + i));
 		i++;
 	}
 	i++;
@@ -317,18 +314,17 @@ uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year) {
 	}
 	
 	/* Return days in month */
-	return TM_RTC_Months[TM_RTC_LEAP_YEAR(2000 + year) ? 1 : 0][month - 1];
+	return RTC_Months[RTC_LEAP_YEAR(2000 + year) ? 1 : 0][month - 1];
 }
 
 uint16_t TM_RTC_GetDaysInYear(uint8_t year) {
 	/* Return days in year */
-	return TM_RTC_DAYS_IN_YEAR(2000 + year);
+	return RTC_DAYS_IN_YEAR(2000 + year);
 }
 
 void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct;
-
 
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
 
@@ -413,22 +409,22 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data) {
 	uint16_t i;
 	uint16_t year = (uint16_t) (data->Year + 2000);
 	/* Year is below offset year */
-	if (year < TM_RTC_OFFSET_YEAR) {
+	if (year < RTC_OFFSET_YEAR) {
 		return 0;
 	}
 	/* Days in back years */
-	for (i = TM_RTC_OFFSET_YEAR; i < year; i++) {
-		days += TM_RTC_DAYS_IN_YEAR(i);
+	for (i = RTC_OFFSET_YEAR; i < year; i++) {
+		days += RTC_DAYS_IN_YEAR(i);
 	}
 	/* Days in current year */
 	for (i = 1; i < data->Month; i++) {
-		days += TM_RTC_Months[TM_RTC_LEAP_YEAR(year)][i - 1];
+		days += RTC_Months[RTC_LEAP_YEAR(year)][i - 1];
 	}
 	/* Day starts with 1 */
 	days += data->Day - 1;
-	seconds = days * TM_RTC_SECONDS_PER_DAY;
-	seconds += data->Hours * TM_RTC_SECONDS_PER_HOUR;
-	seconds += data->Minutes * TM_RTC_SECONDS_PER_MINUTE;
+	seconds = days * RTC_SECONDS_PER_DAY;
+	seconds += data->Hours * RTC_SECONDS_PER_HOUR;
+	seconds += data->Minutes * RTC_SECONDS_PER_MINUTE;
 	seconds += data->Seconds;
 	
 	/* seconds = days * 86400; */
@@ -460,7 +456,7 @@ TM_RTC_Result_t TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix) {
 	/* Get year */
 	year = 1970;
 	while (1) {
-		if (TM_RTC_LEAP_YEAR(year)) {
+		if (RTC_LEAP_YEAR(year)) {
 			if (unix >= 366) {
 				unix -= 366;
 			} else {
@@ -477,10 +473,10 @@ TM_RTC_Result_t TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix) {
 	data->Year = (uint8_t) (year - 2000);
 	/* Get month */
 	for (data->Month = 0; data->Month < 12; data->Month++) {
-		if (TM_RTC_LEAP_YEAR(year) && unix >= (uint32_t)TM_RTC_Months[1][data->Month]) {
-			unix -= TM_RTC_Months[1][data->Month];
-		} else if (unix >= (uint32_t)TM_RTC_Months[0][data->Month]) {
-			unix -= TM_RTC_Months[0][data->Month];
+		if (RTC_LEAP_YEAR(year) && unix >= (uint32_t)RTC_Months[1][data->Month]) {
+			unix -= RTC_Months[1][data->Month];
+		} else if (unix >= (uint32_t)RTC_Months[0][data->Month]) {
+			unix -= RTC_Months[0][data->Month];
 		} else {
 			break;
 		}

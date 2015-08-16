@@ -63,6 +63,7 @@ int main(void) {
 	TS.Orientation = TM_LCD_GetOrientation();
 	
 	/* Init touch, use default drivers, depends on defines in library */
+	/* Check library description for more information */
 	TM_TOUCH_Init(NULL, &TS);
 	
 	while (1) {

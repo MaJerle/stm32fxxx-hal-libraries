@@ -113,6 +113,7 @@ typedef struct _TM_BUFFER_t {
 	uint8_t* Buffer;         /*!< Pointer to buffer data array */
 	uint8_t Flags;           /*!< Flags for buffer */
 	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string */
+    void* UserParameters;    /*!< Pointer to user value if needed */
 } TM_BUFFER_t;
 
 /**
@@ -196,8 +197,8 @@ uint8_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
 
 /**
  * @brief  Sets string delimiter character when reading from buffer as string
- * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
- * @param  StringDelimter: Character as string delimiter
+ * @param  Buffer: Pointer to @ref TM_BUFFER_t structure
+ * @param  StringDelimIter: Character as string delimiter
  * @retval None
  */
 #define TM_BUFFER_SetStringDelimiter(Buffer, StringDelimiter)  ((Buffer)->StringDelimiter = (StringDelimter))

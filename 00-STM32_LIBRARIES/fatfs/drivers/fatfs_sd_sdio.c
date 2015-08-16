@@ -18,18 +18,6 @@
  */
 #include "fatfs_sd_sdio.h"
 
-/* Function declarations */
-uint8_t BSP_SD_Init(void);
-uint8_t BSP_SD_DeInit(void);
-uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint64_t ReadAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_WriteBlocks(uint32_t *pData, uint64_t WriteAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_ReadBlocks_DMA(uint32_t *pData, uint64_t ReadAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint64_t WriteAddr, uint32_t BlockSize, uint32_t NumOfBlocks);
-uint8_t BSP_SD_Erase(uint64_t StartAddr, uint64_t EndAddr);
-HAL_SD_TransferStateTypedef BSP_SD_GetStatus(void);
-void    BSP_SD_GetCardInfo(HAL_SD_CardInfoTypedef *CardInfo);
-uint8_t BSP_SD_IsDetected(void);
-
 /* These functions can be modified in case the current settings (e.g. DMA stream)
    need to be changed for specific application needs */
 void    BSP_SD_MspInit(SD_HandleTypeDef *hsd, void *Params);

@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/08/hal-library-23-touch-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_TOUCH_FT5336
- * @brief    FT5336 low level library
+ * @brief    FT5336 low level library - http://stm32f4-discovery.com/2015/08/hal-library-23-touch-for-stm32fxxx/
  * @{
  *
  * This is a low-level driver for FT5336 touch screen controller.

@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/08/hal-library-23-touch-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_TOUCH
- * @brief    Touch library for touch screen controllers
+ * @brief    Touch library for touch screen controllers - http://stm32f4-discovery.com/2015/08/hal-library-23-touch-for-stm32fxxx/
  * @{
  *
  * This library is a "high" level library for working with touch screens.
@@ -67,8 +67,8 @@ extern "C" {
 \endcode
  *
  * @note  When selecting "built-in" drivers, you also have to include some libs.
- *           - TM TOUCH TS3510 library for STM32F439-Eval
- *           - TM TOUCH FT5336 library for STM32F7-Discovery
+ *           - @ref TM_TOUCH_TS3510 library for STM32F439-Eval
+ *           - @ref TM_TOUCH_FT5336_H for STM32F7-Discovery
  *
  * \par Set custom driver
  *
@@ -87,6 +87,10 @@ TM_TOUCH_t TS;
 //Init function
 uint8_t MYDRIVER_Init(TM_TOUCH_t* TS) {
   //Initialize your custom driver here.
+  
+  //Set max X and Y location for touch
+  TS->MaxX = MAX_X_VALUE;
+  TS->MaxY = MAX_Y_VALUE;
 }
 
 //Read function
