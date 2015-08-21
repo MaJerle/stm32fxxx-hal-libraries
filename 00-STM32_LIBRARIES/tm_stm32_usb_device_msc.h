@@ -58,6 +58,8 @@ extern "C" {
  *
  * @note  For using this library, you will also need my SDCARD SDIO driver from @ref TM_FATFS library. Source files can be found in fatfs/drivers/fatfs_sd_sdio.h/c
  *
+ * @note  Library uses malloc to allocate MSC device data array, so make sure you have enough HEAP memory reserved. You will need about 10k of HEAP memory for using this lib.
+ *
  * \par Changelog
  *
 \verbatim
@@ -116,7 +118,7 @@ TM_USBD_Result_t TM_USBD_MSC_Init(TM_USB_t USB_Mode);
 
 /**
  * @defgroup TM_USBD_MSC_Callbacks
- * @brief    Library callback functions
+ * @brief    Library callback functions, reserved for future use
  * @{
  */
  

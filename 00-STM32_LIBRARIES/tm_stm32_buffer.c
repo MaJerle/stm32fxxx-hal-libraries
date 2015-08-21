@@ -77,22 +77,27 @@ uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	if (Buffer == NULL) {
 		return 0;
 	}
+
+	/* Check input pointer */
+	if (Buffer->In >= Buffer->Size) {
+		Buffer->In = 0;
+	}
 	
 	/* Go through all elements */
 	for (i = 0; i < count; i++) {
 		/* Check if memory available */
 		if (Buffer->Num < Buffer->Size) {
-			/* Check input overflow */
-			if (Buffer->In >= Buffer->Size) {
-				Buffer->In = 0;
-			}
-			
 			/* Add to buffer */
 			Buffer->Buffer[Buffer->In] = *Data++;
 			
 			/* Increase pointers */
 			Buffer->In++;
 			Buffer->Num++;
+
+			/* Check input overflow */
+			if (Buffer->In >= Buffer->Size) {
+				Buffer->In = 0;
+			}
 		} else {
 			break;
 		}
@@ -109,22 +114,27 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	if (Buffer == NULL) {
 		return 0;
 	}
+
+	/* Check output pointer */
+	if (Buffer->Out >= Buffer->Size) {
+		Buffer->Out = 0;
+	}
 	
 	/* Go through all elements */
 	for (i = 0; i < count; i++) {
 		/* Check if memory available */
 		if (Buffer->Num > 0) {
-			/* Check output overflow */
-			if (Buffer->Out >= Buffer->Size) {
-				Buffer->Out = 0;
-			}
-			
 			/* Save to user buffer */
 			*Data++ = Buffer->Buffer[Buffer->Out];
 			
 			/* Increase pointers */
 			Buffer->Out++;
 			Buffer->Num--;
+
+			/* Check output overflow */
+			if (Buffer->Out >= Buffer->Size) {
+				Buffer->Out = 0;
+			}
 		} else {
 			break;
 		}
@@ -210,11 +220,11 @@ uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize
 	
 	/* Check for any data on USART */
 	if (
-		Buffer->Num == 0 ||                         /*!< Buffer empty */
+		TM_BUFFER_GetFree(Buffer) == 0 ||                                  /*!< Buffer empty */
 		(
-			!TM_BUFFER_FindElement(Buffer, '\n') && /*!< String delimiter not in buffer */
-			Buffer->Num != Buffer->Size &&          /*!< Buffer is not full */
-			Buffer->Num < buffsize                  /*!< User buffer size is larger than number of elements in buffer */
+			TM_BUFFER_FindElement(Buffer, Buffer->StringDelimiter) == 0 && /*!< String delimiter is not in buffer */
+			TM_BUFFER_GetFree(Buffer) != 0 &&                              /*!< Buffer is not full */
+			TM_BUFFER_GetFull(Buffer) < buffsize                           /*!< User buffer size is larger than number of elements in buffer */
 		)
 	) {
 		/* Return 0 */

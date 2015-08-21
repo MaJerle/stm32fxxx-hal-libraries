@@ -107,6 +107,16 @@ extern "C" {
 #define USB_USE_DEVICE
 \endcode
  *
+ * \par USB FS mode settings
+ * 
+ * When using USB FS mode, STM32Fxxx needs 48MHz clock, provided from PLL, so you have to make sure that your PLL clock is set correct.
+ * <code>PLL_M</code> parameter should be the same as value of external crystal frequency in MHz. For example, if HSE_VALUE is 25000000, then PLL_M should be set to 25
+ *
+ * \par USB HS mode settings
+ *
+ * For USB HS mode with external ULPI PHY, you don't need any specific clock settings, because ULPI will do this for you.
+ * However, if you are using HS in FS mode, you have to setup 48MHz clock the same as when using FS mode.
+ *
  * \par STM32F4/7xx boards and configurations
  *
  * @note  If you follow my description in @ref TM_DISCO library on how to select your used board, then this library will automatically select your "target".
