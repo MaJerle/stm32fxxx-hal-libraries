@@ -47,6 +47,7 @@ int main(void) {
 	/* Init RTC */
 	if (TM_RTC_Init(TM_RTC_ClockSource_External)) {
 		/* RTC was already initialized and time is running */
+		/* No need to set clock now */
 	} else {
 		/* RTC was now initialized */
 		/* If you need to set new time, now is the time to do it */
@@ -85,13 +86,13 @@ int main(void) {
 			TM_RTC_SetDateTime(&RTCD, TM_RTC_Format_BIN);
 			
 			/* Trigger alarm now after new time was set */
-			RTCA.Type = TM_RTC_AlarmType_DayInWeek;
-			RTCA.Hours = RTCD.Hours;
+			RTCA.Type = TM_RTC_AlarmType_DayInWeek; /*!< Alarm type is day in a week */
+			RTCA.Day = 5;                           /*!< Day 5 in week = Friday */
+			RTCA.Hours = RTCD.Hours;                /*!< Select time for alarm */
 			RTCA.Minutes = RTCD.Minutes;
 			RTCA.Seconds = RTCD.Seconds + 5;
-			RTCA.Day = RTCD.Day;
 			
-			/* Enable alarm */
+			/* Enable alarm A */
 			TM_RTC_EnableAlarm(TM_RTC_Alarm_A, &RTCA, TM_RTC_Format_BIN);
 		}
 	}
@@ -106,6 +107,7 @@ void TM_RTC_WakeupHandler(void) {
 /* Handle Alarm A event */
 void TM_RTC_AlarmAHandler(void) {
 	/* Alarm A triggered */
+	/* Do you stuff */
 	
 	/* Disable alarm */
 	TM_RTC_DisableAlarm(TM_RTC_Alarm_A);

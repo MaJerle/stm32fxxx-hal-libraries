@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/08/hal-library-24-rtc-for-stm32fxxx/
  * @version 1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_RTC
- * @brief    RTC Library for STM32Fxxx devices
+ * @brief    RTC Library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/08/hal-library-24-rtc-for-stm32fxxx/
  * @{
  *
  * \par Features
@@ -53,7 +53,7 @@ extern "C" {
   - STM32F4/429 Discovery does not have RTC crystal onboard. Check board's manual on how to set it up
 - Support wakeup interrupt
 - Support to set 2 internal alarms to trigger interrupts
-  - They can also wake up STM32F4 from any low power mode
+  - They can also wake up STM32Fxxx from any low power mode
 - Get seconds from 01.01.1970 00:00:00
 - Get readable time from seconds from 01.01.1970 00:00:00
 - Support to save/get data in binary or BCD format
@@ -67,7 +67,7 @@ extern "C" {
  * \par Pinout for RTC external 32768Hz crystal
  *
 \verbatim
- STM32F4XX  Oscillator   Description
+ STM32Fxxx  Oscillator   Description
 	
  PC14       OSC1         Oscillator terminal 1
  PC15       OSC2         Oscillator terminal 2

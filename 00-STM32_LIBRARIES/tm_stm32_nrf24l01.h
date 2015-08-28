@@ -64,11 +64,11 @@ MISO		PC11		MISO pin for SPI
 IRQ			Not used	Interrupt pin. Goes low when active. Pin functionality is active, but not used in library
 \endverbatim 	
  *
- * IRQ pin is not used in this library, but it's functionality is enabled by this software.
+ * IRQ pin is not used in this library, but its functionality is enabled by this software.
  *
  * You can still set any pin on Fxxx to be an external interrupt and handle interrupts from nRF24L01+ module.
  *
- * The easiest way to that is to use TM EXTI library and attach interrupt functionality to this pin
+ * The easiest way to that is to use @ref TM_EXTI library and attach interrupt functionality to this pin
  * 
  * \par Custom pinout
  *
@@ -139,12 +139,6 @@ IRQ			Not used	Interrupt pin. Goes low when active. Pin functionality is active,
 #define NRF24L01_CSN_LOW			TM_GPIO_SetPinLow(NRF24L01_CSN_PORT, NRF24L01_CSN_PIN)
 #define NRF24L01_CSN_HIGH			TM_GPIO_SetPinHigh(NRF24L01_CSN_PORT, NRF24L01_CSN_PIN)
 
-/* Clear interrupt flags */
-#define NRF24L01_CLEAR_INTERRUPTS   do { TM_NRF24L01_WriteRegister(0x07, 0x70); } while (0)
-
-/* Gets interrupt status from device */
-#define NRF24L01_GET_INTERRUPTS     TM_NRF24L01_GetStatus()
-
 /* Interrupt masks */
 #define NRF24L01_IRQ_DATA_READY     0x40 /*!< Data ready for receive */
 #define NRF24L01_IRQ_TRAN_OK        0x20 /*!< Transmission went OK */
@@ -161,9 +155,23 @@ IRQ			Not used	Interrupt pin. Goes low when active. Pin functionality is active,
  */
 
 /**
+ * @brief  Interrupt structure 
+ */
+typedef union _TM_NRF24L01_IRQ_t {
+	struct {
+		uint8_t reserved0:4;
+		uint8_t MaxRT:1;     /*!< Set to 1 if MAX retransmissions flag is set */
+		uint8_t DataSent:1;  /*!< Set to 1 if last transmission is OK */
+		uint8_t DataReady:1; /*!< Set to 1 if data are ready to be read */
+		uint8_t reserved1:1;
+	} F;
+	uint8_t Status;          /*!< NRF status register value */
+} TM_NRF24L01_IRQ_t;
+
+/**
  * @brief  Transmission status enumeration
  */
-typedef enum {
+typedef enum _TM_NRF24L01_Transmit_Status_t {
 	TM_NRF24L01_Transmit_Status_Lost = 0x00,   /*!< Message is lost, reached maximum number of retransmissions */
 	TM_NRF24L01_Transmit_Status_Ok = 0x01,     /*!< Message sent successfully */
 	TM_NRF24L01_Transmit_Status_Sending = 0xFF /*!< Message is still sending */
@@ -172,20 +180,20 @@ typedef enum {
 /**
  * @brief  Data rate enumeration
  */
-typedef enum {
-	TM_NRF24L01_DataRate_2M,  /*!< Data rate set to 2Mbps */
-	TM_NRF24L01_DataRate_1M,  /*!< Data rate set to 1Mbps */
-	TM_NRF24L01_DataRate_250k /*!< Data rate set to 250kbps */
+typedef enum _TM_NRF24L01_DataRate_t {
+	TM_NRF24L01_DataRate_2M = 0x00, /*!< Data rate set to 2Mbps */
+	TM_NRF24L01_DataRate_1M,        /*!< Data rate set to 1Mbps */
+	TM_NRF24L01_DataRate_250k       /*!< Data rate set to 250kbps */
 } TM_NRF24L01_DataRate_t;
 
 /**
  * @brief  Output power enumeration
  */
-typedef enum {
-	TM_NRF24L01_OutputPower_M18dBm,	/*!< Output power set to -18dBm */
-	TM_NRF24L01_OutputPower_M12dBm, /*!< Output power set to -12dBm */
-	TM_NRF24L01_OutputPower_M6dBm,  /*!< Output power set to -6dBm */
-	TM_NRF24L01_OutputPower_0dBm    /*!< Output power set to 0dBm */
+typedef enum _TM_NRF24L01_OutputPower_t {
+	TM_NRF24L01_OutputPower_M18dBm = 0x00,/*!< Output power set to -18dBm */
+	TM_NRF24L01_OutputPower_M12dBm,       /*!< Output power set to -12dBm */
+	TM_NRF24L01_OutputPower_M6dBm,        /*!< Output power set to -6dBm */
+	TM_NRF24L01_OutputPower_0dBm          /*!< Output power set to 0dBm */
 } TM_NRF24L01_OutputPower_t;
 
 /**
@@ -315,6 +323,22 @@ void TM_NRF24L01_SetRF(TM_NRF24L01_DataRate_t DataRate, TM_NRF24L01_OutputPower_
  * @retval Status register from NRF
  */
 uint8_t TM_NRF24L01_GetStatus(void);
+
+/**
+ * @brief  Reads interrupts from NRF 
+ * @param  *IRQ: Pointer to @ref TM_NRF24L01_IRQ_t where IRQ status will be saved
+ * @retval IRQ status
+ *            - 0: No interrupts are active
+ *            - > 0: At least one interrupt is active
+ */
+uint8_t TM_NRF24L01_Read_Interrupts(TM_NRF24L01_IRQ_t* IRQ);
+
+/**
+ * @brief  Clears interrupt status
+ * @param  None
+ * @retval None
+ */
+void TM_NRF24L01_Clear_Interrupts(void);
 
 /* Private */
 void TM_NRF24L01_WriteRegister(uint8_t reg, uint8_t value);

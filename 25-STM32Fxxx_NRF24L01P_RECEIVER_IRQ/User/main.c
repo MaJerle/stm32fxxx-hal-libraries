@@ -49,6 +49,7 @@ uint8_t dataIn[32];
 
 /* NRF transmission status */
 TM_NRF24L01_Transmit_Status_t transmissionStatus;
+TM_NRF24L01_IRQ_t NRF_IRQ;
 
 int main(void) {
 	/* Init system clock for maximum system speed */
@@ -93,10 +94,10 @@ void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 	/* Check for proper interrupt pin */
 	if (GPIO_Pin == IRQ_PIN) {
 		/* Read interrupts */
-		uint8_t irq = NRF24L01_GET_INTERRUPTS;
+		TM_NRF24L01_Read_Interrupts(&NRF_IRQ);
 		
 		/* If data is ready on NRF24L01+ */
-		if (irq & NRF24L01_IRQ_DATA_READY) {
+		if (NRF_IRQ.F.DataReady) {
 			/* Get data from NRF24L01+ */
 			TM_NRF24L01_GetData(dataIn);
 			
@@ -120,6 +121,6 @@ void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 		}
 		
 		/* Clear interrupts */
-		NRF24L01_CLEAR_INTERRUPTS;
+		TM_NRF24L01_Clear_Interrupts();
 	}
 }

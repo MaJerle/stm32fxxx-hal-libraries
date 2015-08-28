@@ -1,5 +1,5 @@
 /**
- * Keil project example for RTC peripheral
+ * Keil project example for RTC peripheral with LCD
  *
  * Before you start, select your target, on the right of the "Load" button
  *
