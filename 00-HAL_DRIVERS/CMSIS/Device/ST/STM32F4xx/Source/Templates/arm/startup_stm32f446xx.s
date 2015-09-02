@@ -1,8 +1,8 @@
 ;******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
 ;* File Name          : startup_stm32f446xx.s
 ;* Author             : MCD Application Team
-;* Version            : V2.3.2
-;* Date               : 26-June-2015
+;* Version            : V2.4.0
+;* Date               : 14-August-2015
 ;* Description        : STM32F446x devices vector table for MDK-ARM toolchain. 
 ;*                      This module performs:
 ;*                      - Set the initial SP
@@ -181,7 +181,7 @@ __Vectors       DCD     __initial_sp               ; Top of Stack
                 DCD     0                                 ; Reserved
                 DCD     0                                 ; Reserved
                 DCD     SAI2_IRQHandler                   ; SAI2
-                DCD     QuadSPI_IRQHandler                ; QuadSPI
+                DCD     QUADSPI_IRQHandler                ; QuadSPI
                 DCD     CEC_IRQHandler                    ; CEC
                 DCD     SPDIF_RX_IRQHandler               ; SPDIF RX
                 DCD     I2C4_Event_IRQHandler             ; I2C 4 Event
@@ -333,7 +333,7 @@ Default_Handler PROC
                 EXPORT  SPI4_IRQHandler                   [WEAK]
                 EXPORT  SAI1_IRQHandler                   [WEAK]
                 EXPORT  SAI2_IRQHandler                   [WEAK]
-                EXPORT  QuadSPI_IRQHandler                [WEAK]
+                EXPORT  QUADSPI_IRQHandler                [WEAK]
                 EXPORT  CEC_IRQHandler                    [WEAK]
                 EXPORT  SPDIF_RX_IRQHandler               [WEAK]
                 EXPORT  I2C4_Event_IRQHandler             [WEAK]
@@ -420,7 +420,7 @@ FPU_IRQHandler
 SPI4_IRQHandler                                     
 SAI1_IRQHandler                                 
 SAI2_IRQHandler      
-QuadSPI_IRQHandler   
+QUADSPI_IRQHandler   
 CEC_IRQHandler       
 SPDIF_RX_IRQHandler  
 I2C4_Event_IRQHandler

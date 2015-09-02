@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    usbh_msc_bot.c 
   * @author  MCD Application Team
-  * @version V3.2.1
-  * @date    26-June-2015
+  * @version V3.2.2
+  * @date    07-July-2015
   * @brief   This file includes the BOT protocol related functions
   ******************************************************************************
   * @attention

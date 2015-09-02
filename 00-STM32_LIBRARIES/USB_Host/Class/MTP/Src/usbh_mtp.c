@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    usbh_mtp.c
   * @author  MCD Application Team
-  * @version V3.2.1
-  * @date    26-June-2015
+  * @version V3.2.2
+  * @date    07-July-2015
   * @brief   This file is the MTP Layer Handlers for USB Host MTP class.
   *
   * @verbatim

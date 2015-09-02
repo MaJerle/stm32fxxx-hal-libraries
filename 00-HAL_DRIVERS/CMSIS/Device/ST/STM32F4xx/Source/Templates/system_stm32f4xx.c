@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    system_stm32f4xx.c
   * @author  MCD Application Team
-  * @version V2.3.2
-  * @date    26-June-2015
+  * @version V2.4.0
+  * @date    14-August-2015
   * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File.
   *
   *   This file provides two functions and one global variable to be called from 
@@ -92,15 +92,17 @@
 
 /************************* Miscellaneous Configuration ************************/
 /*!< Uncomment the following line if you need to use external SRAM or SDRAM as data memory  */
-#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx) ||\
-    defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)\
+ || defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)\
+ || defined(STM32F469xx) || defined(STM32F479xx)
 /* #define DATA_IN_ExtSRAM */
-#endif /* STM32F40xxx || STM32F41xxx || STM32F42xxx || STM32F43xxx */
+#endif /* STM32F40xxx || STM32F41xxx || STM32F42xxx || STM32F43xxx || STM32F469xx || STM32F479xx */
  
-#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) ||\
-    defined(STM32F446xx)
+#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)\
+ || defined(STM32F446xx) || defined(STM32F469xx) || defined(STM32F479xx)
 /* #define DATA_IN_ExtSDRAM */
-#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F446xx */
+#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F446xx || STM32F469xx ||\
+          STM32F479xx */
 
 #if defined(DATA_IN_ExtSRAM) && defined(DATA_IN_ExtSDRAM)
  #error "Please select DATA_IN_ExtSRAM or DATA_IN_ExtSDRAM " 
@@ -299,7 +301,8 @@ void SystemCoreClockUpdate(void)
 void SystemInit_ExtMemCtl(void)
 {
   __IO uint32_t tmp = 0x00;
-#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || defined(STM32F446xx)
+#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)\
+ || defined(STM32F446xx) || defined(STM32F469xx) || defined(STM32F479xx)
 #if defined (DATA_IN_ExtSDRAM)
   register uint32_t tmpreg = 0, timeout = 0xFFFF;
   register uint32_t index;
@@ -390,7 +393,8 @@ void SystemInit_ExtMemCtl(void)
   /* No pull-up, pull-down for PGx pins */ 
   GPIOG->PUPDR   = 0x00000000;
 
-#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)  
+#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)\
+ || defined(STM32F469xx) || defined(STM32F479xx)  
   /* Connect PHx pins to FMC Alternate function */
   GPIOH->AFR[0]  = 0x00C0CC00;
   GPIOH->AFR[1]  = 0xCCCCCCCC;
@@ -414,7 +418,7 @@ void SystemInit_ExtMemCtl(void)
   GPIOI->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PIx pins */ 
   GPIOI->PUPDR   = 0x00000000;
-#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx */
+#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F469xx || STM32F479xx */
   
 /*-- FMC Configuration -------------------------------------------------------*/
   /* Enable the FMC interface clock */
@@ -486,10 +490,11 @@ void SystemInit_ExtMemCtl(void)
   tmpreg = FMC_Bank5_6->SDCR[0]; 
   FMC_Bank5_6->SDCR[0] = (tmpreg & 0xFFFFFDFF);
 #endif /* DATA_IN_ExtSDRAM */
-#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F446xx */
+#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F446xx || STM32F469xx || STM32F479xx */
 
-#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx) ||\
-    defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)\
+ || defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)\
+ || defined(STM32F469xx) || defined(STM32F479xx)
 
 #if defined(DATA_IN_ExtSRAM)
 /*-- GPIOs Configuration -----------------------------------------------------*/
@@ -550,7 +555,7 @@ void SystemInit_ExtMemCtl(void)
   /* Enable the FMC/FSMC interface clock */
   RCC->AHB3ENR         |= 0x00000001;
 
-#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx)|| defined(STM32F439xx)
+#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)
   /* Delay after an RCC peripheral clock enabling */
   tmp = READ_BIT(RCC->AHB3ENR, RCC_AHB3ENR_FMCEN);
   /* Configure and enable Bank1_SRAM2 */
@@ -558,7 +563,14 @@ void SystemInit_ExtMemCtl(void)
   FMC_Bank1->BTCR[3]  = 0x00000201;
   FMC_Bank1E->BWTR[2] = 0x0fffffff;
 #endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx */ 
-
+#if defined(STM32F469xx) || defined(STM32F479xx)
+  /* Delay after an RCC peripheral clock enabling */
+  tmp = READ_BIT(RCC->AHB3ENR, RCC_AHB3ENR_FMCEN);
+  /* Configure and enable Bank1_SRAM2 */
+  FMC_Bank1->BTCR[2]  = 0x00001091;
+  FMC_Bank1->BTCR[3]  = 0x00110212;
+  FMC_Bank1E->BWTR[2] = 0x0fffffff;
+#endif /* STM32F469xx || STM32F479xx */
 #if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx)|| defined(STM32F417xx)
   /* Delay after an RCC peripheral clock enabling */
   tmp = READ_BIT(RCC->AHB3ENR, RCC_AHB3ENR_FSMCEN);
@@ -569,7 +581,8 @@ void SystemInit_ExtMemCtl(void)
 #endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
 
 #endif /* DATA_IN_ExtSRAM */
-#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx || STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx */
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx || STM32F427xx || STM32F437xx ||\
+          STM32F429xx || STM32F439xx || STM32F469xx || STM32F479xx */ 
   (void)(tmp); 
 }
 #endif /* DATA_IN_ExtSRAM || DATA_IN_ExtSDRAM */

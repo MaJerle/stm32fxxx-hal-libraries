@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_hal_conf_template.h
   * @author  MCD Application Team
-  * @version V1.3.2
-  * @date    26-June-2015
+  * @version V1.4.0
+  * @date    14-August-2015
   * @brief   HAL configuration template file. 
   *          This file should be copied to the application folder and renamed
   *          to stm32f4xx_hal_conf.h.
@@ -75,7 +75,8 @@
 #define HAL_I2S_MODULE_ENABLED   
 #define HAL_IWDG_MODULE_ENABLED 
 #define HAL_LTDC_MODULE_ENABLED 
-#define HAL_PWR_MODULE_ENABLED   
+#define HAL_DSI_MODULE_ENABLED
+#define HAL_PWR_MODULE_ENABLED
 #define HAL_QSPI_MODULE_ENABLED   
 #define HAL_RCC_MODULE_ENABLED 
 #define HAL_RNG_MODULE_ENABLED   
@@ -94,7 +95,7 @@
 #define HAL_HCD_MODULE_ENABLED
 #define HAL_FMPI2C_MODULE_ENABLED
 #define HAL_SPDIFRX_MODULE_ENABLED
-
+#define HAL_LPTIM_MODULE_ENABLED
 
 /* ########################## HSE/HSI Values adaptation ##################### */
 /**
@@ -383,6 +384,10 @@
  #include "stm32f4xx_hal_hcd.h"
 #endif /* HAL_HCD_MODULE_ENABLED */
    
+#ifdef HAL_DSI_MODULE_ENABLED
+ #include "stm32f4xx_hal_dsi.h"
+#endif /* HAL_DSI_MODULE_ENABLED */
+
 #ifdef HAL_QSPI_MODULE_ENABLED
  #include "stm32f4xx_hal_qspi.h"
 #endif /* HAL_QSPI_MODULE_ENABLED */
@@ -398,7 +403,11 @@
 #ifdef HAL_SPDIFRX_MODULE_ENABLED
  #include "stm32f4xx_hal_spdifrx.h"
 #endif /* HAL_SPDIFRX_MODULE_ENABLED */
-   
+
+#ifdef HAL_LPTIM_MODULE_ENABLED
+ #include "stm32f4xx_hal_lptim.h"
+#endif /* HAL_LPTIM_MODULE_ENABLED */
+
 /* Exported macro ------------------------------------------------------------*/
 #ifdef  USE_FULL_ASSERT
 /**

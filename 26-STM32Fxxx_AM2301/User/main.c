@@ -42,7 +42,7 @@ int main(void) {
 	TM_AM2301_Init(&AM2301_1, GPIOA, GPIO_PIN_1);
 	
 	/* Sensor 2 on PB3 */
-	TM_AM2301_Init(&AM2301_1, GPIOB, GPIO_PIN_3);
+	TM_AM2301_Init(&AM2301_2, GPIOB, GPIO_PIN_3);
 	
 	while (1) {
 		/* Every 1 second read sensors */

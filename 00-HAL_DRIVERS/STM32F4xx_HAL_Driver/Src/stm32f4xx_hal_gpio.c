@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_hal_gpio.c
   * @author  MCD Application Team
-  * @version V1.3.2
-  * @date    26-June-2015
+  * @version V1.4.0
+  * @date    14-August-2015
   * @brief   GPIO HAL module driver.
   *          This file provides firmware functions to manage the following 
   *          functionalities of the General Purpose Input/Output (GPIO) peripheral:

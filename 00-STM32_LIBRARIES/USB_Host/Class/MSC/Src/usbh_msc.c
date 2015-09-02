@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    usbh_msc.c
   * @author  MCD Application Team
-  * @version V3.2.1
-  * @date    26-June-2015
+  * @version V3.2.2
+  * @date    07-July-2015
   * @brief   This file implements the MSC class driver functions
   *          ===================================================================      
   *                                MSC Class  Description
@@ -443,7 +443,7 @@ static USBH_StatusTypeDef USBH_MSC_Process(USBH_HandleTypeDef *phost)
              (MSC_Handle->unit[MSC_Handle->current_lun].sense.key == SCSI_SENSE_KEY_NOT_READY) )   
           {
             
-            if((phost->Timer - MSC_Handle->timer) > 10000)
+            if((phost->Timer - MSC_Handle->timer) < 10000)
             {
               MSC_Handle->unit[MSC_Handle->current_lun].state = MSC_TEST_UNIT_READY;
               break;
