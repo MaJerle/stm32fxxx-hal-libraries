@@ -122,9 +122,10 @@ TM_USBH_HID_t TM_USBH_HID_GetMouse(TM_USB_t USB_Mode, TM_USBH_HID_Mouse_t* Mouse
 		MouseStruct->RelativeX = (int8_t)k_minfo->x;
 		MouseStruct->RelativeY = (int8_t)k_minfo->y;
 		
-		for (i = 0; i < 3; i++) {
-			MouseStruct->Buttons[i] = k_minfo->buttons[i];
-		}
+		/* Copy buttons */
+		MouseStruct->Buttons[0] = k_minfo->buttons[0];
+		MouseStruct->Buttons[1] = k_minfo->buttons[1];
+		MouseStruct->Buttons[2] = k_minfo->buttons[2];
 		
 		/* Keyboard connected */
 		return TM_USBH_HID_Mouse;

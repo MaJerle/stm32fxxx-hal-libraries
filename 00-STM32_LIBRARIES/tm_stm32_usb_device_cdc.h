@@ -72,7 +72,7 @@ extern "C" {
 \code
 //Receive & transmit buffers size for both USB modes
 //This setting is by default the value for all other settings used in library if not changed
-//Entire RAM usage if both modes enabled will be 6 * USBD_CDC_BUFFER_SIZE is default settings used
+//Entire RAM usage if both modes enabled will be 6 * USBD_CDC_BUFFER_SIZE if default settings used
 #define USBD_CDC_BUFFER_SIZE               256
 
 //Receive buffer size for FS mode
@@ -184,31 +184,34 @@ extern "C" {
  * @{
  */
 
+/**
+ * @brief  Settings structure for USB CDC
+ */
 typedef struct {
-  uint32_t Baudrate; /*!< Baudrate, which is set by user on terminal. 
-                            Value is number of bits per second, for example: 115200 */
-  uint8_t Stopbits;  /*!< Stop bits, which is set by user on terminal.
-                            Possible values:
-                               - 0: 1 stop bit
-                               - 1: 1.5 stop bits -> This value is not supported on UART on STM32 in case you want to make USB <-> UART converter
-                               - 2: 2 stop bits */
-  uint8_t DataBits;  /*!< Data bits, which is set by user on terminal.
-                            Possible values:
-                               - 5: 5 data bits
-                               - 6: 6 data bits
-                               - 7: 7 data bits
-                               - 8: 8 data bits
-                               - 9: 9 data bits */
-  uint8_t Parity;    /*!< Parity, which is set by user on terminal.
-                            Possible values:
-                               - 0: No parity
-                               - 1: Odd parity
-                               - 2: Even parity
-                               - 3: Mark parity
-                               - 4: Space parity */
-  uint8_t Updated;   /*!< When you check for settings in my function, 
-                            this will be set to 1 if user has changed parameters,
-                            so you can reinitialize USART peripheral if you need to. */
+	uint32_t Baudrate; /*!< Baudrate, which is set by user on terminal. 
+							Value is number of bits per second, for example: 115200 */
+	uint8_t Stopbits;  /*!< Stop bits, which is set by user on terminal.
+							Possible values:
+							   - 0: 1 stop bit
+							   - 1: 1.5 stop bits -> This value is not supported on UART on STM32 in case you want to make USB <-> UART converter
+							   - 2: 2 stop bits */
+	uint8_t DataBits;  /*!< Data bits, which is set by user on terminal.
+							Possible values:
+							   - 5: 5 data bits
+							   - 6: 6 data bits
+							   - 7: 7 data bits
+							   - 8: 8 data bits
+							   - 9: 9 data bits */
+	uint8_t Parity;    /*!< Parity, which is set by user on terminal.
+							Possible values:
+							   - 0: No parity
+							   - 1: Odd parity
+							   - 2: Even parity
+							   - 3: Mark parity
+							   - 4: Space parity */
+	uint8_t Updated;   /*!< When you check for settings in my function, 
+							this will be set to 1 if user has changed parameters,
+							so you can reinitialize USART peripheral if you need to. */
 } TM_USBD_CDC_Settings_t;
 
 /**
