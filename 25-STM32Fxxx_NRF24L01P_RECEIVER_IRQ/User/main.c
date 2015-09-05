@@ -104,7 +104,7 @@ void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 			/* Start send */
 			TM_DISCO_LedOn(LED_GREEN);
 			
-			/* Send it back, automatically goes to TX mode */
+			/* Send it back, NRF goes automatically to TX mode */
 			TM_NRF24L01_Transmit(dataIn);
 			
 			/* Wait for data to be sent */

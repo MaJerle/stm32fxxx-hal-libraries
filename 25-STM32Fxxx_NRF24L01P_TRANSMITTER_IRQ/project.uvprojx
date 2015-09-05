@@ -1910,6 +1910,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3956,6 +3961,11 @@
               <FileName>tm_stm32_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6004,6 +6014,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8050,6 +8065,11 @@
               <FileName>tm_stm32_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -10098,6 +10118,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -12144,6 +12169,11 @@
               <FileName>tm_stm32_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -14192,6 +14222,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -16238,6 +16273,11 @@
               <FileName>tm_stm32_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -18286,6 +18326,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -20332,6 +20377,11 @@
               <FileName>tm_stm32_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -22380,6 +22430,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -24167,6 +24222,11 @@
               <FileName>tm_stm32_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -26325,6 +26385,11 @@
               <FileName>tm_stm32_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
           </Files>
         </Group>

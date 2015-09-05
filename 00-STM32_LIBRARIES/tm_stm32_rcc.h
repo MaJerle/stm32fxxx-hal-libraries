@@ -47,7 +47,7 @@ extern "C" {
  *
  * RCC library provides initialization of clock at the beginning. Function @ref TM_RCC_InitSystem should be called at beginning of @ref main function to initialize system.
  *
- * @note  In case of STM32F7xx is used, this library also enabled CACHE for Instructions and Data.
+ * @note  In case of STM32F7xx is used, this library also enables CACHE for Instructions and Data.
  *
  * \par Changelog
  *

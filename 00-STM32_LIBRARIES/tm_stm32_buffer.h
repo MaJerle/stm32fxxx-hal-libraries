@@ -6,7 +6,7 @@
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   Beneric cyclic buffer library 
+ * @brief   Generic cyclic buffer library 
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -67,6 +67,10 @@ extern "C" {
  * \par Changelog
  *
 \verbatim
+ Version 1.1
+  - September 03, 2015
+  - Added support for searching strings or custom arrays if exists in buffer
+  
  Version 1.0
   - First release
 \endverbatim
@@ -82,6 +86,7 @@ extern "C" {
 #include "stm32fxxx_hal.h"
 #include "defines.h"
 #include "stdlib.h"
+#include "string.h"
 
 /**
  * @defgroup TM_BUFFER_Macros
@@ -106,13 +111,13 @@ extern "C" {
  * @brief  Buffer structure
  */
 typedef struct _TM_BUFFER_t {
-	uint16_t Size;           /*!< Size of buffer in units of bytes */
-	uint16_t In;             /*!< Input pointer to save next value */
-	uint16_t Out;            /*!< Output pointer to read next value */
+	uint16_t Size;           /*!< Size of buffer in units of bytes, DO NOT MOVE OFFSET, 0 */
+	uint16_t In;             /*!< Input pointer to save next value, DO NOT MOVE OFFSET, 1 */
+	uint16_t Out;            /*!< Output pointer to read next value, DO NOT MOVE OFFSET, 2 */
+	uint8_t* Buffer;         /*!< Pointer to buffer data array, DO NOT MOVE OFFSET, 3 */
+	uint8_t Flags;           /*!< Flags for buffer, DO NOT MOVE OFFSET, 4 */
+	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string, DO NOT MOVE OFFSET, 5 */
 	uint16_t Num;            /*!< Number of elements in buffer */
-	uint8_t* Buffer;         /*!< Pointer to buffer data array */
-	uint8_t Flags;           /*!< Flags for buffer */
-	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string */
     void* UserParameters;    /*!< Pointer to user value if needed */
 } TM_BUFFER_t;
 
@@ -191,9 +196,22 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer);
  * @param  uint8_t Element: Element to check
  * @retval Status of element:
  *            - 0: Element was not found
- *            - > 0: Element found
+ *            - > 0: Element found, location in buffer + 1 is returned
+ *                   Ex: If value 1 is returned, it means 1 read from buffer and your element will be returned
  */
-uint8_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
+uint16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
+
+/**
+ * @brief  Checks if specific data sequence are stored in buffer
+ * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
+ * @param  uint8_t* Data: Array with data sequence
+ * @param  Size: Data size in units of bytes
+ * @retval Status of sequence:
+ *            - 0: Sequence was not found
+ *            - > 0: Sequence found, location in buffer + 1 is returned
+ *                   Ex: If value 1 is returned, it means your sequence starts at next read, if 5 is returned, 4 reads should be done before sequence starts.
+ */
+uint16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size);
 
 /**
  * @brief  Sets string delimiter character when reading from buffer as string
@@ -201,7 +219,7 @@ uint8_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
  * @param  StringDelimIter: Character as string delimiter
  * @retval None
  */
-#define TM_BUFFER_SetStringDelimiter(Buffer, StringDelimiter)  ((Buffer)->StringDelimiter = (StringDelimter))
+#define TM_BUFFER_SetStringDelimiter(Buffer, StrDel)  ((Buffer)->StringDelimiter = (StrDel))
 
 /**
  * @brief  Reads from buffer as string

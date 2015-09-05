@@ -70,7 +70,7 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 	RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ;
 #endif
 	
-#if defined(STM32F446xx)
+#if defined(STM32F410Tx) || defined(STM32F410Cx) || defined(STM32F410Rx) || defined(STM32F446xx) || defined(STM32F469xx) || defined(STM32F479xx) 
 #if defined(RCC_PLLR)
 	RCC_OscInitStruct.PLL.PLLR = RCC_PLLR;
 #else
@@ -83,7 +83,7 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 		return TM_RCC_Result_Error;
 	}
 
-#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || defined(STM32F446xx) || defined(STM32F7xx)
+#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || defined(STM32F446xx)  || defined(STM32F469xx) || defined(STM32F479xx) || defined(STM32F7xx)
 	/* Activate the Over-Drive mode */
 	if (HAL_PWREx_EnableOverDrive() != HAL_OK) {
 		return TM_RCC_Result_Error;
@@ -107,6 +107,8 @@ TM_RCC_Result_t TM_RCC_InitSystem(void) {
 	defined(STM32F429xx) || \
 	defined(STM32F439xx) || \
 	defined(STM32F446xx) || \
+	defined(STM32F469xx) || \
+	defined(STM32F479xx) || \
 	defined(STM32F7xx) 
 	
 	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  

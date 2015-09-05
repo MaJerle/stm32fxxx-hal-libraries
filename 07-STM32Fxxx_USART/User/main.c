@@ -40,9 +40,12 @@ int main(void) {
 	
 	while (1) {
 		/* Check if anything received */
-		while (!TM_USART_BufferEmpty(USART6)) {
+		if (TM_USART_FindString(USART6, "OK")) {
 			/* Send data back from buffer */
-			TM_USART_Putc(USART6, TM_USART_Getc(USART6));
+			while (!TM_USART_BufferEmpty(USART6)) {
+				/* Send to computer */
+				TM_USART_Putc(USART6, TM_USART_Getc(USART6));
+			}
 		}
 	}
 }

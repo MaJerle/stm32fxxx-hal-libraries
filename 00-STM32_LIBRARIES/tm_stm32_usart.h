@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/07/hal-library-07-usart-for-stm32fxxx
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   USART Library for STM32Fxxx with receive interrupt
@@ -28,7 +28,7 @@
 \endverbatim
  */
 #ifndef TM_USART_H
-#define TM_USART_H 100
+#define TM_USART_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -148,6 +148,10 @@ UART8        |PE1    PE0     |-      -       |-      -
  * \par Changelog
  *
 \verbatim
+ Version 1.1
+  - September 03, 2015
+  - Added support for buffers which now requires separate library for USART
+ 
  Version 1.0
    - First release
 \endverbatim
@@ -160,12 +164,14 @@ UART8        |PE1    PE0     |-      -       |-      -
  - attributes.h
  - defines.h
  - TM GPIO
+ - TM BUFFER
 \endverbatim
  */
 #include "stm32fxxx_hal.h"
 #include "attributes.h"
 #include "defines.h"
 #include "tm_stm32_gpio.h"
+#include "tm_stm32_buffer.h"
 
 /**
  * @defgroup TM_USART_Typedefs
@@ -539,6 +545,16 @@ void TM_USART_ClearBuffer(USART_TypeDef* USARTx);
  * @retval None
  */
 void TM_USART_SetCustomStringEndCharacter(USART_TypeDef* USARTx, uint8_t Character);
+
+/**
+ * @brief  Search for string in USART buffer if exists
+ * @param  *USARTx: Pointer to USARTx peripheral you will use
+ * @param  *str: String to be searched
+ * @retval Search status:
+ *            - 0: String is not in buffer
+ *            - > 0: String is in buffer
+ */
+uint8_t TM_USART_FindString(USART_TypeDef* USARTx, char* str);
 
 /**
  * @brief  Callback for custom pins initialization for USARTx.

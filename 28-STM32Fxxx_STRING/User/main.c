@@ -56,7 +56,7 @@ int main(void) {
 	TM_STRING_AddString(String, "Fifth string");
 	
 	/* Modify string number 4 */
-	TM_STRING_ReplaceString(String, strposition, "Updated string");
+	TM_STRING_ReplaceString(String, strposition, "Updated forth string");
 	
 	/* Send strings over USART */
 	for (i = 0; i < String->Count; i++) {

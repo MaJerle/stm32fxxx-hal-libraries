@@ -163,7 +163,7 @@ void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 			TM_NRF24L01_PowerUpRx();
 		}
 		
-		/* Check if max transmission reached and last transmission failed */
+		/* Check if max retransmission reached and last transmission failed */
 		if (NRF_IRQ.F.MaxRT) {
 			/* Save transmission status */
 			transmissionStatus = TM_NRF24L01_Transmit_Status_Lost;

@@ -68,7 +68,7 @@ extern "C" {
  *
  * @note  When selecting "built-in" drivers, you also have to include some libs.
  *           - @ref TM_TOUCH_TS3510 library for STM32F439-Eval
- *           - @ref TM_TOUCH_FT5336_H for STM32F7-Discovery
+ *           - @ref TM_TOUCH_FT5336 for STM32F7-Discovery
  *
  * \par Set custom driver
  *
@@ -96,6 +96,11 @@ uint8_t MYDRIVER_Init(TM_TOUCH_t* TS) {
 //Read function
 uint8_t MYDRIVER_Read(TM_TOUCH_t* TS) {
   //Read coordinates and check if pressed here
+  TS->NumPresses = NumberOfFingersDetected
+
+  //Save coordinates
+  TS->X[0] = Finger1_X_Location;
+  TS->Y[0] = Finger1_Y_Location;
 }
 
 //In main function for example:
@@ -110,6 +115,11 @@ int main() {
   while (1) {
     //Read touch and process
     TM_TOUCH_Read(&TS);
+    
+    //Check presses
+    if (TS.NumPresses > 0) {
+      //At least one touch detected
+    }
   }
 }
 \endcode
