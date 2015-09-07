@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/09/hal-library-26-power-voltage-detector-pvd-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,12 +42,25 @@ extern "C" {
 
 /**
  * @defgroup TM_PVD
- * @brief    PVD - Power Voltage Detector for STM32Fxxx
+ * @brief    PVD - Power Voltage Detector for STM32Fxxx - http://stm32f4-discovery.com/2015/09/hal-library-26-power-voltage-detector-pvd-for-stm32fxxx/
  * @{
  *
- * PVD can detect voltage changes in your system. It features 8 different voltage levels between 2 and 3 volts. For detailed voltages, check datasheet.
+ * PVD can detect voltage changes in your system. It features 8 different voltage levels between 2 and 3 volts. For detailed voltages, check device datasheet.
  *
  * Library supports STM32F4xx, STM32F7xx and STM32F0xx devices. For F0xx series, not all devices are supported!
+ *
+ * \par Change configuration
+ *
+ * PVD uses interrupts for voltage detection. For this purpose, NVIC configuration must be used.
+ * I made default NVIC configuration, but if you need to change it, defines.h file is for you.
+ *
+\code
+//NVIC preemption priority
+#define PVD_NVIC_PRIORITY      0x04
+
+//NVIC Subpriority
+#define PVD_NVIC_SUBPRIORITY   0x00
+\endcode
  *
  * \par Changelog
  *
@@ -61,11 +74,13 @@ extern "C" {
 \verbatim
  - STM32Fxxx HAL
  - defines.h
+ - attributes.h
 \endverbatim
  */
 
 #include "stm32fxxx_hal.h"
 #include "defines.h"
+#include "attributes.h"
 
 /**
  * @defgroup TM_PVD_Macros
@@ -136,7 +151,7 @@ typedef enum {
 void TM_PVD_Enable(TM_PVD_Level_t Level, TM_PVD_Trigger_t Trigger);
 
 /**
- * @brief  Disables PVD feature, disables NVIC interrupt and EXTI interrupt
+ * @brief  Disables PVD feature, disables NVIC and EXTI interrupt
  * @param  None
  * @retval None
  */

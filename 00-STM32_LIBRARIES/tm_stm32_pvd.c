@@ -67,11 +67,11 @@ __weak void TM_PVD_Handler(uint8_t status) {
 void PVD_IRQHandler(void) {
 	/* Call user function if needed */
 	if (__HAL_PWR_PVD_EXTI_GET_FLAG() != RESET) {
-#if defined(STM32F0xx) || defined(STM32F4xx)	
+#if defined(PWR_CSR_PVDO)	
 		/* Call user function with status */
 		TM_PVD_Handler((PWR->CSR & PWR_CSR_PVDO) ? 1 : 0);
 #endif
-#if defined(STM32F7xx)
+#if defined(PWR_CSR1_PVDO)
 		/* Call user function with status */
 		TM_PVD_Handler((PWR->CSR1 & PWR_CSR1_PVDO) ? 1 : 0);
 #endif
