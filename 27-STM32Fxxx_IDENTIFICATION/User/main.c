@@ -48,12 +48,12 @@ int main(void) {
 	TM_LCD_SetXY(10, 10);
 	TM_LCD_Puts(buff);
 	
-	/* Format unique ID */
+	/* Format device signature */
 	sprintf(buff, "Device signature: 0x%04X", TM_ID_GetSignature());
 	TM_LCD_SetXY(10, 30);
 	TM_LCD_Puts(buff);
 	
-	/* Format unique ID */
+	/* Format revision */
 	sprintf(buff, "Revision: 0x%04X", TM_ID_GetRevision());
 	TM_LCD_SetXY(10, 50);
 	TM_LCD_Puts(buff);

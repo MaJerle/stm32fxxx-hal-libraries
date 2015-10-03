@@ -76,7 +76,7 @@ FRESULT TM_FATFS_TruncateBeginning(FIL* fil, uint32_t index) {
 
 		fr = f_lseek(fil, WriteIndex);						/* Go back to the write index */
 		if (fr) return fr;									/* Check for success */
-		fr = f_write(fil, &Buffer, BlockSize, &Written);/* Write data */
+		fr = f_write(fil, &Buffer, BlockSize, &Written);    /* Write data */
 		if (fr) return fr;									/* Check for success */
 
 		TotalSize -= BlockSize;								/* Calculate new total size we have more to move everything */
@@ -174,7 +174,7 @@ static FRESULT scan_files(char* path, uint16_t tmp_buffer_size, TM_FATFS_Search_
 	fno.lfsize = sizeof lfn;
 #endif
 
-	/* Try to open file */
+	/* Try to open folder */
 	if ((res = f_opendir(&dir, path)) == FR_OK) {
 		/* Get length of current path */
 		i = strlen(path);
@@ -188,11 +188,11 @@ static FRESULT scan_files(char* path, uint16_t tmp_buffer_size, TM_FATFS_Search_
 			}
 
 			/* Format name */
-	#if _USE_LFN
+#if _USE_LFN
 			fn = *fno.lfname ? fno.lfname : fno.fname;
-	#else
+#else
 			fn = fno.fname;
-	#endif
+#endif
 
 			/* Check if available memory for tmp buffer */
 			/* + 1 is for "/" used for path formatting */

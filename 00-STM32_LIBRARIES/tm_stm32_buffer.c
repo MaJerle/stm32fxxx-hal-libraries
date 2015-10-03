@@ -83,23 +83,18 @@ uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	}
 	
 	/* Go through all elements */
-	while (count--) {
-		/* Check if memory available */
-		if (Buffer->Num < Buffer->Size) {
-			/* Add to buffer */
-			Buffer->Buffer[Buffer->In] = *Data++;
-			
-			/* Increase pointers */
-			Buffer->In++;
-			Buffer->Num++;
-			i++;
-			
-			/* Check input overflow */
-			if (Buffer->In >= Buffer->Size) {
-				Buffer->In = 0;
-			}
-		} else {
-			break;
+	while (count-- && Buffer->Num < Buffer->Size) {
+		/* Add to buffer */
+		Buffer->Buffer[Buffer->In] = *Data++;
+		
+		/* Increase pointers */
+		Buffer->In++;
+		Buffer->Num++;
+		i++;
+		
+		/* Check input overflow */
+		if (Buffer->In >= Buffer->Size) {
+			Buffer->In = 0;
 		}
 	}
 	
@@ -121,23 +116,18 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	}
 	
 	/* Go through all elements */
-	while (count--) {
-		/* Check if memory available */
-		if (Buffer->Num > 0) {
-			/* Save to user buffer */
-			*Data++ = Buffer->Buffer[Buffer->Out];
-			
-			/* Increase pointers */
-			Buffer->Out++;
-			Buffer->Num--;
-			i++;
+	while (count-- && Buffer->Num > 0) {
+		/* Save to user buffer */
+		*Data++ = Buffer->Buffer[Buffer->Out];
+		
+		/* Increase pointers */
+		Buffer->Out++;
+		Buffer->Num--;
+		i++;
 
-			/* Check output overflow */
-			if (Buffer->Out >= Buffer->Size) {
-				Buffer->Out = 0;
-			}
-		} else {
-			break;
+		/* Check output overflow */
+		if (Buffer->Out >= Buffer->Size) {
+			Buffer->Out = 0;
 		}
 	}
 	
@@ -226,7 +216,7 @@ uint16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size) {
 	Out = Buffer->Out;
 
 	/* Go through input elements in buffer */
-	while (Num) {
+	while (Num > 0) {
 		/* Check output overflow */
 		if (Out >= Buffer->Size) {
 			Out = 0;
@@ -253,7 +243,7 @@ uint16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size) {
 					Out = 0;
 				}
 
-				/* Check if current character in buffer matches first character in string */
+				/* Check if current character in buffer matches character in string */
 				if ((uint8_t)Buffer->Buffer[Out] != (uint8_t)Data[i]) {
 					retval += i - 1;
 					break;

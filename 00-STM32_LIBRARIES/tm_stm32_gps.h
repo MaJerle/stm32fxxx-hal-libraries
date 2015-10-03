@@ -121,6 +121,44 @@ extern C {
  * I recommend that you increase that memory. 
  * For further instructions how to do that, look at @ref TM_USART module.
  *
+ * \par Distance and bearing
+ *
+ * Distance between 2 points can not be provided from GPS receiver, so we have to calculate it. 
+ * This is useful, if you have let’s say quadcopter and you want to know, how far you are from quad. 
+ * First coordinate will be quad’s current position from GPS and second point will be set before you start with your flight.
+ * 
+ * If you want to make let’s say “Return home” function on quadcopter, bearing comes to be very useful.
+ * GPS module tells you your direction (included in library) where you are currently moving. 
+ * Still, first coordinate is from quad’s GPS receiver, and second is where quad started with flight.
+ * When you activate “Return home” function, quad will know how far he is from “home” and 
+ * in which direction (bearing) he has to move according to the north. 
+ * Then, you just have to compare your calculated bearing with actual direction provided from GPS.
+ * And you will know, if he needs to go more left, right, etc. You can tune PID then according to values.
+ *
+ * \par Custom GPS statements
+ *
+ * Library supports by default 4 statements. 
+ * It assumes that every GPS module should output these 4 statements.
+ * It may happen, that your module outputs data that you need, but are not available with my library by default.
+ *
+ * Here is why custom GPS statements come handy. 
+ * It is possible to define custom statements which will be parsed as strings from GPS receiver directly to user.
+ * 
+ * For example, let’s say that your module outputs $GPRMB sentence (navigation).
+ * From that statement, you want to get “Steering value”, which can be “L” or “R” for Left or Right. 
+ * Steering value is part 3 inside GPRMB sentence. If you want to include this into your output, you can do this:
+\code
+//Set variable
+TM_GPS_Custom_t* GPRMB_3_Pointer;
+
+//$GPRMB statement, term number 3 = Steering value
+GPRMB_3_Pointer = TM_GPS_AddCustom(&GPS_Data, "$GPRMB", 3);
+\endcode
+ * This statement is now added into main GPS_Data structure and also, pointer to small GPRMB.3 structure is returned.
+ * @note You have to make sure, that in this case, GPRMB statement is really returned from module.
+ *       If module will not return this statement, you will not be able to read anything from library,
+ *       because it will never happen that everything will be updated before new data are available.
+ *
  * \par Changelog
  *
 \verbatim

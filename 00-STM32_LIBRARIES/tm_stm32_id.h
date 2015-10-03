@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/09/hal-library-27-identification-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_ID
- * @brief    Identification library for STM32F0xx, STM32F4xx and STM32F7xx devices
+ * @brief    Identification library for STM32F0xx, STM32F4xx and STM32F7xx devices - http://stm32f4-discovery.com/2015/09/hal-library-27-identification-for-stm32fxxx/
  * @{
  *
  * \par This library allows you to read following things:
@@ -94,9 +94,11 @@ extern "C" {
  *
 \verbatim
  - STM32Fxxx HAL
+ - defines.h
 \endverbatim
  */
 #include "stm32fxxx_hal.h"
+#include "defines.h"
 
 /**
  * @defgroup TM_ID_Macros
@@ -132,6 +134,7 @@ extern "C" {
 
 /**
  * @brief  Device package address
+ * @note   This is supported in STM32F446 and newer and STM32F7xx. On others, HardFault may occur
  */
 #define ID_PACKAGE_ADDRESS       0x1FFF7BF0
 

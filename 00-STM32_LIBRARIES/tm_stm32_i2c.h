@@ -93,10 +93,10 @@ I2C4   |PD12  PD13   |PF1   PF0    |PF14  PF15   |PH11  PH12
  */
 
 /* Clock values */
-#define TM_I2C_CLOCK_STANDARD			100000  /*!< I2C Standard speed */
-#define TM_I2C_CLOCK_FAST_MODE			400000  /*!< I2C Fast mode speed */
-#define TM_I2C_CLOCK_FAST_MODE_PLUS		1000000 /*!< I2C Fast mode plus speed */
-#define TM_I2C_CLOCK_HIGH_SPEED			3400000 /*!< I2C High speed */
+#define TM_I2C_CLOCK_STANDARD         100000  /*!< I2C Standard speed */
+#define TM_I2C_CLOCK_FAST_MODE        400000  /*!< I2C Fast mode speed */
+#define TM_I2C_CLOCK_FAST_MODE_PLUS   1000000 /*!< I2C Fast mode plus speed */
+#define TM_I2C_CLOCK_HIGH_SPEED       3400000 /*!< I2C High speed */
 
  /**
  * @}

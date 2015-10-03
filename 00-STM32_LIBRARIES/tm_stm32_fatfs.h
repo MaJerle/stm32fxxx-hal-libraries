@@ -252,7 +252,7 @@ f_mount(&fatfs_HS, "USBHS:", 1);
  *
  * There are 2 functions for search, one is @ref TM_FATFS_Search which you should call when you want to do a search operations in your FATFS structure
  *
- * Second is @ref TM_FATFS_SearchCallback which is called anytime file/folder is found on system so user can do it's job with file.
+ * Second is @ref TM_FATFS_SearchCallback which is called anytime file/folder is found on system so user can do his job with file.
  *
 \code
 int user_func(void) {
@@ -267,7 +267,7 @@ int user_func(void) {
 	if ((res = TM_FATFS_Search("SD:", working_buffer, sizeof(working_buffer), &FindStructure)) == FR_OK) {
 		//Search was OK
 	} else if (res == FR_NOT_ENOUGH_CORE) {
-		//Not enough memory for full search operation
+		//Not enough buffer memory for full search operation
 	}
 	
 	//unmount
@@ -275,7 +275,7 @@ int user_func(void) {
 
 uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* FindStructure) {
 	//Check for file/folder
-	if (if_file) {
+	if (is_file) {
 		printf("File: %s", path);
 	} else {
 		printf("Folder: %s", path);
@@ -300,15 +300,17 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
 \verbatim
  - STM32Fxxx HAL
  - defines.h
+ - attributes.h
  - TM SPI           (only when SPI)
  - TM DELAY         (only when SPI)
  - TM GPIO
- - FatFS by Chan
+ - FatFS by Chan    (R0.11a)
 \endverbatim
  */
 
 #include "stm32fxxx_hal.h"
 #include "defines.h"
+#include "attributes.h"
 #include "tm_stm32_gpio.h"
 #include "ff.h"
 #include "diskio.h"
@@ -326,6 +328,7 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
  * @note   If you have in plan to truncate from beginning large files a lot of times,
  *         then you should think about increasing this value as far as possible.
  *         With larger buffer size you will get faster response with truncating.
+ *         Suggested value is multiply by 512
  */
 #ifndef FATFS_TRUNCATE_BUFFER_SIZE
 #define FATFS_TRUNCATE_BUFFER_SIZE	256
