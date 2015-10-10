@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/07/hal-library-2-leds-and-button-for-stm32-boards/
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Leds and button library for all STM32F4 boards and STM32F7 boards (discovery/nucleo)
@@ -28,7 +28,7 @@
 \endverbatim
  */
 #ifndef TM_DISCO_H
-#define TM_DISCO_H 100
+#define TM_DISCO_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -79,12 +79,20 @@ extern "C" {
  *     - LED_BLUE    on PG12
  *   - Button: (HIGH when pressed)
  *     - Blue button on PA0
- * - STM32F7-Discovery: (STM32F746) - <code>STM32F7_DISCOVERY</code>
+ * - STM32F469-Discovery: (STM32F469NI) - <code>STM32F469_DISCOVERY</code>
+ *   - Leds:
+ *     - LED1 on PG6
+ *     - LED2 on PD4
+ *     - LED3 on PD5
+ *     - LED4 on PK3
+ *   - Button: (HIGH when pressed)
+ *     - Blue button on PA0
+ * - STM32F7-Discovery: (STM32F746NI) - <code>STM32F7_DISCOVERY</code>
  *   - Leds:
  *     - LED_GREEN   on PI1
  *   - Button: (LOW when pressed)
  *     - Blue button on PI16
- *
+ *    
  * \par Select your board
  *
  * To select your board, you have several options:
@@ -124,6 +132,7 @@ extern "C" {
 #define NUCLEO_F446
 #define NUCLEO_F091
 #define STM32F439_EVAL
+#define STM32F469_DISCOVERY
 #define STM32F7_DISCOVERY
 \endcode
  *
@@ -132,6 +141,10 @@ extern "C" {
 \verbatim
  Version 1.0
   - First release
+  
+ Version 1.1
+  - October 10, 2015
+  - Added support for STM32F469-Discovery
 \endverbatim
  *
  * \par Dependencies
@@ -154,15 +167,15 @@ extern "C" {
 	#define LED_BLUE					0x1000U
 	#define LED_ALL						LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
 	
-	#define TM_DISCO_SWAP_LOGIC
+	#define DISCO_SWAP_LOGIC
 	
-	#define TM_DISCO_LED_PORT			GPIOG
-	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
+	#define DISCO_LED_PORT				GPIOG
+	#define DISCO_LED_PINS				LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
 
-	#define TM_DISCO_BUTTON_PORT		GPIOA
-	#define TM_DISCO_BUTTON_PIN			0x0001U
-	#define TM_DISCO_BUTTON_PRESSED		1
-	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
+	#define DISCO_BUTTON_PORT			GPIOA
+	#define DISCO_BUTTON_PIN			0x0001U
+	#define DISCO_BUTTON_PRESSED		1
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
 /* STM32F429 Discovery */
 #elif defined(STM32F429_DISCOVERY)
 	#define LED_GREEN					0x2000U
@@ -171,13 +184,13 @@ extern "C" {
 	#define LED_BLUE					0
 	#define LED_ALL						LED_GREEN | LED_RED
 	
-	#define TM_DISCO_LED_PORT			GPIOG
-	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED
+	#define DISCO_LED_PORT				GPIOG
+	#define DISCO_LED_PINS				LED_GREEN | LED_RED
 
-	#define TM_DISCO_BUTTON_PORT		GPIOA
-	#define TM_DISCO_BUTTON_PIN			0x0001U
-	#define TM_DISCO_BUTTON_PRESSED		1
-	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
+	#define DISCO_BUTTON_PORT			GPIOA
+	#define DISCO_BUTTON_PIN			0x0001U
+	#define DISCO_BUTTON_PRESSED		1
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
 /* STM32F4 & STM32F401 & STM32F411 Discovery */
 #elif defined(STM32F4_DISCOVERY) || defined(STM32F401_DISCOVERY) || defined(STM32F411_DISCOVERY)
 	#define LED_GREEN					0x1000U
@@ -186,14 +199,14 @@ extern "C" {
 	#define LED_BLUE					0x8000U
 	#define LED_ALL						((uint16_t)((uint16_t)LED_GREEN | (uint16_t)LED_RED | (uint16_t)LED_ORANGE | (uint16_t)LED_BLUE))
 	
-	#define TM_DISCO_LED_PORT			GPIOD
-	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
+	#define DISCO_LED_PORT				GPIOD
+	#define DISCO_LED_PINS				LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
 
-	#define TM_DISCO_BUTTON_PORT		GPIOA
-	#define TM_DISCO_BUTTON_PIN			0x0001U
-	#define TM_DISCO_BUTTON_PRESSED		1
-	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
-/* Nucleo F401-RE & F411-RE & F446-RE */
+	#define DISCO_BUTTON_PORT			GPIOA
+	#define DISCO_BUTTON_PIN			0x0001U
+	#define DISCO_BUTTON_PRESSED		1
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+/* Nucleo F401-RE & F411-RE & F446-RE & F091-RE */
 #elif defined(NUCLEO_F401) || defined(NUCLEO_F411) || defined(NUCLEO_F446) || defined(NUCLEO_F091)
 	#define LED_GREEN					GPIO_PIN_5
 	#define LED_RED						0
@@ -201,13 +214,33 @@ extern "C" {
 	#define LED_BLUE					0
 	#define LED_ALL						LED_GREEN
 	
-	#define TM_DISCO_LED_PORT			GPIOA
-	#define TM_DISCO_LED_PINS			LED_GREEN
+	#define DISCO_LED_PORT				GPIOA
+	#define DISCO_LED_PINS				LED_GREEN
 
-	#define TM_DISCO_BUTTON_PORT		GPIOC
-	#define TM_DISCO_BUTTON_PIN			0x2000U
-	#define TM_DISCO_BUTTON_PRESSED		0
-	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_UP
+	#define DISCO_BUTTON_PORT			GPIOC
+	#define DISCO_BUTTON_PIN			0x2000U
+	#define DISCO_BUTTON_PRESSED		0
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_UP
+/* STM32F469-Discovery */
+#elif defined(STM32F469_DISCOVERY)
+	#define LED_GREEN					GPIO_PIN_6
+	#define LED_RED						GPIO_PIN_4
+	#define LED_ORANGE					GPIO_PIN_5
+	#define LED_BLUE					GPIO_PIN_3
+	#define LED_ALL						LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
+	
+	#define DISCO_LED_GREEN_PORT		GPIOG
+	#define DISCO_LED_RED_PORT			GPIOD
+	#define DISCO_LED_ORANGE_PORT		GPIOD
+	#define DISCO_LED_BLUE_PORT			GPIOK
+	#define DISCO_LED_PINS				LED_ALL
+
+	#define DISCO_BUTTON_PORT			GPIOI
+	#define DISCO_BUTTON_PIN			0x0800
+	#define DISCO_BUTTON_PRESSED		1
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+	
+	#define DISCO_USE_FUNCTIONS
 /* STM32F7-Discovery */
 #elif defined(STM32F7_DISCOVERY)
 	#define LED_GREEN					0x0002U
@@ -216,13 +249,13 @@ extern "C" {
 	#define LED_BLUE					0
 	#define LED_ALL						LED_GREEN
 	
-	#define TM_DISCO_LED_PORT			GPIOI
-	#define TM_DISCO_LED_PINS			LED_GREEN
+	#define DISCO_LED_PORT				GPIOI
+	#define DISCO_LED_PINS				LED_GREEN
 
-	#define TM_DISCO_BUTTON_PORT		GPIOI
-	#define TM_DISCO_BUTTON_PIN			0x0800
-	#define TM_DISCO_BUTTON_PRESSED		1
-	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
+	#define DISCO_BUTTON_PORT			GPIOI
+	#define DISCO_BUTTON_PIN			0x0800
+	#define DISCO_BUTTON_PRESSED		1
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
 /* No board used */
 #else
 	#warning "tm_stm32_disco.h: Please select your board. Open tm_stm32_disco.h and follow instructions! Support is currently disabled"
@@ -233,13 +266,13 @@ extern "C" {
 	#define LED_BLUE					0
 	#define LED_ALL						0
 	
-	#define TM_DISCO_LED_PORT			GPIOA
-	#define TM_DISCO_LED_PINS			LED_ALL
+	#define DISCO_LED_PORT				GPIOA
+	#define DISCO_LED_PINS				LED_ALL
 
-	#define TM_DISCO_BUTTON_PORT		GPIOA
-	#define TM_DISCO_BUTTON_PIN			0
-	#define TM_DISCO_BUTTON_PRESSED		0
-	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_NOPULL
+	#define DISCO_BUTTON_PORT			GPIOA
+	#define DISCO_BUTTON_PIN			0
+	#define DISCO_BUTTON_PRESSED		0
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_NOPULL
 #endif
 
 /**
@@ -273,10 +306,14 @@ void TM_DISCO_ButtonInit(void);
  *            - LED_ALL: All leds
  * @retval None
  */
-#ifndef TM_DISCO_SWAP_LOGIC
-#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
+#if defined(DISCO_USE_FUNCTIONS) 
+void TM_DISCO_LedOn(uint16_t led);
 #else
-#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))
+#ifndef DISCO_SWAP_LOGIC
+#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinHigh(DISCO_LED_PORT, (uint16_t)(led))
+#else
+#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinLow(DISCO_LED_PORT, (uint16_t)(led))
+#endif
 #endif
 
 /**
@@ -290,10 +327,14 @@ void TM_DISCO_ButtonInit(void);
  *            - LED_ALL: All leds
  * @retval None
  */
-#ifndef TM_DISCO_SWAP_LOGIC
-#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (uint16_t)(led))
+#if defined(DISCO_USE_FUNCTIONS) 
+void TM_DISCO_LedOff(uint16_t led);
 #else
-#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
+#ifndef DISCO_SWAP_LOGIC
+#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinLow(DISCO_LED_PORT, (uint16_t)(led))
+#else
+#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinHigh(DISCO_LED_PORT, (uint16_t)(led))
+#endif
 #endif
 
 /**
@@ -306,7 +347,11 @@ void TM_DISCO_ButtonInit(void);
  *            - LED_ALL: All leds
  * @retval None
  */
-#define TM_DISCO_LedToggle(led)        TM_GPIO_TogglePinValue(TM_DISCO_LED_PORT, (led))
+#if defined(DISCO_USE_FUNCTIONS)
+void TM_DISCO_LedToggle(uint16_t led);
+#else
+#define TM_DISCO_LedToggle(led)        TM_GPIO_TogglePinValue(DISCO_LED_PORT, (uint16_t)(led))
+#endif
 
 /**
  * @brief  Checks if led is on
@@ -316,13 +361,18 @@ void TM_DISCO_ButtonInit(void);
  *            - LED_GREEN: Green led
  *            - LED_BLUE: Blue led
  *            - LED_ORANGE: Orange led
- *            - LED_ALL: All leds
- * @retval 1 if led is on or 0 if not
+ * @retval Led on status:
+ *           - 0: Led is off
+ *           - > 0: Led is on
  */
-#ifndef TM_DISCO_SWAP_LOGIC
-#define TM_DISCO_LedIsOn(led)          TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))
+#if defined(DISCO_USE_FUNCTIONS)
+uint16_t TM_DISCO_LedIsOn(uint16_t led);
 #else
-#define TM_DISCO_LedIsOn(led)          !TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))
+#ifndef DISCO_SWAP_LOGIC
+#define TM_DISCO_LedIsOn(led)          TM_GPIO_GetOutputPinValue(DISCO_LED_PORT, (uint16_t)(led))
+#else
+#define TM_DISCO_LedIsOn(led)          !TM_GPIO_GetOutputPinValue(DISCO_LED_PORT, (uint16_t)(led))
+#endif
 #endif
 
 /**
@@ -347,7 +397,7 @@ void TM_DISCO_ButtonInit(void);
  *            - 0: Button is not pressed
  *            - > 0: Button is pressed
  */
-#define TM_DISCO_ButtonPressed()       ((TM_GPIO_GetInputPinValue(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
+#define TM_DISCO_ButtonPressed()       ((TM_GPIO_GetInputPinValue(DISCO_BUTTON_PORT, DISCO_BUTTON_PIN) == 0) != DISCO_BUTTON_PRESSED)
 
 /**
  * @brief  Checks if button was pressed now, but was not already pressed before

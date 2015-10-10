@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/07/hal-library-01-rcc-for-stm32fxxx/
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   RCC Library for STM32F4xx and STM32F7xx devices
@@ -28,7 +28,7 @@
 \endverbatim
  */
 #ifndef TM_RCC_H
-#define TM_RCC_H 100
+#define TM_RCC_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -54,6 +54,10 @@ extern "C" {
 \verbatim
  Version 1.0
   - Initial release
+
+ Version 1.1
+  - October 10, 2015
+  - Added support for STM32F469 devices
 \endverbatim
  *
  * \par Dependencies

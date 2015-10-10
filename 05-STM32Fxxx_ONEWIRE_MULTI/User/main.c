@@ -19,7 +19,7 @@
 #include "tm_stm32_delay.h"
 #include "tm_stm32_onewire.h"
 
-/* Onewire structure */
+/* Onewire structures */
 TM_OneWire_t OW1;
 TM_OneWire_t OW2;
 
@@ -61,6 +61,7 @@ int main(void) {
 		} while (TM_OneWire_Next(&OW2));
 	}
 	
+	/* Wait and do nothing */
 	while (1) {
 
 	}
