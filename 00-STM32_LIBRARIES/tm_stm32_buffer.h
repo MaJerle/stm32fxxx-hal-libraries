@@ -66,13 +66,13 @@ extern "C" {
  *
  * \par Changelog
  *
-\verbatim
+\verbatim  
+ Version 1.0
+  - First release
+  
  Version 1.1
   - September 03, 2015
   - Added support for searching strings or custom arrays if exists in buffer
-  
- Version 1.0
-  - First release
 \endverbatim
  *
  * \par Dependencies

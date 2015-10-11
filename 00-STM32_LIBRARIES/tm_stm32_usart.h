@@ -134,26 +134,26 @@ UART8        |PE1    PE0     |-      -       |-      -
 \code
 //Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
 //Set flow control
-#define TM_X_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
+#define TM_X_HARDWARE_FLOW_CONTROL    TM_USART_HardwareFlowControl_None
 //Set mode
-#define TM_X_MODE						USART_MODE_TX_RX
+#define TM_X_MODE                     USART_MODE_TX_RX
 //Set parity
-#define TM_X_PARITY						USART_PARITY_NONE
+#define TM_X_PARITY                   USART_PARITY_NONE
 //Set stopbits
-#define TM_X_STOP_BITS					USART_STOPBITS_1
+#define TM_X_STOP_BITS                USART_STOPBITS_1
 //Set USART datasize
-#define TM_X_WORD_LENGTH				UART_WORDLENGTH_8B
+#define TM_X_WORD_LENGTH              UART_WORDLENGTH_8B
 \endcode
  *
  * \par Changelog
  *
 \verbatim
+ Version 1.0
+   - First release
+   
  Version 1.1
   - September 03, 2015
   - Added support for buffers which now requires separate library for USART
- 
- Version 1.0
-   - First release
 \endverbatim
  *
  * \b Dependencies

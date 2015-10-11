@@ -118,7 +118,7 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   |                   
                   | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                    | PH12 <-> FMC_D20   | PI7  <-> FMC_D29      
                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH13 <-> FMC_D21   | PI9  <-> FMC_D30  
                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH14 <-> FMC_D22   | PI10 <-> FMC_D31
-                  | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    | PH15 <-> FMC_D23                   |
+                  | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    | PH15 <-> FMC_D23   |
 \endverbatim  
  *
  * \par STM32F469-Discovery pinout

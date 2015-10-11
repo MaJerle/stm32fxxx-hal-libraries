@@ -1,5 +1,5 @@
 /**
- * Keil project example for rotary encoder
+ * Keil project example for identification library
  *
  * Before you start, select your target, on the right of the "Load" button
  *
