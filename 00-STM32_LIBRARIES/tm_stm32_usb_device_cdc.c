@@ -183,8 +183,8 @@ TM_USBD_Result_t TM_USBD_CDC_Init(TM_USB_t USB_Mode) {
 		USBD_CDC_RegisterInterface(&hUSBDevice_FS, &USBD_CDC_fops[0]);
 		
 		/* Init buffers for TX and RX */
-		TM_BUFFER_Init(&USBD_CDC_Buffer_FS_RX, USBD_CDC_RECEIVE_BUFFER_SIZE_FS, USBD_CDC_Buffer_Data_FS_RX, 0);
-		TM_BUFFER_Init(&USBD_CDC_Buffer_FS_TX, USBD_CDC_TRANSMIT_BUFFER_SIZE_FS, USBD_CDC_Buffer_Data_FS_TX, 0);
+		TM_BUFFER_Init(&USBD_CDC_Buffer_FS_RX, USBD_CDC_RECEIVE_BUFFER_SIZE_FS, USBD_CDC_Buffer_Data_FS_RX);
+		TM_BUFFER_Init(&USBD_CDC_Buffer_FS_TX, USBD_CDC_TRANSMIT_BUFFER_SIZE_FS, USBD_CDC_Buffer_Data_FS_TX);
 	}
 #endif
 	
@@ -201,8 +201,8 @@ TM_USBD_Result_t TM_USBD_CDC_Init(TM_USB_t USB_Mode) {
 		USBD_CDC_RegisterInterface(&hUSBDevice_HS, &USBD_CDC_fops[1]);
 		
 		/* Init buffers for TX and RX */
-		TM_BUFFER_Init(&USBD_CDC_Buffer_HS_RX, USBD_CDC_RECEIVE_BUFFER_SIZE_HS, USBD_CDC_Buffer_Data_HS_RX, 0);
-		TM_BUFFER_Init(&USBD_CDC_Buffer_HS_TX, USBD_CDC_TRANSMIT_BUFFER_SIZE_HS, USBD_CDC_Buffer_Data_HS_TX, 0);
+		TM_BUFFER_Init(&USBD_CDC_Buffer_HS_RX, USBD_CDC_RECEIVE_BUFFER_SIZE_HS, USBD_CDC_Buffer_Data_HS_RX);
+		TM_BUFFER_Init(&USBD_CDC_Buffer_HS_TX, USBD_CDC_TRANSMIT_BUFFER_SIZE_HS, USBD_CDC_Buffer_Data_HS_TX);
 	}
 #endif
 	
@@ -232,7 +232,7 @@ void TM_USBD_CDC_Process(TM_USB_t USB_Mode) {
 			
 			/* Check if read anything */
 			if (readFS) {
-				/* Send data back for test */
+				/* Send data */
 				USBD_CDC_SetTxBuffer(pdev, USBD_CDC_tmp_FS, readFS);
 				USBD_CDC_TransmitPacket(pdev);
 			}
@@ -256,7 +256,7 @@ void TM_USBD_CDC_Process(TM_USB_t USB_Mode) {
 			
 			/* Check if read anything */
 			if (readHS) {
-				/* Send data back for test */
+				/* Send data */
 				USBD_CDC_SetTxBuffer(pdev, USBD_CDC_tmp_HS, readHS);
 				USBD_CDC_TransmitPacket(pdev);
 			}
@@ -410,7 +410,7 @@ uint8_t *USBD_VCP_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
   * @retval Pointer to descriptor buffer
   */
 uint8_t *USBD_VCP_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length) {
-	if(speed == USBD_SPEED_HIGH) {   
+	if (speed == USBD_SPEED_HIGH) {   
 		USBD_GetString((uint8_t *)USBD_PRODUCT_HS_STRING, USBD_StrDesc, length);
 	} else {
 		USBD_GetString((uint8_t *)USBD_PRODUCT_FS_STRING, USBD_StrDesc, length);    
@@ -451,7 +451,7 @@ uint8_t *USBD_VCP_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
   * @retval Pointer to descriptor buffer
   */
 uint8_t *USBD_VCP_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length) {
-	if(speed == USBD_SPEED_HIGH) {  
+	if (speed == USBD_SPEED_HIGH) {  
 		USBD_GetString((uint8_t *)USBD_CONFIGURATION_HS_STRING, USBD_StrDesc, length);
 	} else {
 		USBD_GetString((uint8_t *)USBD_CONFIGURATION_FS_STRING, USBD_StrDesc, length); 

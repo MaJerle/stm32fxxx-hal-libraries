@@ -61,7 +61,6 @@ uint32_t TM_DELAY_Init(void) {
 #endif
 }
 
-
 TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReloadCmd, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(struct _TM_DELAY_Timer_t*, void *), void* UserParameters) {
 	TM_DELAY_Timer_t* tmp;
 	
@@ -179,9 +178,9 @@ TM_DELAY_Timer_t* TM_DELAY_TimerAutoReloadValue(TM_DELAY_Timer_t* Timer, uint32_
 
 /* 1ms function called when systick makes interrupt */
 __weak void TM_DELAY_1msHandler(void) {
-  /* NOTE: This function Should not be modified, when the callback is needed,
+	/* NOTE: This function Should not be modified, when the callback is needed,
            the TM_DELAY_1msHandler could be implemented in the user file
-   */
+	*/
 }
 
 /***************************************************/

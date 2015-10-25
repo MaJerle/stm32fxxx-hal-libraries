@@ -99,7 +99,6 @@ uint8_t TM_TOUCH_Read(TM_TOUCH_t* TS) {
 		}
 	}
 	
-	
 	/* Return OK */
 	return 0;
 }

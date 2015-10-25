@@ -18,7 +18,7 @@
  */
 #include "tm_stm32_buffer.h"
 
-uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr, uint8_t UseMalloc) {
+uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr) {
 	/* Set buffer values to all zeros */
 	memset(Buffer, 0, sizeof(TM_BUFFER_t));
 	
@@ -28,12 +28,12 @@ uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr, u
 	Buffer->StringDelimiter = '\n';
 	
 	/* Check if malloc is used */
-	if (UseMalloc) {
+	if (!Buffer->Buffer) {
 		/* Try to allocate */
 		Buffer->Buffer = (uint8_t *) malloc(Size * sizeof(uint8_t));
 		
 		/* Check if allocated */
-		if (Buffer->Buffer == NULL) {
+		if (!Buffer->Buffer) {
 			/* Reset size */
 			Buffer->Size = 0;
 			
@@ -176,7 +176,7 @@ uint16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
 	}
 	
 	/* Create temporary variables */
-	Num = Buffer->Num;
+	Num = TM_BUFFER_GetFull(Buffer);
 	Out = Buffer->Out;
 	
 	/* Go through input elements */
@@ -207,12 +207,11 @@ uint16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size) {
 	uint8_t found = 0;
 
 	/* Check buffer structure and number of elements in buffer */
-	if (Buffer == NULL || Buffer->Num < Size) {
+	if (Buffer == NULL || (Num = TM_BUFFER_GetFull(Buffer)) < Size) {
 		return 0;
 	}
 
 	/* Create temporary variables */
-	Num = Buffer->Num;
 	Out = Buffer->Out;
 
 	/* Go through input elements in buffer */

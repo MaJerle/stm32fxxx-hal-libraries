@@ -112,6 +112,10 @@ TM_USBH_HID_t TM_USBH_HID_GetMouse(TM_USB_t USB_Mode, TM_USBH_HID_Mouse_t* Mouse
 	HID_MOUSE_Info_TypeDef* k_minfo;
 	uint8_t i;
 	
+	/* Reset relative values */
+	MouseStruct->RelativeX = (int8_t)k_minfo->x;
+	MouseStruct->RelativeY = (int8_t)k_minfo->y;
+
 	/* Get keyboard informations */
 	k_minfo = USBH_HID_GetMouseInfo(TM_USBH_GetUSBPointer(USB_Mode));
 
