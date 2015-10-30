@@ -78,7 +78,7 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
-void TM_USART_INT_InsertToBuffer(TM_BUFFER_t* u, uint8_t c);
+static void TM_USART_INT_InsertToBuffer(TM_BUFFER_t* u, uint8_t c);
 static void TM_USART_INT_ClearAllFlags(USART_TypeDef* USARTx);
 static TM_BUFFER_t* TM_USART_INT_GetUSARTBuffer(USART_TypeDef* USARTx);
 static uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx);
@@ -246,11 +246,16 @@ uint8_t TM_USART_FindString(USART_TypeDef* USARTx, char* str) {
 	return TM_BUFFER_Find(TM_USART_INT_GetUSARTBuffer(USARTx), (uint8_t *)str, strlen(str));
 }
 
+/************************************/
+/*     USART CUSTOM PINS CALLBACK   */
+/************************************/
 __weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx, uint16_t AlternateFunction) { 
 	/* NOTE: This function Should not be modified, when the callback is needed,
            the TM_USART_InitCustomPinsCallback could be implemented in the user file
    */
 }
+
+
 
 /* Private functions */
 static void TM_USART_INT_InsertToBuffer(TM_BUFFER_t* u, uint8_t c) {
