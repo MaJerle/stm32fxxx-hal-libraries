@@ -36,7 +36,7 @@ int main(void) {
 	TM_DISCO_LedInit();
 	
 	/* Init button, PORT, PIN, STATE when PRESSED */
-	MyButton = TM_BUTTON_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_DISCO_BUTTON_PRESSED, BUTTON_Callback);
+	MyButton = TM_BUTTON_Init(DISCO_BUTTON_PORT, DISCO_BUTTON_PIN, DISCO_BUTTON_PRESSED, BUTTON_Callback);
 
 	/* Init all your buttons you have in project if needed */
 	//MyButton2 = TM_BUTTON_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_DISCO_BUTTON_PRESSED, BUTTON_Callback);

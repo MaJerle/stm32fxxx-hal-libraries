@@ -1,5 +1,5 @@
 /**
- * Keil project example for GPS
+ * Keil project example for GPS custom statements
  *
  * Before you start, select your target, on the right of the "Load" button
  *
@@ -43,6 +43,13 @@ int main(void) {
 	TM_USART_Init(USART2, TM_USART_PinsPack_1, 115200);
 	
 	/* Register custom GPGxx statements */
+
+	/****************************************/
+	/* If you add new custom statement, then
+	   this statement must be returned from 
+	   GPS receiver or you won't receive new
+	   data from library!                   */
+	/****************************************/
 	
 	/* $GPRMC statement, term number 7 = Speed over ground in knots */
 	GPRMC = TM_GPS_AddCustom(&GPS_Data, "$GPRMC", 7);
@@ -66,9 +73,7 @@ int main(void) {
 			current = TM_GPS_Result_NewData;
 			
 			/* Is GPS signal valid? */
-			if (GPS_Data.Validity) {
-				/* If you want to make a GPS tracker, now is the time to save your data on SD card */
-				
+			if (GPS_Data.Validity) {				
 				/* We have valid GPS signal */
 				printf("New received data have valid GPS signal\n");
 				printf("---------------------------------------\n");
@@ -89,7 +94,7 @@ int main(void) {
 				}
 				
 				/* You can do it this way too for all your custom statements separatelly */
-				printf(" - Statement2: %s; TermNumber: %d; Value: %s\n",
+				printf(" - Statement: %s; TermNumber: %d; Value: %s\n",
 					GPRMC->Statement, GPRMC->TermNumber, GPRMC->Value
 				);
 				

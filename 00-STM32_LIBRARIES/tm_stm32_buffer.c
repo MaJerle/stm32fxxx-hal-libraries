@@ -27,10 +27,10 @@ uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr) {
 	Buffer->Buffer = BufferPtr;
 	Buffer->StringDelimiter = '\n';
 	
-	/* Check if malloc is used */
+	/* Check if malloc should be used */
 	if (!Buffer->Buffer) {
 		/* Try to allocate */
-		Buffer->Buffer = (uint8_t *) malloc(Size * sizeof(uint8_t));
+		Buffer->Buffer = (uint8_t *) LIB_ALLOC_FUNC(Size * sizeof(uint8_t));
 		
 		/* Check if allocated */
 		if (!Buffer->Buffer) {
@@ -61,7 +61,7 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer) {
 	/* If malloc was used for allocation */
 	if (Buffer->Flags & BUFFER_MALLOC) {
 		/* Free memory */
-		free(Buffer->Buffer);
+		LIB_FREE_FUNC(Buffer->Buffer);
 	}
 	
 	/* Clear flags */

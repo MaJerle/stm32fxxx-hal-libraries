@@ -20,8 +20,9 @@
 
 /* Button states */
 #define BUTTON_STATE_START        0
-#define BUTTON_STATE_PRESSED      1
-#define BUTTON_STATE_WAITRELEASE  2
+#define BUTTON_STATE_DEBOUNCE     1
+#define BUTTON_STATE_PRESSED      2
+#define BUTTON_STATE_WAITRELEASE  3
 
 /* Internal structure */
 typedef struct {
@@ -63,6 +64,7 @@ TM_BUTTON_t* TM_BUTTON_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t Butt
 	/* Set default values */
 	ButtonStruct->PressNormalTime = BUTTON_NORMAL_PRESS_TIME;
 	ButtonStruct->PressLongTime = BUTTON_LONG_PRESS_TIME;
+	ButtonStruct->PressDebounceTime = BUTTON_DEBOUNCE_TIME;
 	
 	/* Init pin with pull resistor */
 	if (ButtonStruct->GPIO_State) {
@@ -115,16 +117,32 @@ static void TM_BUTTON_INT_CheckButton(TM_BUTTON_t* ButtonStruct) {
 		/* Check if pressed */
 		if (status == ButtonStruct->GPIO_State) {
 			/* Button pressed, go to stage BUTTON_STATE_START */
-			ButtonStruct->State = BUTTON_STATE_PRESSED;
+			ButtonStruct->State = BUTTON_STATE_DEBOUNCE;
 			
 			/* Save pressed time */
 			ButtonStruct->StartTime = now;
-			
-			/* Button pressed OK, call function */
-			if (ButtonStruct->ButtonHandler) {
-				/* Call function callback */
-				ButtonStruct->ButtonHandler(ButtonStruct, TM_BUTTON_PressType_OnPressed);
+		}
+	}
+
+	if (ButtonStruct->State == BUTTON_STATE_DEBOUNCE) {
+		/* Button still pressed */
+		/* Check for debounce */
+		if (status == ButtonStruct->GPIO_State) {
+			if (now > (ButtonStruct->StartTime + ButtonStruct->PressDebounceTime)) {
+				/* Button debounce OK, Goto Normal Press */
+				ButtonStruct->State = BUTTON_STATE_PRESSED;
+
+				/* Try to call user function */
+				if (ButtonStruct->ButtonHandler) {
+					/* Call function callback */
+					ButtonStruct->ButtonHandler(ButtonStruct, TM_BUTTON_PressType_OnPressed);
+				}
 			}
+		} else if (status != ButtonStruct->GPIO_State) {
+			/* Not pressed */
+			/* It was bounce, start over */
+			/* Go to state BUTTON_STATE_START */
+			ButtonStruct->State = BUTTON_STATE_START;
 		}
 	}
 	

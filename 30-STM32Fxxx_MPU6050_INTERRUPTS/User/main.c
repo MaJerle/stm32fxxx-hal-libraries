@@ -60,7 +60,7 @@ int main(void) {
 	/* Enable MPU interrupts */
 	TM_MPU6050_EnableInterrupts(&MPU6050);
 	
-	/* Enable interrupts on STM32Fxx device, rising edge */
+	/* Enable interrupts on STM32Fxxx device, rising edge */
 	TM_EXTI_Attach(IRQ_PORT, IRQ_PIN, TM_EXTI_Trigger_Rising);
 	
 	while (1) {

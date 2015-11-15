@@ -50,18 +50,18 @@ extern "C" {
  * \par Read string procedure
  *
  * Each string in buffer has separator character, in most cases, Line Feed (0x0A) is used, and is also default value when buffer is initialized.
- * When reading as string from buffer, you have to know this things:
+ * When reading as string from buffer, you have to know these things:
  *
 \verbatim
 - Buffer will first check if string delimiter character exists in buffer. 
-    - If it exists, characters will be set to buffer until delimiter is detected. 
+    - If it exists, characters will be set to user buffer until delimiter is detected. 
 	- Delimiter is included in string!
-- If string delimiter is not in buffer, but is cyclic buffer full, 
+- If string delimiter is not in buffer, but cyclic buffer full, 
     then string will be also filled into user buffer, because we need to free
 	some memory for future characters, including string delimiter character
 - If user buffer size is less than number of characters in buffer before string delimiter is found, 
     string is also filled in user buffer
-- In all other cases, if there is no string delimiter in buffer, buffer will not return anything and will check it.
+- In all other cases, if there is no string delimiter in buffer, buffer will not return anything and will check for it first.
 \endverbatim
  *
  * \par Changelog
@@ -101,6 +101,14 @@ extern "C" {
 #define BUFFER_INITIALIZED     0x01 /*!< Buffer initialized flag */
 #define BUFFER_MALLOC          0x02 /*!< Buffer uses malloc for memory */
 
+/* Custom allocation and free functions if needed */
+#ifndef LIB_ALLOC_FUNC
+#define LIB_ALLOC_FUNC         malloc
+#endif
+#ifndef LIB_FREE_FUNC
+#define LIB_FREE_FUNC          free
+#endif
+
 /**
  * @}
  */
@@ -122,7 +130,7 @@ typedef struct _TM_BUFFER_t {
 	uint8_t Flags;           /*!< Flags for buffer, DO NOT MOVE OFFSET, 4 */
 	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string, DO NOT MOVE OFFSET, 5 */
 	uint16_t Num;            /*!< Number of elements in buffer */
-  void* UserParameters;    /*!< Pointer to user value if needed */
+	void* UserParameters;    /*!< Pointer to user value if needed */
 } TM_BUFFER_t;
 
 /**

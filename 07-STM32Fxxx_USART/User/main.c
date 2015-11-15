@@ -29,9 +29,6 @@ int main(void) {
 	/* Init leds */
 	TM_DISCO_LedInit();
 	
-	/* Init button */
-	TM_DISCO_ButtonInit();
-	
 	/* Init USART, TX: PC6, RX: PC7, 921600 bauds */
 	TM_USART_Init(USART6, TM_USART_PinsPack_1, 921600);
 	
@@ -39,7 +36,7 @@ int main(void) {
 	TM_USART_Puts(USART6, "Hello world\n");
 	
 	while (1) {
-		/* Check if anything received */
+		/* Check if we have string "OK" in USART6 buffer */
 		if (TM_USART_FindString(USART6, "OK")) {
 			/* Send data back from buffer */
 			while (!TM_USART_BufferEmpty(USART6)) {
