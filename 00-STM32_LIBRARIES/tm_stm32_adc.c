@@ -169,6 +169,7 @@ uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, TM_ADC_Channel_t channel) {
 	return 0;
 }
 
+#if defined(ADC_CCR_VBATEN) || defined(ADC_CCR_VBATE)
 void TM_ADC_EnableVbat(void) {
 	/* Enable VBAT */
 #if defined(ADC_CCR_VBATEN)
@@ -199,6 +200,7 @@ uint16_t TM_ADC_ReadVbat(ADC_TypeDef* ADCx) {
 	/* Return value in mV */
 	return (uint16_t) result;
 }
+#endif
 
 /* Private functions */
 static void TM_ADC_INT_Channel_0_Init(ADC_TypeDef* ADCx) {
