@@ -30,18 +30,18 @@ int main(void) {
 	TM_DISCO_LedInit();
 	
 	/* Init USART, TX: PC6, RX: PC7, 921600 bauds */
-	TM_USART_Init(USART6, TM_USART_PinsPack_1, 921600);
+	TM_USART_Init(USART2, TM_USART_PinsPack_1, 115200);
 	
 	/* Put test string */
-	TM_USART_Puts(USART6, "Hello world\n");
+	TM_USART_Puts(USART2, "Hello world\n");
 	
 	while (1) {
 		/* Check if we have string "OK" in USART6 buffer */
-		if (TM_USART_FindString(USART6, "OK")) {
+		if (TM_USART_FindString(USART2, "OK")) {
 			/* Send data back from buffer */
-			while (!TM_USART_BufferEmpty(USART6)) {
+			while (!TM_USART_BufferEmpty(USART2)) {
 				/* Send to computer */
-				TM_USART_Putc(USART6, TM_USART_Getc(USART6));
+				TM_USART_Putc(USART2, TM_USART_Getc(USART6));
 			}
 		}
 	}

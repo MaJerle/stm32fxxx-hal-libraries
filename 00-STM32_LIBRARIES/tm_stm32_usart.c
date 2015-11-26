@@ -1155,10 +1155,6 @@ static void TM_USART_INT_Init(
 ) {
 	UART_HandleTypeDef UARTHandle;
 	IRQn_Type irq;
-
-	/* Set USART baudrate */
-	UARTHandle.Instance = USARTx;
-	UARTHandle.Init.BaudRate = baudrate;
 	
 	/*
 	 * Initialize USARTx pins
@@ -1312,11 +1308,16 @@ static void TM_USART_INT_Init(
 #endif
 	
 	/* Fill default settings */
+	UARTHandle.Instance = USARTx;
+	UARTHandle.Init.BaudRate = baudrate;
 	UARTHandle.Init.HwFlowCtl = FlowControl;
 	UARTHandle.Init.Mode = Mode;
 	UARTHandle.Init.Parity = Parity;
 	UARTHandle.Init.StopBits = StopBits;
 	UARTHandle.Init.WordLength = WordLength;
+#if defined(STM32F0xx)
+	UARTHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+#endif
 	
 	/* Disable if not already */
 	USARTx->CR1 &= ~USART_CR1_UE;

@@ -326,6 +326,10 @@ void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct;
 
+	/* We are updating RTC clock */
+	PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC;
+
+	/* Do not use PLL */
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
 
 	/* LSI is used as RTC clock */
