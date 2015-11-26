@@ -325,7 +325,8 @@ uint16_t TM_RTC_GetDaysInYear(uint8_t year) {
 void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct;
-
+	
+	PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC;
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
 
 	/* LSI is used as RTC clock */
