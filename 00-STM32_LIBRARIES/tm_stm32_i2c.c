@@ -18,6 +18,11 @@
  */
 #include "tm_stm32_i2c.h"
 
+/* I2C2 AF fix for F0xx */
+#if !defined(GPIO_AF4_I2C2) 
+#define GPIO_AF4_I2C2   GPIO_AF1_I2C2
+#endif
+
 /* Timeout value */
 #define I2C_TIMEOUT_VALUE              1000
 
@@ -77,17 +82,36 @@ I2C_HandleTypeDef* TM_I2C_GetHandle(I2C_TypeDef* I2Cx) {
 
 static void TM_I2C_FillSettings(I2C_HandleTypeDef* Handle, uint32_t clockSpeed) {
 #if defined(STM32F7xx)
-	/* 100kHz @ 50MHz APB clock */
-	uint32_t I2C_Timing = 0x40912732;
+	uint32_t I2C_Timing;
+	
+	/* Future */
+	if (clockSpeed >= 3400000) {
+		/* 100kHz @ 50MHz APB clock */
+		I2C_Timing = 0x40912732;
+	} else if (clockSpeed >= 1000000) {
+		/* 100kHz @ 50MHz APB clock */
+		I2C_Timing = 0x40912732;
+	} else if (clockSpeed >= 400000) {
+		/* 100kHz @ 50MHz APB clock */
+		I2C_Timing = 0x40912732;
+	} else {	
+		/* 100kHz @ 50MHz APB clock */
+		I2C_Timing = 0x40912732;
+	}
+#endif
+#if defined(STM32F0xx)
+	/* 100kHz @ 48MHz APB clock */
+	uint32_t I2C_Timing = 0x10805E89;
 #endif
 
+	/* Fill settings */
 	Handle->Init.OwnAddress2 = 0x00;
 	Handle->Init.OwnAddress1 = 0x00;
 	Handle->Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
 	Handle->Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
 	Handle->Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
 	Handle->Init.NoStretchMode = I2C_NOSTRETCH_DISABLE; 
-#if defined(STM32F7xx)
+#if defined(STM32F7xx) || defined(STM32F0xx)
 	Handle->Init.Timing = I2C_Timing;
 #else
 	Handle->Init.ClockSpeed = clockSpeed;
@@ -145,7 +169,9 @@ TM_I2C_Result_t TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint3
 	HAL_I2C_Init(Handle);
 		
 	/* Enable analog filter */
+#if defined(I2C_ANALOGFILTER_ENABLE)
 	HAL_I2CEx_ConfigAnalogFilter(Handle, I2C_ANALOGFILTER_ENABLE);
+#endif
 	
 	/* Return OK */
 	return TM_I2C_Result_Ok;

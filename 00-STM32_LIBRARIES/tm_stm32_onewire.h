@@ -195,8 +195,8 @@ void TM_OneWire_ResetSearch(TM_OneWire_t* OneWireStruct);
 /**
  * @brief  Starts search, reset states first
  * @note   When you want to search for ALL devices on one onewire port, you should first use this function.
-\verbatim
-/...Initialization before
+\code
+//...Initialization before
 status = TM_OneWire_First(&OneWireStruct);
 while (status) {
 	//Save ROM number from device
@@ -204,7 +204,7 @@ while (status) {
 	//Check for new device
 	status = TM_OneWire_Next(&OneWireStruct);
 }
-\endverbatim
+\endcode
  * @param  *OneWireStruct: Pointer to @ref TM_OneWire_t working onewire where to reset search values
  * @param  Device status:
  *            - 0: No devices detected

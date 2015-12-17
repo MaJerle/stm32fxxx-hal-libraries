@@ -3,10 +3,10 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/07/hal-library-11-sdram-for-stm32fxxx/
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   External SDRAM for STM32F429-Discovery, STM32F439-EVAL or STM32F7-Discovery boards
+ * @brief   External SDRAM for STM32F429-Discovery, STM32F439-EVAL, STM32F469-Discovery or STM32F7-Discovery boards
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -28,7 +28,7 @@
 \endverbatim
  */
 #ifndef TM_SDRAM_H
-#define TM_SDRAM_H 100
+#define TM_SDRAM_H 110
 
 /**
  * @addtogroup TM_STM32Fxxx_HAL_Libraries
@@ -50,9 +50,9 @@
  *  - STM32F7-Discovery:
  *     - 8MB (64Mbit) memory size
  *
- * @par Set your target
+ * \par Set your target
  * 
- * @note   If you follow my description in @ref TM_DISCO library on how to select your used board, then this library will automatically select your "target".
+ * \note   If you follow my description in @ref TM_DISCO library on how to select your used board, then this library will automatically select your "target".
  *
  * By default, STM32F429-Discovery configuration is used, because this board is cheap and most users uses this.
  *
@@ -68,6 +68,9 @@
 
 //Use SDRAM on STM32F429-Discovery board
 #define SDRAM_USE_STM32F429_DISCOVERY
+
+//Use SDRAM on STM32F469-Discovery board
+#define SDRAM_USE_STM32F469_DISCOVERY
 \endcode
  *
  * \par STM32F7-Discovery pinout
@@ -92,7 +95,7 @@ PC3  <-> FMC_SDCKE0 | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0  
 PB5  <-> FMC_SDCKE | PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10
 PB6  <-> FMC_SDNE1 |                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11
                    |                    | PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_BA0
-                   |                    | PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG4  <-> FMC_BA1
+                   |                    | PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_BA1
                    |                    | PD10 <-> FMC_D15  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FMC_SDCLK
                    |                    | PD14 <-> FMC_D0   | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_NCAS
                    |                    | PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FMC_NRAS  | 
@@ -107,22 +110,43 @@ PB6  <-> FMC_SDNE1 |                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1 
 \verbatim
 PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10   | PH2  <-> FMC_SDCKE0| PI0  <-> FMC_D24  
 PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11   | PH3  <-> FMC_SDNE0 | PI1  <-> FMC_D25   
-PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_A14   | PH5  <-> FMC_SDNW  | PI2  <-> FMC_D26  
+PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_A14   | PH5  <-> FMC_SDNWE | PI2  <-> FMC_D26  
 PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_A15   | PH8  <-> FMC_D16   | PI3  <-> FMC_D27  
 PD10 <-> FMC_D15  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FC_SDCLK  | PH9  <-> FMC_D17   | PI4  <-> FMC_NBL2
 PD14 <-> FMC_D0   | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_NCAS  | PH10 <-> FMC_D18   | PI5  <-> FMC_NBL3 
-PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19   | PH12 <-> FMC_D20   | PI6  <-> FMC_D28  
-                  | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                    | PH13 <-> FMC_D21   | PI7  <-> FMC_D29      
-                  | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH14 <-> FMC_D22   | PI9  <-> FMC_D30  
-                  | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH15 <-> FMC_D23   | PI10 <-> FMC_D31
-                  | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    |                    |
-\endverbatim                                                                                            
+PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   |                    | PH11 <-> FMC_D19   | PI6  <-> FMC_D28  
+                  | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                    | PH12 <-> FMC_D20   | PI7  <-> FMC_D29      
+                  | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH13 <-> FMC_D21   | PI9  <-> FMC_D30  
+                  | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH14 <-> FMC_D22   | PI10 <-> FMC_D31
+                  | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    | PH15 <-> FMC_D23   |
+\endverbatim  
+ *
+ * \par STM32F469-Discovery pinout
+ * 
+\verbatim
+PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10   | PH2  <-> FMC_SDCKE0| PI0  <-> FMC_D24  
+                   | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11   | PH3  <-> FMC_SDNE0 | PI1  <-> FMC_D25   
+                   | PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_A14   | PH8  <-> FMC_D16   | PI2  <-> FMC_D26  
+                   | PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_A15   | PH9  <-> FMC_D17   | PI3  <-> FMC_D27  
+                   | PD10 <-> FMC_D15  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FC_SDCLK  | PH10 <-> FMC_D18   | PI4  <-> FMC_NBL2
+                   | PD14 <-> FMC_D0   | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_NCAS  | PH11 <-> FMC_D19   | PI5  <-> FMC_NBL3 
+                   | PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   |                    | PH12 <-> FMC_D20   | PI6  <-> FMC_D28  
+                   |                   | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                    | PH13 <-> FMC_D21   | PI7  <-> FMC_D29      
+                   |                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH14 <-> FMC_D22   | PI9  <-> FMC_D30  
+                   |                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH15 <-> FMC_D23   | PI10 <-> FMC_D31
+                   |                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    |                    |
+\endverbatim  
+                                                                                          
  *          
  * \par Changelog
  *
 \verbatim
  Version 1.0
   - First release
+  
+ Version 1.1
+  - October 10, 2015
+  - Added support for STM32F469-Discovery
 \endverbatim
  *
  * \par Dependencies
@@ -174,6 +198,30 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 /* Make define */
 #ifndef SDRAM_USE_STM32F439_EVAL
 #define SDRAM_USE_STM32F439_EVAL
+#endif
+/**
+ * @defgroup TM_SDRAM_STM32439_EVAL_Macros
+ * @brief    Macros for STM32439-EVAL board
+ * @{
+ */
+	/* SDRAM start address = FMC peripheral start address */
+	#define SDRAM_START_ADR             (uint32_t)0xC0000000
+	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
+	#define SDRAM_BANK                  FMC_SDRAM_BANK1
+	#define SDRAM_COMMAND_TARGET_BANK   FMC_SDRAM_CMD_TARGET_BANK1
+	#define SDRAM_REFRESH_COUNT         1385
+	#define SDRAM_ROWBITS_NUMBER        FMC_SDRAM_ROW_BITS_NUM_11
+	#define SDRAM_MEMORY_WIDTH          FMC_SDRAM_MEM_BUS_WIDTH_32
+	#define SDRAM_READ_BURST_STATE      FMC_SDRAM_RBURST_DISABLE
+	#define SDRAM_CAS_LATENCY           FMC_SDRAM_CAS_LATENCY_3
+	#define SDRAM_REG_VALUE             0x0230
+/**
+ * @}
+ */
+#elif defined(SDRAM_USE_STM32F469_DISCOVERY) || defined(STM32F469_DISCOVERY)
+/* Make define */
+#ifndef SDRAM_USE_STM32F469_DISCOVERY
+#define SDRAM_USE_STM32F469_DISCOVERY
 #endif
 /**
  * @defgroup TM_SDRAM_STM324x9_EVAL_Macros

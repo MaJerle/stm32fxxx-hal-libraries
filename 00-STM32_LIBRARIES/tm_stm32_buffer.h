@@ -50,29 +50,33 @@ extern "C" {
  * \par Read string procedure
  *
  * Each string in buffer has separator character, in most cases, Line Feed (0x0A) is used, and is also default value when buffer is initialized.
- * When reading as string from buffer, you have to know this things:
+ * When reading as string from buffer, you have to know these things:
  *
 \verbatim
 - Buffer will first check if string delimiter character exists in buffer. 
-    - If it exists, characters will be set to buffer until delimiter is detected. 
+    - If it exists, characters will be set to user buffer until delimiter is detected. 
 	- Delimiter is included in string!
-- If string delimiter is not in buffer, but is cyclic buffer full, 
+- If string delimiter is not in buffer, but cyclic buffer full, 
     then string will be also filled into user buffer, because we need to free
 	some memory for future characters, including string delimiter character
 - If user buffer size is less than number of characters in buffer before string delimiter is found, 
     string is also filled in user buffer
-- In all other cases, if there is no string delimiter in buffer, buffer will not return anything and will check it.
+- In all other cases, if there is no string delimiter in buffer, buffer will not return anything and will check for it first.
 \endverbatim
  *
  * \par Changelog
  *
-\verbatim
+\verbatim  
+ Version 1.0
+  - First release
+  
  Version 1.1
   - September 03, 2015
   - Added support for searching strings or custom arrays if exists in buffer
-  
- Version 1.0
-  - First release
+
+ Version 1.2
+  - October 25, 2015
+  - Parameter UseMalloc removed from TM_BUFFER_Init function.
 \endverbatim
  *
  * \par Dependencies
@@ -95,7 +99,15 @@ extern "C" {
  */
 
 #define BUFFER_INITIALIZED     0x01 /*!< Buffer initialized flag */
-#define BUFFER_MALLOC          0x02 /*!< Buffer uses malloc for memory allocation */
+#define BUFFER_MALLOC          0x02 /*!< Buffer uses malloc for memory */
+
+/* Custom allocation and free functions if needed */
+#ifndef LIB_ALLOC_FUNC
+#define LIB_ALLOC_FUNC         malloc
+#endif
+#ifndef LIB_FREE_FUNC
+#define LIB_FREE_FUNC          free
+#endif
 
 /**
  * @}
@@ -118,7 +130,7 @@ typedef struct _TM_BUFFER_t {
 	uint8_t Flags;           /*!< Flags for buffer, DO NOT MOVE OFFSET, 4 */
 	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string, DO NOT MOVE OFFSET, 5 */
 	uint16_t Num;            /*!< Number of elements in buffer */
-    void* UserParameters;    /*!< Pointer to user value if needed */
+	void* UserParameters;    /*!< Pointer to user value if needed */
 } TM_BUFFER_t;
 
 /**
@@ -136,15 +148,15 @@ typedef struct _TM_BUFFER_t {
  * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure to initialize
  * @param  Size: Size of buffer in units of bytes
  * @param  *BufferPtr: Pointer to array for buffer storage. Its length should be equal to @param Size parameter.
- * @param  UseMalloc: Set to 1 if you want to allocate buffer using malloc. In case of parameter is 1, BufferPtr param can be NULL
+ *           If NULL is passed as parameter, @ref malloc will be used to allocate memory on heap.
  * @retval Buffer initialization status:
  *            - 0: Buffer iintialized OK
  *            - > 0: Buffer initialization error. Malloc has failed with allocation
  */
-uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr, uint8_t UseMalloc);
+uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr);
 
 /**
- * @brief  Free memory for buffer allocated using malloc
+ * @brief  Free memory for buffer allocated using @ref malloc
  * @note   This function has sense only if malloc was used for dynamic allocation
  * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
  * @retval None

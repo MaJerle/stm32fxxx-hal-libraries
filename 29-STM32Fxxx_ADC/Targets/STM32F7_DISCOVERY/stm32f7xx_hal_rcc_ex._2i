@@ -1,0 +1,6 @@
+-c --cpu Cortex-M7.fp.sp --fpu=FPv4-SP -D__MICROLIB -g -O0 --apcs=interwork -I.\User -I.\TM -I..\00-STM32_LIBRARIES -I..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Inc -I..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F7xx\Include -I..\00-HAL_DRIVERS\CMSIS\Include
+-I "C:\Users\MajerleT\Google Drive\ELECTRONICS\ARM\stm32fxxx\29-STM32Fxxx_ADC\RTE"
+-I C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include
+-I C:\Keil_v5\ARM\CMSIS\Include
+-D__UVISION_VERSION="516" -DSTM32F746xx -DSTM32F746xx -DUSE_HAL_DRIVER -DARM_MATH_CM7 -D__FPU_PRESENT="1" -DSTM32F7XX -DSTM32F7_DISCOVERY -DHSE_VALUE="25000000" -DRCC_OSCILLATORTYPE="RCC_OSCILLATORTYPE_HSE" -DRCC_PLLSOURCE="RCC_PLLSOURCE_HSE" -DRCC_PLLM="25" -DRCC_PLLN="432" -DRCC_PLLP="2" -DRCC_PLLQ="9"
+-o .\targets\stm32f7_discovery\stm32f7xx_hal_rcc_ex.o --omf_browse .\targets\stm32f7_discovery\stm32f7xx_hal_rcc_ex.crf --depend .\targets\stm32f7_discovery\stm32f7xx_hal_rcc_ex.d --feedback ".\Targets\STM32F7_DISCOVERY\project.fed" "..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c"

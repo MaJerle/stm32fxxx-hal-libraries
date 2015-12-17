@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/05/library-62-fast-fourier-transform-fft-for-stm32f4xx/
+ * @link    http://stm32f4-discovery.com/2015/07/hal-library-14-fast-fourier-transform-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,12 +42,62 @@ extern "C" {
 
 /**
  * @defgroup TM_FFT
- * @brief    FFT library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/05/library-62-fast-fourier-transform-fft-for-stm32f4xx/
+ * @brief    FFT library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/07/hal-library-14-fast-fourier-transform-for-stm32fxxx/
  * @{
  *
  * This library allows you to calculate FFT in your signal.
  * 
- * For more info about FFT and how it works on Cortex-M4, you should take a look at ARM DSP documentation
+ * For more info about FFT and how it works on Cortex-M4, you should take a look at ARM DSP documentation.
+ *
+ * \par ARM dependencies
+ *
+ * Some libraries are needed in order to start with ARM CMSIS MATH Library.
+ *
+\verbatim
+- arm_const_structs.c, available in “CMSIS\DSP_Lib\Source\CommonTables”
+- arm_cortexM4lf_math.lib for ARM compiler, available in “CMSIS\Lib\ARM”
+- CMSIS folder can be found if you download these libraries directly from ARM.com or if you download Standard Perihperal Drivers for STM32F4xx from ST.com site.
+\endverbatim
+ *
+ * \par ARM MATH
+ *
+ * ARM MATH is a library provided from ARM and is the same for all Cortex families, except that you have to provide some informations to library.
+ * 
+ * In your global compiler defines, you should add these 2 lines:
+\code
+//Use ARM MATH for Cortex-M4
+#define ARM_MATH_CM4
+//Use ARM MATH for Cortex-M7
+#define ARM_MATH_CM7
+//Use ARM MATH for Cortex-M0
+#define ARM_MATH_CM0
+//Use ARM MATH for Cortex-M0+
+#define ARM_MATH_CM0PLUS
+
+//Set define if FPU presents on device. On F4xx and F7xx it is available
+#define __FPU_PRESENT   1
+\endcode
+ * \par FFT Samples count
+ *
+ * ARM FFT library allows you to use specific number of samples for data calculation.
+ *
+ * These values can be every number which is <b>power of 2</b> from <b>2^4 and 2^12</b>. So, 9 different FFT length options. This number is passed into function when you initialize FFT with @ref TM_FFT_Init_F32.
+ *
+ * \par FFT input/output buffers
+ *
+ * FFT works in a way that you first fill input buffer with samples and then you process them and you got samples in output buffer.
+ * Complex (CFFT) Fast Fourier Transform, which is also used behind the scenes in my library so uses real and imaginary part in input buffer and only real part is calculated to output buffer.
+ *
+ * For this reason, input buffer <b>HAVE TO</b> be <b>2 * FFT_Size</b> in length and output buffer HAVE TO be <b>FFT_Size</b> in length where FFT_Size is the same as FFT_Samples count explained above.
+ *
+ * Library is able to use @ref malloc() to allocate memory for you.
+ * You just need to enable this feature when you initialize FFT module and everything will be done for you.
+ *
+ * \note  You have to make sure that you have enough HEAP memory available for malloc, otherwise malloc will fail and you will not get anything.
+ *
+ * For example, if you have <b>512</b> length FFT size, then input buffer must be <b>2 * 512 = 1024</b> samples of float 32 and output buffer is 512 samples of float 32.
+ * In common, this is <b>1536</b> samples of float32 which is 4-bytes long in memory.
+ * Together this would be 6144 Bytes of HEAP memory.
  * 
  * \par Changelog
  *

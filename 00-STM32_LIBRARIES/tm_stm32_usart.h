@@ -46,7 +46,16 @@ extern "C" {
  * @{
  *
  * <b>Library works for all 8 U(S)ARTs which are supported on STM32Fxxx devices.</b>
+ *
+ * \par Supported devices
  * 
+ * Library supported STM32F4xx and STM32F7xx devices as well as STM32F0xx.
+ *
+ * - STM32F4xx and STM32F7xx has the same U(S)ART names: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8 where possible.
+ * - STM32F0xx has a little bit different names: USART1, USART2, USART3, USART4, USART5, USART6, USART7, USART8. ALl of them are <b>USART</b> modules.
+ *
+ * @note  All parameters in this library uses the same names as USART name in STM32 series.
+ *
  * \par USART receive interrupt handlers
  *
  * Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer.
@@ -100,6 +109,12 @@ void TM_X_ReceiveHandler(uint8_t c) {
  *   - TM_USART6_BUFFER_SIZE
  *   - TM_UART7_BUFFER_SIZE
  *   - TM_UART8_BUFFER_SIZE
+ *
+ *   - STM32F0xx related:
+ *   - TM_USART4_BUFFER_SIZE
+ *   - TM_USART5_BUFFER_SIZE
+ *   - TM_USART7_BUFFER_SIZE
+ *   - TM_USART8_BUFFER_SIZE
  *	
  * \par Custom string delimiter for @ref TM_USART_Gets() function
  * 
@@ -111,6 +126,7 @@ void TM_X_ReceiveHandler(uint8_t c) {
              |PINSPACK 1     |PINSPACK 2     |PINSPACK 3	
 U(S)ARTX     |TX     RX      |TX     RX      |TX     RX
 
+//STM32F4xx and STM32F7xx
 USART1       |PA9    PA10    |PB6    PB7     |-      -
 USART2       |PA2    PA3     |PD5    PD6     |-      -
 USART3       |PB10   PB11    |PC10   PC11    |PD8    PD9
@@ -119,6 +135,12 @@ UART5        |PC12   PD2     |-      -       |-      -
 USART6       |PC6    PC7     |PG14   PG9     |-      -
 UART7        |PE8    PE7     |PF7    PF6     |-      -
 UART8        |PE1    PE0     |-      -       |-      -
+
+//Additions for STM32F0xx
+USART4       |PA0    PA1     |PC10   PC11    |PE8    PE9
+USART5       |PB3    PB4     |PC12   PD2     |PE10   PE11
+USART7       |PC0    PC1     |PC6    PC7     |PF2    PF3
+USART8       |PC2    PC3     |PC8    PC9     |PD13   PD14
 \endverbatim
  *
  * In case these pins are not good for you, you can use
@@ -132,28 +154,28 @@ UART8        |PE1    PE0     |-      -       |-      -
  * 
  * Open \ref defines.h file, copy define you want to change and fill settings
 \code
-//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
+//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8, for STM32F0xx additions: USART4, USART5, USART7, USART8
 //Set flow control
-#define TM_X_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
+#define TM_X_HARDWARE_FLOW_CONTROL    TM_USART_HardwareFlowControl_None
 //Set mode
-#define TM_X_MODE						USART_MODE_TX_RX
+#define TM_X_MODE                     USART_MODE_TX_RX
 //Set parity
-#define TM_X_PARITY						USART_PARITY_NONE
+#define TM_X_PARITY                   USART_PARITY_NONE
 //Set stopbits
-#define TM_X_STOP_BITS					USART_STOPBITS_1
+#define TM_X_STOP_BITS                USART_STOPBITS_1
 //Set USART datasize
-#define TM_X_WORD_LENGTH				UART_WORDLENGTH_8B
+#define TM_X_WORD_LENGTH              UART_WORDLENGTH_8B
 \endcode
  *
  * \par Changelog
  *
 \verbatim
+ Version 1.0
+   - First release
+   
  Version 1.1
   - September 03, 2015
   - Added support for buffers which now requires separate library for USART
- 
- Version 1.0
-   - First release
 \endverbatim
  *
  * \b Dependencies
@@ -243,6 +265,20 @@ typedef enum {
 #endif
 #ifndef TM_UART8_BUFFER_SIZE
 #define TM_UART8_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+
+/* STM32F0xx related */
+#ifndef TM_USART4_BUFFER_SIZE
+#define TM_USART4_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_USART5_BUFFER_SIZE
+#define TM_USART5_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_USART7_BUFFER_SIZE
+#define TM_USART7_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_USART8_BUFFER_SIZE
+#define TM_USART8_BUFFER_SIZE				TM_USART_BUFFER_SIZE
 #endif
 
 /* NVIC Global Priority */
@@ -386,6 +422,76 @@ typedef enum {
 #ifndef TM_UART8_WORD_LENGTH
 #define TM_UART8_WORD_LENGTH				UART_WORDLENGTH_8B
 #endif
+
+/* STM32F0xx related */
+/* USART4 default settings */
+#ifndef TM_USART4_HARDWARE_FLOW_CONTROL
+#define TM_USART4_HARDWARE_FLOW_CONTROL   TM_USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART4_MODE
+#define TM_USART4_MODE            USART_MODE_TX_RX
+#endif
+#ifndef TM_USART4_PARITY
+#define TM_USART4_PARITY          USART_PARITY_NONE
+#endif
+#ifndef TM_USART4_STOP_BITS
+#define TM_USART4_STOP_BITS         USART_STOPBITS_1
+#endif
+#ifndef TM_USART4_WORD_LENGTH
+#define TM_USART4_WORD_LENGTH       UART_WORDLENGTH_8B
+#endif
+
+/* USART5 default settings */
+#ifndef TM_USART5_HARDWARE_FLOW_CONTROL
+#define TM_USART5_HARDWARE_FLOW_CONTROL   TM_USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART5_MODE
+#define TM_USART5_MODE            USART_MODE_TX_RX
+#endif
+#ifndef TM_USART5_PARITY
+#define TM_USART5_PARITY          USART_PARITY_NONE
+#endif
+#ifndef TM_USART5_STOP_BITS
+#define TM_USART5_STOP_BITS         USART_STOPBITS_1
+#endif
+#ifndef TM_USART5_WORD_LENGTH
+#define TM_USART5_WORD_LENGTH       UART_WORDLENGTH_8B
+#endif
+
+/* USART7 default settings */
+#ifndef TM_USART7_HARDWARE_FLOW_CONTROL
+#define TM_USART7_HARDWARE_FLOW_CONTROL   TM_USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART7_MODE
+#define TM_USART7_MODE            USART_MODE_TX_RX
+#endif
+#ifndef TM_USART7_PARITY
+#define TM_USART7_PARITY          USART_PARITY_NONE
+#endif
+#ifndef TM_USART7_STOP_BITS
+#define TM_USART7_STOP_BITS         USART_STOPBITS_1
+#endif
+#ifndef TM_USART7_WORD_LENGTH
+#define TM_USART7_WORD_LENGTH       UART_WORDLENGTH_8B
+#endif
+
+/* USART8 default settings */
+#ifndef TM_USART8_HARDWARE_FLOW_CONTROL
+#define TM_USART8_HARDWARE_FLOW_CONTROL   TM_USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART8_MODE
+#define TM_USART8_MODE            USART_MODE_TX_RX
+#endif
+#ifndef TM_USART8_PARITY
+#define TM_USART8_PARITY          USART_PARITY_NONE
+#endif
+#ifndef TM_USART8_STOP_BITS
+#define TM_USART8_STOP_BITS         USART_STOPBITS_1
+#endif
+#ifndef TM_USART8_WORD_LENGTH
+#define TM_USART8_WORD_LENGTH       UART_WORDLENGTH_8B
+#endif
+
 
 /* Define ISR if not already */
 #if !defined(USART_ISR_RXNE)

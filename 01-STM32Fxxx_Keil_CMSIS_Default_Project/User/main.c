@@ -30,6 +30,9 @@ int main(void) {
 	
 	/* Init button */
 	TM_DISCO_ButtonInit();
+
+	/* Init delay */
+	TM_DELAY_Init();
 	
 	while (1) {
 		/* Toggle leds */

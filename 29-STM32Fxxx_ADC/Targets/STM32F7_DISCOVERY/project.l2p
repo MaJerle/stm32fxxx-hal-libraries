@@ -1,0 +1,26 @@
+--cpu Cortex-M7.fp.sp --fpu=FPv4-SP
+".\targets\stm32f7_discovery\startup_stm32f746xx.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_adc.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_adc_ex.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_dma.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_dma_ex.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_gpio.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_pwr.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_pwr_ex.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_rcc.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_rcc_ex.o"
+".\targets\stm32f7_discovery\stm32f7xx_hal_cortex.o"
+".\targets\stm32f7_discovery\tm_stm32_rcc.o"
+".\targets\stm32f7_discovery\tm_stm32_gpio.o"
+".\targets\stm32f7_discovery\tm_stm32_delay.o"
+".\targets\stm32f7_discovery\tm_stm32_disco.o"
+".\targets\stm32f7_discovery\tm_stm32_buffer.o"
+".\targets\stm32f7_discovery\tm_stm32_adc.o"
+".\targets\stm32f7_discovery\main.o"
+".\targets\stm32f7_discovery\stm32fxxx_it.o"
+".\targets\stm32f7_discovery\system_stm32f7xx.o"
+--library_type=microlib --strict --scatter ".\Targets\STM32F7_DISCOVERY\project.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\project.map" -o .\Targets\STM32F7_DISCOVERY\project.axf

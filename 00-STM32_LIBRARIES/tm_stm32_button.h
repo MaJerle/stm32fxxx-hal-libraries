@@ -83,6 +83,11 @@ extern "C" {
 #define BUTTON_MAX_BUTTONS        10
 #endif
 
+/* Time for debounce */
+#ifndef BUTTON_DEBOUNCE_TIME
+#define BUTTON_DEBOUNCE_TIME      5
+#endif
+
 /* Number of milliseconds for normal press detection */
 #ifndef BUTTON_NORMAL_PRESS_TIME
 #define BUTTON_NORMAL_PRESS_TIME  100
@@ -91,6 +96,16 @@ extern "C" {
 /* Number of milliseconds for long press detection */
 #ifndef BUTTON_LONG_PRESS_TIME
 #define BUTTON_LONG_PRESS_TIME    1500
+#endif
+
+/* Library allocation function */
+#ifndef LIB_ALLOC_FUNC
+#define LIB_ALLOC_FUNC            malloc
+#endif
+
+/* Library free function */
+#ifndef LIB_FREE_FUNC
+#define LIB_FREE_FUNC             free
 #endif
 
 /**
@@ -107,13 +122,14 @@ extern "C" {
  * @brief  Button possible press types
  */
 typedef enum {
-	TM_BUTTON_PressType_OnPressed = 0x00, /*!< Button pressed */
+  TM_BUTTON_PressType_OnPressed = 0x00, /*!< Button pressed */
+  TM_BUTTON_PressType_Debounce,         /*!< Button debounce */
 	TM_BUTTON_PressType_Normal,           /*!< Normal press type, released */
 	TM_BUTTON_PressType_Long              /*!< Long press type */
 } TM_BUTTON_PressType_t;
 
 /** 
- * @brief  Button private structure 
+ * @brief  Button structure 
  */
 typedef struct _TM_BUTTON_t {
 	GPIO_TypeDef* GPIOx;                                                /*!< GPIOx PORT for button */
@@ -123,6 +139,7 @@ typedef struct _TM_BUTTON_t {
 	uint32_t StartTime;                                                 /*!< Time when button was pressed */
 	uint8_t LastStatus;                                                 /*!< Button status on last check */
 	uint8_t State;                                                      /*!< Current button state */
+	uint16_t PressDebounceTime;                                         /*!< Time in ms for normal press for button */
 	uint16_t PressNormalTime;                                           /*!< Time in ms for normal press for button */
 	uint16_t PressLongTime;                                             /*!< Time in ms for long press for button */
 } TM_BUTTON_t;
