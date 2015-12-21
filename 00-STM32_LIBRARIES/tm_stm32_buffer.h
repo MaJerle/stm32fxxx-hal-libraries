@@ -129,7 +129,6 @@ typedef struct _TM_BUFFER_t {
 	uint8_t* Buffer;         /*!< Pointer to buffer data array, DO NOT MOVE OFFSET, 3 */
 	uint8_t Flags;           /*!< Flags for buffer, DO NOT MOVE OFFSET, 4 */
 	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string, DO NOT MOVE OFFSET, 5 */
-	uint16_t Num;            /*!< Number of elements in buffer */
 	void* UserParameters;    /*!< Pointer to user value if needed */
 } TM_BUFFER_t;
 

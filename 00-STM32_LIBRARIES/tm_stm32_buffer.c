@@ -83,13 +83,20 @@ uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	}
 	
 	/* Go through all elements */
-	while (count-- && Buffer->Num < Buffer->Size) {
+	while (count--) {
+		/* Check if buffer full */
+		if (
+			(Buffer->In == (Buffer->Out - 1)) ||
+			(Buffer->Out == 0 && Buffer->In == (Buffer->Size - 1))
+		) {
+			break;
+		}
+		
 		/* Add to buffer */
 		Buffer->Buffer[Buffer->In] = *Data++;
 		
 		/* Increase pointers */
 		Buffer->In++;
-		Buffer->Num++;
 		i++;
 		
 		/* Check input overflow */
@@ -116,13 +123,17 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	}
 	
 	/* Go through all elements */
-	while (count-- && Buffer->Num > 0) {
+	while (count--) {
+		/* Check if pointer the same = buffer is empty */
+		if (Buffer->Out == Buffer->In) {
+			break;
+		}
+		
 		/* Save to user buffer */
 		*Data++ = Buffer->Buffer[Buffer->Out];
 		
 		/* Increase pointers */
 		Buffer->Out++;
-		Buffer->Num--;
 		i++;
 
 		/* Check output overflow */
@@ -136,23 +147,66 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 }
 
 uint16_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer) {
+	uint32_t size, in, out;
+	
 	/* Check buffer structure */
 	if (Buffer == NULL) {
 		return 0;
 	}
 	
-	/* Return number of free memory in buffer */
-	return (Buffer->Size - Buffer->Num);
+	/* Save values */
+	in = Buffer->In;
+	out = Buffer->Out;
+	
+	/* Check if the same */
+	if (in == out) {
+		size = Buffer->Size;
+	}
+
+	/* Check normal mode */
+	if (out > in) {
+		size = Buffer->Size - (out - in);
+	}
+	
+	/* Check if overflow mode */
+	if (in > out) {
+		size = Buffer->Size - (in - out);
+	}
+	
+	/* Return free memory */
+	return size;
 }
 
 uint16_t TM_BUFFER_GetFull(TM_BUFFER_t* Buffer) {
+	uint32_t in, out, size;
+	
 	/* Check buffer structure */
 	if (Buffer == NULL) {
 		return 0;
 	}
 	
+	/* Save values */
+	in = Buffer->In;
+	out = Buffer->Out;
+	
+	/* Pointer are same? */
+	if (in == out) {
+		size = 0;
+	}
+	
+	/* Check pointers and return values */
+	/* Buffer is not in overflow mode */
+	if (in > out) {
+		size = in - out;
+	}
+	
+	/* Buffer is in overflow mode */
+	if (out > in) {
+		size = Buffer->Size - (out - in);
+	}
+	
 	/* Return number of elements in buffer */
-	return Buffer->Num;
+	return size;
 }
 
 void TM_BUFFER_Reset(TM_BUFFER_t* Buffer) {
@@ -164,7 +218,6 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer) {
 	/* Reset values */
 	Buffer->In = 0;
 	Buffer->Out = 0;
-	Buffer->Num = 0;
 }
 
 uint16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
