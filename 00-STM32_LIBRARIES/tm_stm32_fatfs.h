@@ -30,6 +30,12 @@
 #ifndef TM_FATFS_H
 #define TM_FATFS_H 100
 
+/* C++ detection */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /**
  * @addtogroup TM_STM32Fxxx_HAL_Libraries
  * @{
@@ -453,6 +459,11 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
 /**
  * @}
  */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

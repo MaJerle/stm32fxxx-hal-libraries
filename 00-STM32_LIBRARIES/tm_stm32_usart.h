@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/07/hal-library-07-usart-for-stm32fxxx
- * @version v1.1
+ * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   USART Library for STM32Fxxx with receive interrupt
@@ -28,7 +28,7 @@
 \endverbatim
  */
 #ifndef TM_USART_H
-#define TM_USART_H 110
+#define TM_USART_H 120
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -176,6 +176,11 @@ USART8       |PC2    PC3     |PC8    PC9     |PD13   PD14
  Version 1.1
   - September 03, 2015
   - Added support for buffers which now requires separate library for USART
+   
+ Version 1.2
+  - December 26, 2015
+  - On reinitialization USART with other baudrate, USART didn't work properly and needs some time to start.
+  - With forcing register reset this has been fixed
 \endverbatim
  *
  * \b Dependencies
@@ -613,10 +618,10 @@ uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize);
  * @param  *USARTx: Pointer to USARTx peripheral you will use
  * @param  c: character to check if it is in USARTx's buffer
  * @retval Character status:
- *            - 0: Character was not found
- *            - > 0: Character has been found in buffer
+ *            -  < 0: Character was not found
+ *            - >= 0: Character has been found in buffer
  */
-uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c);
+int16_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c);
 
 /**
  * @brief  Checks if internal USARTx buffer is empty
@@ -635,6 +640,13 @@ uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
  *            - > 0: Buffer is full
  */
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
+
+/**
+ * @brief  Gets number of bytes in USART buffer
+ * @param  *USARTx: Pointer to USARTx peripheral you will use
+ * @retval Number of elements in buffer
+ */
+uint16_t TM_USART_BufferCount(USART_TypeDef* USARTx);
 
 /**
  * @brief  Clears internal USART buffer
@@ -657,10 +669,10 @@ void TM_USART_SetCustomStringEndCharacter(USART_TypeDef* USARTx, uint8_t Charact
  * @param  *USARTx: Pointer to USARTx peripheral you will use
  * @param  *str: String to be searched
  * @retval Search status:
- *            - 0: String is not in buffer
- *            - > 0: String is in buffer
+ *            -  < 0: String is not in buffer
+ *            - >= 0: String is in buffer
  */
-uint8_t TM_USART_FindString(USART_TypeDef* USARTx, char* str);
+int16_t TM_USART_FindString(USART_TypeDef* USARTx, char* str);
 
 /**
  * @brief  Callback for custom pins initialization for USARTx.

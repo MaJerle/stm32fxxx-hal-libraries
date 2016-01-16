@@ -7,3 +7,6 @@ del /s *.tilz0R
 del /s *.map
 del /s *.lnp
 del /s *.iex
+del /s *.mk
+del /s *.elf
+del /s *.list

@@ -55,7 +55,7 @@ uint32_t TM_CRC_Calculate8(uint8_t* arr, uint32_t count, uint8_t reset) {
 	/* Calculate */
 	while (cnt--) {
 		/* Set new value */
-		CRC->DR = *arr++;
+		*((uint8_t *)&CRC->DR) = *arr++;
 	}
 	
 	/* Return data */
@@ -89,7 +89,7 @@ uint32_t TM_CRC_Calculate16(uint16_t* arr, uint32_t count, uint8_t reset) {
 	/* Calculate */
 	while (cnt--) {
 		/* Set new value */
-		CRC->DR = *arr++;
+		*((uint8_t *)&CRC->DR) = *arr++;
 	}
 	
 	/* Return data */

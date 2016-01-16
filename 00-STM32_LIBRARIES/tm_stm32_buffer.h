@@ -28,7 +28,7 @@
 \endverbatim
  */
 #ifndef TM_BUFFER_H
-#define TM_BUFFER_H 100
+#define TM_BUFFER_H 130
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -77,6 +77,11 @@ extern "C" {
  Version 1.2
   - October 25, 2015
   - Parameter UseMalloc removed from TM_BUFFER_Init function.
+
+ Version 1.3
+  - December 25, 2015
+  - Added option for writing strings to buffer
+  - Write/Read is now interrupt safe
 \endverbatim
  *
  * \par Dependencies
@@ -86,11 +91,12 @@ extern "C" {
  - defines.h
 \endverbatim
  */
-
-#include "stm32fxxx_hal.h"
 #include "defines.h"
 #include "stdlib.h"
 #include "string.h"
+#if defined(USE_HAL_DRIVER)
+#include "stm32fxxx_hal.h"
+#endif
 
 /**
  * @defgroup TM_BUFFER_Macros
@@ -149,7 +155,7 @@ typedef struct _TM_BUFFER_t {
  * @param  *BufferPtr: Pointer to array for buffer storage. Its length should be equal to @param Size parameter.
  *           If NULL is passed as parameter, @ref malloc will be used to allocate memory on heap.
  * @retval Buffer initialization status:
- *            - 0: Buffer iintialized OK
+ *            - 0: Buffer initialized OK
  *            - > 0: Buffer initialization error. Malloc has failed with allocation
  */
 uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr);
@@ -206,11 +212,11 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer);
  * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
  * @param  uint8_t Element: Element to check
  * @retval Status of element:
- *            - 0: Element was not found
- *            - > 0: Element found, location in buffer + 1 is returned
+ *            -  < 0: Element was not found
+ *            - >= 0: Element found, location in buffer is returned
  *                   Ex: If value 1 is returned, it means 1 read from buffer and your element will be returned
  */
-uint16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
+int16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
 
 /**
  * @brief  Checks if specific data sequence are stored in buffer
@@ -218,11 +224,10 @@ uint16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
  * @param  uint8_t* Data: Array with data sequence
  * @param  Size: Data size in units of bytes
  * @retval Status of sequence:
- *            - 0: Sequence was not found
- *            - > 0: Sequence found, location in buffer + 1 is returned
- *                   Ex: If value 1 is returned, it means your sequence starts at next read, if 5 is returned, 4 reads should be done before sequence starts.
+ *            -  < 0: Sequence was not found
+ *            - >= 0: Sequence found, start sequence location in buffer is returned
  */
-uint16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size);
+int16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size);
 
 /**
  * @brief  Sets string delimiter character when reading from buffer as string
@@ -233,6 +238,14 @@ uint16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size);
 #define TM_BUFFER_SetStringDelimiter(Buffer, StrDel)  ((Buffer)->StringDelimiter = (StrDel))
 
 /**
+ * @brief  Writes string formatted data to buffer
+ * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
+ * @param  *buff: Pointer to string to write 
+ * @retval Number of characters written
+ */
+uint16_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff);
+
+/**
  * @brief  Reads from buffer as string
  * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
  * @param  *buff: Pointer to buffer where string will be stored
@@ -240,6 +253,17 @@ uint16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size);
  * @retval Number of characters in string
  */
 uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize);
+
+/**
+ * @brief  Checks if character exists in location in buffer
+ * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
+ * @param  pos: Position in buffer, starting from 0
+ * @param  *element: Pointer to save value at desired position to be stored into
+ * @retval Check status:
+ *            - 0: Buffer is not so long as position desired
+ *            - > 0: Position to check was inside buffer data size
+ */
+int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint16_t pos, uint8_t* element);
 
 /**
  * @}

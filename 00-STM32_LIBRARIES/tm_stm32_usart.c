@@ -218,7 +218,7 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
 static void TM_USART_INT_InsertToBuffer(TM_BUFFER_t* u, uint8_t c);
-static void TM_USART_INT_ClearAllFlags(USART_TypeDef* USARTx);
+static void TM_USART_INT_ClearAllFlags(USART_TypeDef* USARTx, IRQn_Type irq);
 static TM_BUFFER_t* TM_USART_INT_GetUSARTBuffer(USART_TypeDef* USARTx);
 static uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx);
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
@@ -405,11 +405,11 @@ void TM_USART_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t count) {
 	}
 }
 
-uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c) {
+int16_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c) {
 	return TM_BUFFER_FindElement(TM_USART_INT_GetUSARTBuffer(USARTx), c);
 }
 
-uint8_t TM_USART_FindString(USART_TypeDef* USARTx, char* str) {
+int16_t TM_USART_FindString(USART_TypeDef* USARTx, char* str) {
 	return TM_BUFFER_Find(TM_USART_INT_GetUSARTBuffer(USARTx), (uint8_t *)str, strlen(str));
 }
 
@@ -419,6 +419,10 @@ uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
 
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx) {
 	return TM_BUFFER_GetFree(TM_USART_INT_GetUSARTBuffer(USARTx)) == 0;
+}
+
+uint16_t TM_USART_BufferCount(USART_TypeDef* USARTx) {
+	return TM_BUFFER_GetFull(TM_USART_INT_GetUSARTBuffer(USARTx));
 }
 
 void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
@@ -853,7 +857,7 @@ void USART1_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(USART1);
+	TM_USART_INT_ClearAllFlags(USART1, IRQ_USART1);
 }
 #endif
 
@@ -871,7 +875,7 @@ void USART2_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(USART2);
+	TM_USART_INT_ClearAllFlags(USART2, IRQ_USART2);
 }
 #endif
 
@@ -889,7 +893,7 @@ void USART3_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(USART3);
+	TM_USART_INT_ClearAllFlags(USART3, IRQ_USART3);
 }
 #endif
 
@@ -907,7 +911,7 @@ void UART4_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(UART4);
+	TM_USART_INT_ClearAllFlags(UART4, IRQ_UART4);
 }
 #endif
 
@@ -925,7 +929,7 @@ void UART5_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(UART5);
+	TM_USART_INT_ClearAllFlags(UART5, IRQ_UART5);
 }
 #endif
 
@@ -943,7 +947,7 @@ void USART6_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(USART6);
+	TM_USART_INT_ClearAllFlags(USART6, IRQ_USART6);
 }
 #endif
 
@@ -961,7 +965,7 @@ void UART7_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(UART7);
+	TM_USART_INT_ClearAllFlags(UART7, IRQ_UART7);
 }
 #endif
 
@@ -979,7 +983,7 @@ void UART8_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(UART8);
+	TM_USART_INT_ClearAllFlags(UART8, IRQ_UART8);
 }
 #endif
 
@@ -1053,12 +1057,12 @@ void USART3_8_IRQHandler(void) {
 	}
 	
 	/* Clear all USART flags */
-	TM_USART_INT_ClearAllFlags(USART3);
-	TM_USART_INT_ClearAllFlags(USART4);
-	TM_USART_INT_ClearAllFlags(USART5);
-	TM_USART_INT_ClearAllFlags(USART6);
-	TM_USART_INT_ClearAllFlags(USART7);
-	TM_USART_INT_ClearAllFlags(USART8);
+	TM_USART_INT_ClearAllFlags(USART3, IRQ_USART3);
+	TM_USART_INT_ClearAllFlags(USART4, IRQ_USART4);
+	TM_USART_INT_ClearAllFlags(USART5, IRQ_USART5);
+	TM_USART_INT_ClearAllFlags(USART6, IRQ_USART6);
+	TM_USART_INT_ClearAllFlags(USART7, IRQ_USART7);
+	TM_USART_INT_ClearAllFlags(USART8, IRQ_USART8);
 }
 #elif defined(USART6)
 void USART3_6_IRQHandler(void) {
@@ -1164,6 +1168,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART1) {
 		/* Enable USART clock */
 		__HAL_RCC_USART1_CLK_ENABLE();
+		__HAL_RCC_USART1_FORCE_RESET();
+		__HAL_RCC_USART1_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART1_InitPins(pinspack);
@@ -1176,6 +1182,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART2) {
 		/* Enable USART clock */
 		__HAL_RCC_USART2_CLK_ENABLE();
+		__HAL_RCC_USART2_FORCE_RESET();
+		__HAL_RCC_USART2_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART2_InitPins(pinspack);
@@ -1188,6 +1196,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART3) {
 		/* Enable USART clock */
 		__HAL_RCC_USART3_CLK_ENABLE();
+		__HAL_RCC_USART3_FORCE_RESET();
+		__HAL_RCC_USART3_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART3_InitPins(pinspack);
@@ -1200,6 +1210,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == UART4) {
 		/* Enable UART clock */
 		__HAL_RCC_UART4_CLK_ENABLE();
+		__HAL_RCC_UART4_FORCE_RESET();
+		__HAL_RCC_UART4_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_UART4_InitPins(pinspack);
@@ -1212,6 +1224,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == UART5) {
 		/* Enable UART clock */
 		__HAL_RCC_UART5_CLK_ENABLE();
+		__HAL_RCC_UART5_FORCE_RESET();
+		__HAL_RCC_UART5_RELEASE_RESET();
 
 		/* Init pins */
 		TM_UART5_InitPins(pinspack);
@@ -1224,6 +1238,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART6) {
 		/* Enable UART clock */
 		__HAL_RCC_USART6_CLK_ENABLE();
+		__HAL_RCC_USART6_FORCE_RESET();
+		__HAL_RCC_USART6_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART6_InitPins(pinspack);
@@ -1236,6 +1252,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == UART7) {
 		/* Enable UART clock */
 		__HAL_RCC_UART7_CLK_ENABLE();
+		__HAL_RCC_UART7_FORCE_RESET();
+		__HAL_RCC_UART7_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_UART7_InitPins(pinspack);
@@ -1248,6 +1266,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == UART8) {
 		/* Enable UART clock */
 		__HAL_RCC_UART8_CLK_ENABLE();
+		__HAL_RCC_UART8_FORCE_RESET();
+		__HAL_RCC_UART8_RELEASE_RESET();
 
 		/* Init pins */
 		TM_UART8_InitPins(pinspack);
@@ -1262,6 +1282,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART4) {
 		/* Enable UART clock */
 		__HAL_RCC_USART4_CLK_ENABLE();
+		__HAL_RCC_USART4_FORCE_RESET();
+		__HAL_RCC_USART4_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART4_InitPins(pinspack);
@@ -1274,6 +1296,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART5) {
 		/* Enable UART clock */
 		__HAL_RCC_USART5_CLK_ENABLE();
+		__HAL_RCC_USART5_FORCE_RESET();
+		__HAL_RCC_USART5_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART5_InitPins(pinspack);
@@ -1286,6 +1310,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART7) {
 		/* Enable UART clock */
 		__HAL_RCC_USART7_CLK_ENABLE();
+		__HAL_RCC_USART7_FORCE_RESET();
+		__HAL_RCC_USART7_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART7_InitPins(pinspack);
@@ -1298,6 +1324,8 @@ static void TM_USART_INT_Init(
 	if (USARTx == USART8) {
 		/* Enable UART clock */
 		__HAL_RCC_USART8_CLK_ENABLE();
+		__HAL_RCC_USART8_FORCE_RESET();
+		__HAL_RCC_USART8_RELEASE_RESET();
 		
 		/* Init pins */
 		TM_USART8_InitPins(pinspack);
@@ -1315,18 +1343,13 @@ static void TM_USART_INT_Init(
 	UARTHandle.Init.Parity = Parity;
 	UARTHandle.Init.StopBits = StopBits;
 	UARTHandle.Init.WordLength = WordLength;
+	UARTHandle.Init.OverSampling = UART_OVERSAMPLING_16;
 #if defined(STM32F0xx)
 	UARTHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
 #endif
 	
-	/* Disable if not already */
-	USARTx->CR1 &= ~USART_CR1_UE;
-	
-	/* Init */
-	HAL_UART_Init(&UARTHandle);
-	
-	/* Enable RX interrupt */
-	USARTx->CR1 |= USART_CR1_RXNEIE;
+	/* Disable IRQ */
+	HAL_NVIC_DisableIRQ(irq);
 
 	/* Set priority */
 	HAL_NVIC_SetPriority(irq, USART_NVIC_PRIORITY, TM_USART_INT_GetSubPriority(USARTx));
@@ -1334,12 +1357,18 @@ static void TM_USART_INT_Init(
 	/* Enable interrupt */
 	HAL_NVIC_EnableIRQ(irq);
 	
-	/* Enable USART peripheral */
-	USARTx->CR1 |= USART_CR1_UE;
+	/* Clear interrupt */
+	HAL_NVIC_ClearPendingIRQ(irq);
+	
+	/* Init USART */
+	HAL_UART_Init(&UARTHandle);
+	
+	/* Enable RX interrupt */
+	USARTx->CR1 |= USART_CR1_RXNEIE;
 }
 
 static UART_HandleTypeDef UART_Handle;
-static void TM_USART_INT_ClearAllFlags(USART_TypeDef* USARTx) {
+static void TM_USART_INT_ClearAllFlags(USART_TypeDef* USARTx, IRQn_Type irq) {
 	UART_Handle.Instance = USARTx;
 	
 #ifdef __HAL_UART_CLEAR_PEFLAG
@@ -1357,5 +1386,8 @@ static void TM_USART_INT_ClearAllFlags(USART_TypeDef* USARTx) {
 #ifdef __HAL_UART_CLEAR_IDLEFLAG
 	__HAL_UART_CLEAR_IDLEFLAG(&UART_Handle);
 #endif
+	
+	/* Clear IRQ bit */
+	HAL_NVIC_ClearPendingIRQ(irq);
 }
 

@@ -1,17 +1,17 @@
-/**	
+/**
  * |----------------------------------------------------------------------
  * | Copyright (C) Tilen Majerle, 2015
- * | 
+ * |
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by
  * | the Free Software Foundation, either version 3 of the License, or
  * | any later version.
- * |  
+ * |
  * | This program is distributed in the hope that it will be useful,
  * | but WITHOUT ANY WARRANTY; without even the implied warranty of
  * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * | GNU General Public License for more details.
- * | 
+ * |
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
@@ -90,7 +90,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReloadC
 	
 	/* Return pointer to user */
 	return tmp;
-} 
+}
 
 void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer) {
 	uint8_t i;
@@ -163,7 +163,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerReset(TM_DELAY_Timer_t* Timer) {
 TM_DELAY_Timer_t* TM_DELAY_TimerAutoReloadCommand(TM_DELAY_Timer_t* Timer, uint8_t AutoReloadCommand) {
 	/* Set new auto reload command */
 	Timer->Flags.F.AREN = AutoReloadCommand ? 1 : 0;
-	
+
 	/* Return pointer */
 	return Timer;
 }
@@ -211,15 +211,15 @@ void HAL_IncTick(void) {
 			if (CustomTimers.Timers[i]->CNT) {
 				CustomTimers.Timers[i]->CNT--;
 			}
-			
+
 			/* Check if count is zero */
 			if (CustomTimers.Timers[i]->CNT == 0) {
 				/* Call user callback function */
 				CustomTimers.Timers[i]->Callback(CustomTimers.Timers[i], CustomTimers.Timers[i]->UserParameters);
-				
+
 				/* Set new counter value */
 				CustomTimers.Timers[i]->CNT = CustomTimers.Timers[i]->ARR;
-				
+
 				/* Disable timer if auto reload feature is not used */
 				if (!CustomTimers.Timers[i]->Flags.F.AREN) {
 					/* Disable counter */
