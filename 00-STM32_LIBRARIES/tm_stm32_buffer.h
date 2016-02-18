@@ -82,6 +82,10 @@ extern "C" {
   - December 25, 2015
   - Added option for writing strings to buffer
   - Write/Read is now interrupt safe
+  
+ Version 1.4
+  - February 18, 2016
+  - Added memory copy on buffer read/write operations for fastest speed
 \endverbatim
  *
  * \par Dependencies
@@ -94,9 +98,7 @@ extern "C" {
 #include "defines.h"
 #include "stdlib.h"
 #include "string.h"
-#if defined(USE_HAL_DRIVER)
 #include "stm32fxxx_hal.h"
-#endif
 
 /**
  * @defgroup TM_BUFFER_Macros
@@ -113,6 +115,10 @@ extern "C" {
 #endif
 #ifndef LIB_FREE_FUNC
 #define LIB_FREE_FUNC          free
+#endif
+
+#ifndef BUFFER_FAST 
+#define BUFFER_FAST            1
 #endif
 
 /**

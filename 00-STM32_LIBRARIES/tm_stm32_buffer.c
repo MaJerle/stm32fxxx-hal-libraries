@@ -70,10 +70,14 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer) {
 }
 
 uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
-	uint8_t i = 0;
-	
+	uint32_t i = 0;
+	uint32_t free;
+#if BUFFER_FAST
+	uint32_t tocopy;
+#endif
+
 	/* Check buffer structure */
-	if (Buffer == NULL) {
+	if (Buffer == NULL || count == 0) {
 		return 0;
 	}
 
@@ -81,38 +85,88 @@ uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	if (Buffer->In >= Buffer->Size) {
 		Buffer->In = 0;
 	}
-	
+
+	/* Get free memory */
+	free = TM_BUFFER_GetFree(Buffer);
+
+	/* Check available memory */
+	if (free < count) {
+		/* If no memory, stop execution */
+		if (free == 0) {
+			return 0;
+		}
+
+		/* Set values for write */
+		count = free;
+	}
+
+	/* We have calculated memory for write */
+
+#if BUFFER_FAST
+	/* Calculate number of elements we can put at the end of buffer */
+	tocopy = Buffer->Size - Buffer->In;
+
+	/* Check for copy count */
+	if (tocopy > count) {
+		tocopy = count;
+	}
+
+	/* Copy content to buffer */
+	memcpy(&Buffer->Buffer[Buffer->In], Data, tocopy);
+
+	/* Increase number of bytes we copied already */
+	i += tocopy;
+	Buffer->In += tocopy;
+	count -= tocopy;
+
+	/* Check if anything to write */
+	if (count > 0) {
+		/* Start from the beginning of buffer */
+		Buffer->In = 0;
+
+		/* Copy content */
+		memcpy(&Buffer->Buffer[Buffer->In], &Data[i], count);
+
+		/* Set input pointer */
+		Buffer->In = count;
+	}
+
+	/* Check input overflow */
+	if (Buffer->In >= Buffer->Size) {
+		Buffer->In = 0;
+	}
+
+	/* Return number of elements stored in memory */
+	return (i + count);
+#else
 	/* Go through all elements */
 	while (count--) {
-		/* Check if buffer full */
-		if (
-			(Buffer->In == (Buffer->Out - 1)) ||
-			(Buffer->Out == 0 && Buffer->In == (Buffer->Size - 1))
-		) {
-			break;
-		}
-		
 		/* Add to buffer */
 		Buffer->Buffer[Buffer->In++] = *Data++;
-		
+
 		/* Increase pointers */
 		i++;
-		
+
 		/* Check input overflow */
 		if (Buffer->In >= Buffer->Size) {
 			Buffer->In = 0;
 		}
 	}
-	
-	/* Return number of elements stored in memory */
+
+	/* Return number of elements written */
 	return i;
+#endif
 }
 
 uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
-	uint16_t i = 0;
-	
+	uint32_t i = 0;
+	uint32_t full;
+#if BUFFER_FAST
+	uint32_t tocopy;
+#endif
+
 	/* Check buffer structure */
-	if (Buffer == NULL) {
+	if (Buffer == NULL || count == 0) {
 		return 0;
 	}
 
@@ -120,17 +174,65 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 	if (Buffer->Out >= Buffer->Size) {
 		Buffer->Out = 0;
 	}
-	
+
+	/* Get free memory */
+	full = TM_BUFFER_GetFull(Buffer);
+
+	/* Check available memory */
+	if (full < count) {
+		/* If no memory, stop execution */
+		if (full == 0) {
+			return 0;
+		}
+
+		/* Set values for write */
+		count = full;
+	}
+
+	/* We have calculated memory for write */
+
+#if BUFFER_FAST
+	/* Calculate number of elements we can put at the end of buffer */
+	tocopy = Buffer->Size - Buffer->Out;
+
+	/* Check for copy count */
+	if (tocopy > count) {
+		tocopy = count;
+	}
+
+	/* Copy content from buffer */
+	memcpy(Data, &Buffer->Buffer[Buffer->Out], tocopy);
+
+	/* Increase number of bytes we copied already */
+	i += tocopy;
+	Buffer->Out += tocopy;
+	count -= tocopy;
+
+	/* Check if anything to read */
+	if (count > 0) {
+		/* Start from the beginning of buffer */
+		Buffer->Out = 0;
+
+		/* Copy content */
+		memcpy(&Data[i], &Buffer->Buffer[Buffer->Out], count);
+
+		/* Set input pointer */
+		Buffer->Out = count;
+	}
+
+	/* Check output overflow */
+	if (Buffer->Out >= Buffer->Size) {
+		Buffer->Out = 0;
+	}
+
+	/* Return number of elements stored in memory */
+	return (i + count);
+#else
 	/* Go through all elements */
 	while (count--) {
-		/* Check if pointers are same = buffer is empty */
-		if (Buffer->Out == Buffer->In) {
-			break;
-		}
-		
-		/* Save to user buffer */
+		/* Read from buffer */
 		*Data++ = Buffer->Buffer[Buffer->Out++];
-		
+
 		/* Increase pointers */
 		i++;
 
@@ -139,9 +241,10 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 			Buffer->Out = 0;
 		}
 	}
-	
-	/* Return number of elements read from buffer */
+
+	/* Return number of elements stored in memory */
 	return i;
+#endif
 }
 
 uint16_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer) {
