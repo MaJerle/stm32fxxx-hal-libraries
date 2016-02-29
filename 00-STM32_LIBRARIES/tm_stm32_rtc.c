@@ -477,8 +477,12 @@ TM_RTC_Result_t TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix) {
 	data->Year = (uint8_t) (year - 2000);
 	/* Get month */
 	for (data->Month = 0; data->Month < 12; data->Month++) {
-		if (RTC_LEAP_YEAR(year) && unix >= (uint32_t)RTC_Months[1][data->Month]) {
-			unix -= RTC_Months[1][data->Month];
+		if (RTC_LEAP_YEAR(year)) {
+			if (unix >= (uint32_t)RTC_Months[1][data->Month]) {
+				unix -= RTC_Months[1][data->Month];
+			} else {
+				break;
+			}
 		} else if (unix >= (uint32_t)RTC_Months[0][data->Month]) {
 			unix -= RTC_Months[0][data->Month];
 		} else {
