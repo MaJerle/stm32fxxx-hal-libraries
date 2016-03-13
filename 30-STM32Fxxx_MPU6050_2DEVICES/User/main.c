@@ -38,14 +38,14 @@ int main(void) {
 	
 	/* For pinouts, check TM_MPU6050 library */
 	
-	/* Try to init second MPU6050, device address is 0xD0, AD0 pin is set to low */
+	/* Try to init first MPU6050, device address is 0xD0, AD0 pin is set to low */
 	if (TM_MPU6050_Init(&MPU6050_1, TM_MPU6050_Device_0, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_250s) == TM_MPU6050_Result_Ok) {
 		/* Green LED on */
 		TM_DISCO_LedOn(LED_GREEN);
 	}
 	
 	/* Try to init second MPU6050, device address is 0xD1, AD0 pin is set to high */
-	if (TM_MPU6050_Init(&MPU6050_1, TM_MPU6050_Device_1, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_250s) == TM_MPU6050_Result_Ok) {
+	if (TM_MPU6050_Init(&MPU6050_2, TM_MPU6050_Device_1, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_250s) == TM_MPU6050_Result_Ok) {
 		/* Green LED on */
 		TM_DISCO_LedOn(LED_GREEN);
 	}
