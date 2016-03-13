@@ -20,7 +20,7 @@
 
 /* NRF24L01+ registers*/
 #define NRF24L01_REG_CONFIG			0x00	//Configuration Register
-#define NRF24L01_REG_EN_AA			0x01	//Enable ‘Auto Acknowledgment’ Function
+#define NRF24L01_REG_EN_AA			0x01	//Enable â€˜Auto Acknowledgmentâ€™ Function
 #define NRF24L01_REG_EN_RXADDR		0x02	//Enabled RX Addresses
 #define NRF24L01_REG_SETUP_AW		0x03	//Setup of Address Widths (common for all data pipes)
 #define NRF24L01_REG_SETUP_RETR		0x04	//Setup of Automatic Retransmission
@@ -278,7 +278,7 @@ uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
 	NRF24L01_FLUSH_RX;
 	
 	/* Clear interrupts */
-	NRF24L01_CLEAR_INTERRUPTS;
+	TM_NRF24L01_Clear_Interrupts();
 	
 	/* Go to RX mode */
 	TM_NRF24L01_PowerUpRx();
@@ -353,7 +353,7 @@ void TM_NRF24L01_WriteRegisterMulti(uint8_t reg, uint8_t *data, uint8_t count) {
 }
 
 void TM_NRF24L01_PowerUpTx(void) {
-	NRF24L01_CLEAR_INTERRUPTS;
+	TM_NRF24L01_Clear_Interrupts();
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_CONFIG, NRF24L01_CONFIG | (0 << NRF24L01_PRIM_RX) | (1 << NRF24L01_PWR_UP));
 }
 
@@ -363,7 +363,7 @@ void TM_NRF24L01_PowerUpRx(void) {
 	/* Clear RX buffer */
 	NRF24L01_FLUSH_RX;
 	/* Clear interrupts */
-	NRF24L01_CLEAR_INTERRUPTS;
+	TM_NRF24L01_Clear_Interrupts();
 	/* Setup RX mode */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_CONFIG, NRF24L01_CONFIG | 1 << NRF24L01_PWR_UP | 1 << NRF24L01_PRIM_RX);
 	/* Start listening */
@@ -546,7 +546,7 @@ void TM_NRF24L01_SetRF(TM_NRF24L01_DataRate_t DataRate, TM_NRF24L01_OutputPower_
 }
 
 uint8_t TM_NRF24L01_Read_Interrupts(TM_NRF24L01_IRQ_t* IRQ) {
-	IRQ->Status = TM_NRF24L01_GetStatus();
+	return IRQ->Status = TM_NRF24L01_GetStatus();
 }
 
 void TM_NRF24L01_Clear_Interrupts(void) {
