@@ -135,9 +135,9 @@ extern "C" {
  * @brief  Buffer structure
  */
 typedef struct _TM_BUFFER_t {
-	uint16_t Size;           /*!< Size of buffer in units of bytes, DO NOT MOVE OFFSET, 0 */
-	uint16_t In;             /*!< Input pointer to save next value, DO NOT MOVE OFFSET, 1 */
-	uint16_t Out;            /*!< Output pointer to read next value, DO NOT MOVE OFFSET, 2 */
+	uint32_t Size;           /*!< Size of buffer in units of bytes, DO NOT MOVE OFFSET, 0 */
+	uint32_t In;             /*!< Input pointer to save next value, DO NOT MOVE OFFSET, 1 */
+	uint32_t Out;            /*!< Output pointer to read next value, DO NOT MOVE OFFSET, 2 */
 	uint8_t* Buffer;         /*!< Pointer to buffer data array, DO NOT MOVE OFFSET, 3 */
 	uint8_t Flags;           /*!< Flags for buffer, DO NOT MOVE OFFSET, 4 */
 	uint8_t StringDelimiter; /*!< Character for string delimiter when reading from buffer as string, DO NOT MOVE OFFSET, 5 */
@@ -164,7 +164,7 @@ typedef struct _TM_BUFFER_t {
  *            - 0: Buffer initialized OK
  *            - > 0: Buffer initialization error. Malloc has failed with allocation
  */
-uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr);
+uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint32_t Size, uint8_t* BufferPtr);
 
 /**
  * @brief  Free memory for buffer allocated using @ref malloc
@@ -181,7 +181,7 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer);
  * @param  count: Number of elements of type unsigned char to write
  * @retval Number of elements written in buffer 
  */
-uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count);
+uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count);
 
 /**
  * @brief  Reads data from buffer
@@ -190,21 +190,21 @@ uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count);
  * @param  count: Number of elements of type unsigned char to read
  * @retval Number of elements read from buffer 
  */
-uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count);
+uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count);
 
 /**
  * @brief  Gets number of free elements in buffer 
  * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
  * @retval Number of free elements in buffer
  */
-uint16_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer);
+uint32_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer);
 
 /**
  * @brief  Gets number of elements in buffer 
  * @param  *Buffer: Pointer to @ref TM_BUFFER_t structure
  * @retval Number of elements in buffer
  */
-uint16_t TM_BUFFER_GetFull(TM_BUFFER_t* Buffer);
+uint32_t TM_BUFFER_GetFull(TM_BUFFER_t* Buffer);
 
 /**
  * @brief  Resets (clears) buffer pointers
@@ -222,7 +222,7 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer);
  *            - >= 0: Element found, location in buffer is returned
  *                   Ex: If value 1 is returned, it means 1 read from buffer and your element will be returned
  */
-int16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
+int32_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
 
 /**
  * @brief  Checks if specific data sequence are stored in buffer
@@ -233,7 +233,7 @@ int16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
  *            -  < 0: Sequence was not found
  *            - >= 0: Sequence found, start sequence location in buffer is returned
  */
-int16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size);
+int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size);
 
 /**
  * @brief  Sets string delimiter character when reading from buffer as string
@@ -249,7 +249,7 @@ int16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size);
  * @param  *buff: Pointer to string to write 
  * @retval Number of characters written
  */
-uint16_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff);
+uint32_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff);
 
 /**
  * @brief  Reads from buffer as string
@@ -258,7 +258,7 @@ uint16_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff);
  * @param  buffsize: Buffer size in units of bytes
  * @retval Number of characters in string
  */
-uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize);
+uint32_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint32_t buffsize);
 
 /**
  * @brief  Checks if character exists in location in buffer
@@ -269,7 +269,7 @@ uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize
  *            - 0: Buffer is not so long as position desired
  *            - > 0: Position to check was inside buffer data size
  */
-int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint16_t pos, uint8_t* element);
+int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint32_t pos, uint8_t* element);
 
 /**
  * @}

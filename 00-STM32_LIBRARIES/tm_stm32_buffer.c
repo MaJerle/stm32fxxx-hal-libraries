@@ -18,7 +18,7 @@
  */
 #include "tm_stm32_buffer.h"
 
-uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint16_t Size, uint8_t* BufferPtr) {
+uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint32_t Size, uint8_t* BufferPtr) {
 	/* Set buffer values to all zeros */
 	memset(Buffer, 0, sizeof(TM_BUFFER_t));
 	
@@ -69,7 +69,7 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer) {
 	Buffer->Size = 0;
 }
 
-uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
+uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 	uint32_t i = 0;
 	uint32_t free;
 #if BUFFER_FAST
@@ -158,7 +158,7 @@ uint16_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 #endif
 }
 
-uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
+uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 	uint32_t i = 0;
 	uint32_t full;
 #if BUFFER_FAST
@@ -247,7 +247,7 @@ uint16_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t count) {
 #endif
 }
 
-uint16_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer) {
+uint32_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer) {
 	uint32_t size, in, out;
 	
 	/* Check buffer structure */
@@ -278,7 +278,7 @@ uint16_t TM_BUFFER_GetFree(TM_BUFFER_t* Buffer) {
 	return size - 1;
 }
 
-uint16_t TM_BUFFER_GetFull(TM_BUFFER_t* Buffer) {
+uint32_t TM_BUFFER_GetFull(TM_BUFFER_t* Buffer) {
 	uint32_t in, out, size;
 	
 	/* Check buffer structure */
@@ -321,8 +321,8 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer) {
 	Buffer->Out = 0;
 }
 
-int16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
-	uint16_t Num, Out, retval = 0;
+int32_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
+	uint32_t Num, Out, retval = 0;
 	
 	/* Check buffer structure */
 	if (Buffer == NULL) {
@@ -356,8 +356,8 @@ int16_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
 	return -1;
 }
 
-int16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size) {
-	uint16_t Num, Out, i, retval = 0;
+int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size) {
+	uint32_t Num, Out, i, retval = 0;
 	uint8_t found = 0;
 
 	/* Check buffer structure and number of elements in buffer */
@@ -419,15 +419,15 @@ int16_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint16_t Size) {
 	return -1;
 }
 
-uint16_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff) {
+uint32_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff) {
 	/* Write string to buffer */
 	return TM_BUFFER_Write(Buffer, (uint8_t *)buff, strlen(buff));
 }
 
-uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize) {
-	uint16_t i = 0;
+uint32_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint32_t buffsize) {
+	uint32_t i = 0;
 	uint8_t ch;
-	uint16_t freeMem;
+	uint32_t freeMem;
 	
 	/* Check value buffer */
 	if (Buffer == NULL) {
@@ -479,8 +479,8 @@ uint16_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint16_t buffsize
 	return i;
 }
 
-int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint16_t pos, uint8_t* element) {
-	uint16_t In, Out, i = 0;
+int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint32_t pos, uint8_t* element) {
+	uint32_t In, Out, i = 0;
 	
 	/* Check value buffer */
 	if (Buffer == NULL) {
