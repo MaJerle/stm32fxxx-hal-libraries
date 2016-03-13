@@ -128,7 +128,7 @@ static void TM_BUTTON_INT_CheckButton(TM_BUTTON_t* ButtonStruct) {
 		/* Button still pressed */
 		/* Check for debounce */
 		if (status == ButtonStruct->GPIO_State) {
-			if (now > (ButtonStruct->StartTime + ButtonStruct->PressDebounceTime)) {
+			if ((now - ButtonStruct->StartTime) > ButtonStruct->PressDebounceTime) {
 				/* Button debounce OK, Goto Normal Press */
 				ButtonStruct->State = BUTTON_STATE_PRESSED;
 
@@ -150,7 +150,7 @@ static void TM_BUTTON_INT_CheckButton(TM_BUTTON_t* ButtonStruct) {
 		/* Button still pressed */
 		/* Check for long press */
 		if (status == ButtonStruct->GPIO_State) {
-			if (now > (ButtonStruct->StartTime + ButtonStruct->PressLongTime)) {
+			if ((now - ButtonStruct->StartTime) > ButtonStruct->PressLongTime) {
 				/* Button pressed OK, call function */
 				if (ButtonStruct->ButtonHandler) {
 					/* Call function callback */
@@ -162,7 +162,7 @@ static void TM_BUTTON_INT_CheckButton(TM_BUTTON_t* ButtonStruct) {
 			}
 		} else if (status != ButtonStruct->GPIO_State) {
 			/* Not pressed */
-			if (now > (ButtonStruct->StartTime + ButtonStruct->PressNormalTime)) {
+			if ((now - ButtonStruct->StartTime) > ButtonStruct->PressNormalTime) {
 				/* Button pressed OK, call function */
 				if (ButtonStruct->ButtonHandler) {
 					/* Call function callback */
