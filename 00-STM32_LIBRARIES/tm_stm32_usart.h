@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/07/hal-library-07-usart-for-stm32fxxx
- * @version v1.2
+ * @version v1.2.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   USART Library for STM32Fxxx with receive interrupt
@@ -28,7 +28,7 @@
 \endverbatim
  */
 #ifndef TM_USART_H
-#define TM_USART_H 120
+#define TM_USART_H 121
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -510,11 +510,13 @@ typedef enum {
 
 /* Configuration */
 #if defined(STM32F4XX)
+#define USART_TX_REG(USARTx)                ((USARTx)->DR)
 #define USART_WRITE_DATA(USARTx, data)      ((USARTx)->DR = (data))
 #define USART_READ_DATA(USARTx)             ((USARTx)->DR)
 #define GPIO_AF_UART5                       (GPIO_AF8_UART5)
 #define USART_STATUS_REG                    SR
 #else
+#define USART_TX_REG(USARTx)                ((USARTx)->TDR)
 #define USART_WRITE_DATA(USARTx, data)      ((USARTx)->TDR = (data))
 #define USART_READ_DATA(USARTx)             ((USARTx)->RDR)
 #define GPIO_AF_UART5                       (GPIO_AF7_UART5)
@@ -522,7 +524,8 @@ typedef enum {
 #endif
 
 /* Wait for TX empty */
-#define USART_WAIT(USARTx)                  while (!((USARTx)->USART_STATUS_REG & USART_FLAG_TXE))
+#define USART_TXEMPTY(USARTx)               ((USARTx)->USART_STATUS_REG & USART_FLAG_TXE)
+#define USART_WAIT(USARTx)                  while (!USART_TXEMPTY(USARTx))
 
  /**
  * @}

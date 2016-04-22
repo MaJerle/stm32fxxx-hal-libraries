@@ -95,10 +95,10 @@ extern "C" {
  - defines.h
 \endverbatim
  */
+#include "stm32fxxx_hal.h"
 #include "defines.h"
 #include "stdlib.h"
 #include "string.h"
-#include "stm32fxxx_hal.h"
 
 /**
  * @defgroup TM_BUFFER_Macros

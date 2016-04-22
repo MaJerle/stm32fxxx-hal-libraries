@@ -21,8 +21,8 @@
 /* Defines for alternate functions */
 #if defined(STM32F4xx) || defined(STM32F7xx)
 #define GPIO_AFx_SPI1    GPIO_AF5_SPI1
-#define GPIO_AFx_SPI2    GPIO_AF5_SPI2
-#define GPIO_AFx_SPI3    0x05
+#define GPIO_AFx_SPI2    0x05
+#define GPIO_AFx_SPI3    0x06
 #define GPIO_AFx_SPI4    GPIO_AF5_SPI4
 #define GPIO_AFx_SPI5    0x05
 #define GPIO_AFx_SPI6    GPIO_AF5_SPI6

@@ -42,7 +42,7 @@ int main(void) {
 	TM_LCD_SetLayer1();
 	
 	/* Initialize Rotary encoder 1, pin A = pin from button on board, pin B = PD1 */
-	TM_RE_Init(&RE1_Data, TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, GPIOD, GPIO_PIN_1);
+	TM_RE_Init(&RE1_Data, DISCO_BUTTON_PORT, DISCO_BUTTON_PIN, GPIOD, GPIO_PIN_1);
 	
 	/* Initialize Rotary encoder 2, pin A = PD3, pin B = PD5 */
 	TM_RE_Init(&RE2_Data, GPIOD, GPIO_PIN_3, GPIOD, GPIO_PIN_5);

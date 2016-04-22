@@ -84,7 +84,7 @@ uint32_t TM_CRC_Calculate16(uint16_t* arr, uint32_t count, uint8_t reset) {
 	}
 	
 	/* Calculate remaining data as 8-bit */
-	cnt = count % 2;
+	cnt = count % 4;
 	
 	/* Calculate */
 	while (cnt--) {
