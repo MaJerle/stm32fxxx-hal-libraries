@@ -5,7 +5,7 @@
  * @link    http://stm32f4-discovery.com/2015/07/hal-library-08-spi-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
- * @license GNU GPL v3
+ * @license MIT
  * @brief   SPI library for STM32Fxxx
  *	
 \verbatim

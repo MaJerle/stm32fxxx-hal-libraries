@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @version v1.0
- * @license GNU GPL v3
+ * @license MIT
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen Majerle, 2015

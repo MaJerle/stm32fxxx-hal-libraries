@@ -17,6 +17,14 @@
 #include "tm_stm32_spi.h"
 #include "tm_stm32_delay.h"
 
+/* DMA for STM32F4xx and STM32F7xx */
+#if defined(STM32F4xx) || defined(STM32F7xx)
+#include "tm_stm32_spi_dma.h"
+#define FATFS_DMA           1
+#else
+#define FATFS_DMA           0
+#endif
+
 /* SPI settings */
 #ifndef FATFS_SPI
 #define FATFS_SPI							SPI1

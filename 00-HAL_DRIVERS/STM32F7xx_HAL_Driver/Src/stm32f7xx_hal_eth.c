@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f7xx_hal_eth.c
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    25-June-2015
+  * @version V1.0.3
+  * @date    13-November-2015
   * @brief   ETH HAL module driver.
   *          This file provides firmware functions to manage the following 
   *          functionalities of the Ethernet (ETH) peripheral:
@@ -589,6 +589,9 @@ HAL_StatusTypeDef HAL_ETH_DMARxDescListInit(ETH_HandleTypeDef *heth, ETH_DMADesc
   */
 __weak void HAL_ETH_MspInit(ETH_HandleTypeDef *heth)
 {
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(heth);
+ 
   /* NOTE : This function Should not be modified, when the callback is needed,
   the HAL_ETH_MspInit could be implemented in the user file
   */
@@ -602,6 +605,9 @@ __weak void HAL_ETH_MspInit(ETH_HandleTypeDef *heth)
   */
 __weak void HAL_ETH_MspDeInit(ETH_HandleTypeDef *heth)
 {
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(heth);
+ 
   /* NOTE : This function Should not be modified, when the callback is needed,
   the HAL_ETH_MspDeInit could be implemented in the user file
   */
@@ -981,6 +987,9 @@ void HAL_ETH_IRQHandler(ETH_HandleTypeDef *heth)
   */
 __weak void HAL_ETH_TxCpltCallback(ETH_HandleTypeDef *heth)
 {
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(heth);
+ 
   /* NOTE : This function Should not be modified, when the callback is needed,
   the HAL_ETH_TxCpltCallback could be implemented in the user file
   */ 
@@ -994,6 +1003,9 @@ __weak void HAL_ETH_TxCpltCallback(ETH_HandleTypeDef *heth)
   */
 __weak void HAL_ETH_RxCpltCallback(ETH_HandleTypeDef *heth)
 {
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(heth);
+ 
   /* NOTE : This function Should not be modified, when the callback is needed,
   the HAL_ETH_TxCpltCallback could be implemented in the user file
   */ 
@@ -1007,6 +1019,9 @@ __weak void HAL_ETH_RxCpltCallback(ETH_HandleTypeDef *heth)
   */
 __weak void HAL_ETH_ErrorCallback(ETH_HandleTypeDef *heth)
 {
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(heth);
+ 
   /* NOTE : This function Should not be modified, when the callback is needed,
   the HAL_ETH_TxCpltCallback could be implemented in the user file
   */ 

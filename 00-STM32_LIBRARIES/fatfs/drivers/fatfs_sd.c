@@ -63,6 +63,9 @@ static void init_spi (void) {
 	
 	/* Init SPI */
 	TM_SPI_Init(FATFS_SPI, FATFS_SPI_PINSPACK);
+#if FATFS_DMA
+	TM_SPI_DMA_Init(FATFS_SPI);
+#endif
 	
 	/* Set CS high */
 	FATFS_CS_HIGH;
@@ -79,7 +82,21 @@ static void rcvr_spi_multi (
 )
 {
 	/* Read multiple bytes, send 0xFF as dummy */
+#if FATFS_DMA
+	do {
+		TM_SPI_DMA_Receive(FATFS_SPI, buff, btr > 0xFFFF ? 0xFFFF : btr);
+		while (TM_SPI_DMA_Transmitting(FATFS_SPI));
+		
+		if (btr > 0xFFFF) {
+			btr -= 0xFFFF;
+			buff += 0xFFFF;
+		} else {
+			btr = 0;
+		}
+	} while (btr > 0);
+#else
 	TM_SPI_ReadMulti(FATFS_SPI, buff, 0xFF, btr);
+#endif
 }
 
 
@@ -91,7 +108,21 @@ static void xmit_spi_multi (
 )
 {
 	/* Write multiple bytes */
-	TM_SPI_WriteMulti(FATFS_SPI, (uint8_t *)buff, btx);
+#if FATFS_DMA
+	do {
+		TM_SPI_DMA_Send(FATFS_SPI, (uint8_t *)buff, btx > 0xFFFF ? 0xFFFF : btx);
+		while (TM_SPI_DMA_Transmitting(FATFS_SPI));
+		
+		if (btx > 0xFFFF) {
+			btx -= 0xFFFF;
+			buff += 0xFFFF;
+		} else {
+			btx = 0;
+		}
+	} while (btx > 0);
+#else
+	TM_SPI_WriteMulti(FATFS_SPI, buff, 0xFF, btx);
+#endif
 }
 #endif
 
@@ -183,7 +214,7 @@ static int rcvr_datablock (	/* 1:OK, 0:Error */
 
 #if _USE_WRITE
 static int xmit_datablock (	/* 1:OK, 0:Failed */
-	const BYTE *buff,	/* Ponter to 512 byte data to be sent */
+	const BYTE *buff,	/* Ponter to SD_BLOCK_SIZE byte data to be sent */
 	BYTE token			/* Token */
 )
 {
@@ -195,7 +226,7 @@ static int xmit_datablock (	/* 1:OK, 0:Failed */
 
 	TM_SPI_Send(FATFS_SPI, token);					/* Send token */
 	if (token != 0xFD) {				/* Send data if token is other than StopTran */
-		xmit_spi_multi(buff, 512);		/* Data */
+		xmit_spi_multi(buff, SD_BLOCK_SIZE);		/* Data */
 		TM_SPI_Send(FATFS_SPI, 0xFF); TM_SPI_Send(FATFS_SPI, 0xFF);	/* Dummy CRC */
 
 		resp = TM_SPI_Send(FATFS_SPI, 0xFF);				/* Receive data resp */
@@ -306,7 +337,7 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 				ty = CT_MMC; cmd = CMD1;	/* MMCv3 (CMD1(0)) */
 			}
 			while (TM_DELAY_Time2() && send_cmd(cmd, 0));			/* Wait for end of initialization */
-			if (TM_DELAY_Time2() || send_cmd(CMD16, 512) != 0) {	/* Set block length: 512 */
+			if (TM_DELAY_Time2() || send_cmd(CMD16, SD_BLOCK_SIZE) != 0) {	/* Set block length: SD_BLOCK_SIZE */
 				ty = 0;
 			}
 		}
@@ -366,20 +397,20 @@ DRESULT TM_FATFS_SD_disk_read (
 	}
 
 	if (!(TM_FATFS_SD_CardType & CT_BLOCK)) {
-		sector *= 512;	/* LBA ot BA conversion (byte addressing cards) */
+		sector *= SD_BLOCK_SIZE;	/* LBA ot BA conversion (byte addressing cards) */
 	}
 
 	if (count == 1) {	/* Single sector read */
 		if ((send_cmd(CMD17, sector) == 0)	/* READ_SINGLE_BLOCK */
-			&& rcvr_datablock(buff, 512))
+			&& rcvr_datablock(buff, SD_BLOCK_SIZE))
 			count = 0;
 	} else {				/* Multiple sector read */
 		if (send_cmd(CMD18, sector) == 0) {	/* READ_MULTIPLE_BLOCK */
 			do {
-				if (!rcvr_datablock(buff, 512)) {
+				if (!rcvr_datablock(buff, SD_BLOCK_SIZE)) {
 					break;
 				}
-				buff += 512;
+				buff += SD_BLOCK_SIZE;
 			} while (--count);
 			send_cmd(CMD12, 0);				/* STOP_TRANSMISSION */
 		}
@@ -416,7 +447,7 @@ DRESULT TM_FATFS_SD_disk_write (
 	}
 
 	if (!(TM_FATFS_SD_CardType & CT_BLOCK)) {
-		sector *= 512;	/* LBA ==> BA conversion (byte addressing cards) */
+		sector *= SD_BLOCK_SIZE;	/* LBA ==> BA conversion (byte addressing cards) */
 	}
 
 	if (count == 1) {	/* Single sector write */
@@ -430,7 +461,7 @@ DRESULT TM_FATFS_SD_disk_write (
 				if (!xmit_datablock(buff, 0xFC)) {
 					break;
 				}
-				buff += 512;
+				buff += SD_BLOCK_SIZE;
 			} while (--count);
 			if (!xmit_datablock(0, 0xFD)) {	/* STOP_TRAN token */
 				count = 1;
@@ -468,60 +499,66 @@ DRESULT TM_FATFS_SD_disk_ioctl (
 	res = RES_ERROR;
 
 	switch (cmd) {
-	case CTRL_SYNC :		/* Wait for end of internal write process of the drive */
-		if (select()) res = RES_OK;
-		break;
+		case CTRL_SYNC :		/* Wait for end of internal write process of the drive */
+			if (select()) res = RES_OK;
+			break;
 
-	case GET_SECTOR_COUNT :	/* Get drive capacity in unit of sector (DWORD) */
-		if ((send_cmd(CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {
-			if ((csd[0] >> 6) == 1) {	/* SDC ver 2.00 */
-				csize = csd[9] + ((WORD)csd[8] << 8) + ((DWORD)(csd[7] & 63) << 16) + 1;
-				*(DWORD*)buff = csize << 10;
-			} else {					/* SDC ver 1.XX or MMC ver 3 */
-				n = (csd[5] & 15) + ((csd[10] & 128) >> 7) + ((csd[9] & 3) << 1) + 2;
-				csize = (csd[8] >> 6) + ((WORD)csd[7] << 2) + ((WORD)(csd[6] & 3) << 10) + 1;
-				*(DWORD*)buff = csize << (n - 9);
-			}
+		/* Size in bytes for single sector */
+		case GET_SECTOR_SIZE:
+			*(WORD *)buff = SD_BLOCK_SIZE;
 			res = RES_OK;
-		}
-		break;
+			break;
 
-	case GET_BLOCK_SIZE :	/* Get erase block size in unit of sector (DWORD) */
-		if (TM_FATFS_SD_CardType & CT_SD2) {	/* SDC ver 2.00 */
-			if (send_cmd(ACMD13, 0) == 0) {	/* Read SD status */
-				TM_SPI_Send(FATFS_SPI, 0xFF);
-				if (rcvr_datablock(csd, 16)) {				/* Read partial block */
-					for (n = 64 - 16; n; n--) TM_SPI_Send(FATFS_SPI, 0xFF);	/* Purge trailing data */
-					*(DWORD*)buff = 16UL << (csd[10] >> 4);
-					res = RES_OK;
-				}
-			}
-		} else {					/* SDC ver 1.XX or MMC */
-			if ((send_cmd(CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {	/* Read CSD */
-				if (TM_FATFS_SD_CardType & CT_SD1) {	/* SDC ver 1.XX */
-					*(DWORD*)buff = (((csd[10] & 63) << 1) + ((WORD)(csd[11] & 128) >> 7) + 1) << ((csd[13] >> 6) - 1);
-				} else {					/* MMC */
-					*(DWORD*)buff = ((WORD)((csd[10] & 124) >> 2) + 1) * (((csd[11] & 3) << 3) + ((csd[11] & 224) >> 5) + 1);
+		case GET_SECTOR_COUNT :	/* Get drive capacity in unit of sector (DWORD) */
+			if ((send_cmd(CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {
+				if ((csd[0] >> 6) == 1) {	/* SDC ver 2.00 */
+					csize = csd[9] + ((WORD)csd[8] << 8) + ((DWORD)(csd[7] & 63) << 16) + 1;
+					*(DWORD*)buff = csize << 10;
+				} else {					/* SDC ver 1.XX or MMC ver 3 */
+					n = (csd[5] & 15) + ((csd[10] & 128) >> 7) + ((csd[9] & 3) << 1) + 2;
+					csize = (csd[8] >> 6) + ((WORD)csd[7] << 2) + ((WORD)(csd[6] & 3) << 10) + 1;
+					*(DWORD*)buff = csize << (n - 9);
 				}
 				res = RES_OK;
 			}
-		}
-		break;
+			break;
 
-	case CTRL_ERASE_SECTOR :	/* Erase a block of sectors (used when _USE_ERASE == 1) */
-		if (!(TM_FATFS_SD_CardType & CT_SDC)) break;				/* Check if the card is SDC */
-		if (TM_FATFS_SD_disk_ioctl(MMC_GET_CSD, csd)) break;	/* Get CSD */
-		if (!(csd[0] >> 6) && !(csd[10] & 0x40)) break;	/* Check if sector erase can be applied to the card */
-		dp = buff; st = dp[0]; ed = dp[1];				/* Load sector block */
-		if (!(TM_FATFS_SD_CardType & CT_BLOCK)) {
-			st *= 512; ed *= 512;
-		}
-		if (send_cmd(CMD32, st) == 0 && send_cmd(CMD33, ed) == 0 && send_cmd(CMD38, 0) == 0 && wait_ready(30000))	/* Erase sector block */
-			res = RES_OK;	/* FatFs does not check result of this command */
-		break;
+		case GET_BLOCK_SIZE :	/* Get erase block size in unit of sector (DWORD) */
+			if (TM_FATFS_SD_CardType & CT_SD2) {	/* SDC ver 2.00 */
+				if (send_cmd(ACMD13, 0) == 0) {	/* Read SD status */
+					TM_SPI_Send(FATFS_SPI, 0xFF);
+					if (rcvr_datablock(csd, 16)) {				/* Read partial block */
+						for (n = 64 - 16; n; n--) TM_SPI_Send(FATFS_SPI, 0xFF);	/* Purge trailing data */
+						*(DWORD*)buff = 16UL << (csd[10] >> 4);
+						res = RES_OK;
+					}
+				}
+			} else {					/* SDC ver 1.XX or MMC */
+				if ((send_cmd(CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {	/* Read CSD */
+					if (TM_FATFS_SD_CardType & CT_SD1) {	/* SDC ver 1.XX */
+						*(DWORD*)buff = (((csd[10] & 63) << 1) + ((WORD)(csd[11] & 128) >> 7) + 1) << ((csd[13] >> 6) - 1);
+					} else {					/* MMC */
+						*(DWORD*)buff = ((WORD)((csd[10] & 124) >> 2) + 1) * (((csd[11] & 3) << 3) + ((csd[11] & 224) >> 5) + 1);
+					}
+					res = RES_OK;
+				}
+			}
+			break;
 
-	default:
-		res = RES_PARERR;
+		case CTRL_ERASE_SECTOR :	/* Erase a block of sectors (used when _USE_ERASE == 1) */
+			if (!(TM_FATFS_SD_CardType & CT_SDC)) break;				/* Check if the card is SDC */
+			if (TM_FATFS_SD_disk_ioctl(MMC_GET_CSD, csd)) break;	/* Get CSD */
+			if (!(csd[0] >> 6) && !(csd[10] & 0x40)) break;	/* Check if sector erase can be applied to the card */
+			dp = buff; st = dp[0]; ed = dp[1];				/* Load sector block */
+			if (!(TM_FATFS_SD_CardType & CT_BLOCK)) {
+				st *= SD_BLOCK_SIZE; ed *= SD_BLOCK_SIZE;
+			}
+			if (send_cmd(CMD32, st) == 0 && send_cmd(CMD33, ed) == 0 && send_cmd(CMD38, 0) == 0 && wait_ready(30000))	/* Erase sector block */
+				res = RES_OK;	/* FatFs does not check result of this command */
+			break;
+
+		default:
+			res = RES_PARERR;
 	}
 
 	deselect();

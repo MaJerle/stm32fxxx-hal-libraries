@@ -5,7 +5,7 @@
  * @link    http://stm32f4-discovery.com/2016/04/hal-library-32-dma-extension-for-usart-on-stm32fxxx
  * @version v1.0
  * @ide     Keil uVision
- * @license GNU GPL v3
+ * @license MIT
  * @brief   DMA TX functionality for USART for STM32F4xx or STM32F7xx devices
  *	
 @verbatim

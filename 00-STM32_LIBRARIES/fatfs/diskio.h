@@ -90,6 +90,9 @@ typedef enum {
 #define CT_SDC		(CT_SD1|CT_SD2)	/* SD */
 #define CT_BLOCK	0x08		/* Block addressing */
 
+/* SDCARD block size */
+#define SD_BLOCK_SIZE     512
+
 /**
  * @brief  Adds new driver for DISKIO fatfs structure
  * @param  *Driver: Pointer to @ref DISKIO_LowLevelDriver_t with filled structure

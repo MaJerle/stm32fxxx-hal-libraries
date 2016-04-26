@@ -5,7 +5,7 @@
  * @link    http://stm32f4-discovery.com/2016/04/hal-library-31-dma-stm32fxxx-devices
  * @version v1.1
  * @ide     Keil uVision
- * @license GNU GPL v3
+ * @license MIT
  * @brief   DMA library for STM32F4xx and STM32F7xx devices for several purposes
  *	
 @verbatim

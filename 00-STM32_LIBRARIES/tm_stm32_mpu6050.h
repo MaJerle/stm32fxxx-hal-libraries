@@ -5,7 +5,7 @@
  * @link    http://stm32f4-discovery.com/2015/10/hal-library-30-mpu6050-for-stm32fxxx
  * @version v1.0
  * @ide     Keil uVision
- * @license GNU GPL v3
+ * @license MIT
  * @brief   MPU6050 library for STM32Fxxx devices
  *	
 @verbatim

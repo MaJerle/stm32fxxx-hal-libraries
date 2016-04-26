@@ -46,9 +46,6 @@ void    BSP_SD_MspDeInit(SD_HandleTypeDef *hsd, void *Params);
 #define SD_DMAx_Tx_IRQHandler             DMA2_Stream6_IRQHandler   
 #define SD_DMAx_Rx_IRQHandler             DMA2_Stream3_IRQHandler
 
-/* Block size on SDCARD */
-#define BLOCK_SIZE 512
-
 /* Status of SDCARD */
 static volatile DSTATUS Stat = STA_NOINIT;
 
@@ -128,22 +125,22 @@ DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {
 			res = RES_OK;
 			break;
 
-		/* Get number of sectors on the disk (DWORD) */
-		case GET_SECTOR_COUNT :
-			BSP_SD_GetCardInfo(&CardInfo);
-			*(DWORD *)buff = CardInfo.CardCapacity / BLOCK_SIZE;
+		/* Size in bytes for single sector */
+		case GET_SECTOR_SIZE:
+			*(WORD *)buff = SD_BLOCK_SIZE;
 			res = RES_OK;
 			break;
 
-		/* Get R/W sector size (WORD) */
-		case GET_SECTOR_SIZE :
-			*(WORD *)buff = BLOCK_SIZE;
+		/* Get number of sectors on the disk (DWORD) */
+		case GET_SECTOR_COUNT :
+			BSP_SD_GetCardInfo(&CardInfo);
+			*(DWORD *)buff = CardInfo.CardCapacity / SD_BLOCK_SIZE;
 			res = RES_OK;
 			break;
 
 		/* Get erase block size in unit of sector (DWORD) */
 		case GET_BLOCK_SIZE :
-			*(DWORD*)buff = BLOCK_SIZE;
+			*(DWORD*)buff = SD_BLOCK_SIZE;
 			break;
 
 		default:
@@ -154,7 +151,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
-	if (BSP_SD_ReadBlocks((uint32_t *)buff, (uint64_t) (sector * BLOCK_SIZE), BLOCK_SIZE, count) != MSD_OK) {
+	if (BSP_SD_ReadBlocks((uint32_t *)buff, (uint64_t) (sector * SD_BLOCK_SIZE), SD_BLOCK_SIZE, count) != MSD_OK) {
 		return RES_ERROR;
 	}
 	
@@ -162,7 +159,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(const BYTE *buff, DWORD sector, UINT count) {
-	if (BSP_SD_WriteBlocks((uint32_t *)buff, (uint64_t) (sector * BLOCK_SIZE), BLOCK_SIZE, count) != MSD_OK) {
+	if (BSP_SD_WriteBlocks((uint32_t *)buff, (uint64_t) (sector * SD_BLOCK_SIZE), SD_BLOCK_SIZE, count) != MSD_OK) {
 		return RES_ERROR;
 	}
 	

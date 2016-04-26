@@ -5,7 +5,7 @@
  * @link    http://stm32f4-discovery.com/2016/04/hal-library-33-dma-extension-for-spi-on-stm32fxxx
  * @version v1.0
  * @ide     Keil uVision
- * @license GNU GPL v3
+ * @license MIT
  * @brief   DMA functionality for TM SPI library for STM32F4xx and STM32F7xx devices
  *	
 @verbatim

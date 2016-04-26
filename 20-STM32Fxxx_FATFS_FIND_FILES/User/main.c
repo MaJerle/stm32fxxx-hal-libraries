@@ -33,7 +33,7 @@ TM_FATFS_Search_t Files;
 char buffer[100];
 
 /* Unmount line if you want to make 10 fake files first before checking SDCARD content */
-//#define CREATE_FILES
+#define CREATE_FILES
 
 int main(void) {
 #ifdef CREATE_FILES
@@ -110,13 +110,10 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
 	
 	/* Delete file on card */
 	if (f_unlink(path) == FR_OK) {
-		TM_LCD_Puts("; Delete OK!");
+		TM_LCD_Puts("; Delete OK!\n");
 	} else {
-		TM_LCD_Puts("; Delete Error!");
+		TM_LCD_Puts("; Delete Error!\n");
 	}
-	
-	/* Go to new line */
-	TM_LCD_Putc('\n');
 	
 	/* Allow next search */
 	return 1;

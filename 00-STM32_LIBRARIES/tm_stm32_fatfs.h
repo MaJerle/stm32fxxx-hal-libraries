@@ -3,32 +3,39 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/08/hal-library-20-fatfs-for-stm32fxxx/
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
- * @license GNU GPL v3
+ * @license MIT
  * @brief   Fatfs implementation for STM32Fxxx devices
  *	
 \verbatim
    ----------------------------------------------------------------------
-    Copyright (C) Tilen Majerle, 2015
-    
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    any later version.
-     
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) 2016 Tilen Majerle
+
+    Permission is hereby granted, free of charge, to any person
+    obtaining a copy of this software and associated documentation
+    files (the "Software"), to deal in the Software without restriction,
+    including without limitation the rights to use, copy, modify, merge,
+    publish, distribute, sublicense, and/or sell copies of the Software, 
+    and to permit persons to whom the Software is furnished to do so, 
+    subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+    AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+    OTHER DEALINGS IN THE SOFTWARE.
    ----------------------------------------------------------------------
 \endverbatim
  */
 #ifndef TM_FATFS_H
-#define TM_FATFS_H 100
+#define TM_FATFS_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -297,6 +304,11 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
  * \par Changelog
  *
 \verbatim
+ Version 1.1
+  - April 24, 2016
+  - Added support for FATFS R0.12
+  - Added support for SPI DMA when using fatfs in SPI mode on STM32F4xx and STM32F7xx devices
+
  Version 1.0
   - First release
 \endverbatim
@@ -307,7 +319,9 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
  - STM32Fxxx HAL
  - defines.h
  - attributes.h
+ - TM DMA
  - TM SPI           (only when SPI)
+ - TM SPI DMA       (only when SPI on STM32F4xx and STM32F7xx)
  - TM DELAY         (only when SPI)
  - TM GPIO
  - FatFS by Chan    (R0.11a)

@@ -5,7 +5,7 @@
  * @link    DAC library for ST32F0xx, STM32F4xx and STM32F7xx
  * @version v1.0
  * @ide     Keil uVision
- * @license GNU GPL v3
+ * @license MIT
  * @brief   DAC library for STM32F4xx and STM32F7xx
  *	
 @verbatim
