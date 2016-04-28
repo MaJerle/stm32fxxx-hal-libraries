@@ -74,7 +74,6 @@ static void init_spi (void) {
 	Delayms(10);
 }
 
-
 /* Receive multiple byte */
 static void rcvr_spi_multi (
 	BYTE *buff,		/* Pointer to data buffer */
@@ -126,11 +125,9 @@ static void xmit_spi_multi (
 }
 #endif
 
-
 /*-----------------------------------------------------------------------*/
 /* Wait for card ready                                                   */
 /*-----------------------------------------------------------------------*/
-
 static int wait_ready (	/* 1:Ready, 0:Timeout */
 	UINT wt			/* Timeout [ms] */
 )
@@ -147,24 +144,17 @@ static int wait_ready (	/* 1:Ready, 0:Timeout */
 	return (d == 0xFF) ? 1 : 0;
 }
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Deselect card and release SPI                                         */
 /*-----------------------------------------------------------------------*/
-
-static void deselect (void)
-{
+static void deselect (void) {
 	FATFS_CS_HIGH;			/* CS = H */
 	TM_SPI_Send(FATFS_SPI, 0xFF);			/* Dummy clock (force DO hi-z for multiple slave SPI) */
 }
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Select card and wait for ready                                        */
 /*-----------------------------------------------------------------------*/
-
 static int select (void)	/* 1:OK, 0:Timeout */
 {
 	FATFS_CS_LOW;
@@ -177,17 +167,13 @@ static int select (void)	/* 1:OK, 0:Timeout */
 	return 0;	/* Timeout */
 }
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Receive a data packet from the MMC                                    */
 /*-----------------------------------------------------------------------*/
-
 static int rcvr_datablock (	/* 1:OK, 0:Error */
 	BYTE *buff,			/* Data buffer */
 	UINT btr			/* Data block length (byte) */
-)
-{
+) {
 	BYTE token;
 	
 	//Timer1 = 200;
@@ -206,12 +192,9 @@ static int rcvr_datablock (	/* 1:OK, 0:Error */
 	return 1;						// Function succeeded 
 }
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Send a data packet to the MMC                                         */
 /*-----------------------------------------------------------------------*/
-
 #if _USE_WRITE
 static int xmit_datablock (	/* 1:OK, 0:Failed */
 	const BYTE *buff,	/* Ponter to SD_BLOCK_SIZE byte data to be sent */
@@ -237,16 +220,13 @@ static int xmit_datablock (	/* 1:OK, 0:Failed */
 }
 #endif
 
-
 /*-----------------------------------------------------------------------*/
 /* Send a command packet to the MMC                                      */
 /*-----------------------------------------------------------------------*/
-
 static BYTE send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 	BYTE cmd,		/* Command index */
 	DWORD arg		/* Argument */
-)
-{
+) {
 	BYTE n, res;
 	
 	if (cmd & 0x80) {	/* Send a CMD55 prior to ACMD<n> */
@@ -360,12 +340,9 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 	return TM_FATFS_SD_Stat;
 }
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Get Disk Status                                                       */
 /*-----------------------------------------------------------------------*/
-
 DSTATUS TM_FATFS_SD_disk_status (void) {
 	/* Check card detect pin if enabled */
 	if (!SDCARD_IsDetected()) {
@@ -385,7 +362,6 @@ DSTATUS TM_FATFS_SD_disk_status (void) {
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */
 /*-----------------------------------------------------------------------*/
-
 DRESULT TM_FATFS_SD_disk_read (
 	BYTE *buff,		/* Data buffer to store read data */
 	DWORD sector,	/* Sector address (LBA) */
@@ -420,19 +396,15 @@ DRESULT TM_FATFS_SD_disk_read (
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Write Sector(s)                                                       */
 /*-----------------------------------------------------------------------*/
-
 #if _USE_WRITE
 DRESULT TM_FATFS_SD_disk_write (
 	const BYTE *buff,	/* Data to be written */
 	DWORD sector,		/* Sector address (LBA) */
 	UINT count			/* Number of sectors to write (1..128) */
-)
-{
+) {
 	if (!SDCARD_IsDetected()) {
 		return RES_ERROR;
 	}
@@ -474,11 +446,9 @@ DRESULT TM_FATFS_SD_disk_write (
 }
 #endif
 
-
 /*-----------------------------------------------------------------------*/
 /* Miscellaneous Functions                                               */
 /*-----------------------------------------------------------------------*/
-
 #if _USE_IOCTL
 DRESULT TM_FATFS_SD_disk_ioctl (
 	BYTE cmd,		/* Control code */
@@ -566,4 +536,3 @@ DRESULT TM_FATFS_SD_disk_ioctl (
 	return res;
 }
 #endif
-
