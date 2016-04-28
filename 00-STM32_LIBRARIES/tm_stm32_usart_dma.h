@@ -144,7 +144,7 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
 
 /* Default DMA Stream and Channel for USART6 */
 #ifndef USART6_DMA_TX_STREAM
-#define USART6_DMA_TX_STREAM      DMA1_Stream6
+#define USART6_DMA_TX_STREAM      DMA2_Stream6
 #define USART6_DMA_TX_CHANNEL     DMA_CHANNEL_5
 #endif
 
