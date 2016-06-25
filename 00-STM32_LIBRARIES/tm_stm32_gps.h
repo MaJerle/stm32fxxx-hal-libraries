@@ -7,6 +7,7 @@
  * @ide     Keil uVision
  * @license MIT
  * @brief   GPS NMEA standard data parser for STM32Fxxx devices
+ *
 \verbatim
    ----------------------------------------------------------------------
     Copyright (c) 2016 Tilen Majerle
@@ -420,9 +421,9 @@ typedef struct {
 #ifndef GPS_DISABLE_GPGGA
 	float Latitude;                                       /*!< Latitude position from GPS, -90 to 90 degrees response. */
 	float Longitude;                                      /*!< Longitude position from GPS, -180 to 180 degrees response. */
+	float Altitude;                                       /*!< Altitude above the seain units of meters */
 	uint8_t Satellites;                                   /*!< Number of satellites in use for GPS position. */
 	uint8_t Fix;                                          /*!< GPS fix; 0: Invalid; 1: GPS Fix; 2: DGPS Fix. */
-	float Altitude;                                       /*!< Altitude above the sea. */
 	TM_GPS_Time_t Time;                                   /*!< Current time from GPS. @ref TM_GPS_Time_t. */
 #endif
 #ifndef GPS_DISABLE_GPRMC

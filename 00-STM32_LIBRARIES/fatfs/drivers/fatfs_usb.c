@@ -275,7 +275,7 @@ static DRESULT TM_FATFS_USB_disk_ioctl_lowlevel (BYTE cmd, void *buff, USBH_Hand
 		/* Get R/W sector size (WORD) */
 		case GET_SECTOR_SIZE :	
 			if (USBH_MSC_GetLUNInfo(USBHandle, MSC_Handle->current_lun, &info) == USBH_OK) {
-				*(DWORD *)buff = info.capacity.block_size;
+				*(WORD *)buff = info.capacity.block_size;
 				res = RES_OK;
 			} else {
 				res = RES_ERROR;

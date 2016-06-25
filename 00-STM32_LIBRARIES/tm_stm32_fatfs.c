@@ -93,7 +93,7 @@ FRESULT TM_FATFS_TruncateBeginning(FIL* fil, uint32_t index) {
 	
 	fr = f_lseek(fil, NewSize);								/* Move pointer to the "end" of new file */
 	if (fr) return fr;										/* Check for success */
-	fr =  f_truncate(fil);									/* Truncate file from new end to actual end */
+	fr = f_truncate(fil);									/* Truncate file from new end to actual end */
 	return f_lseek(fil, 0);									/* Move pointer to the beginning */
 }
 

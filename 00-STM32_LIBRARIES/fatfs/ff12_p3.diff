@@ -1,0 +1,11 @@
+--- ff12_p2.c	Thu Apr 21 19:37:11 2016
++++ ff12_p3.c	Wed Apr 27 23:21:47 2016
+@@ -3932,7 +3932,7 @@
+ #if !_FS_READONLY
+ 					if (fp->flag & _FA_DIRTY) {		/* Write-back dirty sector cache */
+ 						if (disk_write(fs->drv, fp->buf, fp->sect, 1) != RES_OK) {
+-							ABORT(fp, FR_DISK_ERR);
++							ABORT(fs, FR_DISK_ERR);
+ 						}
+ 						fp->flag &= ~_FA_DIRTY;
+ 					}

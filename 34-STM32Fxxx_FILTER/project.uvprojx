@@ -848,16 +848,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -997,6 +987,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1028,9 +1038,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -1038,19 +1048,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1190,6 +1210,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2037,16 +2082,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2186,6 +2221,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2217,9 +2272,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -2227,19 +2282,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2379,6 +2444,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3226,16 +3316,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -3375,6 +3455,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3406,9 +3506,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -3416,19 +3516,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3568,6 +3678,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4414,16 +4549,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -4563,6 +4688,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4594,9 +4739,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -4604,19 +4749,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4756,6 +4911,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5603,16 +5783,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -5752,6 +5922,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5783,9 +5973,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -5793,19 +5983,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5945,6 +6145,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6791,16 +7016,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -6940,6 +7155,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6971,9 +7206,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -6981,19 +7216,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7133,6 +7378,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7979,16 +8249,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -8128,6 +8388,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8159,9 +8439,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -8169,19 +8449,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -8321,6 +8611,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -9167,16 +9482,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -9316,6 +9621,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -9347,9 +9672,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -9357,19 +9682,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -9509,6 +9844,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -10355,16 +10715,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -10504,6 +10854,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -10535,9 +10905,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -10545,19 +10915,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -10697,6 +11077,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -11543,16 +11948,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -11692,6 +12087,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -11723,9 +12138,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -11733,19 +12148,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -11885,6 +12310,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -12731,16 +13181,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -12880,6 +13320,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -12911,9 +13371,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -12921,19 +13381,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -13073,6 +13543,31 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -13725,16 +14220,6 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -13810,6 +14295,26 @@
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_ll_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -13841,9 +14346,9 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_usart_dma.c</FileName>
+              <FileName>tm_stm32_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_spi.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32_usart.c</FileName>
@@ -13851,19 +14356,29 @@
               <FilePath>..\00-STM32_LIBRARIES\tm_stm32_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_dma.c</FileName>
+              <FileName>tm_stm32_filters.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_filters.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c_dma.c</FileName>
+              <FileName>tm_stm32_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c_dma.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32_i2c.c</FileName>
+              <FileName>tm_stm32_sdram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_i2c.c</FilePath>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_dma2d_graphic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_dma2d_graphic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32_LIBRARIES\tm_stm32_fonts.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -14006,8 +14521,58 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>Arm math</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_biquad_cascade_df1_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_biquad_cascade_df1_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_fir_init_f32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-HAL_DRIVERS\CMSIS\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>
+
+  <RTE>
+    <apis/>
+    <components/>
+    <files>
+      <file attr="config" category="source" name="CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c" version="4.70.1">
+        <instance index="0" removed="1">RTE\CMSIS\RTX_Conf_CM.c</instance>
+        <component Cclass="CMSIS" Cgroup="RTOS" Csub="Keil RTX" Cvendor="ARM" Cversion="4.80.0" condition="Cortex-M Device Startup"/>
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" condition="STM32F746_ARMCC" name="Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\arm\startup_stm32f746xx.s" version="1.0.2">
+        <instance index="0" removed="1">RTE\Device\STM32F746NGHx\startup_stm32f746xx.s</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.2" condition="STM32F7 CMSIS"/>
+        <package name="STM32F7xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.4.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\system_stm32f7xx.c" version="1.0.2">
+        <instance index="0" removed="1">RTE\Device\STM32F746NGHx\system_stm32f7xx.c</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.2" condition="STM32F7 CMSIS"/>
+        <package name="STM32F7xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.4.0"/>
+        <targetInfos/>
+      </file>
+    </files>
+  </RTE>
 
 </Project>

@@ -434,7 +434,7 @@ uint32_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff) {
 uint32_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint32_t buffsize) {
 	uint32_t i = 0;
 	uint8_t ch;
-	uint32_t freeMem;
+	uint32_t memFree, memFull;
 	
 	/* Check value buffer */
 	if (Buffer == NULL) {
@@ -442,15 +442,16 @@ uint32_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint32_t buffsize
 	}
 	
 	/* Get free */
-	freeMem = TM_BUFFER_GetFree(Buffer);
+	memFree = TM_BUFFER_GetFree(Buffer);
+	memFull = TM_BUFFER_GetFull(Buffer);
 	
 	/* Check for any data on USART */
 	if (
-		freeMem == 0 ||                                                   /*!< Buffer empty */
+		memFull == 0 ||                                                   /*!< Buffer empty */
 		(
 			TM_BUFFER_FindElement(Buffer, Buffer->StringDelimiter) < 0 && /*!< String delimiter is not in buffer */
-			freeMem != 0 &&                                               /*!< Buffer is not full */
-			TM_BUFFER_GetFull(Buffer) < buffsize                          /*!< User buffer size is larger than number of elements in buffer */
+			memFree != 0 &&                                               /*!< Buffer is not full */
+			memFull < buffsize                                            /*!< User buffer size is larger than number of elements in buffer */
 		)
 	) {
 		/* Return 0 */
@@ -460,7 +461,9 @@ uint32_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint32_t buffsize
 	/* If available buffer size is more than 0 characters */
 	while (i < (buffsize - 1)) {
 		/* We have available data */
-		TM_BUFFER_Read(Buffer, &ch, 1);
+		if (TM_BUFFER_Read(Buffer, &ch, 1) == 0) {
+			break;
+		}
 		
 		/* Save character */
 		buff[i] = (char)ch;

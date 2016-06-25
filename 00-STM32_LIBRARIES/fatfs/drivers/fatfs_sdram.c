@@ -47,7 +47,7 @@ DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void* buff) {
 	/* Get command */
 	switch (cmd) {
 		case GET_SECTOR_COUNT:	/* Get drive capacity in unit of sector (DWORD) */
-			*(WORD *)buff = SDRAM_MEMORY_SIZE / FATFS_SDRAM_SECTOR_SIZE;
+			*(DWORD *)buff = SDRAM_MEMORY_SIZE / FATFS_SDRAM_SECTOR_SIZE;
 			break;
 
 		/* Size in bytes for single sector */

@@ -39,9 +39,6 @@ int main(void) {
 	/* Init HAL layer */
 	HAL_Init();
 	
-	/* Initialize system */
-	SystemInit();
-	
 	/* Initialize LCD 20 cols x 4 rows */
 	TM_HD44780_Init(20, 4);
 	

@@ -38,10 +38,10 @@ DRESULT TM_FATFS_SPI_FLASH_disk_ioctl(BYTE cmd, void *buff) {
 	/* Get command */
 	switch (cmd) {
 		case GET_SECTOR_COUNT:	/* Get drive capacity in unit of sector (DWORD) */
-			//*(WORD *)buff = SPI_FLASH_MEMORY_SIZE / FATFS_SPI_FLASH_SECTOR_SIZE;
+			//*(DWORD *)buff = SPI_FLASH_MEMORY_SIZE / FATFS_SPI_FLASH_SECTOR_SIZE;
 			break;
 		case GET_BLOCK_SIZE:	/* Get erase block size in unit of sector (DWORD) */
-			//*(DWORD *)buff = 32;
+			//*(WORD *)buff = 32;
 			break;
 		case CTRL_SYNC:
 		case CTRL_ERASE_SECTOR:
