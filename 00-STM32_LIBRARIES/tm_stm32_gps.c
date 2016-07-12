@@ -25,6 +25,96 @@
  */
 #include "tm_stm32_gps.h"
 
+
+
+/* Is character a digit */
+#define GPS_IS_DIGIT(x)			((x) >= '0' && (x) <= '9')
+
+/* Char 2 digit conversions */
+#define GPS_C2N(a)				(((a) - 48))
+#define GPS_C2NM(a, x)			(C2N(a) * (x))
+#define GPS_CONCAT(x, y)		((x) << 5 | (y))
+
+/* NMEA statements */
+#define GPS_GPGGA				0
+#define GPS_GPRMC				1
+#define GPS_GPGSA				2
+#define GPS_GPGSV				3
+#define GPS_ERR					4
+
+/* GPGGA Flags */
+#define GPS_FLAG_LATITUDE		0x00000001	//GPGGA
+#define GPS_FLAG_LONGITUDE		0x00000002	//GPGGA
+#define GPS_FLAG_SATS			0x00000004	//GPGGA
+#define GPS_FLAG_FIX			0x00000008	//GPGGA
+#define GPS_FLAG_ALTITUDE		0x00000010	//GPGGA
+#define GPS_FLAG_EW				0x00000020	//GPGGA
+#define GPS_FLAG_NS				0x00000040	//GPGGA
+#define GPS_FLAG_TIME			0x00000080	//GPGGA
+/* GPRMC Flags */
+#define GPS_FLAG_SPEED			0x00000100	//GPRMC
+#define GPS_FLAG_DATE			0x00000200	//GPRMC
+#define GPS_FLAG_VALIDITY		0x00000400	//GPRMC
+#define GPS_FLAG_DIRECTION		0x00008000	//GPRMC
+/* GPGSA Flags */
+#define GPS_FLAG_HDOP			0x00000800	//GPGSA
+#define GPS_FLAG_VDOP			0x00001000	//GPGSA
+#define GPS_FLAG_PDOP			0x00002000	//GPGSA
+#define GPS_FLAG_FIXMODE		0x00004000	//GPGSA
+#define GPS_FLAG_SATS1_12		0x00020000	//GPGSA
+/* GPGSV Flags */
+#define GPS_FLAG_SATSINVIEW		0x00010000	//GPGSV
+#define GPS_FLAG_SATSDESC       0x00040000  //GPGSV
+
+/* GPGGA Positions */
+#define GPS_POS_LATITUDE		GPS_CONCAT(GPS_GPGGA, 2)	//
+#define GPS_POS_LONGITUDE		GPS_CONCAT(GPS_GPGGA, 4)	//
+#define GPS_POS_SATS			GPS_CONCAT(GPS_GPGGA, 7)	//
+#define GPS_POS_FIX				GPS_CONCAT(GPS_GPGGA, 6)	//
+#define GPS_POS_ALTITUDE		GPS_CONCAT(GPS_GPGGA, 9)	//
+#define GPS_POS_TIME			GPS_CONCAT(GPS_GPGGA, 1)	//
+#define GPS_POS_EW				GPS_CONCAT(GPS_GPGGA, 5)	//
+#define GPS_POS_NS				GPS_CONCAT(GPS_GPGGA, 3)	//
+
+/* GPRMC Positions */
+#define GPS_POS_SPEED			GPS_CONCAT(GPS_GPRMC, 7)	//
+#define GPS_POS_DATE			GPS_CONCAT(GPS_GPRMC, 9)	//
+#define GPS_POS_VALIDITY		GPS_CONCAT(GPS_GPRMC, 2)	//
+#define GPS_POS_DIRECTION		GPS_CONCAT(GPS_GPRMC, 8)	//
+
+/* GPGSA Positions */
+#define GPS_POS_PDOP			GPS_CONCAT(GPS_GPGSA, 15)	//
+#define GPS_POS_HDOP			GPS_CONCAT(GPS_GPGSA, 16)	//
+#define GPS_POS_VDOP			GPS_CONCAT(GPS_GPGSA, 17)	//
+#define GPS_POS_FIXMODE			GPS_CONCAT(GPS_GPGSA, 2)	//
+
+#define GPS_POS_SAT1			GPS_CONCAT(GPS_GPGSA, 3)	//
+#define GPS_POS_SAT2			GPS_CONCAT(GPS_GPGSA, 4)	//
+#define GPS_POS_SAT3			GPS_CONCAT(GPS_GPGSA, 5)	//
+#define GPS_POS_SAT4			GPS_CONCAT(GPS_GPGSA, 6)	//
+#define GPS_POS_SAT5			GPS_CONCAT(GPS_GPGSA, 7)	//
+#define GPS_POS_SAT6			GPS_CONCAT(GPS_GPGSA, 8)	//
+#define GPS_POS_SAT7			GPS_CONCAT(GPS_GPGSA, 9)	//
+#define GPS_POS_SAT8			GPS_CONCAT(GPS_GPGSA, 10)	//
+#define GPS_POS_SAT9			GPS_CONCAT(GPS_GPGSA, 11)	//
+#define GPS_POS_SAT10			GPS_CONCAT(GPS_GPGSA, 12)	//
+#define GPS_POS_SAT11			GPS_CONCAT(GPS_GPGSA, 13)	//
+#define GPS_POS_SAT12			GPS_CONCAT(GPS_GPGSA, 14)	//
+
+/* GPGSV Positions */
+#define GPS_POS_SATSINVIEW		GPS_CONCAT(GPS_GPGSV, 3)	//
+
+/* Earth radius */
+#define GPS_EARTH_RADIUS		6371
+
+/* Degrees to radians converter */
+#define GPS_DEGREES2RADIANS(x)	((x) * (float)0.01745329251994)
+/* Radians to degrees */
+#define GPS_RADIANS2DEGREES(x)	((x) * (float)57.29577951308232)
+	
+/* Maximal number of satellites in view */
+#define GPS_MAX_SATS_IN_VIEW    24
+
 /* Internal variables */
 static char GPS_Term[15];
 static uint8_t GPS_Term_Number;

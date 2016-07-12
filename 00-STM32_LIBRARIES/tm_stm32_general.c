@@ -155,7 +155,12 @@ uint8_t TM_GENERAL_DWTCounterEnable(void) {
     /* Enable TRC */
     CoreDebug->DEMCR &= ~0x01000000;
     CoreDebug->DEMCR |=  0x01000000;
-	
+
+#if defined(STM32F7xx)
+    /* Unclock DWT timer */
+    DWT->LAR = 0xC5ACCE55;
+#endif
+
     /* Enable counter */
     DWT->CTRL &= ~0x00000001;
     DWT->CTRL |=  0x00000001;
