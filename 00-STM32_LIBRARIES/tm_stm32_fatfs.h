@@ -324,7 +324,7 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
  - TM SPI DMA       (only when SPI on STM32F4xx and STM32F7xx)
  - TM DELAY         (only when SPI)
  - TM GPIO
- - FatFS by Chan    (R0.11a)
+ - FatFS by Chan    (R0.12a)
 \endverbatim
  */
 

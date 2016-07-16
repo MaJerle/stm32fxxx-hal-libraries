@@ -2,11 +2,11 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.net/2016/07/hal-library-34-dsp-filters-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
- * @brief   Library template 
+ * @brief   Digital signal processing library for STM32 devices
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -49,8 +49,17 @@ extern "C" {
 
 /**
  * @defgroup TM_FILTERS
- * @brief    Library description here
+ * @brief    Digital signal processing library for STM32 devices - http://stm32f4-discovery.net/2016/07/hal-library-34-dsp-filters-for-stm32fxxx/
  * @{
+ *
+ * With support of ARM Math library, this library provides wrappers
+ * for simple initialization and usage ARM filters for digital signal processing.
+ *
+ * Supported filters are IIR Biquad 1 for F32 and FIR filter for F32.
+ *
+ * When you design DSP on ARM, always check ARM documentation:
+ *
+ * http://www.keil.com/pack/doc/CMSIS/DSP/html/index.html
  *
  * \par Changelog
  *

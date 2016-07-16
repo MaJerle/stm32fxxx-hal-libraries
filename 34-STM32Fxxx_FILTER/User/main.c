@@ -96,7 +96,7 @@ int main(void) {
 		/* Base frequency we are satisfied with */
 		Data[i] -= 5.0f * sin(i * 2.0f * SIN_FREQ * 3.1415f / SAMPLING_FREQ);
 		/* High frequency noise we want to remove later with FIR filter (lowpass) */
-		Data[i] += 1.5f * sin(i * 2.0f * SIN_NOISE_FREQ * 3.1415f / SAMPLING_FREQ);
+		Data[i] -= 1.5f * sin(i * 2.0f * SIN_NOISE_FREQ * 3.1415f / SAMPLING_FREQ);
 	}
 	
 	/* Draw base signal with high frequency signal */

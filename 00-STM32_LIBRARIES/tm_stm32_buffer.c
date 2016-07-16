@@ -452,7 +452,7 @@ int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size) {
 			/* First character found */
 			/* Check others */
 			i = 1;
-			while (i < Size) {
+			while (i < Size && Num > 0) {
 				/* Check output overflow */
 				if (Out >= Buffer->Size) {
 					Out = 0;
