@@ -1084,29 +1084,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -2328,29 +2313,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -3572,29 +3542,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -4815,29 +4770,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -6059,29 +5999,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -7302,29 +7227,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -8545,29 +8455,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -9788,29 +9683,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -11031,29 +10911,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -12274,29 +12139,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -13517,29 +13367,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>
@@ -13687,7 +13522,7 @@
       <TargetName>STM32F7_DISCOVERY</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
+      <pCCUsed>5060183::V5.06 update 2 (build 183)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F746NGHx</Device>
@@ -14502,29 +14337,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32fxxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32fxxx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32fxxx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32fxxx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f0xx.c</FileName>

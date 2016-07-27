@@ -298,7 +298,7 @@ typedef struct {
 				0xB0,0xB1,0xB2,0xB3,0xB4,0xB5,0xB6,0xB7,0xB8,0xB9,0xBA,0xBB,0xBC,0xBD,0xBE,0xBF, \
 				0xC0,0xC1,0xC2,0xC3,0xC4,0xC5,0xC6,0xC7,0xC8,0xC9,0xCA,0xCB,0xCC,0xCD,0xCE,0xCF, \
 				0xD0,0xD1,0xD2,0xD3,0xD4,0xD5,0xD6,0xD7,0xD8,0xD9,0xDA,0xDB,0xDC,0xDD,0xDE,0xDF, \
-				0x90,0x91,0x92,0x93,0x9d,0x95,0x96,0x97,0x98,0x99,0x9A,0x9B,0x9C,0x9D,0x9E,0x9F, \
+				0x90,0x91,0x92,0x93,0x94,0x95,0x96,0x97,0x98,0x99,0x9A,0x9B,0x9C,0x9D,0x9E,0x9F, \
 				0xF0,0xF0,0xF2,0xF2,0xF4,0xF4,0xF6,0xF6,0xF8,0xF9,0xFA,0xFB,0xFC,0xFD,0xFE,0xFF}
 
 #elif _CODE_PAGE == 869	/* Greek 2 */
@@ -1194,6 +1194,7 @@ FRESULT change_bitmap (
 			} while (bm <<= 1);		/* Next bit */
 			bm = 1;
 		} while (++i < SS(fs));		/* Next byte */
+		i = 0;
 	}
 }
 
@@ -1263,7 +1264,7 @@ FRESULT remove_chain (	/* FR_OK(0):succeeded, !=0:error */
 			res = put_fat(fs, clst, 0);		/* Mark the cluster 'free' on the FAT */
 			if (res != FR_OK) return res;
 		}
-		if (fs->free_clst != 0xFFFFFFFF) {	/* Update FSINFO */
+		if (fs->free_clst < fs->n_fatent - 2) {	/* Update FSINFO */
 			fs->free_clst++;
 			fs->fsi_flag |= 1;
 		}
@@ -2265,7 +2266,7 @@ FRESULT dir_register (	/* FR_OK:succeeded, FR_DENIED:no free entry or too many S
 		if (res != FR_OK) return res;
 		dp->blk_ofs = dp->dptr - SZDIRE * (nent - 1);			/* Set block position */
 
-		if (dp->obj.stat & 4) {			/* Has the sub-directory been stretched? */
+		if (dp->obj.sclust != 0 && (dp->obj.stat & 4)) {	/* Has the sub-directory been stretched? */
 			dp->obj.stat &= 3;
 			dp->obj.objsize += (DWORD)fs->csize * SS(fs);	/* Increase object size by cluster size */
 			res = fill_fat_chain(&dp->obj);	/* Complement FAT chain if needed */
@@ -2429,7 +2430,7 @@ void get_fileinfo (		/* No return code */
 				}
 #endif
 				if (i >= _MAX_LFN) { i = 0; break; }	/* No LFN if buffer overflow */
-				fno->fname[i++] = (char)w;
+				fno->fname[i++] = (TCHAR)w;
 			}
 			fno->fname[i] = 0;	/* Terminate the LFN */
 		}
@@ -3566,9 +3567,8 @@ FRESULT f_write (
 	if (res != FR_OK || (res = (FRESULT)fp->err) != FR_OK) LEAVE_FF(fs, res);	/* Check validity */
 	if (!(fp->flag & FA_WRITE)) LEAVE_FF(fs, FR_DENIED);	/* Check access mode */
 
-	/* Check fptr wrap-around (file size cannot exceed the limit on each FAT specs) */
-	if ((_FS_EXFAT && fs->fs_type == FS_EXFAT && fp->fptr + btw < fp->fptr)
-		|| (DWORD)fp->fptr + btw < (DWORD)fp->fptr) {
+	/* Check fptr wrap-around (file size cannot reach 4GiB on FATxx) */
+	if ((!_FS_EXFAT || fs->fs_type != FS_EXFAT) && (DWORD)(fp->fptr + btw) < (DWORD)fp->fptr) {
 		btw = (UINT)(0xFFFFFFFF - (DWORD)fp->fptr);
 	}
 
@@ -3680,8 +3680,9 @@ FRESULT f_sync (
 	FATFS *fs;
 	DWORD tm;
 	BYTE *dir;
+#if _FS_EXFAT
 	DEF_NAMBUF
-
+#endif
 
 	res = validate(fp, &fs);	/* Check validity of the object */
 	if (res == FR_OK) {
@@ -4008,6 +4009,9 @@ FRESULT f_lseek (
 
 	/* Normal Seek */
 	{
+#if _FS_EXFAT
+		if (fs->fs_type != FS_EXFAT && ofs >= 0x100000000) ofs = 0xFFFFFFFF;	/* Clip at 4GiB-1 if at FATxx */
+#endif
 		if (ofs > fp->obj.objsize && (_FS_READONLY || !(fp->flag & FA_WRITE))) {	/* In read-only mode, clip offset with the file size */
 			ofs = fp->obj.objsize;
 		}
@@ -5101,8 +5105,8 @@ FRESULT f_expand (
 		}
 		if (res == FR_OK) {
 			if (opt) {
-				for (clst = scl; tcl; clst++, tcl--) {	/* Create a cluster chain on the FAT */
-					res = put_fat(fs, clst, (tcl == 1) ? 0xFFFFFFFF : clst + 1);
+				for (clst = scl, n = tcl; n; clst++, n--) {	/* Create a cluster chain on the FAT */
+					res = put_fat(fs, clst, (n == 1) ? 0xFFFFFFFF : clst + 1);
 					if (res != FR_OK) break;
 					lclst = clst;
 				}
@@ -5112,12 +5116,18 @@ FRESULT f_expand (
 		}
 	}
 
-	if (opt && res == FR_OK) {
+	if (res == FR_OK) {
 		fs->last_clst = lclst;		/* Set suggested start cluster to start next */
-		fp->obj.sclust = scl;		/* Update object allocation information */
-		fp->obj.objsize = fsz;
-		if (_FS_EXFAT) fp->obj.stat = 2;	/* Set status 'contiguous chain' */
-		fp->flag |= FA_MODIFIED;
+		if (opt) {
+			fp->obj.sclust = scl;		/* Update object allocation information */
+			fp->obj.objsize = fsz;
+			if (_FS_EXFAT) fp->obj.stat = 2;	/* Set status 'contiguous chain' */
+			fp->flag |= FA_MODIFIED;
+			if (fs->free_clst  < fs->n_fatent - 2) {	/* Update FSINFO */
+				fs->free_clst -= tcl;
+				fs->fsi_flag |= 1;
+			}
+		}
 	}
 
 	LEAVE_FF(fs, res);
