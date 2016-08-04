@@ -2,11 +2,11 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.net/2016/07/hal-library-36-ahrs-imu-algorithms-calculating-roll-pitch-yaw-axes/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
- * @brief   AHRS and IMU algorithm library by Sebastian Madgwick
+ * @brief   AHRS and IMU algorithm library by Sebastian Madgwick and ported as library
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_AHRSIMU
- * @brief    AHRS and IMU algorithm library by Sebastian Madgwick
+ * @brief    AHRS and IMU algorithm library by Sebastian Madgwick and ported - http://stm32f4-discovery.net/2016/07/hal-library-36-ahrs-imu-algorithms-calculating-roll-pitch-yaw-axes/
  * @{
  *
  * This library calculates Roll, Pitch and Yaw angles by using AHRS or IMU algorithms developed by Sebastian Madgwick.
@@ -146,6 +146,14 @@ void TM_AHRSIMU_UpdateAHRS(TM_AHRSIMU_t* AHRSIMU, float gx, float gy, float gz, 
  * \retval None
  */
 void TM_AHRSIMU_UpdateIMU(TM_AHRSIMU_t* AHRSIMU, float gx, float gy, float gz, float ax, float ay, float az);
+
+/**
+ * \brief  Sets new gain value for processing
+ * \param  *AHRSIMU: Pointer to \ref TM_AHRSIMU_t empty structure
+ * \param  beta: New beta value
+ * \retval None
+ */
+#define TM_AHRSIMU_SetBeta(AHRSIMU, beta)       ((AHRSIMU)->_beta = (beta))
 
 /**
  * @}

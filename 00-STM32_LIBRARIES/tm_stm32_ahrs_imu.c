@@ -38,9 +38,16 @@ void calculateAngles(TM_AHRSIMU_t* AHRSIMU) {
     AHRSIMU->Yaw = (float) atan2(AHRSIMU->_q1 * AHRSIMU->_q2 + AHRSIMU->_q0 * AHRSIMU->_q3, 0.5f - AHRSIMU->_q2 * AHRSIMU->_q2 - AHRSIMU->_q3 * AHRSIMU->_q3);
 
     /* Calculate degrees and remove inclination */
-    AHRSIMU->Roll *= 180.0f / AHRSIMU_PI;
-    AHRSIMU->Pitch *= 180.0f / AHRSIMU_PI;
-    AHRSIMU->Yaw *= 180.0f / AHRSIMU_PI - AHRSIMU->Inclination;
+    AHRSIMU->Roll *= AHRSIMU_RAD2DEG(1);
+    AHRSIMU->Pitch *= AHRSIMU_RAD2DEG(1);
+    AHRSIMU->Yaw = AHRSIMU->Yaw * AHRSIMU_RAD2DEG(1) - AHRSIMU->Inclination;
+    
+    /* Check values because of inclination */
+    if (AHRSIMU->Yaw < -180) {
+        AHRSIMU->Yaw = 180.0f - (-180.0f - AHRSIMU->Yaw);
+    } else if (AHRSIMU->Yaw > 180) {
+        AHRSIMU->Yaw = -180.0f - (180.0f - AHRSIMU->Yaw);
+    }
 }
 
 void TM_AHRSIMU_Init(TM_AHRSIMU_t* AHRSIMU, float beta, float sampleRate, float inclination) {
