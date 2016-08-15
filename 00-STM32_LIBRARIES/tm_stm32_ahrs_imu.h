@@ -79,9 +79,9 @@ extern "C" {
  * @{
  */
 
-#define AHRSIMU_PI              3.141592653f            /* PI definition */
-#define AHRSIMU_RAD2DEG(x)      ((x) * 57.2957795f)     /* Radians to degrees converter */
-#define AHRSIMU_DEG2RAD(x)      ((x) * 0.0174532925f)   /* Radians to degrees converter */
+#define AHRSIMU_PI              3.141592653f            /*!< PI definition */
+#define AHRSIMU_RAD2DEG(x)      ((x) * 57.2957795f)     /*!< Radians to degrees converter */
+#define AHRSIMU_DEG2RAD(x)      ((x) * 0.0174532925f)   /*!< Radians to degrees converter */
 
 /**
  * @}
@@ -97,10 +97,10 @@ extern "C" {
  * @brief   Main working AHRS IMU structure
  */
 typedef struct _TM_AHRSIMU_t {
-    float Roll;             /* Roll angle value. This parameter is in units of degrees */
-    float Pitch;            /* Pitch angle value. This parameter is in units of degrees */
-    float Yaw;              /* Yaw angle value. This parameter is in units of degrees */
-    float Inclination;      /* Inclination in units of degrees */
+    float Roll;             /*!< Roll angle value. This parameter is in units of degrees */
+    float Pitch;            /*!< Pitch angle value. This parameter is in units of degrees */
+    float Yaw;              /*!< Yaw angle value. This parameter is in units of degrees */
+    float Inclination;      /*!< Inclination in units of degrees */
     
     float _beta;
     float _q0, _q1, _q2, _q3;

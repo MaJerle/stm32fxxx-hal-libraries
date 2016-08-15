@@ -54,6 +54,11 @@ void TM_AHRSIMU_Init(TM_AHRSIMU_t* AHRSIMU, float beta, float sampleRate, float 
     AHRSIMU->_beta = beta;
     AHRSIMU->_sampleRate = 1 / sampleRate;
     AHRSIMU->Inclination = inclination;
+    
+    AHRSIMU->_q0 = 1.0f;
+    AHRSIMU->_q1 = 0.0f;
+    AHRSIMU->_q2 = 0.0f;
+    AHRSIMU->_q3 = 0.0f;
 }
 
 void TM_AHRSIMU_UpdateAHRS(TM_AHRSIMU_t* AHRSIMU, float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz) {
