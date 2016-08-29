@@ -143,7 +143,7 @@ static void HID_Host(void) {
 	/* Init HOST on HS mode */
 	TM_USBH_Init(TM_USB_HS);
 	
-	/* Init USB HOST HID on FS port */
+	/* Init USB HOST HID on HS port */
 	TM_USBH_HID_Init(TM_USB_HS);
 	
 	/* Send debug */

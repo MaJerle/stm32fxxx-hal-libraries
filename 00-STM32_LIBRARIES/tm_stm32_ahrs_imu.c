@@ -153,7 +153,6 @@ void TM_AHRSIMU_UpdateAHRS(TM_AHRSIMU_t* AHRSIMU, float gx, float gy, float gz, 
         AHRSIMU->_q1 *= recipNorm;
         AHRSIMU->_q2 *= recipNorm;
         AHRSIMU->_q3 *= recipNorm;
-        return;
     } else {
         /* Update IMU algorithm */
         TM_AHRSIMU_UpdateIMU(AHRSIMU, gx, gy, gz, ax, ay, az);

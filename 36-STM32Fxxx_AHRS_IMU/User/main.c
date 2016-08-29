@@ -56,7 +56,7 @@ void IRQ_Func(void) {
     
     /* Read data from sensor and format them into variables above directly from registers */
     
-    /* Convert data to gees, rads/sec and microTesla respectively */
+    /* Convert data to gees, deg/sec and microTesla respectively */
     gx = (gx * 2000.0f) / 32768.0f;
     gy = (gy * 2000.0f) / 32768.0f;
     gz = (gz * 2000.0f) / 32768.0f;
