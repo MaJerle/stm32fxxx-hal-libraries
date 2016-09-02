@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2016/04/hal-library-32-dma-extension-for-usart-on-stm32fxxx
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2016/04/hal-library-32-dma-extension-for-usart-on-stm32fxxx
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_USART_DMA
- * @brief    DMA TX functionality for USART for STM32F4xx or STM32F7xx devices - http://stm32f4-discovery.com/2016/04/hal-library-32-dma-extension-for-usart-on-stm32fxxx
+ * @brief    DMA TX functionality for USART for STM32F4xx or STM32F7xx devices - http://stm32f4-discovery.net/2016/04/hal-library-32-dma-extension-for-usart-on-stm32fxxx
  * @{
  *
  * This library allows you to send data over USART with DMA feature.

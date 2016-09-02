@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -44,7 +44,7 @@
 
 /**
  * @defgroup TM_DS12820
- * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors - http://stm32f4-discovery.com/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
+ * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors - http://stm32f4-discovery.net/2015/07/hal-library-06-ds18b20-for-stm32fxxx/
  * @{
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits and check if device is DS18B20.
@@ -74,7 +74,7 @@
 
 /* OneWire version check */
 #if TM_ONEWIRE_H < 100
-#error "Please update TM ONEWIRE LIB, minimum required version is 2.0.0. Download available on stm32f4-discovery.com website"
+#error "Please update TM ONEWIRE LIB, minimum required version is 2.0.0. Download available on stm32f4-discovery.net website"
 #endif
 
 /**

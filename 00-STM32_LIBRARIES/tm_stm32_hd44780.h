@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/07/hal-library-15-hd44780-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/07/hal-library-15-hd44780-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_HD44780
- * @brief    HD44780 LCD driver library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-15-hd44780-for-stm32fxxx/
+ * @brief    HD44780 LCD driver library for STM32Fxxx - http://stm32f4-discovery.net/2015/07/hal-library-15-hd44780-for-stm32fxxx/
  * @{
  *
  *	It also supports all HD44780 compatible LCD drivers.

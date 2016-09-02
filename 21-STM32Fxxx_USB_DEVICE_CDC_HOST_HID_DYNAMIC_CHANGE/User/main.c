@@ -8,7 +8,7 @@
  *
  * @author    Tilen Majerle
  * @email     tilen@majerle.eu
- * @website   http://stm32f4-discovery.com
+ * @website   http://stm32f4-discovery.net
  * @ide       Keil uVision 5
  * @conf      PLL parameters are set in "Options for Target" -> "C/C++" -> "Defines"
  * @packs     STM32F4xx/STM32F7xx Keil packs are requred with HAL driver support

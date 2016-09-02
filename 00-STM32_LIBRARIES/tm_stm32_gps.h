@@ -1,7 +1,7 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
+ * @website http://stm32f4-discovery.net
  * @link    http://stm32f4-discovery.net/2016/07/hal-library-35-gps-parser-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision

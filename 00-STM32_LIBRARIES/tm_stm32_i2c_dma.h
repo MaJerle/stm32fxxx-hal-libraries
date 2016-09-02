@@ -1,7 +1,7 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
+ * @website http://stm32f4-discovery.net
  * @link    
  * @version v1.0
  * @ide     Keil uVision
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_I2C_DMA
- * @brief    DMA functionality for @ref TM_I2C library for STM32F4xx and STM32F7xx devices - http://stm32f4-discovery.com/2016/04/hal-library-33-dma-extension-for-I2C-on-stm32fxxx
+ * @brief    DMA functionality for @ref TM_I2C library for STM32F4xx and STM32F7xx devices - http://stm32f4-discovery.net/2016/04/hal-library-33-dma-extension-for-I2C-on-stm32fxxx
  * @{
  *
  * This library allows you to use DMA with I2C peripheral.

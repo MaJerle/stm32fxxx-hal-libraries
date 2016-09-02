@@ -1,9 +1,9 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/08/hal-library-20-fatfs-for-stm32fxxx/
- * @version v1.1
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/08/hal-library-20-fatfs-for-stm32fxxx/
+ * @version v1.2
  * @ide     Keil uVision
  * @license MIT
  * @brief   Fatfs implementation for STM32Fxxx devices
@@ -50,7 +50,7 @@ extern "C" {
 
 /**
  * @defgroup TM_FATFS
- * @brief    FATFS implementation for STM32Fxxx devices - http://stm32f4-discovery.com/2015/08/hal-library-20-fatfs-for-stm32fxxx/
+ * @brief    FATFS implementation for STM32Fxxx devices - http://stm32f4-discovery.net/2015/08/hal-library-20-fatfs-for-stm32fxxx/
  * @{
  *
  * FatFs implementation for STM32F4xx devices
@@ -304,6 +304,11 @@ uint8_t TM_FATFS_SearchCallback(char* path, uint8_t is_file, TM_FATFS_Search_t* 
  * \par Changelog
  *
 \verbatim
+ Version 1.2
+  - September 2, 2016
+  - Applied patches 1 - 7 for FATFS v0.12a
+  - Fixed bug in SDIO communication for files larger than 4GB
+
  Version 1.1
   - April 24, 2016
   - Added support for FATFS R0.12

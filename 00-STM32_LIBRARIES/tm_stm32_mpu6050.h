@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/10/hal-library-30-mpu6050-for-stm32fxxx
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/10/hal-library-30-mpu6050-for-stm32fxxx
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_MPU6050
- * @brief    MPU6050 library for STM32Fxxx - http://stm32f4-discovery.com/2015/10/hal-library-30-mpu6050-for-stm32fxxx
+ * @brief    MPU6050 library for STM32Fxxx - http://stm32f4-discovery.net/2015/10/hal-library-30-mpu6050-for-stm32fxxx
  * @{
  *
  * \par Features

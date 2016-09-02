@@ -5,7 +5,7 @@
  *
  * @author    Tilen Majerle
  * @email     tilen@majerle.eu
- * @website   http://stm32f4-discovery.com
+ * @website   http://stm32f4-discovery.net
  * @ide       Keil uVision 5
  * @conf      PLL parameters are set in "Options for Target" -> "C/C++" -> "Defines"
  * @packs     STM32F4xx/STM32F7xx Keil packs are requred with HAL driver support
@@ -75,7 +75,7 @@ int main(void) {
 	/* Print "logo" */
 	TM_LCD_SetFont(&TM_Font_7x10);
 	TM_LCD_SetXY(30, TM_LCD_GetHeight() - 15);
-	TM_LCD_Puts("stm32f4-discovery.com");
+	TM_LCD_Puts("stm32f4-discovery.net");
 	
 	/* Init FFT, FFT_SIZE define is used for FFT_SIZE, samples count is FFT_SIZE * 2, don't use malloc for memory allocation */
 	TM_FFT_Init_F32(&FFT, FFT_SIZE, 0);

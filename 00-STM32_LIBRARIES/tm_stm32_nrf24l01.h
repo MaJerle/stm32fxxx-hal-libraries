@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/09/hal-library-25-nrf24l01-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/09/hal-library-25-nrf24l01-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_NRF24L01P
- * @brief    nRF24L01+ library for STM32xxx devices - http://stm32f4-discovery.com/2015/09/hal-library-25-nrf24l01-for-stm32fxxx/
+ * @brief    nRF24L01+ library for STM32xxx devices - http://stm32f4-discovery.net/2015/09/hal-library-25-nrf24l01-for-stm32fxxx/
  * @{
  *
  * This library allows you to work with nRF24L01+ modules.

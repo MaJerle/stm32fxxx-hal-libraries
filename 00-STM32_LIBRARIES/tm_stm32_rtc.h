@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/08/hal-library-24-rtc-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/08/hal-library-24-rtc-for-stm32fxxx/
  * @version 1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_RTC
- * @brief    RTC Library for STM32Fxxx devices - http://stm32f4-discovery.com/2015/08/hal-library-24-rtc-for-stm32fxxx/
+ * @brief    RTC Library for STM32Fxxx devices - http://stm32f4-discovery.net/2015/08/hal-library-24-rtc-for-stm32fxxx/
  * @{
  *
  * \par Features

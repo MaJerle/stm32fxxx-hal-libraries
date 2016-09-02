@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/07/hal-library-07-usart-for-stm32fxxx
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/07/hal-library-07-usart-for-stm32fxxx
  * @version v1.2.1
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_USART
- * @brief    TM USART Library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-07-usart-for-stm32fxxx
+ * @brief    TM USART Library for STM32Fxxx - http://stm32f4-discovery.net/2015/07/hal-library-07-usart-for-stm32fxxx
  * @{
  *
  * <b>Library works for all 8 U(S)ARTs which are supported on STM32Fxxx devices.</b>

@@ -151,7 +151,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
-	if (BSP_SD_ReadBlocks((uint32_t *)buff, (uint64_t) (sector * SD_BLOCK_SIZE), SD_BLOCK_SIZE, count) != MSD_OK) {
+	if (BSP_SD_ReadBlocks((uint32_t *)buff, (uint64_t)sector * SD_BLOCK_SIZE, SD_BLOCK_SIZE, count) != MSD_OK) {
 		return RES_ERROR;
 	}
 	
@@ -159,7 +159,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(const BYTE *buff, DWORD sector, UINT count) {
-	if (BSP_SD_WriteBlocks((uint32_t *)buff, (uint64_t) (sector * SD_BLOCK_SIZE), SD_BLOCK_SIZE, count) != MSD_OK) {
+	if (BSP_SD_WriteBlocks((uint32_t *)buff, (uint64_t)sector * SD_BLOCK_SIZE, SD_BLOCK_SIZE, count) != MSD_OK) {
 		return RES_ERROR;
 	}
 	

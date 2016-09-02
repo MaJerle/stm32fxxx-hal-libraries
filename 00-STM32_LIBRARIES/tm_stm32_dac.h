@@ -1,7 +1,7 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com/2015/10/hal-library-28-digital-to-analog-converter-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net/2015/10/hal-library-28-digital-to-analog-converter-for-stm32fxxx/
  * @link    DAC library for ST32F0xx, STM32F4xx and STM32F7xx
  * @version v1.0
  * @ide     Keil uVision
@@ -49,7 +49,7 @@ extern C {
 
 /**
  * @defgroup TM_DAC
- * @brief    DAC library for STM32F0xx, STM32F4xx and STM32F7xx - http://stm32f4-discovery.com/2015/10/hal-library-28-digital-to-analog-converter-for-stm32fxxx/
+ * @brief    DAC library for STM32F0xx, STM32F4xx and STM32F7xx - http://stm32f4-discovery.net/2015/10/hal-library-28-digital-to-analog-converter-for-stm32fxxx/
  * @{
  *
  * This library provides 12-bit digital to analog output, values from 0 to 4095.

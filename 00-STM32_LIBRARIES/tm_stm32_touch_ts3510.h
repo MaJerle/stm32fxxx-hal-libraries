@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/08/hal-library-23-touch-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/08/hal-library-23-touch-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_TOUCH_TS3510
- * @brief    TS3510 low level library - http://stm32f4-discovery.com/2015/08/hal-library-23-touch-for-stm32fxxx/
+ * @brief    TS3510 low level library - http://stm32f4-discovery.net/2015/08/hal-library-23-touch-for-stm32fxxx/
  * @{
  *
  * This is a low-level driver for TS3510 touch screen controller.

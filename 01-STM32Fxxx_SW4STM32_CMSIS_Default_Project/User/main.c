@@ -5,7 +5,7 @@
  *
  * @author    Tilen Majerle
  * @email     tilen@majerle.eu
- * @website   http://stm32f4-discovery.com
+ * @website   http://stm32f4-discovery.net
  * @ide       Keil uVision 5
  * @conf      PLL parameters are set in target options
  * @stdperiph STM32F4xx/STM32F7xx HAL drivers required

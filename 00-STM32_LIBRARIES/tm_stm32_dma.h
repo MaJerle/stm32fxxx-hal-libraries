@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2016/04/hal-library-31-dma-stm32fxxx-devices
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2016/04/hal-library-31-dma-stm32fxxx-devices
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_DMA
- * @brief    DMA library for STM32F4xx and STM32F7xx devices for several purposes - http://stm32f4-discovery.com/2016/04/hal-library-31-dma-stm32fxxx-devices
+ * @brief    DMA library for STM32F4xx and STM32F7xx devices for several purposes - http://stm32f4-discovery.net/2016/04/hal-library-31-dma-stm32fxxx-devices
  * @{
  *
  * This is a generic DMA library for STM32F4xx devices.

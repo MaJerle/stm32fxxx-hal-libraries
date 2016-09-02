@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/07/hal-library-11-sdram-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/07/hal-library-11-sdram-for-stm32fxxx/
  * @version v1.1
  * @ide     Keil uVision
  * @license MIT
@@ -44,7 +44,7 @@
 
 /**
  * @defgroup TM_SDRAM
- * @brief    Connect external SDRAM to STM32Fxxx devices with integrated FMC peripheral - http://stm32f4-discovery.com/2015/07/hal-library-11-sdram-for-stm32fxxx/
+ * @brief    Connect external SDRAM to STM32Fxxx devices with integrated FMC peripheral - http://stm32f4-discovery.net/2015/07/hal-library-11-sdram-for-stm32fxxx/
  * @{
  *
  * This library allows you to connect and use external SDRAM.

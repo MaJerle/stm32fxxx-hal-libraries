@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/07/hal-library-16-i2c-for-stm32fxxx-devices/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/07/hal-library-16-i2c-for-stm32fxxx-devices/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_I2C
- * @brief    I2C library for STM32Fxxx - http://stm32f4-discovery.com/2015/07/hal-library-16-i2c-for-stm32fxxx-devices/
+ * @brief    I2C library for STM32Fxxx - http://stm32f4-discovery.net/2015/07/hal-library-16-i2c-for-stm32fxxx-devices/
  * @{
  *
  *	\par Pinout

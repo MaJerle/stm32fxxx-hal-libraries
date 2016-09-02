@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/09/hal-library-26-power-voltage-detector-pvd-for-stm32fxxx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/09/hal-library-26-power-voltage-detector-pvd-for-stm32fxxx/
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
@@ -49,7 +49,7 @@ extern "C" {
 
 /**
  * @defgroup TM_PVD
- * @brief    PVD - Power Voltage Detector for STM32Fxxx - http://stm32f4-discovery.com/2015/09/hal-library-26-power-voltage-detector-pvd-for-stm32fxxx/
+ * @brief    PVD - Power Voltage Detector for STM32Fxxx - http://stm32f4-discovery.net/2015/09/hal-library-26-power-voltage-detector-pvd-for-stm32fxxx/
  * @{
  *
  * PVD can detect voltage changes in your system. It features 8 different voltage levels between 2 and 3 volts. For detailed voltages, check device datasheet.
