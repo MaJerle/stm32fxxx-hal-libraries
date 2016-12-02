@@ -90,12 +90,15 @@ void TM_ADC_Init(ADC_TypeDef* ADCx, TM_ADC_Channel_t channel) {
 void TM_ADC_InitADC(ADC_TypeDef* ADCx) {
 	/* Enable clock */
 #if defined(ADC1)
+	if (ADCx == ADC1)
 	__HAL_RCC_ADC1_CLK_ENABLE();
 #endif
 #if defined(ADC2)
+	if (ADCx == ADC2)
 	__HAL_RCC_ADC2_CLK_ENABLE();
 #endif
 #if defined(ADC3)
+	if (ADCx == ADC3)
 	__HAL_RCC_ADC3_CLK_ENABLE();
 #endif
 	
