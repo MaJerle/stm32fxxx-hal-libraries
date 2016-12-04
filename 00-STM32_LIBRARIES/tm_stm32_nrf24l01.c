@@ -34,7 +34,7 @@
 #define NRF24L01_REG_RF_CH			0x05	//RF Channel
 #define NRF24L01_REG_RF_SETUP		0x06	//RF Setup Register	
 #define NRF24L01_REG_STATUS			0x07	//Status Register
-#define NRF24L01_REG_OBSERVE_TX		0x08	//Transmit observe register
+#define NRF24L01_REG_OBSERVE_TX		0x08	//Transmit observe registerf
 #define NRF24L01_REG_RPD			0x09	
 #define NRF24L01_REG_RX_ADDR_P0		0x0A	//Receive address data pipe 0. 5 Bytes maximum length.
 #define NRF24L01_REG_RX_ADDR_P1		0x0B	//Receive address data pipe 1. 5 Bytes maximum length.
@@ -554,6 +554,7 @@ void TM_NRF24L01_SetRF(TM_NRF24L01_DataRate_t DataRate, TM_NRF24L01_OutputPower_
 
 uint8_t TM_NRF24L01_Read_Interrupts(TM_NRF24L01_IRQ_t* IRQ) {
 	IRQ->Status = TM_NRF24L01_GetStatus();
+	return IRQ->Status;
 }
 
 void TM_NRF24L01_Clear_Interrupts(void) {

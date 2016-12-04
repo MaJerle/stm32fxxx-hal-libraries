@@ -702,7 +702,7 @@ void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx, uint16_t AlternateFu
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_USART1_ReceiveHandler(uint8_t c);
+void TM_USART1_ReceiveHandler(uint8_t c);
 
 /**
  * @brief  Callback function for receive interrupt on USART2 in case you have enabled custom USART handler mode 
@@ -710,7 +710,7 @@ __weak void TM_USART1_ReceiveHandler(uint8_t c);
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_USART2_ReceiveHandler(uint8_t c);
+void TM_USART2_ReceiveHandler(uint8_t c);
 
 /**
  * @brief  Callback function for receive interrupt on USART3 in case you have enabled custom USART handler mode 
@@ -718,7 +718,7 @@ __weak void TM_USART2_ReceiveHandler(uint8_t c);
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_USART3_ReceiveHandler(uint8_t c);
+void TM_USART3_ReceiveHandler(uint8_t c);
 
 /**
  * @brief  Callback function for receive interrupt on UART4 in case you have enabled custom USART handler mode 
@@ -726,7 +726,7 @@ __weak void TM_USART3_ReceiveHandler(uint8_t c);
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_UART4_ReceiveHandler(uint8_t c);
+void TM_UART4_ReceiveHandler(uint8_t c);
 
 /**
  * @brief  Callback function for receive interrupt on UART5 in case you have enabled custom USART handler mode 
@@ -734,7 +734,7 @@ __weak void TM_UART4_ReceiveHandler(uint8_t c);
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_UART5_ReceiveHandler(uint8_t c);
+void TM_UART5_ReceiveHandler(uint8_t c);
 
 /**
  * @brief  Callback function for receive interrupt on USART6 in case you have enabled custom USART handler mode 
@@ -742,7 +742,7 @@ __weak void TM_UART5_ReceiveHandler(uint8_t c);
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_USART6_ReceiveHandler(uint8_t c);
+void TM_USART6_ReceiveHandler(uint8_t c);
 
 /**
  * @brief  Callback function for receive interrupt on UART7 in case you have enabled custom USART handler mode 
@@ -750,7 +750,7 @@ __weak void TM_USART6_ReceiveHandler(uint8_t c);
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_UART7_ReceiveHandler(uint8_t c);
+void TM_UART7_ReceiveHandler(uint8_t c);
 
 /**
  * @brief  Callback function for receive interrupt on UART8 in case you have enabled custom USART handler mode 
@@ -758,7 +758,7 @@ __weak void TM_UART7_ReceiveHandler(uint8_t c);
  * @param  c: character received via USART
  * @retval None
  */
-__weak void TM_UART8_ReceiveHandler(uint8_t c);
+void TM_UART8_ReceiveHandler(uint8_t c);
 
 /**
  * @}

@@ -195,12 +195,10 @@ void TM_GPS_Init(TM_GPS_t* GPS_Data, uint32_t baudrate) {
 
 TM_GPS_Result_t TM_GPS_Update(TM_GPS_t* GPS_Data) {
 	/* Check for data in USART */
-	if (!GPS_USART_BUFFER_EMPTY) {
-		while (!GPS_USART_BUFFER_EMPTY) {
-			TM_GPS_INT_Do(GPS_Data, (char)GPS_USART_BUFFER_GET_CHAR);
-			if (GPS_Data->Status == TM_GPS_Result_NewData) {
-				return GPS_Data->Status;
-			}
+	while (!GPS_USART_BUFFER_EMPTY) {
+		TM_GPS_INT_Do(GPS_Data, (char)GPS_USART_BUFFER_GET_CHAR);
+		if (GPS_Data->Status == TM_GPS_Result_NewData) {
+			return GPS_Data->Status;
 		}
 	}
 	

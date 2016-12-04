@@ -441,13 +441,22 @@ void TM_USART_SetCustomStringEndCharacter(USART_TypeDef* USARTx, uint8_t Charact
 }
 
 /************************************/
-/*    USART CUSTOM PINS CALLBACK    */
+/*              CALLBACKS           */
 /************************************/
 __weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx, uint16_t AlternateFunction) { 
 	/* NOTE: This function Should not be modified, when the callback is needed,
            the TM_USART_InitCustomPinsCallback could be implemented in the user file
 	*/
 }
+
+__weak void TM_USART1_ReceiveHandler(uint8_t c) { }
+__weak void TM_USART2_ReceiveHandler(uint8_t c) { }
+__weak void TM_USART3_ReceiveHandler(uint8_t c) { }
+__weak void TM_UART4_ReceiveHandler(uint8_t c) { }
+__weak void TM_UART5_ReceiveHandler(uint8_t c) { }
+__weak void TM_USART6_ReceiveHandler(uint8_t c) { }
+__weak void TM_UART7_ReceiveHandler(uint8_t c) { }
+__weak void TM_UART8_ReceiveHandler(uint8_t c) { }
 
 /* Private functions */
 static void TM_USART_INT_InsertToBuffer(TM_BUFFER_t* u, uint8_t c) {
@@ -1397,4 +1406,3 @@ static void TM_USART_INT_ClearAllFlags(USART_TypeDef* USARTx, IRQn_Type irq) {
 	/* Clear IRQ bit */
 	HAL_NVIC_ClearPendingIRQ(irq);
 }
-

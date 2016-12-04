@@ -339,7 +339,7 @@ typedef struct {
 	TM_GPS_Time_t Time;                                   /*!< Current time from GPS. @ref TM_GPS_Time_t. */
 #endif
 #ifndef GPS_DISABLE_GPRMC
-	TM_GPS_Date_t Date;                                   /*!< Current data from GPS. @ref TM_GPS_Date_t. */
+	TM_GPS_Date_t Date;                                   /*!< Current date from GPS. @ref TM_GPS_Date_t. */
 	float Speed;                                          /*!< Speed in knots from GPS. */
 	uint8_t Validity;                                     /*!< GPS validation; 1: valid; 0: invalid. */
 	float Direction;                                      /*!< Course on the ground in relation to North. */
