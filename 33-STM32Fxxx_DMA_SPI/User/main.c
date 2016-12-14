@@ -41,7 +41,7 @@ uint8_t SPI_TX[15], SPI_RX[15];
 
 /* USART for serial port */
 #if defined(STM32F7_DISCOVERY)
-	#define USART             USART6 /* USART 6 on STM32F7-Discovery */
+	#define USART             USART1 /* USART 1 on STM32F7-Discovery */
 #else
 	#define USART             USART2 /* USART 2 on Nucleo boards for F4 series */
 #endif
