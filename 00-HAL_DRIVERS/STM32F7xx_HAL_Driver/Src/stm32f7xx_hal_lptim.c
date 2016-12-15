@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f7xx_hal_lptim.c
   * @author  MCD Application Team
-  * @version V1.0.3
-  * @date    13-November-2015
+  * @version V1.1.2
+  * @date    23-September-2016 
   * @brief   LPTIM HAL module driver.
   *          This file provides firmware functions to manage the following 
   *          functionalities of the Low Power Timer (LPTIM) peripheral:
@@ -24,29 +24,29 @@
         HAL_LPTIM_MspInit():
          (##) Enable the LPTIM interface clock using __LPTIMx_CLK_ENABLE().
          (##) In case of using interrupts (e.g. HAL_LPTIM_PWM_Start_IT()):
-             (+) Configure the LPTIM interrupt priority using HAL_NVIC_SetPriority().
-             (+) Enable the LPTIM IRQ handler using HAL_NVIC_EnableIRQ().
-             (+) In LPTIM IRQ handler, call HAL_LPTIM_IRQHandler().
+             (+++) Configure the LPTIM interrupt priority using HAL_NVIC_SetPriority().
+             (+++) Enable the LPTIM IRQ handler using HAL_NVIC_EnableIRQ().
+             (+++) In LPTIM IRQ handler, call HAL_LPTIM_IRQHandler().
     
       (#)Initialize the LPTIM HAL using HAL_LPTIM_Init(). This function
          configures mainly:
          (##) The instance: LPTIM1.
          (##) Clock: the counter clock.
-                 - Source   : it can be either the ULPTIM input (IN1) or one of
+               (+++) Source: it can be either the ULPTIM input (IN1) or one of
                               the internal clock; (APB, LSE, LSI or MSI).
-                 - Prescaler: select the clock divider.
+               (+++) Prescaler: select the clock divider.
          (##)  UltraLowPowerClock : To be used only if the ULPTIM is selected
                as counter clock source.
-                 - Polarity:   polarity of the active edge for the counter unit
+               (+++) Polarity:   polarity of the active edge for the counter unit
                                if the ULPTIM input is selected.
-                 - SampleTime: clock sampling time to configure the clock glitch
+               (+++) SampleTime: clock sampling time to configure the clock glitch
                                filter.              
          (##) Trigger: How the counter start.
-                 - Source: trigger can be software or one of the hardware triggers.
-                 - ActiveEdge : only for hardware trigger.
-                 - SampleTime : trigger sampling time to configure the trigger
+              (+++) Source: trigger can be software or one of the hardware triggers.
+              (+++) ActiveEdge: only for hardware trigger.
+              (+++) SampleTime: trigger sampling time to configure the trigger
                                 glitch filter.
-         (##) OutputPolarity : 2 opposite polarities are possibles.
+         (##) OutputPolarity: 2 opposite polarities are possibles.
          (##) UpdateMode: specifies whether the update of the autoreload and
               the compare values is done immediately or after the end of current
               period.   
@@ -87,13 +87,13 @@
           HAL_LPTIM_Xxx_Stop() or HAL_LPTIM_Xxx_Stop_IT() if the process is
           already started in interruption mode.
          
-       (#)Call HAL_LPTIM_DeInit() to deinitialize the LPTIM peripheral.
+      (#) Call HAL_LPTIM_DeInit() to deinitialize the LPTIM peripheral.
 
   @endverbatim
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -1001,7 +1001,7 @@ HAL_StatusTypeDef HAL_LPTIM_Encoder_Start_IT(LPTIM_HandleTypeDef *hlptim, uint32
 
   /* Set the LPTIM state */
   hlptim->State= HAL_LPTIM_STATE_BUSY;
-
+  
   /* Configure edge sensitivity for encoder mode */
   /* Get the LPTIMx CFGR value */
   tmpcfgr = hlptim->Instance->CFGR;
@@ -1162,6 +1162,12 @@ HAL_StatusTypeDef HAL_LPTIM_TimeOut_Start_IT(LPTIM_HandleTypeDef *hlptim, uint32
   /* Set the LPTIM state */
   hlptim->State= HAL_LPTIM_STATE_BUSY;
  
+  /* Enable EXTI Line interrupt on the LPTIM Wake-up Timer */
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_ENABLE_IT(); 
+  
+  /* Enable rising edge trigger on the LPTIM Wake-up Timer Exti line */
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_ENABLE_RISING_EDGE();
+ 
   /* Set TIMOUT bit to enable the timeout function */
   hlptim->Instance->CFGR |= LPTIM_CFGR_TIMOUT;
   
@@ -1199,6 +1205,12 @@ HAL_StatusTypeDef HAL_LPTIM_TimeOut_Stop_IT(LPTIM_HandleTypeDef *hlptim)
   
   /* Set the LPTIM state */
   hlptim->State= HAL_LPTIM_STATE_BUSY;
+  
+  /* Disable rising edge trigger on the LPTIM Wake-up Timer Exti line */ 
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_DISABLE_RISING_EDGE();
+  
+  /* Disable EXTI Line interrupt on the LPTIM Wake-up Timer */
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_DISABLE_IT(); 
   
   /* Disable the Peripheral */
   __HAL_LPTIM_DISABLE(hlptim);
@@ -1295,6 +1307,12 @@ HAL_StatusTypeDef HAL_LPTIM_Counter_Start_IT(LPTIM_HandleTypeDef *hlptim, uint32
                
   /* Set the LPTIM state */
   hlptim->State= HAL_LPTIM_STATE_BUSY;
+
+  /* Enable EXTI Line interrupt on the LPTIM Wake-up Timer */
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_ENABLE_IT(); 
+  
+  /* Enable rising edge trigger on the LPTIM Wake-up Timer Exti line */
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_ENABLE_RISING_EDGE();  
   
   /* If clock source is not ULPTIM clock and counter source is external, then it must not be prescaled */
   if((hlptim->Init.Clock.Source != LPTIM_CLOCKSOURCE_ULPTIM) && (hlptim->Init.CounterSource == LPTIM_COUNTERSOURCE_EXTERNAL))
@@ -1339,6 +1357,12 @@ HAL_StatusTypeDef HAL_LPTIM_Counter_Stop_IT(LPTIM_HandleTypeDef *hlptim)
   
   /* Set the LPTIM state */
   hlptim->State= HAL_LPTIM_STATE_BUSY;
+  
+  /* Disable rising edge trigger on the LPTIM Wake-up Timer Exti line */ 
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_DISABLE_RISING_EDGE();
+  
+  /* Disable EXTI Line interrupt on the LPTIM Wake-up Timer */
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_DISABLE_IT(); 
   
   /* Disable the Peripheral */
   __HAL_LPTIM_DISABLE(hlptim);
@@ -1523,6 +1547,8 @@ void HAL_LPTIM_IRQHandler(LPTIM_HandleTypeDef *hlptim)
       HAL_LPTIM_DirectionDownCallback(hlptim);      
     }
   }
+  
+  __HAL_LPTIM_WAKEUPTIMER_EXTI_CLEAR_FLAG();
 }
 
 /**

@@ -42,4 +42,3 @@ int main(void) {
 		Delayms(500);
 	}
 }
-

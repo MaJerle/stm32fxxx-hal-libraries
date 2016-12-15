@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    stm32f7xx_hal_irda_ex.h
   * @author  MCD Application Team
-  * @version V1.0.3
-  * @date    13-November-2015
+  * @version V1.1.2
+  * @date    23-September-2016 
   * @brief   Header file of IRDA HAL Extension module.
   ******************************************************************************
   * @attention
   *                               
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -64,7 +64,7 @@
   * @{
   */
 #define IRDA_WORDLENGTH_7B                  ((uint32_t)USART_CR1_M_1)
-#define IRDA_WORDLENGTH_8B                  ((uint32_t)0x00000000)
+#define IRDA_WORDLENGTH_8B                  ((uint32_t)0x00000000U)
 #define IRDA_WORDLENGTH_9B                  ((uint32_t)USART_CR1_M_0)
 /**
   * @}

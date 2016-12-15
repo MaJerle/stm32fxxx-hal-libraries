@@ -1,8 +1,8 @@
-;/******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
+;/******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
 ;* File Name          : startup_stm32f745xx.s
 ;* Author             : MCD Application Team
-;* Version            : V1.0.1
-;* Date               : 25-June-2015
+;* Version            : V1.1.2
+;* Date               : 23-September-2016
 ;* Description        : STM32F745xx devices vector table for EWARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
@@ -677,7 +677,7 @@ SPI6_IRQHandler
         PUBWEAK SAI1_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 SAI1_IRQHandler  
-        B SAI1_IRQHandler                  
+        B SAI1_IRQHandler                 
 
         PUBWEAK DMA2D_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
@@ -713,10 +713,10 @@ I2C4_EV_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 I2C4_ER_IRQHandler 
         B I2C4_ER_IRQHandler 
- 
+
         PUBWEAK SPDIF_RX_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1) 
 SPDIF_RX_IRQHandler 
-        B SPDIF_RX_IRQHandler 
+        B SPDIF_RX_IRQHandler
         END
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

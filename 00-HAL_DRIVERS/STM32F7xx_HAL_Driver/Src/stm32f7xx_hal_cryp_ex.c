@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f7xx_hal_cryp_ex.c
   * @author  MCD Application Team
-  * @version V1.0.3
-  * @date    13-November-2015
+  * @version V1.1.2
+  * @date    23-September-2016 
   * @brief   Extended CRYP HAL module driver
   *          This file provides firmware functions to manage the following 
   *          functionalities of CRYP extension peripheral:
@@ -69,7 +69,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -102,7 +102,6 @@
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{
   */
-#if defined (STM32F756xx)
 /** @defgroup CRYPEx CRYPEx
   * @brief CRYP Extension HAL module driver.
   * @{
@@ -110,6 +109,8 @@
 
 
 #ifdef HAL_CRYP_MODULE_ENABLED
+
+#if defined (CRYP)
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -534,10 +535,10 @@ HAL_StatusTypeDef HAL_CRYPEx_AESCCM_Encrypt(CRYP_HandleTypeDef *hcryp, uint8_t *
         /* Header is encoded as 0xff || 0xfe || [headersize]32, i.e., six octets */
         hcryp->Init.pScratch[bufferidx++] = 0xFF;
         hcryp->Init.pScratch[bufferidx++] = 0xFE;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ff;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000U;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000U;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00U;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ffU;
         headersize += 6;
       }
       /* Copy the header buffer in internal buffer "hcryp->Init.pScratch" */
@@ -1173,19 +1174,19 @@ HAL_StatusTypeDef HAL_CRYPEx_AESCCM_Decrypt(CRYP_HandleTypeDef *hcryp, uint8_t *
       /* Check that the associated data (or header) length is lower than 2^16 - 2^8 = 65536 - 256 = 65280 */
       if(headersize < 65280)
       {
-        hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFF);
-        hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFF);
+        hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFFU);
+        hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFFU);
         headersize += 2;
       }
       else
       {
         /* Header is encoded as 0xff || 0xfe || [headersize]32, i.e., six octets */
-        hcryp->Init.pScratch[bufferidx++] = 0xFF;
-        hcryp->Init.pScratch[bufferidx++] = 0xFE;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00;
-        hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ff;
+        hcryp->Init.pScratch[bufferidx++] = 0xFFU;
+        hcryp->Init.pScratch[bufferidx++] = 0xFEU;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000U;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000U;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00U;
+        hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ffU;
         headersize += 6;
       }
       /* Copy the header buffer in internal buffer "hcryp->Init.pScratch" */
@@ -1585,19 +1586,19 @@ HAL_StatusTypeDef HAL_CRYPEx_AESCCM_Encrypt_IT(CRYP_HandleTypeDef *hcryp, uint8_
         /* Check that the associated data (or header) length is lower than 2^16 - 2^8 = 65536 - 256 = 65280 */
         if(headersize < 65280)
         {
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFF);
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFF);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFFU);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFFU);
           headersize += 2;
         }
         else
         {
           /* Header is encoded as 0xff || 0xfe || [headersize]32, i.e., six octets */
-          hcryp->Init.pScratch[bufferidx++] = 0xFF;
-          hcryp->Init.pScratch[bufferidx++] = 0xFE;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ff;
+          hcryp->Init.pScratch[bufferidx++] = 0xFFU;
+          hcryp->Init.pScratch[bufferidx++] = 0xFEU;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ffU;
           headersize += 6;
         }
         /* Copy the header buffer in internal buffer "hcryp->Init.pScratch" */
@@ -2031,19 +2032,19 @@ HAL_StatusTypeDef HAL_CRYPEx_AESCCM_Decrypt_IT(CRYP_HandleTypeDef *hcryp, uint8_
         /* Check that the associated data (or header) length is lower than 2^16 - 2^8 = 65536 - 256 = 65280 */
         if(headersize < 65280)
         {
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFF);
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFF);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFFU);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFFU);
           headersize += 2;
         }
         else
         {
           /* Header is encoded as 0xff || 0xfe || [headersize]32, i.e., six octets */
-          hcryp->Init.pScratch[bufferidx++] = 0xFF;
-          hcryp->Init.pScratch[bufferidx++] = 0xFE;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ff;
+          hcryp->Init.pScratch[bufferidx++] = 0xFFU;
+          hcryp->Init.pScratch[bufferidx++] = 0xFEU;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ffU;
           headersize += 6;
         }
         /* Copy the header buffer in internal buffer "hcryp->Init.pScratch" */
@@ -2424,19 +2425,19 @@ HAL_StatusTypeDef HAL_CRYPEx_AESCCM_Encrypt_DMA(CRYP_HandleTypeDef *hcryp, uint8
         /* Check that the associated data (or header) length is lower than 2^16 - 2^8 = 65536 - 256 = 65280 */
         if(headersize < 65280)
         {
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFF);
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFF);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFFU);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFFU);
           headersize += 2;
         }
         else
         {
           /* Header is encoded as 0xff || 0xfe || [headersize]32, i.e., six octets */
-          hcryp->Init.pScratch[bufferidx++] = 0xFF;
-          hcryp->Init.pScratch[bufferidx++] = 0xFE;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ff;
+          hcryp->Init.pScratch[bufferidx++] = 0xFFU;
+          hcryp->Init.pScratch[bufferidx++] = 0xFEU;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ffU;
           headersize += 6;
         }
         /* Copy the header buffer in internal buffer "hcryp->Init.pScratch" */
@@ -2768,19 +2769,19 @@ HAL_StatusTypeDef HAL_CRYPEx_AESCCM_Decrypt_DMA(CRYP_HandleTypeDef *hcryp, uint8
         /* Check that the associated data (or header) length is lower than 2^16 - 2^8 = 65536 - 256 = 65280 */
         if(headersize < 65280)
         {
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFF);
-          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFF);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize >> 8) & 0xFFU);
+          hcryp->Init.pScratch[bufferidx++] = (uint8_t) ((headersize) & 0xFFU);
           headersize += 2;
         }
         else
         {
           /* Header is encoded as 0xff || 0xfe || [headersize]32, i.e., six octets */
-          hcryp->Init.pScratch[bufferidx++] = 0xFF;
-          hcryp->Init.pScratch[bufferidx++] = 0xFE;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00;
-          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ff;
+          hcryp->Init.pScratch[bufferidx++] = 0xFFU;
+          hcryp->Init.pScratch[bufferidx++] = 0xFEU;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0xff000000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x00ff0000U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x0000ff00U;
+          hcryp->Init.pScratch[bufferidx++] = headersize & 0x000000ffU;
           headersize += 6;
         }
         /* Copy the header buffer in internal buffer "hcryp->Init.pScratch" */
@@ -3027,12 +3028,15 @@ void HAL_CRYPEx_GCMCCM_IRQHandler(CRYP_HandleTypeDef *hcryp)
 /**
   * @}
   */
+  
+#endif /* CRYP */
+  
 #endif /* HAL_CRYP_MODULE_ENABLED */
 
 /**
   * @}
   */
-#endif /* STM32F756xx */
+
 /**
   * @}
   */

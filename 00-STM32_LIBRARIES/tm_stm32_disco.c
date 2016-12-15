@@ -81,11 +81,8 @@ void TM_DISCO_LedInit(void) {
 	
 	/* Go through all leds */
 	for (i = 0; i < 4; i++) {
-		/* Check for LED */
-		if (led & DISCO_Leds[i].Pin) {
-			/* Set pin as output */
-			TM_GPIO_Init(DISCO_Leds[i].Port, DISCO_Leds[i].Pin, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
-		}
+		/* Set pin as output */
+		TM_GPIO_Init(DISCO_Leds[i].Port, DISCO_Leds[i].Pin, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 	}
 #else
 	/* Set pins as output */

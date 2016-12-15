@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f7xx_hal_adc_ex.c
   * @author  MCD Application Team
-  * @version V1.0.3
-  * @date    13-November-2015
+  * @version V1.1.2
+  * @date    23-September-2016 
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the ADC extension peripheral:
   *           + Extended features functions
@@ -86,7 +86,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -804,7 +804,7 @@ HAL_StatusTypeDef HAL_ADCEx_InjectedConfigChannel(ADC_HandleTypeDef* hadc, ADC_I
   assert_param(IS_ADC_RANGE(tmp, sConfigInjected->InjectedOffset));
 #endif /* USE_FULL_ASSERT  */
 
-  if(sConfigInjected->ExternalTrigInjecConvEdge != ADC_INJECTED_SOFTWARE_START)
+  if(sConfigInjected->ExternalTrigInjecConv != ADC_INJECTED_SOFTWARE_START)
   {
     assert_param(IS_ADC_EXT_INJEC_TRIG_EDGE(sConfigInjected->ExternalTrigInjecConvEdge));
   }

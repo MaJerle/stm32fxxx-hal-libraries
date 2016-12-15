@@ -263,6 +263,21 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0x0800
 	#define DISCO_BUTTON_PRESSED		1
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+/* STM32F769-Discovery */
+#elif defined(STM32F769_DISCOVERY)
+	#define LED_GREEN					0x0020U
+	#define LED_RED						0x1000U
+	#define LED_ORANGE					0
+	#define LED_BLUE					0
+	#define LED_ALL						LED_GREEN | LED_RED
+	
+	#define DISCO_LED_PORT				GPIOJ
+	#define DISCO_LED_PINS				LED_ALL
+
+	#define DISCO_BUTTON_PORT			GPIOA
+	#define DISCO_BUTTON_PIN			0x0001U
+	#define DISCO_BUTTON_PRESSED		1
+	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
 /* No board used */
 #else
 	#warning "tm_stm32_disco.h: Please select your board. Open tm_stm32_disco.h and follow instructions! Support is currently disabled"

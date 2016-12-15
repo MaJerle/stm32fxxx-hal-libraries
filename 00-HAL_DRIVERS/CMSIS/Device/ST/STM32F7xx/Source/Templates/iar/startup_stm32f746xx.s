@@ -1,8 +1,8 @@
-;/******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
+;/******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
 ;* File Name          : startup_stm32f746xx.s
 ;* Author             : MCD Application Team
-;* Version            : V1.0.1
-;* Date               : 25-June-2015
+;* Version            : V1.1.2
+;* Date               : 23-September-2016
 ;* Description        : STM32F746xx devices vector table for EWARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
