@@ -266,7 +266,7 @@ extern "C" {
 /* STM32F769-Discovery */
 #elif defined(STM32F769_DISCOVERY)
 	#define LED_GREEN					0x0020U
-	#define LED_RED						0x1000U
+	#define LED_RED						0x2000U
 	#define LED_ORANGE					0
 	#define LED_BLUE					0
 	#define LED_ALL						LED_GREEN | LED_RED
