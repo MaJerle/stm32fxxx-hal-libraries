@@ -379,7 +379,7 @@ void TM_USBD_CDC_INT_AddToBuffer(USBD_HandleTypeDef* pdev, uint8_t* Values, uint
 #endif	
 #ifdef USB_USE_HS
 	if (pdev->id == USB_ID_HS) {
-		/* Write to FS TX buffer */
+		/* Write to HS RX buffer */
 		TM_BUFFER_Write(&USBD_CDC_Buffer_HS_RX, Values, Num);
 	}
 #endif

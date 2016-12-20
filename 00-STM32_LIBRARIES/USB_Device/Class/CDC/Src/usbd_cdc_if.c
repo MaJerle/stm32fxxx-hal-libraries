@@ -245,7 +245,7 @@ static int8_t VCP_Receive(USBD_HandleTypeDef* pdev, uint8_t* pbuf, uint32_t *Len
 	
 	/* Prepare for next  */
 	USBD_CDC_ReceivePacket(pdev);
-	
+    
 	/* Return OK */
 	return USBD_OK;
 }

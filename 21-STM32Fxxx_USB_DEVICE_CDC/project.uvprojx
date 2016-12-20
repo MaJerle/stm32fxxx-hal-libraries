@@ -437,7 +437,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -798,7 +798,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -914,7 +914,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -1517,7 +1517,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -1553,69 +1553,9 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cec.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_dma.c</FileName>
@@ -1633,11 +1573,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_eth.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c</FilePath>
@@ -1653,69 +1588,14 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_hash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_hash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_hcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hcd.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2s.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2s.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_irda.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_irda.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_iwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_lptim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_lptim.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_msp_template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_msp_template.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nand.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nor.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_pcd.c</FileName>
@@ -1738,11 +1618,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_qspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_qspi.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c</FilePath>
@@ -1751,101 +1626,6 @@
               <FileName>stm32f7xx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spdifrx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spdifrx.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_wwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_sdmmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_sdmmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_ll_usb.c</FileName>
@@ -1970,7 +1750,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -2030,7 +1810,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -2516,7 +2296,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -2877,7 +2657,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -2993,7 +2773,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -3596,7 +3376,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -3632,69 +3412,9 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cec.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_dma.c</FileName>
@@ -3712,11 +3432,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_eth.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c</FilePath>
@@ -3732,69 +3447,14 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_hash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_hash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_hcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hcd.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2s.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2s.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_irda.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_irda.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_iwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_lptim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_lptim.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_msp_template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_msp_template.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nand.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nor.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_pcd.c</FileName>
@@ -3817,11 +3477,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_qspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_qspi.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c</FilePath>
@@ -3830,101 +3485,6 @@
               <FileName>stm32f7xx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spdifrx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spdifrx.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_wwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_sdmmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_sdmmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_ll_usb.c</FileName>
@@ -4049,7 +3609,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -4109,7 +3669,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -4595,7 +4155,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -4956,7 +4516,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -5072,7 +4632,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -5675,7 +5235,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -5711,69 +5271,9 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cec.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_dma.c</FileName>
@@ -5791,11 +5291,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_eth.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c</FilePath>
@@ -5811,69 +5306,14 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_hash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_hash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_hcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hcd.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2s.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2s.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_irda.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_irda.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_iwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_lptim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_lptim.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_msp_template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_msp_template.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nand.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nor.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_pcd.c</FileName>
@@ -5896,11 +5336,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_qspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_qspi.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c</FilePath>
@@ -5909,101 +5344,6 @@
               <FileName>stm32f7xx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spdifrx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spdifrx.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_wwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_sdmmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_sdmmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_ll_usb.c</FileName>
@@ -6128,7 +5468,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -6188,7 +5528,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -6674,7 +6014,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -7035,7 +6375,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -7151,7 +6491,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -7754,7 +7094,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -7790,69 +7130,9 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cec.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_dma.c</FileName>
@@ -7870,11 +7150,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_eth.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c</FilePath>
@@ -7890,69 +7165,14 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_hash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_hash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_hcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hcd.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2s.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2s.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_irda.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_irda.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_iwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_lptim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_lptim.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_msp_template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_msp_template.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nand.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nor.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_pcd.c</FileName>
@@ -7975,11 +7195,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_qspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_qspi.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c</FilePath>
@@ -7988,101 +7203,6 @@
               <FileName>stm32f7xx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spdifrx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spdifrx.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_wwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_sdmmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_sdmmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_ll_usb.c</FileName>
@@ -8207,7 +7327,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -8267,7 +7387,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -8753,7 +7873,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -9114,7 +8234,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -9230,7 +8350,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -9833,7 +8953,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -9869,69 +8989,9 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cec.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_dma.c</FileName>
@@ -9949,11 +9009,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_eth.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c</FilePath>
@@ -9969,69 +9024,14 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_hash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_hash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_hcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hcd.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2s.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2s.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_irda.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_irda.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_iwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_lptim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_lptim.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_msp_template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_msp_template.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nand.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nor.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_pcd.c</FileName>
@@ -10054,11 +9054,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_qspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_qspi.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c</FilePath>
@@ -10067,101 +9062,6 @@
               <FileName>stm32f7xx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spdifrx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spdifrx.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_wwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_sdmmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_sdmmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_ll_usb.c</FileName>
@@ -10286,7 +9186,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -10346,7 +9246,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -10406,12 +9306,12 @@
       <TargetName>STM32F7_DISCOVERY</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
+      <pCCUsed>5060300::V5.06 update 3 (build 300)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F746NGHx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F7xx_DFP.2.4.0</PackID>
+          <PackID>Keil.STM32F7xx_DFP.2.8.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x100000) IROM2(0x00200000,0x100000) IRAM(0x20010000,0x40000) IRAM2(0x20000000,0x10000) CPUTYPE("Cortex-M7") FPU3(SFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -10833,7 +9733,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -10926,7 +9826,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -11044,7 +9944,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -11322,7 +10222,7 @@
                 <vShortEn>0</vShortEn>
                 <vShortWch>0</vShortWch>
                 <v6Lto>0</v6Lto>
-                <v6WtE>0</v6WtE>
+                <v6WtE>2</v6WtE>
                 <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls></MiscControls>
@@ -11683,69 +10583,9 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cec.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_crc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_cryp_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cryp_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dac_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dac_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_dcmi_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dcmi_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_dma.c</FileName>
@@ -11763,11 +10603,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_eth.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c</FilePath>
@@ -11783,69 +10618,14 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_hash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_hash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hash_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_hcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hcd.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2c_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_i2s.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2s.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_irda.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_irda.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_iwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_lptim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_lptim.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_msp_template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_msp_template.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nand.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_nor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_nor.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_hal_pcd.c</FileName>
@@ -11868,11 +10648,6 @@
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f7xx_hal_qspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_qspi.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_hal_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c</FilePath>
@@ -11881,101 +10656,6 @@
               <FileName>stm32f7xx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_rtc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rtc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sai_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sai_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_smartcard_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_smartcard_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spdifrx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spdifrx.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_sram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_tim_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_hal_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_wwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f7xx_ll_sdmmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-HAL_DRIVERS\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_sdmmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f7xx_ll_usb.c</FileName>
@@ -12100,7 +10780,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
@@ -12155,7 +10835,7 @@
                     <vShortEn>0</vShortEn>
                     <vShortWch>0</vShortWch>
                     <v6Lto>0</v6Lto>
-                    <v6WtE>0</v6WtE>
+                    <v6WtE>2</v6WtE>
                     <v6Rtti>2</v6Rtti>
                     <VariousControls>
                       <MiscControls></MiscControls>
