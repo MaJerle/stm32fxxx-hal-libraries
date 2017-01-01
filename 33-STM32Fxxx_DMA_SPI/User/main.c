@@ -25,7 +25,7 @@
 #include "tm_stm32_spi_dma.h"
 
 /* Create USART working buffer */
-uint8_t SPI_TX[15], SPI_RX[15];
+uint8_t SPI_TX[14], SPI_RX[14];
 
 /* Get TX buffer size */
 #define TX_SIZE    (sizeof(SPI_TX) / sizeof(SPI_TX[0]))
@@ -54,6 +54,8 @@ int main(void) {
 	
 	/* Init HAL layer */
 	HAL_Init();
+    
+    TM_DELAY_Init();
 	
 	/* Init USART, check USART lib description for pinout */
 	TM_USART_Init(USART, TM_USART_PinsPack_1, 921600);
@@ -64,6 +66,14 @@ int main(void) {
 	
 	/* Init SPI */
 	TM_SPI_Init(SPI, SPI_PP);
+
+    /*
+    for (i = 0; i < 0x0F; i++) {
+        SPI->CR2 = (SPI->CR2 & ~(SPI_CR2_DS)) | (i << 8);
+        TM_SPI_Send(SPI, 0x12);
+        Delay(10);
+    }
+    */
 	
 	/* Init SPI DMA */
 	TM_SPI_DMA_Init(SPI);

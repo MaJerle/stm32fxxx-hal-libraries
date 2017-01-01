@@ -93,7 +93,7 @@ void TM_SPI_DMA_Deinit(SPI_TypeDef* SPIx) {
 	TM_DMA_DeInit(Settings->RX_Stream);
 }
 
-uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_Buffer, uint16_t count) {
+uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, const uint8_t* TX_Buffer, const uint8_t* RX_Buffer, uint16_t count) {
 	DMA_HandleTypeDef DMA_InitStruct;
 	
 	/* Get USART settings */
@@ -109,8 +109,11 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
 	}
 	
 #if defined(STM32F7xx)
+    CLEAR_BIT(SPIx->CR1, SPI_CR1_SPE);
     CLEAR_BIT(SPIx->CR2, SPI_CR2_LDMATX);
     CLEAR_BIT(SPIx->CR2, SPI_CR2_LDMARX);
+    CLEAR_BIT(SPIx->CR2, SPI_CR2_DS_0 | SPI_CR2_DS_1 | SPI_CR2_DS_2 | SPI_CR2_DS_3);
+    SET_BIT(SPIx->CR2, SPI_CR2_DS_0 | SPI_CR2_DS_1 | SPI_CR2_DS_2);
 #endif
 	
 	/* Set DMA default */
@@ -189,10 +192,11 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
 	} else {
 		TM_DMA_Start(&DMA_InitStruct, (uint32_t) &Settings->Dummy32, (uint32_t) &SPIx->DR, count);
 	}
-	
+    
 	/* Start stream */
-	SPIx->CR2 |= SPI_CR2_RXDMAEN;
-	SPIx->CR2 |= SPI_CR2_TXDMAEN;
+	SET_BIT(SPIx->CR2, SPI_CR2_RXDMAEN);
+	SET_BIT(SPIx->CR2, SPI_CR2_TXDMAEN);
+    SET_BIT(SPIx->CR1, SPI_CR1_SPE);
 	
 	/* Return OK */
 	return 1;

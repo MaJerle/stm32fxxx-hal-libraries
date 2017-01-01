@@ -226,7 +226,7 @@ void TM_SPI_DMA_Deinit(SPI_TypeDef* SPIx);
  *            - 0: DMA has not started with sending data
  *            - > 0: DMA has started with sending data
  */
-uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_Buffer, uint16_t count);
+uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, const uint8_t* TX_Buffer, const uint8_t* RX_Buffer, uint16_t count);
 
 /**
  * @brief  Sends data over SPI without receiving data back using DMA

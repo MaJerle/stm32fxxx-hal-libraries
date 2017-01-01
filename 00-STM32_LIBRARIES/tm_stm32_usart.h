@@ -526,9 +526,13 @@ typedef enum {
 #define USART_TX_REG(USARTx)                ((USARTx)->TDR)
 #define USART_WRITE_DATA(USARTx, data)      ((USARTx)->TDR = (data))
 #define USART_READ_DATA(USARTx)             ((USARTx)->RDR)
+#if defined(STM32F7xx)
+#define GPIO_AF_UART5                       (GPIO_AF8_UART5)
+#else
 #define GPIO_AF_UART5                       (GPIO_AF7_UART5)
+#endif /* STM32F7xx */
 #define USART_STATUS_REG                    ISR
-#endif
+#endif /* STM32F4XX */
 
 /* Wait for TX empty */
 #define USART_TXEMPTY(USARTx)               ((USARTx)->USART_STATUS_REG & USART_FLAG_TXE)

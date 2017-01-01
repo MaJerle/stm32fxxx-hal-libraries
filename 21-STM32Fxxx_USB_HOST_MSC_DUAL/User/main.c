@@ -24,13 +24,14 @@
 #include "tm_stm32_lcd.h"
 #include "tm_stm32_fatfs.h"
 #include "tm_stm32_usart.h"
+#include "string.h"
 	
 /* FATFS related */
 FATFS FATFS_USB_FS, FATFS_USB_HS;
 FIL fil;
 FRESULT fres;
 
-uint8_t writeArray[] = "My first file in USB";
+char writeArray[] = "My first file in USB";
 uint32_t written;
 
 /* Flags */
@@ -113,7 +114,7 @@ int main(void) {
 						f_lseek(&fil, f_size(&fil));
 						
 						/* Print string */
-						if ((fres = f_write(&fil, writeArray, sizeof(writeArray), &written)) == FR_OK) {
+						if ((fres = f_write(&fil, writeArray, strlen(writeArray), &written)) == FR_OK) {
 							/* Written OK */
 							printf("USB FS: File written OK!\n");
 				
@@ -205,7 +206,7 @@ int main(void) {
 						f_lseek(&fil, f_size(&fil));
 						
 							/* Print string */
-						if ((fres = f_write(&fil, writeArray, sizeof(writeArray), &written)) == FR_OK) {
+						if ((fres = f_write(&fil, writeArray, strlen(writeArray), &written)) == FR_OK) {
 							/* Written OK */
 							printf("USB HS: File written OK!\n");
 				

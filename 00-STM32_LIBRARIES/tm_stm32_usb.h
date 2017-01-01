@@ -288,7 +288,7 @@ PD5  <-> VBUS_EN |
 
 /* NVIC preemption priority */
 #ifndef USB_NVIC_PRIORITY
-#define USB_NVIC_PRIORITY          6
+#define USB_NVIC_PRIORITY          1
 #endif
 
 /* Defines for FS and HS ID modes */

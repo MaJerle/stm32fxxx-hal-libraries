@@ -1363,7 +1363,11 @@ static void TM_USART_INT_Init(
 #if defined(STM32F0xx)
 	UARTHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
 #endif
-	
+#if defined(STM32F7xx)
+    UARTHandle.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+	UARTHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+#endif
+    
 	/* Disable IRQ */
 	HAL_NVIC_DisableIRQ(irq);
 

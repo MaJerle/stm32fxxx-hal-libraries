@@ -199,7 +199,7 @@ uint16_t TM_USBH_GetPID(TM_USB_t USB_Mode) {
 }
 
 /* Private functions */	
-static void USBH_ProcessCallback(USBH_HandleTypeDef* hUSB, uint8_t id) {
+void USBH_ProcessCallback(USBH_HandleTypeDef* hUSB, uint8_t id) {
 	/* TO-DO: Call user function */
 	/* Reset first */
 	switch (id) { 

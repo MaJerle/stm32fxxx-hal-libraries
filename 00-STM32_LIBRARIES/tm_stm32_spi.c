@@ -454,9 +454,12 @@ static void TM_SPIx_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_M
 	SPIHandle.Init.NSS = SPI_NSS_SOFT;
 	SPIHandle.Init.Direction = SPI_DIRECTION_2LINES;
 	
+    
 #if defined(STM32F7xx)
 	SPIHandle.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
 	SPIHandle.Init.CRCLength = SPI_CRC_LENGTH_8BIT;
+    SPIHandle.Init.DataSize = SPI_DATASIZE_8BIT;
+    SPIHandle.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
 #endif
 	
 	/* SPI mode */
