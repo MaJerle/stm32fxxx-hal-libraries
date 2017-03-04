@@ -25,25 +25,6 @@
  */
 #include "tm_stm32_dma2d_graphic.h"
 
-/* Absolute number */
-#define ABS(X)	((X) > 0 ? (X) : -(X))  
-
-/* Color used for transfer in ARGB8888 format */
-uint32_t DMA2D_Color = 0x00FF0000;
-uint32_t DMA2D_Width;
-uint32_t DMA2D_Height;
-uint32_t DMA2D_StartAddress;
-
-/* Convert function */
-static void DMA2D_Convert565ToARGB8888(uint16_t color) {
-	/* Input color: RRRRR GGGGGG BBBBB */
-	/* Output color: RRRRR000 GGGGGG00 BBBBB000 */
-	DMA2D_Color = 0;
-	
-	DMA2D_Color |= (color & 0xF800) << 8;
-	DMA2D_Color |= (color & 0x07E0) << 5;
-	DMA2D_Color |= (color & 0x001F) << 3;
-}
 
 /* Internal structure */
 typedef struct {
@@ -61,10 +42,26 @@ typedef struct {
 	uint8_t PixelSize;
 } TM_INT_DMA2D_t;
 
+/* Absolute number */
+#define ABS(X)	((X) > 0 ? (X) : -(X))  
+
+/* Color used for transfer in ARGB8888 format */
+uint32_t DMA2D_Color = 0x00FF0000;
+uint32_t DMA2D_Width;
+uint32_t DMA2D_Height;
+uint32_t DMA2D_StartAddress;
+
 /* Private structures */
 static DMA2D_HandleTypeDef DMA2DHandle;
 //static DMA2D_FG_InitTypeDef GRAPHIC_DMA2D_FG_InitStruct;
 volatile TM_INT_DMA2D_t DIS;
+
+/* Convert function */
+static void DMA2D_Convert565ToARGB8888(uint32_t color) {
+	/* Input color: RRRRR GGGGGG BBBBB */
+	/* Output color: RRRRR000 GGGGGG00 BBBBB000 */
+    DMA2D_Color = color;
+}
 
 __STATIC_INLINE void DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 	TM_DMA2DGRAPHIC_DrawHorizontalLine(x, y, 1, color);
@@ -108,25 +105,25 @@ void TM_DMA2DGRAPHIC_SetLayer(uint8_t layer_number) {
 
 void TM_DMA2DGRAPHIC_DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 	if (DIS.Orientation == 1) { /* Normal */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * (y * DIS.Width + x)) = color;
+		*(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * (y * DIS.Width + x)) = color;
 	} else if (DIS.Orientation == 0) { /* 180 */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1))) = color;
+		*(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1))) = color;
 	} else if (DIS.Orientation == 3) { /* 90 */ /* x + width * y */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((x) * DIS.Width + DIS.Width - y - 1)) = color;
+		*(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((x) * DIS.Width + DIS.Width - y - 1)) = color;
 	} else if (DIS.Orientation == 2) { /* 270 */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - x - 1) * DIS.Width + y)) = color;
+		*(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - x - 1) * DIS.Width + y)) = color;
 	}
 }
 
 uint32_t TM_DMA2DGRAPHIC_GetPixel(uint16_t x, uint16_t y) {
 	if (DIS.Orientation == 1) { /* Normal */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * (y * DIS.Width + x));
+		return *(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * (y * DIS.Width + x));
 	} else if (DIS.Orientation == 0) { /* 180 */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1)));
+		return *(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1)));
 	} else if (DIS.Orientation == 3) { /* 90 */ /* x + width * y */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((x) * DIS.Width + DIS.Width - y - 1));
+		return *(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((x) * DIS.Width + DIS.Width - y - 1));
 	} else if (DIS.Orientation == 2) { /* 270 */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - x - 1) * DIS.Width + y));
+		return *(__IO uint32_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - x - 1) * DIS.Width + y));
 	}
 	return 0;
 }
@@ -155,7 +152,7 @@ void TM_DMA2DGRAPHIC_SetOrientation(uint8_t orientation) {
 void TM_DMA2DGRAPHIC_Fill(uint32_t color) {
 	/* Set parameters */
 	DMA2DHandle.Init.Mode = DMA2D_R2M;
-	DMA2DHandle.Init.ColorMode = DMA2D_RGB565;
+	DMA2DHandle.Init.ColorMode = DMA2D_ARGB8888;
 	DMA2DHandle.Init.OutputOffset = 0;
 
 	/* Convert color */
@@ -659,7 +656,7 @@ void TM_INT_DMA2DGRAPHIC_InitAndTransfer(void) {
 	
 	/* Format DMA2D settings */
 	DMA2DHandle.Init.Mode = DMA2D_R2M;
-	DMA2DHandle.Init.ColorMode = DMA2D_RGB565;
+	DMA2DHandle.Init.ColorMode = DMA2D_ARGB8888;
 	DMA2DHandle.Init.OutputOffset = DIS.Width - DMA2D_Width;
 
 	/* DMA2D Initialization */

@@ -180,6 +180,7 @@ typedef struct {
 	uint8_t Orientation;  /*!< Touch orientation to match LCD orientation if needed */
 	uint16_t MaxX;        /*!< Touch MAX X value. Maximal value for touch X coordinate */
 	uint16_t MaxY;        /*!< Touch MAX Y value. Maximal value for touch Y coordinate */
+    uint8_t Gesture;      /*!< Gesture value if used by touch controller */
 } TM_TOUCH_t;
 
 /**

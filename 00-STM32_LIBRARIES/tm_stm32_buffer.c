@@ -25,7 +25,7 @@
  */
 #include "tm_stm32_buffer.h"
 
-uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint32_t Size, uint8_t* BufferPtr) {
+uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint32_t Size, void* BufferPtr) {
 	/* Set buffer values to all zeros */
 	memset(Buffer, 0, sizeof(TM_BUFFER_t));
 	
@@ -76,9 +76,10 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer) {
 	Buffer->Size = 0;
 }
 
-uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
+uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, const void* Data, uint32_t count) {
 	uint32_t i = 0;
 	uint32_t free;
+    uint8_t* d = (uint8_t *)Data;
 #if BUFFER_FAST
 	uint32_t tocopy;
 #endif
@@ -132,7 +133,7 @@ uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 		Buffer->In = 0;
 
 		/* Copy content */
-		memcpy(&Buffer->Buffer[Buffer->In], &Data[i], count);
+		memcpy(&Buffer->Buffer[Buffer->In], &d[i], count);
 
 		/* Set input pointer */
 		Buffer->In = count;
@@ -149,7 +150,7 @@ uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 	/* Go through all elements */
 	while (count--) {
 		/* Add to buffer */
-		Buffer->Buffer[Buffer->In++] = *Data++;
+		Buffer->Buffer[Buffer->In++] = *d++;
 
 		/* Increase pointers */
 		i++;
@@ -165,9 +166,10 @@ uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 #endif
 }
 
-uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
+uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, const void* Data, uint32_t count) {
 	uint32_t i = 0;
 	uint32_t free;
+    uint8_t* d = (uint8_t *)Data;
 
 	/* Check buffer structure */
 	if (Buffer == NULL || count == 0) {
@@ -199,7 +201,7 @@ uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count
 	/* We have calculated memory for write */
 
 	/* Start on bottom */
-	Data += count - 1;
+	d += count - 1;
 
 	/* Go through all elements */
 	while (count--) {
@@ -210,7 +212,7 @@ uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count
 		}
 
 		/* Add to buffer */
-		Buffer->Buffer[Buffer->Out] = *Data--;
+		Buffer->Buffer[Buffer->Out] = *d--;
 
 		/* Increase pointers */
 		i++;
@@ -220,9 +222,10 @@ uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count
 	return i;
 }
 
-uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
+uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, void* Data, uint32_t count) {
 	uint32_t i = 0;
 	uint32_t full;
+    uint8_t* d = (uint8_t *)Data;
 #if BUFFER_FAST
 	uint32_t tocopy;
 #endif
@@ -263,7 +266,7 @@ uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 	}
 
 	/* Copy content from buffer */
-	memcpy(Data, &Buffer->Buffer[Buffer->Out], tocopy);
+	memcpy(d, &Buffer->Buffer[Buffer->Out], tocopy);
 
 	/* Increase number of bytes we copied already */
 	i += tocopy;
@@ -276,7 +279,7 @@ uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 		Buffer->Out = 0;
 
 		/* Copy content */
-		memcpy(&Data[i], &Buffer->Buffer[Buffer->Out], count);
+		memcpy(&d[i], &Buffer->Buffer[Buffer->Out], count);
 
 		/* Set input pointer */
 		Buffer->Out = count;
@@ -293,7 +296,7 @@ uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count) {
 	/* Go through all elements */
 	while (count--) {
 		/* Read from buffer */
-		*Data++ = Buffer->Buffer[Buffer->Out++];
+		*d++ = Buffer->Buffer[Buffer->Out++];
 
 		/* Increase pointers */
 		i++;
@@ -418,9 +421,10 @@ int32_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element) {
 	return -1;
 }
 
-int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size) {
+int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, const void* Data, uint32_t Size) {
 	uint32_t Num, Out, i, retval = 0;
 	uint8_t found = 0;
+    uint8_t* d = (uint8_t *)Data;
 
 	/* Check buffer structure and number of elements in buffer */
 	if (Buffer == NULL || (Num = TM_BUFFER_GetFull(Buffer)) < Size) {
@@ -438,7 +442,7 @@ int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size) {
 		}
 
 		/* Check if current element in buffer matches first element in data array */
-		if ((uint8_t)Buffer->Buffer[Out] == (uint8_t)Data[0]) {
+		if ((uint8_t)Buffer->Buffer[Out] == (uint8_t)d[0]) {
 			found = 1;
 		}
 
@@ -459,7 +463,7 @@ int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size) {
 				}
 
 				/* Check if current character in buffer matches character in string */
-				if ((uint8_t)Buffer->Buffer[Out] != (uint8_t)Data[i]) {
+				if ((uint8_t)Buffer->Buffer[Out] != (uint8_t)d[i]) {
 					retval += i - 1;
 					break;
 				}
@@ -481,7 +485,7 @@ int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size) {
 	return -1;
 }
 
-uint32_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff) {
+uint32_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, const char* buff) {
 	/* Write string to buffer */
 	return TM_BUFFER_Write(Buffer, (uint8_t *)buff, strlen(buff));
 }
@@ -544,7 +548,7 @@ uint32_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint32_t buffsize
 	return i;
 }
 
-int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint32_t pos, uint8_t* element) {
+int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint32_t pos, void* element) {
 	uint32_t In, Out, i = 0;
 	
 	/* Check value buffer */
@@ -571,7 +575,7 @@ int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint32_t pos, uint8_t* elemen
 	/* If positions match */
 	if (i == pos) {
 		/* Save element */
-		*element = Buffer->Buffer[Out];
+		*(uint8_t *)element = Buffer->Buffer[Out];
 		
 		/* Return OK */
 		return 1;

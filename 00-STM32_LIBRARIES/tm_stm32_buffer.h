@@ -171,7 +171,7 @@ typedef struct _TM_BUFFER_t {
  *            - 0: Buffer initialized OK
  *            - > 0: Buffer initialization error. Malloc has failed with allocation
  */
-uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint32_t Size, uint8_t* BufferPtr);
+uint8_t TM_BUFFER_Init(TM_BUFFER_t* Buffer, uint32_t Size, void* BufferPtr);
 
 /**
  * @brief  Free memory for buffer allocated using @ref malloc
@@ -188,7 +188,7 @@ void TM_BUFFER_Free(TM_BUFFER_t* Buffer);
  * @param  count: Number of elements of type unsigned char to write
  * @retval Number of elements written in buffer 
  */
-uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count);
+uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, const void* Data, uint32_t count);
 
 /**
  * @brief  Writes data to buffer to top of buffer in reversed order
@@ -198,7 +198,7 @@ uint32_t TM_BUFFER_Write(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count);
  * @param  count: Number of elements of type unsigned char to write
  * @retval Number of elements written in buffer on top in reverse order
  */
-uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count);
+uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, const void* Data, uint32_t count);
 
 /**
  * @brief  Reads data from buffer
@@ -207,7 +207,7 @@ uint32_t TM_BUFFER_WriteToTop(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count
  * @param  count: Number of elements of type unsigned char to read
  * @retval Number of elements read from buffer 
  */
-uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t count);
+uint32_t TM_BUFFER_Read(TM_BUFFER_t* Buffer, void* Data, uint32_t count);
 
 /**
  * @brief  Gets number of free elements in buffer 
@@ -239,7 +239,7 @@ void TM_BUFFER_Reset(TM_BUFFER_t* Buffer);
  *            - >= 0: Element found, location in buffer is returned
  *                   Ex: If value 1 is returned, it means 1 read from buffer and your element will be returned
  */
-int32_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
+int32_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, const uint8_t Element);
 
 /**
  * @brief  Checks if specific data sequence are stored in buffer
@@ -250,7 +250,7 @@ int32_t TM_BUFFER_FindElement(TM_BUFFER_t* Buffer, uint8_t Element);
  *            -  < 0: Sequence was not found
  *            - >= 0: Sequence found, start sequence location in buffer is returned
  */
-int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size);
+int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, const void* Data, uint32_t Size);
 
 /**
  * @brief  Sets string delimiter character when reading from buffer as string
@@ -266,7 +266,7 @@ int32_t TM_BUFFER_Find(TM_BUFFER_t* Buffer, uint8_t* Data, uint32_t Size);
  * @param  *buff: Pointer to string to write 
  * @retval Number of characters written
  */
-uint32_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, char* buff);
+uint32_t TM_BUFFER_WriteString(TM_BUFFER_t* Buffer, const char* buff);
 
 /**
  * @brief  Reads from buffer as string
@@ -286,7 +286,7 @@ uint32_t TM_BUFFER_ReadString(TM_BUFFER_t* Buffer, char* buff, uint32_t buffsize
  *            - 0: Buffer is not so long as position desired
  *            - > 0: Position to check was inside buffer data size
  */
-int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint32_t pos, uint8_t* element);
+int8_t TM_BUFFER_CheckElement(TM_BUFFER_t* Buffer, uint32_t pos, void* element);
 
 /**
  * @}
