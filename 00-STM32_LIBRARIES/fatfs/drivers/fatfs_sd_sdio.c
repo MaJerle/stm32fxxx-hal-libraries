@@ -17,7 +17,6 @@
  * |----------------------------------------------------------------------
  */
 #include "fatfs_sd_sdio.h"
-#include "stm32f7xx_hal_sd.h"
 
 uint8_t SDCARD_IsDetected(void);
 
@@ -116,8 +115,11 @@ uint8_t BSP_SD_Init(void)
   */
 uint8_t BSP_SD_DeInit(void) { 
     uint8_t sd_state = MSD_OK;
-
+#if defined(SDMMC1)
     uSdHandle.Instance = SDMMC1;
+#else
+    uSdHandle.Instance = SDIO;
+#endif
 
     /* HAL SD deinitialization */
     if(HAL_SD_DeInit(&uSdHandle) != HAL_OK) {
@@ -125,7 +127,11 @@ uint8_t BSP_SD_DeInit(void) {
     }
 
     /* Msp SD deinitialization */
+#if defined(SDMMC1)
     uSdHandle.Instance = SDMMC1;
+#else
+    uSdHandle.Instance = SDIO;
+#endif
     BSP_SD_MspDeInit(&uSdHandle, NULL);
 
     return  sd_state;
