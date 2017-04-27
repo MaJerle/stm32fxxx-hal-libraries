@@ -28,6 +28,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_conf.h"
 #include "usbd_core.h"
+#include "stm32f4xx_hal_pcd.h"
+#include "tm_stm32_usb.h"
+#include "defines.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/

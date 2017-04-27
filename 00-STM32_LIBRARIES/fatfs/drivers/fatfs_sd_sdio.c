@@ -445,8 +445,12 @@ void BSP_SD_GetCardInfo(HAL_SD_CardInfoTypedef *CardInfo) {
 /* SDCARD detect function */
 static uint8_t SDCARD_IsDetected(void) {
 #if FATFS_USE_DETECT_PIN
-	/* Check if detected, pin LOW if detected */
-	return !TM_GPIO_GetInputPinValue(FATFS_DETECT_PORT, FATFS_DETECT_PIN);
+/* FATFS_DETECT_STATE should be defined in defines.h for active high or low state*/
+#ifndef FATFS_DETECT_STATE
+#define FATFS_DETECT_STATE 0
+#endif
+	/* Check if detected, compare to expected state */
+	return TM_GPIO_GetInputPinValue(FATFS_DETECT_PORT, FATFS_DETECT_PIN) == FATFS_DETECT_STATE;
 #endif
 	
 	/* Card is detected */

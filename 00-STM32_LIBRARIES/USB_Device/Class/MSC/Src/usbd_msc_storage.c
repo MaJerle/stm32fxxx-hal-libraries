@@ -59,6 +59,18 @@ int8_t STORAGE_HS_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t bl
 int8_t STORAGE_HS_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len);
 int8_t STORAGE_HS_GetMaxLun(void);
 
+#ifndef STORAGE_INQUIRYDATA_MANUFACTURER
+#define STORAGE_INQUIRYDATA_MANUFACTURER 'S', 'T', 'M', ' ', ' ', ' ', ' ', ' ', /* Manufacturer : 8 bytes */
+#endif
+
+#ifndef STORAGE_INQUIRYDATA_PRODUCT
+#define STORAGE_INQUIRYDATA_PRODUCT 'P', 'r', 'o', 'd', 'u', 'c', 't', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', /* Product      : 16 Bytes */
+#endif
+
+#ifndef STORAGE_INQUIRYDATA_VERSION
+#define STORAGE_INQUIRYDATA_VERSION '0', '.', '0' ,'1', /* Version      : 4 Bytes */
+#endif
+
 /* USB Mass storage Standard Inquiry Data */
 int8_t STORAGE_Inquirydata[] = {//36
   /* LUN 0 */
@@ -70,10 +82,9 @@ int8_t STORAGE_Inquirydata[] = {//36
   0x00,
   0x00,	
   0x00,
-  'S', 'T', 'M', ' ', ' ', ' ', ' ', ' ', /* Manufacturer : 8 bytes */
-  'P', 'r', 'o', 'd', 'u', 'c', 't', ' ', /* Product      : 16 Bytes */
-  ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-  '0', '.', '0' ,'1',                     /* Version      : 4 Bytes */
+  STORAGE_INQUIRYDATA_MANUFACTURER
+  STORAGE_INQUIRYDATA_PRODUCT
+  STORAGE_INQUIRYDATA_VERSION
 }; 
 
 USBD_StorageTypeDef USBD_MSC_fops[] = {{
@@ -166,12 +177,12 @@ int8_t STORAGE_HS_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t bl
 
 #if defined(USB_USE_FS)
 int8_t STORAGE_FS_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len) {
-	return TM_USBD_MSC_ReadCallback(&hUSBDevice_FS, lun, buf, blk_addr, blk_len);
+	return TM_USBD_MSC_WriteCallback(&hUSBDevice_FS, lun, buf, blk_addr, blk_len);
 }
 #endif
 #if defined(USB_USE_HS)
 int8_t STORAGE_HS_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len) {
-	return TM_USBD_MSC_ReadCallback(&hUSBDevice_HS, lun, buf, blk_addr, blk_len);
+	return TM_USBD_MSC_WriteCallback(&hUSBDevice_HS, lun, buf, blk_addr, blk_len);
 }
 #endif
 

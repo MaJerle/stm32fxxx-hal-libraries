@@ -237,7 +237,7 @@ int8_t TM_USBD_MSC_ReadCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint8_t
 	/* If SDCARD is detected */
 	if (BSP_SD_IsDetected()) { 
 		/* Start read with DMA */
-		BSP_SD_ReadBlocks_DMA((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
+		BSP_SD_ReadBlocks((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
 		
 		/* Return OK */
 		return 0;
@@ -251,7 +251,7 @@ int8_t TM_USBD_MSC_WriteCallback(USBD_HandleTypeDef* Handle, uint8_t lun, uint8_
 	/* If SDCARD is detected */
 	if (BSP_SD_IsDetected()) { 
 		/* Start read with DMA */
-		BSP_SD_WriteBlocks_DMA((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
+		BSP_SD_WriteBlocks((uint32_t *)buf, blk_addr * STORAGE_BLK_SIZ, STORAGE_BLK_SIZ, blk_len);
 		
 		/* Return OK */
 		return 0;
