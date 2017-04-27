@@ -53,7 +53,6 @@ DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void* buff) {
 		/* Size in bytes for single sector */
 		case GET_SECTOR_SIZE:
 			*(WORD *)buff = FATFS_SDRAM_SECTOR_SIZE;
-			res = RES_OK;
 			break;
 			
 		case GET_BLOCK_SIZE:	/* Get erase block size in unit of sector (DWORD) */

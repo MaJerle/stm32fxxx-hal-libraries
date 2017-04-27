@@ -107,6 +107,9 @@ extern "C" {
 /* I2C device address */
 #define TOUCH_FT5336_I2C_DEV    0x70
 
+/* FT5336 touch structure */
+extern TM_TOUCH_DRIVER_t TOUCH_DRIVER_FT5336;
+
 /**
  * @}
  */

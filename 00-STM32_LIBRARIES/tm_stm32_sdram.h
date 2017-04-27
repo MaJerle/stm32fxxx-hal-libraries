@@ -78,23 +78,10 @@
 
 //Use SDRAM on STM32F469-Discovery board
 #define SDRAM_USE_STM32F469_DISCOVERY
+
+//Use SDRAM on STM32F769-Discovery board
+#define SDRAM_USE_STM32F769_DISCOVERY
 \endcode
- *
- * \par STM32F7-Discovery pinout
- *
-\verbatim
-PC3  <-> FMC_SDCKE0 | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10    | PH3  <-> FMC_SDNE0
-                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11    | PH5  <-> FMC_SDNWE
-                    | PD3  <->          | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_BA0    |
-                    | PD8  <-> FMC_D13  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_BA1    |
-                    | PD9  <-> FMC_D14  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FMC_SDCLK  |
-                    | PD10 <-> FMC_D15  | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_SDNCAS |
-                    | PD14 <-> FMC_D0   | PE11 <-> FMC_D8    | PF11 <-> FMC_NRAS  |                     | 
-                    | PD15 <-> FMC_D1   | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                     | 
-                    |                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                     |    
-                    |                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                     |
-                    |                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                     |
-\endverbatim 
  *
  * \par STM32F429-Discovery pinout
  *
@@ -143,7 +130,22 @@ PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0   
                    |                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH15 <-> FMC_D23   | PI10 <-> FMC_D31
                    |                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    |                    |
 \endverbatim  
-                                                                                          
+ *
+ * \par STM32F7-Discovery pinout
+ *
+\verbatim
+PC3  <-> FMC_SDCKE0 | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10    | PH3  <-> FMC_SDNE0
+                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11    | PH5  <-> FMC_SDNWE
+                    | PD3  <->          | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_BA0    |
+                    | PD8  <-> FMC_D13  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_BA1    |
+                    | PD9  <-> FMC_D14  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FMC_SDCLK  |
+                    | PD10 <-> FMC_D15  | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_SDNCAS |
+                    | PD14 <-> FMC_D0   | PE11 <-> FMC_D8    | PF11 <-> FMC_NRAS  |                     | 
+                    | PD15 <-> FMC_D1   | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                     | 
+                    |                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                     |    
+                    |                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                     |
+                    |                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                     |
+\endverbatim 
  *          
  * \par Changelog
  *
@@ -177,40 +179,11 @@ PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0   
  *
  * Library defines depends on board you use.
  */
-#if defined(SDRAM_USE_STM32F7_DISCOVERY) || defined(STM32F7_DISCOVERY)
-/* Make define */
-#ifndef SDRAM_USE_STM32F7_DISCOVERY
-#define SDRAM_USE_STM32F7_DISCOVERY
-#endif
-/**
- * @defgroup TM_SDRAM_STM324x9_EVAL_Macros
- * @brief    Macros for STM324x9-EVAL board
- * @{
- */
-	/* SDRAM start address = FMC peripheral start address */
-	#define SDRAM_START_ADR             (uint32_t)0xC0000000
-	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
-	#define SDRAM_BANK                  FMC_SDRAM_BANK1
-	#define SDRAM_COMMAND_TARGET_BANK   FMC_SDRAM_CMD_TARGET_BANK1
-	#define SDRAM_REFRESH_COUNT         0x0603
-	#define SDRAM_ROWBITS_NUMBER        FMC_SDRAM_ROW_BITS_NUM_12
-	#define SDRAM_MEMORY_WIDTH          FMC_SDRAM_MEM_BUS_WIDTH_16
-	#define SDRAM_READ_BURST_STATE      FMC_SDRAM_RBURST_DISABLE
-	#define SDRAM_CAS_LATENCY           FMC_SDRAM_CAS_LATENCY_2
-	#define SDRAM_REG_VALUE             0x0220
-/**
- * @}
- */
-#elif defined(SDRAM_USE_STM32F439_EVAL) || defined(STM32F439_EVAL)
+#if defined(SDRAM_USE_STM32F439_EVAL) || defined(STM32F439_EVAL)
 /* Make define */
 #ifndef SDRAM_USE_STM32F439_EVAL
 #define SDRAM_USE_STM32F439_EVAL
 #endif
-/**
- * @defgroup TM_SDRAM_STM32439_EVAL_Macros
- * @brief    Macros for STM32439-EVAL board
- * @{
- */
 	/* SDRAM start address = FMC peripheral start address */
 	#define SDRAM_START_ADR             (uint32_t)0xC0000000
 	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
@@ -222,19 +195,11 @@ PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0   
 	#define SDRAM_READ_BURST_STATE      FMC_SDRAM_RBURST_DISABLE
 	#define SDRAM_CAS_LATENCY           FMC_SDRAM_CAS_LATENCY_3
 	#define SDRAM_REG_VALUE             0x0230
-/**
- * @}
- */
 #elif defined(SDRAM_USE_STM32F469_DISCOVERY) || defined(STM32F469_DISCOVERY)
 /* Make define */
 #ifndef SDRAM_USE_STM32F469_DISCOVERY
 #define SDRAM_USE_STM32F469_DISCOVERY
 #endif
-/**
- * @defgroup TM_SDRAM_STM324x9_EVAL_Macros
- * @brief    Macros for STM324x9-EVAL board
- * @{
- */
 	/* SDRAM start address = FMC peripheral start address */
 	#define SDRAM_START_ADR             (uint32_t)0xC0000000
 	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
@@ -246,19 +211,11 @@ PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0   
 	#define SDRAM_READ_BURST_STATE      FMC_SDRAM_RBURST_DISABLE
 	#define SDRAM_CAS_LATENCY           FMC_SDRAM_CAS_LATENCY_3
 	#define SDRAM_REG_VALUE             0x0230
-/**
- * @}
- */
-#else
-/* Make define */
-#ifndef SDRAM_USE_STM32F429_DISCOVERY
-#define SDRAM_USE_STM32F429_DISCOVERY
-#endif
-/**
- * @defgroup TM_SDRAM_STM32F429_Discovery_Macros
- * @brief    Macros for STM32F429-Discovery board
- * @{
- */
+#elif defined(SDRAM_USE_STM32F429_DISCOVERY) || defined(STM32F429_DISCOVERY)
+    /* Make define */
+    #ifndef SDRAM_USE_STM32F429_DISCOVERY
+    #define SDRAM_USE_STM32F429_DISCOVERY
+    #endif
 	/* SDRAM start address = FMC peripheral start address */
 	#define SDRAM_START_ADR             (uint32_t)0xD0000000
 	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
@@ -270,10 +227,39 @@ PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0   
 	#define SDRAM_READ_BURST_STATE      FMC_SDRAM_RBURST_DISABLE
 	#define SDRAM_CAS_LATENCY           FMC_SDRAM_CAS_LATENCY_3
 	#define SDRAM_REG_VALUE             0x0231
-/**
- * @}
- */
-#endif /* SDRAM_USE_STM324x9_EVAL */
+#elif defined(SDRAM_USE_STM32F7_DISCOVERY) || defined(STM32F7_DISCOVERY)
+    /* Make define */
+    #ifndef SDRAM_USE_STM32F7_DISCOVERY
+    #define SDRAM_USE_STM32F7_DISCOVERY
+    #endif
+    /* SDRAM start address = FMC peripheral start address */
+    #define SDRAM_START_ADR             (uint32_t)0xC0000000
+    #define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
+    #define SDRAM_BANK                  FMC_SDRAM_BANK1
+    #define SDRAM_COMMAND_TARGET_BANK   FMC_SDRAM_CMD_TARGET_BANK1
+    #define SDRAM_REFRESH_COUNT         0x0603
+    #define SDRAM_ROWBITS_NUMBER        FMC_SDRAM_ROW_BITS_NUM_12
+    #define SDRAM_MEMORY_WIDTH          FMC_SDRAM_MEM_BUS_WIDTH_16
+    #define SDRAM_READ_BURST_STATE      FMC_SDRAM_RBURST_DISABLE
+    #define SDRAM_CAS_LATENCY           FMC_SDRAM_CAS_LATENCY_2
+    #define SDRAM_REG_VALUE             0x0220
+#elif defined(SDRAM_USE_STM32F769_DISCOVERY) || defined(STM32F769_DISCOVERY)
+/* Make define */
+#ifndef SDRAM_USE_STM32F769_DISCOVERY
+#define SDRAM_USE_STM32F769_DISCOVERY
+#endif
+    /* SDRAM start address = FMC peripheral start address */
+    #define SDRAM_START_ADR             (uint32_t)0xC0000000
+    #define SDRAM_MEMORY_SIZE           (uint32_t)0x1000000
+    #define SDRAM_BANK                  FMC_SDRAM_BANK1
+    #define SDRAM_COMMAND_TARGET_BANK   FMC_SDRAM_CMD_TARGET_BANK1
+    #define SDRAM_REFRESH_COUNT         0x0603
+    #define SDRAM_ROWBITS_NUMBER        FMC_SDRAM_ROW_BITS_NUM_12
+    #define SDRAM_MEMORY_WIDTH          FMC_SDRAM_MEM_BUS_WIDTH_32
+    #define SDRAM_READ_BURST_STATE      FMC_SDRAM_RBURST_DISABLE
+    #define SDRAM_CAS_LATENCY           FMC_SDRAM_CAS_LATENCY_2
+    #define SDRAM_REG_VALUE             0x0230
+#endif
 
 /* Timeout for SDRAM initialization */
 #define SDRAM_TIMEOUT                   ((uint32_t)0xFFFF) 

@@ -134,7 +134,7 @@ void TM_X_ReceiveHandler(uint8_t c) {
 U(S)ARTX     |TX     RX      |TX     RX      |TX     RX
 
 //STM32F4xx and STM32F7xx
-USART1       |PA9    PA10    |PB6    PB7     |-      -
+USART1       |PA9    PA10    |PB6    PB7     |PA9    PB7
 USART2       |PA2    PA3     |PD5    PD6     |-      -
 USART3       |PB10   PB11    |PC10   PC11    |PD8    PD9
 UART4        |PA0    PA1     |PC10   PC11    |-      -

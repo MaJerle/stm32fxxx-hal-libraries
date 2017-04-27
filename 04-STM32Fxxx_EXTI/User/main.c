@@ -29,7 +29,7 @@ int main(void) {
 	TM_DISCO_LedInit();
 	
 	/* Attach EXTI pin, enable both edges because of different boards support */
-	if (TM_EXTI_Attach(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_EXTI_Trigger_Rising_Falling) == TM_EXTI_Result_Ok) {
+	if (TM_EXTI_Attach(DISCO_BUTTON_PORT, DISCO_BUTTON_PIN, TM_EXTI_Trigger_Rising_Falling) == TM_EXTI_Result_Ok) {
 		/* Turn on green LED */
 		TM_DISCO_LedOn(LED_GREEN);
 	} else {
@@ -45,7 +45,7 @@ int main(void) {
 /* Handle all EXTI lines */
 void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 	/* Check proper line */
-	if (GPIO_Pin == TM_DISCO_BUTTON_PIN) {
+	if (GPIO_Pin == DISCO_BUTTON_PIN) {
 		/* Toggle pin only if button is pressed */
 		if (TM_DISCO_ButtonPressed()) {
 			/* Toggle LEDs if interrupt on button line happens */

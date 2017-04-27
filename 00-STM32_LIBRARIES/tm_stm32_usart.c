@@ -616,6 +616,12 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
 	}
 #endif
+#if defined(GPIOA) && defined(GPIOB)
+	if (pinspack == TM_USART_PinsPack_3) {
+		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
+	}
+#endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPinsCallback(USART1, GPIO_AF_USART1);

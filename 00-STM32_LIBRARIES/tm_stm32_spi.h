@@ -455,7 +455,7 @@ void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint32_
  * @param  data: 16-bit data size to send over SPI
  * @retval Received 16-bit value from slave device
  */
-static __INLINE uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint8_t data) {
+static __INLINE uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data) {
 	/* Check if SPI is enabled */
 	SPI_CHECK_ENABLED_RESP(SPIx, 0);
 	

@@ -31,11 +31,9 @@ int main(void) {
 	
 	/* Init USART, TX: PC6, RX: PC7, 921600 bauds */
 	TM_USART_Init(USART6, TM_USART_PinsPack_1, 921600);
-	TM_USART_Init(UART5, TM_USART_PinsPack_1, 921600);
 	
 	/* Put test string */
 	TM_USART_Puts(USART6, "Hello world\n");
-	TM_USART_Puts(UART5, "Hello world\n");
 	
 	while (1) {
 		/* Check if we have string "OK" in USART6 buffer */

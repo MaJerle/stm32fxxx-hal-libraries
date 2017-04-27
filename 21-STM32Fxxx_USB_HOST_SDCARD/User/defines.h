@@ -39,4 +39,18 @@
 //#define RCC_PLLQ              7                      /*!< Used for PLL Q parameter */
 //#define RCC_PLLR              10                     /*!< Used for PLL R parameter, available on STM32F446xx */
 
+/* Disable cache */
+#define DISABLE_CACHE
+
+/* Use USB with FATFS */
+#define FATFS_USE_USB           1
+#define FATFS_USE_SDIO          1
+
+/* USB settings */
+#define USB_USE_FS
+#define USB_USE_HS
+#define USB_USE_HOST
+//#define USB_USE_DEVICE
+//#define USB_USE_ULPI_PHY
+
 #endif

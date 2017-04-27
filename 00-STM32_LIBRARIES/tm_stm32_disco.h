@@ -99,6 +99,13 @@ extern "C" {
  *     - LED_GREEN   on PI1
  *   - Button: (LOW when pressed)
  *     - Blue button on PI16
+ * - STM32F769-Discovery: (STM32F769NI) - <code>STM32F769_DISCOVERY</code>
+ *   - Leds:
+ *     - LED_GREEN on PJ5
+ *     - LED_RED   on PJ13
+ *     - LED4 on PK3
+ *   - Button: (HIGH when pressed)
+ *     - Blue button on PA0 
  *    
  * \par Select your board
  *
@@ -141,6 +148,7 @@ extern "C" {
 #define STM32F439_EVAL
 #define STM32F469_DISCOVERY
 #define STM32F7_DISCOVERY
+#define STM32F769_DISCOVERY
 \endcode
  *
  * \par Changelog
@@ -183,6 +191,9 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0x0001U
 	#define DISCO_BUTTON_PRESSED		1
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+    
+    #define DISCO_USART                 USART1
+    #define DISCO_USART_PP              TM_USART_PinsPack_1
 /* STM32F429 Discovery */
 #elif defined(STM32F429_DISCOVERY)
 	#define LED_GREEN					0x2000U
@@ -198,6 +209,9 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0x0001U
 	#define DISCO_BUTTON_PRESSED		1
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+    
+    #define DISCO_USART                 USART1
+    #define DISCO_USART_PP              TM_USART_PinsPack_1
 /* STM32F4 & STM32F401 & STM32F411 Discovery */
 #elif defined(STM32F4_DISCOVERY) || defined(STM32F401_DISCOVERY) || defined(STM32F411_DISCOVERY)
 	#define LED_GREEN					0x1000U
@@ -213,6 +227,9 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0x0001U
 	#define DISCO_BUTTON_PRESSED		1
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+    
+    #define DISCO_USART                 USART1
+    #define DISCO_USART_PP              TM_USART_PinsPack_2
 /* Nucleo F401-RE & F411-RE & F446-RE & F091-RE */
 #elif defined(NUCLEO_F401) || defined(NUCLEO_F411) || defined(NUCLEO_F446) || defined(NUCLEO_F091)
 	#define LED_GREEN					GPIO_PIN_5
@@ -228,6 +245,9 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0x2000U
 	#define DISCO_BUTTON_PRESSED		0
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_UP
+    
+    #define DISCO_USART                 USART2
+    #define DISCO_USART_PP              TM_USART_PinsPack_1
 /* STM32F469-Discovery */
 #elif defined(STM32F469_DISCOVERY)
 	#define LED_GREEN					GPIO_PIN_6
@@ -248,6 +268,9 @@ extern "C" {
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
 	
 	#define DISCO_USE_FUNCTIONS
+    
+    #define DISCO_USART                 USART3
+    #define DISCO_USART_PP              TM_USART_PinsPack_1
 /* STM32F7-Discovery */
 #elif defined(STM32F7_DISCOVERY)
 	#define LED_GREEN					0x0002U
@@ -263,6 +286,9 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0x0800
 	#define DISCO_BUTTON_PRESSED		1
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+    
+    #define DISCO_USART                 USART1
+    #define DISCO_USART_PP              TM_USART_PinsPack_3
 /* STM32F769-Discovery */
 #elif defined(STM32F769_DISCOVERY)
 	#define LED_GREEN					0x0020U
@@ -278,6 +304,9 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0x0001U
 	#define DISCO_BUTTON_PRESSED		1
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_DOWN
+    
+    #define DISCO_USART                 USART1
+    #define DISCO_USART_PP              TM_USART_PinsPack_1
 /* No board used */
 #else
 	#warning "tm_stm32_disco.h: Please select your board. Open tm_stm32_disco.h and follow instructions! Support is currently disabled"
@@ -295,6 +324,9 @@ extern "C" {
 	#define DISCO_BUTTON_PIN			0
 	#define DISCO_BUTTON_PRESSED		0
 	#define DISCO_BUTTON_PULL			TM_GPIO_PuPd_NOPULL
+    
+    #define DISCO_USART                 USART1
+    #define DISCO_USART_PP              TM_USART_PinsPack_1
 #endif
 
 /**

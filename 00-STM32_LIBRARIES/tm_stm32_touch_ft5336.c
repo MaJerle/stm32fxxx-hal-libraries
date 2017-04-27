@@ -31,6 +31,12 @@
 /* Start locations for reading pressed touches */
 static uint8_t FT5336_DataRegs[] = {0x03, 0x09, 0x0F, 0x15, 0x1B};
 
+/* Driver functions */
+TM_TOUCH_DRIVER_t TOUCH_DRIVER_FT5336 = {
+    TM_TOUCH_FT5336_Init,
+    TM_TOUCH_FT5336_Read
+};
+
 /* Delay function */
 static void FT_Delay(__IO uint32_t d) {
 	while (d--);
@@ -63,6 +69,9 @@ uint8_t TM_TOUCH_FT5336_Init(TM_TOUCH_t* TS) {
 		/* Connected device is not FT5336 */
 		return 2;
 	}
+    
+    /* Enable touch interrupts */
+    TM_I2C_Write(TOUCH_FT5336_I2C, TOUCH_FT5336_I2C_DEV, 0xA4, 0x01);
 	
 	/* Return 0 = OK */
 	return 0;
@@ -100,6 +109,11 @@ uint8_t TM_TOUCH_FT5336_Read(TM_TOUCH_t* TS) {
 		TS->Y[i] = (DataRead[1]) | ((DataRead[0] & 0x0F) << 8);
 		TS->X[i] = (DataRead[3]) | ((DataRead[2] & 0x0F) << 8);
 	}
+    
+    /* Read gesture */
+    if (TM_I2C_Read(TOUCH_FT5336_I2C, TOUCH_FT5336_I2C_DEV, 0x01, &TS->Gesture) == TM_I2C_Result_Ok) {
+        TS->Gesture = TS->Gesture;
+    }
 	
 	/* Return OK */
 	return 0;

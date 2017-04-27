@@ -135,7 +135,7 @@ extern "C" {
 	/* Set pixel settings */
 	#define LCD_PIXEL_WIDTH        480
 	#define LCD_PIXEL_HEIGHT       272
-	#define LCD_PIXEL_SIZE         2
+	#define LCD_PIXEL_SIZE         4
 	
 	/* LCD configuration */
 	#define LCD_HSYNC              41
@@ -194,6 +194,7 @@ extern "C" {
 /* Frame settings */
 #define LCD_FRAME_BUFFER           ((uint32_t)SDRAM_START_ADR)
 #define LCD_BUFFER_OFFSET          ((uint32_t)(LCD_PIXEL_WIDTH * LCD_PIXEL_HEIGHT * LCD_PIXEL_SIZE))
+#define LCD_FRAME_BUFFER_3         (LCD_FRAME_BUFFER +  2 * ((uint32_t)(LCD_PIXEL_WIDTH * LCD_PIXEL_HEIGHT * LCD_PIXEL_SIZE)))
 
 /**
  * @defgroup TM_LCD_Color
@@ -201,19 +202,19 @@ extern "C" {
  * @{
  */
 
-#define LCD_COLOR_WHITE            0xFFFF
-#define LCD_COLOR_BLACK            0x0000
-#define LCD_COLOR_RED              0xF800
-#define LCD_COLOR_GREEN            0x07E0
-#define LCD_COLOR_GREEN2           0xB723
-#define LCD_COLOR_BLUE             0x001F
-#define LCD_COLOR_BLUE2            0x051D
-#define LCD_COLOR_YELLOW           0xFFE0
-#define LCD_COLOR_ORANGE           0xFBE4
-#define LCD_COLOR_CYAN             0x07FF
-#define LCD_COLOR_MAGENTA          0xA254
-#define LCD_COLOR_GRAY             0x7BEF
-#define LCD_COLOR_BROWN            0xBBCA
+#define LCD_COLOR_WHITE            0xFFFFFFFF
+#define LCD_COLOR_BLACK            0xFF000000
+#define LCD_COLOR_RED              0xFFFF0000
+#define LCD_COLOR_GREEN            0xFF00FF00
+#define LCD_COLOR_GREEN2           0xFF7FFF7F
+#define LCD_COLOR_BLUE             0xFF0000FF
+#define LCD_COLOR_BLUE2            0xFF7F7FFF
+#define LCD_COLOR_YELLOW           0xFFFFFF00
+#define LCD_COLOR_ORANGE           0xFFFF7F00
+#define LCD_COLOR_CYAN             0xFF00FFFF
+#define LCD_COLOR_MAGENTA          0xFFFF00FF
+#define LCD_COLOR_GRAY             0xFF7F7F7F
+#define LCD_COLOR_BROWN            0xFF903F00
 
 /**
  * @}

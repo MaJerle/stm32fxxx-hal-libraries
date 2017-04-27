@@ -131,8 +131,8 @@ TM_LCD_Result_t TM_LCD_Init(void) {
 	LCD.FrameStart = LCD_FRAME_BUFFER;
 	LCD.FrameOffset = LCD_BUFFER_OFFSET;
 	LCD.CurrentFont = &TM_Font_11x18;
-	LCD.ForegroundColor = 0x0000;
-	LCD.BackgroundColor = 0xFFFF;
+	LCD.ForegroundColor = LCD_COLOR_BLACK;
+	LCD.BackgroundColor = LCD_COLOR_WHITE;
 	LCD.Orientation = 1;
 	
 	/* Set orientation */
@@ -602,7 +602,11 @@ static void TM_LCD_INT_InitLayers(void) {
 	layer_cfg.WindowX1 = LCD_PIXEL_WIDTH;
 	layer_cfg.WindowY0 = 0;
 	layer_cfg.WindowY1 = LCD_PIXEL_HEIGHT; 
+#if LCD_PIXEL_SIZE == 2
 	layer_cfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
+#else
+	layer_cfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
+#endif
 	layer_cfg.FBStartAdress = SDRAM_START_ADR;
 	layer_cfg.Alpha = 255;
 	layer_cfg.Alpha0 = 0;
@@ -623,6 +627,15 @@ static void TM_LCD_INT_InitLayers(void) {
 
 	/* Init layer 2 */
 	HAL_LTDC_ConfigLayer(&LTDCHandle, &layer_cfg, 1);
+    
+    /* Init line event interrupt */
+    HAL_LTDC_ProgramLineEvent(&LTDCHandle, 0); 
+  
+    /* Set LTDC Interrupt to the lowest priority */
+    HAL_NVIC_SetPriority(LTDC_IRQn, 0xE, 0);   
+
+    /* Enable LTDC Interrupt */
+    HAL_NVIC_EnableIRQ(LTDC_IRQn);  
 }
 
 /* ILI9341 related functions */
@@ -804,4 +817,9 @@ static void TM_LCD_INT_InitPins(void) {
 	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF14_LTDC);
 	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_10 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF9_LTDC);
 #endif
+}
+
+/* Interrupt handler */
+void LTDC_IRQHandler(void) {
+    HAL_LTDC_IRQHandler(&LTDCHandle);
 }
