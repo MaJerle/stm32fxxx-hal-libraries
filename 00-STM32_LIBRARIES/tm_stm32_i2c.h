@@ -55,13 +55,13 @@ extern "C" {
  *	\par Pinout
  *	
 \verbatim
-       |PINSPACK 1   |PINSPACK 2   |PINSPACK 3   |PINSPACK 4
-I2CX   |SCL   SDA    |SCL   SDA    |SCL   SDA    |SCL   SDA
-       |             |             |             |
-I2C1   |PB6   PB7    |PB8   PB9    |PB6   PB9    |
-I2C2   |PB10  PB11   |PF1   PF0    |PH4   PH5    |
-I2C3   |PA8   PC9    |PH7   PH8    |-     -      |
-I2C4   |PD12  PD13   |PF1   PF0    |PF14  PF15   |PH11  PH12
+       |PINSPACK 1   |PINSPACK 2   |PINSPACK 3   |PINSPACK 4   |PINSPACK 5   |
+I2CX   |SCL   SDA    |SCL   SDA    |SCL   SDA    |SCL   SDA    |SCL   SDA    |
+       |             |             |             |             |             |
+I2C1   |PB6   PB7    |PB8   PB9    |PB6   PB9    |             |             |
+I2C2   |PB10  PB11   |PF1   PF0    |PH4   PH5    |             |             |
+I2C3   |PA8   PC9    |PH7   PH8    |-     -      |             |             |
+I2C4   |PD12  PD13   |PF1   PF0    |PF14  PF15   |PH11  PH12   |PD12  PB7    |
 \endverbatim
  *
  * I2C4 is not available on all devices. Please check if it is available for your device before using it!
@@ -123,6 +123,7 @@ typedef enum {
 	TM_I2C_PinsPack_2,        /*!< Use Pinspack2 from Pinout table for I2Cx */
 	TM_I2C_PinsPack_3,        /*!< Use Pinspack3 from Pinout table for I2Cx */
 	TM_I2C_PinsPack_4,        /*!< Use Pinspack4 from Pinout table for I2Cx */
+	TM_I2C_PinsPack_5,        /*!< Use Pinspack5 from Pinout table for I2Cx */
 	TM_I2C_PinsPack_Custom    /*!< Use custom pins for I2Cx */
 } TM_I2C_PinsPack_t;
 

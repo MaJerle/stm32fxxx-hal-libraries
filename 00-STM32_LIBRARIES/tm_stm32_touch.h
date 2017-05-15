@@ -10,7 +10,7 @@
  *	
 \verbatim
    ----------------------------------------------------------------------
-    Copyright (c) 2016 Tilen Majerle
+    Copyright (c) 2017 Tilen Majerle
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
@@ -76,6 +76,7 @@ extern "C" {
  * @note  When selecting "built-in" drivers, you also have to include some libs.
  *           - @ref TM_TOUCH_TS3510 library for STM32F439-Eval
  *           - @ref TM_TOUCH_FT5336 for STM32F7-Discovery
+ *           - @ref TM_TOUCH_FT6206 for STM32F769-Discovery
  *
  * \par Set custom driver
  *
@@ -158,7 +159,16 @@ int main() {
  * @brief    Library defines
  * @{
  */
-/* Macros here */
+
+#define TOUCH_ORIENT_DEFAULT            0       /*!< Leave read data as as */
+#define TOUCH_ORIENT_INVERT_X           0x01    /*!< Invert X values */
+#define TOUCH_ORIENT_INVERT_Y           0x02    /*!< Invert Y values */
+#define TOUCH_ORIENT_INVERT_XY          0x03    /*!< Invert X and Y values */
+#define TOUCH_ORIENT_SWAP               0x04    /*!< Swap X and Y values */
+#define TOUCH_ORIENT_SWAP_INVERT_X      0x05    /*!< Swap X and Y and invert X values */
+#define TOUCH_ORIENT_SWAP_INVERT_Y      0x06    /*!< Swap X and Y and invert Y values */
+#define TOUCH_ORIENT_SWAP_INVERT_XY     0x07    /*!< Swap X and Y and invert X and Y values */
+
 /**
  * @}
  */

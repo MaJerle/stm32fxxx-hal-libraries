@@ -59,8 +59,8 @@ int main(void) {
 	/* Set custom orientation for LCD */
 	TM_LCD_SetOrientation(1);
 	
-	/* Get orientation from LCD and save to Touch Screen structure */
-	TS.Orientation = TM_LCD_GetOrientation();
+	/* Use default orientation */
+	TS.Orientation = TOUCH_ORIENT_DEFAULT;
 	
 	/* Init touch, use default drivers, depends on defines in library */
 	/* Check library description for more information */

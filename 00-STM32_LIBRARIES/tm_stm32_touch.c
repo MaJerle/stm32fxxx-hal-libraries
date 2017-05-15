@@ -1,6 +1,6 @@
 /**	
  * |----------------------------------------------------------------------
- * | Copyright (c) 2016 Tilen Majerle
+ * | Copyright (c) 2017 Tilen Majerle
  * |  
  * | Permission is hereby granted, free of charge, to any person
  * | obtaining a copy of this software and associated documentation
@@ -33,6 +33,9 @@
 #if defined(STM32F7_DISCOVERY) || defined(TOUCH_USE_STM32F7_DISCOVERY)
 #include "tm_stm32_touch_ft5336.h"
 #endif
+#if defined(STM32F769_DISCOVERY) || defined(TOUCH_USE_STM32F769_DISCOVERY)
+#include "tm_stm32_touch_ft6206.h"
+#endif
 
 /* Static driver structure */
 static TM_TOUCH_DRIVER_t TouchDriver;
@@ -53,6 +56,9 @@ TM_TOUCH_Result_t TM_TOUCH_Init(TM_TOUCH_DRIVER_t* Driver, TM_TOUCH_t* TS) {
 #elif defined(STM32F7_DISCOVERY) || defined(TOUCH_USE_STM32F7_DISCOVERY)
 		TouchDriver.Init = TM_TOUCH_FT5336_Init;
 		TouchDriver.Read = TM_TOUCH_FT5336_Read;
+#elif defined(STM32F769_DISCOVERY) || defined(TOUCH_USE_STM32F769_DISCOVERY)
+		TouchDriver.Init = TM_TOUCH_FT6206_Init;
+		TouchDriver.Read = TM_TOUCH_FT6206_Read;
 #else
 		/* Return error, no default drivers available */
 		return TM_TOUCH_Result_Error;
@@ -80,31 +86,26 @@ uint8_t TM_TOUCH_Read(TM_TOUCH_t* TS) {
 	if (status) {
 		return status;
 	}
-	
-	/* Check for orientations */
-	if (TS->Orientation == 0) {
-		/* Rotate all X and Y values */
-		for (i = 0; i < TS->NumPresses; i++) {
-			TS->X[i] = TS->MaxX - TS->X[i];
-			TS->Y[i] = TS->MaxY - TS->Y[i];
+    
+    /* Check if anything to do */
+    if (TS->Orientation != TOUCH_ORIENT_DEFAULT) {
+        for (i = 0; i < TS->NumPresses; i++) {
+            /* Invert X values */
+            if (TS->Orientation & TOUCH_ORIENT_INVERT_X) {
+                TS->X[i] = TS->MaxX - TS->X[i];
+            }
+            /* Invert Y values */
+            if (TS->Orientation & TOUCH_ORIENT_INVERT_Y) {
+                TS->Y[i] = TS->MaxY - TS->Y[i];
+            }
+			/* Swap X and Y values */
+            if (TS->Orientation & TOUCH_ORIENT_SWAP) {
+                tmp = TS->X[i];
+                TS->X[i] = TS->Y[i];
+                TS->Y[i] = tmp;
+            }
 		}
-	}
-	if (TS->Orientation == 2) {
-		/* Rotate all X and Y values */
-		for (i = 0; i < TS->NumPresses; i++) {
-			tmp = TS->X[i];
-			TS->X[i] = TS->MaxY - TS->Y[i];
-			TS->Y[i] = tmp;
-		}
-	}
-	if (TS->Orientation == 3) {
-		/* Rotate all X and Y values */
-		for (i = 0; i < TS->NumPresses; i++) {
-			tmp = TS->X[i];
-			TS->X[i] = TS->Y[i];
-			TS->Y[i] = TS->MaxX - tmp;
-		}
-	}
+    }
 	
 	/* Return OK */
 	return 0;

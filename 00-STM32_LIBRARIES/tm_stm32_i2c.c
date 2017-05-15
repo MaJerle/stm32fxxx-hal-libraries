@@ -1,6 +1,6 @@
 /**	
  * |----------------------------------------------------------------------
- * | Copyright (c) 2017 Tilen Majerle
+ * | Copyright (c) 2016 Tilen Majerle
  * |  
  * | Permission is hereby granted, free of charge, to any person
  * | obtaining a copy of this software and associated documentation
@@ -548,6 +548,16 @@ static void TM_I2C4_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	if (pinspack == TM_I2C_PinsPack_4) {
 		TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF4_I2C4);
 	}
+#endif
+#if defined(GPIOB) && defined(GPIOD)
+	if (pinspack == TM_I2C_PinsPack_5) {
+#if defined(GPIO_AF11_I2C4)
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_7, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF11_I2C4);
+#else
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_7, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF4_I2C4);
+#endif
+        TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_12, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF4_I2C4);
+	}    
 #endif
 	/* Init pins */
 	if (pinspack == TM_I2C_PinsPack_Custom) {

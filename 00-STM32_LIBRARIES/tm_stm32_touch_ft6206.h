@@ -6,7 +6,7 @@
  * @version v1.0
  * @ide     Keil uVision
  * @license MIT
- * @brief   FT5336 low level library
+ * @brief   FT6206 low level library
  *	
 \verbatim
    ----------------------------------------------------------------------
@@ -99,16 +99,16 @@ extern "C" {
  */
 
 /* Touch I2C settings */
-#ifndef TOUCH_FT5336_I2C
-#define TOUCH_FT5336_I2C        I2C3
-#define TOUCH_FT5336_I2C_PP     TM_I2C_PinsPack_2
+#ifndef TOUCH_FT6206_I2C
+#define TOUCH_FT6206_I2C        I2C4
+#define TOUCH_FT6206_I2C_PP     TM_I2C_PinsPack_5
 #endif
 
 /* I2C device address */
-#define TOUCH_FT5336_I2C_DEV    0x70
+#define TOUCH_FT6206_I2C_DEV    0x54
 
 /* FT5336 touch structure */
-extern TM_TOUCH_DRIVER_t TOUCH_DRIVER_FT5336;
+extern TM_TOUCH_DRIVER_t TOUCH_DRIVER_FT6206;
 
 /**
  * @}
@@ -137,7 +137,7 @@ extern TM_TOUCH_DRIVER_t TOUCH_DRIVER_FT5336;
  *            - 0: OK
  *            - > 0: Error
  */
-uint8_t TM_TOUCH_FT5336_Init(TM_TOUCH_t* TS);
+uint8_t TM_TOUCH_FT6206_Init(TM_TOUCH_t* TS);
 
 /**
  * @brief  Reads touch data from FT5336 touch controller
@@ -146,7 +146,7 @@ uint8_t TM_TOUCH_FT5336_Init(TM_TOUCH_t* TS);
  *            - 0: OK
  *            - > 0: Error
  */
-uint8_t TM_TOUCH_FT5336_Read(TM_TOUCH_t* TS);
+uint8_t TM_TOUCH_FT6206_Read(TM_TOUCH_t* TS);
 
 /**
  * @}

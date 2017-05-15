@@ -10,7 +10,7 @@
  *	
 \verbatim
    ----------------------------------------------------------------------
-    Copyright (c) 2016 Tilen Majerle
+    Copyright (c) 2017 Tilen Majerle
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
@@ -603,7 +603,7 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str);
  * @param  count: Number of elements in data array to be send over USART
  * @retval None
  */
-void TM_USART_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t count);
+void TM_USART_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint32_t count);
 
 /**
  * @brief  Gets character from internal USART buffer
