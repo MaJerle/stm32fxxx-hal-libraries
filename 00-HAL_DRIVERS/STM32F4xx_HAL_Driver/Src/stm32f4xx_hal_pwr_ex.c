@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_hal_pwr_ex.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    14-August-2015
+  * @version V1.7.1
+  * @date    14-April-2017
   * @brief   Extended PWR HAL module driver.
   *          This file provides firmware functions to manage the following 
   *          functionalities of PWR extension peripheral:           
@@ -12,7 +12,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -58,10 +58,10 @@
 /** @addtogroup PWREx_Private_Constants
   * @{
   */    
-#define PWR_OVERDRIVE_TIMEOUT_VALUE  1000
-#define PWR_UDERDRIVE_TIMEOUT_VALUE  1000
-#define PWR_BKPREG_TIMEOUT_VALUE     1000
-#define PWR_VOSRDY_TIMEOUT_VALUE     1000
+#define PWR_OVERDRIVE_TIMEOUT_VALUE  1000U
+#define PWR_UDERDRIVE_TIMEOUT_VALUE  1000U
+#define PWR_BKPREG_TIMEOUT_VALUE     1000U
+#define PWR_VOSRDY_TIMEOUT_VALUE     1000U
 /**
   * @}
   */
@@ -160,7 +160,7 @@
   */
 HAL_StatusTypeDef HAL_PWREx_EnableBkUpReg(void)
 {
-  uint32_t tickstart = 0;
+  uint32_t tickstart = 0U;
 
   *(__IO uint32_t *) CSR_BRE_BB = (uint32_t)ENABLE;
 
@@ -184,7 +184,7 @@ HAL_StatusTypeDef HAL_PWREx_EnableBkUpReg(void)
   */
 HAL_StatusTypeDef HAL_PWREx_DisableBkUpReg(void)
 {
-  uint32_t tickstart = 0;
+  uint32_t tickstart = 0U;
 
   *(__IO uint32_t *) CSR_BRE_BB = (uint32_t)DISABLE;
 
@@ -251,7 +251,7 @@ uint32_t HAL_PWREx_GetVoltageRange(void)
   */
 HAL_StatusTypeDef HAL_PWREx_ControlVoltageScaling(uint32_t VoltageScaling)
 {
-  uint32_t tickstart = 0;
+  uint32_t tickstart = 0U;
   
   assert_param(IS_PWR_VOLTAGE_SCALING_RANGE(VoltageScaling));
   
@@ -277,7 +277,8 @@ HAL_StatusTypeDef HAL_PWREx_ControlVoltageScaling(uint32_t VoltageScaling)
 #elif defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || \
       defined(STM32F401xC) || defined(STM32F401xE) || defined(STM32F410Tx) || defined(STM32F410Cx) || \
       defined(STM32F410Rx) || defined(STM32F411xE) || defined(STM32F446xx) || defined(STM32F469xx) || \
-      defined(STM32F479xx) 
+      defined(STM32F479xx) || defined(STM32F412Zx) || defined(STM32F412Vx) || defined(STM32F412Rx) || \
+      defined(STM32F412Cx) || defined(STM32F413xx) || defined(STM32F423xx)
 /**
   * @brief Configures the main internal regulator output voltage.
   * @param  VoltageScaling: specifies the regulator output voltage to achieve
@@ -306,7 +307,7 @@ HAL_StatusTypeDef HAL_PWREx_ControlVoltageScaling(uint32_t VoltageScaling)
   */
 HAL_StatusTypeDef HAL_PWREx_ControlVoltageScaling(uint32_t VoltageScaling)
 {
-  uint32_t tickstart = 0;
+  uint32_t tickstart = 0U;
   
   assert_param(IS_PWR_VOLTAGE_SCALING_RANGE(VoltageScaling));
   
@@ -387,10 +388,12 @@ void HAL_PWREx_EnableWakeUpPinPolarityFallingEdge(void)
 #endif /* STM32F469xx || STM32F479xx */
 
 #if defined(STM32F401xC) || defined(STM32F401xE) || defined(STM32F410Tx) || defined(STM32F410Cx) || defined(STM32F410Rx) ||\
-    defined(STM32F411xE) 
+    defined(STM32F411xE) || defined(STM32F412Zx) || defined(STM32F412Vx) || defined(STM32F412Rx) || defined(STM32F412Cx) ||\
+    defined(STM32F413xx) || defined(STM32F423xx)
 /**
   * @brief Enables Main Regulator low voltage mode.
-  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx devices.   
+  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx/STM32F412Zx/STM32F412Rx/STM32F412Vx/STM32F412Cx/
+  *        STM32F413xx/STM32F423xx devices.   
   * @retval None
   */
 void HAL_PWREx_EnableMainRegulatorLowVoltage(void)
@@ -400,7 +403,8 @@ void HAL_PWREx_EnableMainRegulatorLowVoltage(void)
 
 /**
   * @brief Disables Main Regulator low voltage mode.
-  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx devices. 
+  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx/STM32F412Zx/STM32F412Rx/STM32F412Vx/STM32F412Cx/
+  *        STM32F413xx/STM32F423xxdevices. 
   * @retval None
   */
 void HAL_PWREx_DisableMainRegulatorLowVoltage(void)
@@ -410,7 +414,8 @@ void HAL_PWREx_DisableMainRegulatorLowVoltage(void)
 
 /**
   * @brief Enables Low Power Regulator low voltage mode.
-  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx devices.   
+  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx/STM32F412Zx/STM32F412Rx/STM32F412Vx/STM32F412Cx/
+  *        STM32F413xx/STM32F423xx devices.   
   * @retval None
   */
 void HAL_PWREx_EnableLowRegulatorLowVoltage(void)
@@ -420,7 +425,8 @@ void HAL_PWREx_EnableLowRegulatorLowVoltage(void)
 
 /**
   * @brief Disables Low Power Regulator low voltage mode.
-  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx devices.   
+  * @note  This mode is only available for STM32F401xx/STM32F410xx/STM32F411xx/STM32F412Zx/STM32F412Rx/STM32F412Vx/STM32F412Cx/
+  *        STM32F413xx/STM32F423xx  devices.   
   * @retval None
   */
 void HAL_PWREx_DisableLowRegulatorLowVoltage(void)
@@ -428,7 +434,8 @@ void HAL_PWREx_DisableLowRegulatorLowVoltage(void)
   *(__IO uint32_t *) CR_LPLVDS_BB = (uint32_t)DISABLE;
 }
 
-#endif /* STM32F401xC || STM32F401xE || STM32F410xx || STM32F411xE  */
+#endif /* STM32F401xC || STM32F401xE || STM32F410xx || STM32F411xE || STM32F412Zx || STM32F412Rx || STM32F412Vx || STM32F412Cx ||
+          STM32F413xx || STM32F423xx */
 
 #if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) ||\
     defined(STM32F446xx) || defined(STM32F469xx) || defined(STM32F479xx)
@@ -445,7 +452,7 @@ void HAL_PWREx_DisableLowRegulatorLowVoltage(void)
   */
 HAL_StatusTypeDef HAL_PWREx_EnableOverDrive(void)
 {
-  uint32_t tickstart = 0;
+  uint32_t tickstart = 0U;
 
   __HAL_RCC_PWR_CLK_ENABLE();
   
@@ -457,7 +464,7 @@ HAL_StatusTypeDef HAL_PWREx_EnableOverDrive(void)
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_ODRDY))
   {
-    if((HAL_GetTick() - tickstart ) > PWR_OVERDRIVE_TIMEOUT_VALUE)
+    if((HAL_GetTick() - tickstart) > PWR_OVERDRIVE_TIMEOUT_VALUE)
     {
       return HAL_TIMEOUT;
     }
@@ -492,7 +499,7 @@ HAL_StatusTypeDef HAL_PWREx_EnableOverDrive(void)
   */
 HAL_StatusTypeDef HAL_PWREx_DisableOverDrive(void)
 {
-  uint32_t tickstart = 0;
+  uint32_t tickstart = 0U;
   
   __HAL_RCC_PWR_CLK_ENABLE();
     
@@ -504,7 +511,7 @@ HAL_StatusTypeDef HAL_PWREx_DisableOverDrive(void)
  
   while(__HAL_PWR_GET_FLAG(PWR_FLAG_ODSWRDY))
   {
-    if((HAL_GetTick() - tickstart ) > PWR_OVERDRIVE_TIMEOUT_VALUE)
+    if((HAL_GetTick() - tickstart) > PWR_OVERDRIVE_TIMEOUT_VALUE)
     {
       return HAL_TIMEOUT;
     }
@@ -518,7 +525,7 @@ HAL_StatusTypeDef HAL_PWREx_DisableOverDrive(void)
 
   while(__HAL_PWR_GET_FLAG(PWR_FLAG_ODRDY))
   {
-    if((HAL_GetTick() - tickstart ) > PWR_OVERDRIVE_TIMEOUT_VALUE)
+    if((HAL_GetTick() - tickstart) > PWR_OVERDRIVE_TIMEOUT_VALUE)
     {
       return HAL_TIMEOUT;
     }
@@ -530,7 +537,7 @@ HAL_StatusTypeDef HAL_PWREx_DisableOverDrive(void)
 /**
   * @brief  Enters in Under-Drive STOP mode.
   *  
-  * @note   This mode is only available for STM32F42xxx/STM324F3xxx/STM32F446xx/STM32F469xx/STM32F479xx devices. 
+  * @note   This mode is only available for STM32F42xxx/STM32F43xxx/STM32F446xx/STM32F469xx/STM32F479xx devices.
   * 
   * @note    This mode can be selected only when the Under-Drive is already active 
   *   
@@ -568,9 +575,8 @@ HAL_StatusTypeDef HAL_PWREx_DisableOverDrive(void)
   */
 HAL_StatusTypeDef HAL_PWREx_EnterUnderDriveSTOPMode(uint32_t Regulator, uint8_t STOPEntry)
 {
-  uint32_t tmpreg1 = 0;
-  uint32_t tickstart = 0;
-  
+  uint32_t tmpreg1 = 0U;
+
   /* Check the parameters */
   assert_param(IS_PWR_REGULATOR_UNDERDRIVE(Regulator));
   assert_param(IS_PWR_STOP_ENTRY(STOPEntry));
@@ -584,18 +590,6 @@ HAL_StatusTypeDef HAL_PWREx_EnterUnderDriveSTOPMode(uint32_t Regulator, uint8_t 
   /* Enable the Under-drive */ 
   __HAL_PWR_UNDERDRIVE_ENABLE();
 
-  /* Get tick */
-  tickstart = HAL_GetTick();
-
-  /* Wait for UnderDrive mode is ready */
-  while(__HAL_PWR_GET_FLAG(PWR_FLAG_UDRDY))
-  {
-    if((HAL_GetTick() - tickstart ) > PWR_UDERDRIVE_TIMEOUT_VALUE)
-    {
-      return HAL_TIMEOUT;
-    }
-  }
-  
   /* Select the regulator state in STOP mode ---------------------------------*/
   tmpreg1 = PWR->CR;
   /* Clear PDDS, LPDS, MRLUDS and LPLUDS bits */

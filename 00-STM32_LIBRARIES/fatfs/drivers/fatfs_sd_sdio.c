@@ -23,7 +23,6 @@ uint8_t SDCARD_IsDetected(void);
 /* Status of SDCARD */
 static volatile DSTATUS Stat = STA_NOINIT;
 static SD_HandleTypeDef uSdHandle;
-static HAL_SD_CardInfoTypedef      uSdCardInfo;
 
 /**
   * @}
@@ -80,7 +79,7 @@ uint8_t BSP_SD_Init(void)
 	}
 
 	/* HAL SD initialization */
-	if (HAL_SD_Init(&uSdHandle, &uSdCardInfo) != SD_OK) {
+	if (HAL_SD_Init(&uSdHandle) != HAL_OK) {
 		SD_state = MSD_ERROR;
 	}
 
@@ -89,15 +88,15 @@ uint8_t BSP_SD_Init(void)
 		/* Enable wide operation */
 #if defined(SDIO_BUS_WIDE_4B)
 #if FATFS_SDIO_4BIT == 1
-		if (HAL_SD_WideBusOperation_Config(&uSdHandle, SDIO_BUS_WIDE_4B) != SD_OK) {
+		if (HAL_SD_ConfigWideBusOperation(&uSdHandle, SDIO_BUS_WIDE_4B) != HAL_OK) {
 #else
-		if (HAL_SD_WideBusOperation_Config(&uSdHandle, SDIO_BUS_WIDE_1B) != SD_OK) {	
+		if (HAL_SD_ConfigWideBusOperation(&uSdHandle, SDIO_BUS_WIDE_1B) != HAL_OK) {	
 #endif
 #else
 #if FATFS_SDIO_4BIT == 1
-		if (HAL_SD_WideBusOperation_Config(&uSdHandle, SDMMC_BUS_WIDE_4B) != SD_OK) {
+		if (HAL_SD_ConfigWideBusOperation(&uSdHandle, SDMMC_BUS_WIDE_4B) != HAL_OK) {
 #else
-		if (HAL_SD_WideBusOperation_Config(&uSdHandle, SDMMC_BUS_WIDE_1B) != SD_OK) {	
+		if (HAL_SD_ConfigWideBusOperation(&uSdHandle, SDMMC_BUS_WIDE_1B) != HAL_OK) {	
 #endif
 #endif
 			SD_state = MSD_ERROR;
@@ -145,8 +144,8 @@ uint8_t BSP_SD_DeInit(void) {
   * @param  NumOfBlocks: Number of SD blocks to read 
   * @retval SD status
   */
-uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint64_t ReadAddr, uint32_t BlockSize, uint32_t NumOfBlocks) {
-    if (HAL_SD_ReadBlocks(&uSdHandle, pData, ReadAddr, BlockSize, NumOfBlocks) != SD_OK) {
+uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint64_t sector, uint32_t NumOfBlocks, uint32_t Timeout) {
+    if (HAL_SD_ReadBlocks(&uSdHandle, (uint8_t *)pData, sector, NumOfBlocks, Timeout) != HAL_OK) {
         return MSD_ERROR;
     } else {
         return MSD_OK;
@@ -161,68 +160,12 @@ uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint64_t ReadAddr, uint32_t BlockSize
   * @param  NumOfBlocks: Number of SD blocks to write
   * @retval SD status
   */
-uint8_t BSP_SD_WriteBlocks(uint32_t *pData, uint64_t WriteAddr, uint32_t BlockSize, uint32_t NumOfBlocks) {
-    if (HAL_SD_WriteBlocks(&uSdHandle, pData, WriteAddr, BlockSize, NumOfBlocks) != SD_OK) {
+uint8_t BSP_SD_WriteBlocks(uint32_t *pData, uint64_t sector, uint32_t NumOfBlocks, uint32_t Timeout) {
+    if (HAL_SD_WriteBlocks(&uSdHandle, (uint8_t *)pData, sector, NumOfBlocks, Timeout) != HAL_OK) {
         return MSD_ERROR;
     } else {
         return MSD_OK;
     }
-}
-
-/**
-  * @brief  Reads block(s) from a specified address in an SD card, in DMA mode.
-  * @param  pData: Pointer to the buffer that will contain the data to transmit
-  * @param  ReadAddr: Address from where data is to be read  
-  * @param  BlockSize: SD card data block size, that should be 512
-  * @param  NumOfBlocks: Number of SD blocks to read 
-  * @retval SD status
-  */
-uint8_t BSP_SD_ReadBlocks_DMA(uint32_t *pData, uint64_t ReadAddr, uint32_t BlockSize, uint32_t NumOfBlocks) {
-    uint8_t sd_state = MSD_OK;
-
-    /* Read block(s) in DMA transfer mode */
-    if (HAL_SD_ReadBlocks_DMA(&uSdHandle, pData, ReadAddr, BlockSize, NumOfBlocks) != SD_OK) {
-        sd_state = MSD_ERROR;
-    }
-
-    /* Wait until transfer is complete */
-    if (sd_state == MSD_OK) {
-        if (HAL_SD_CheckReadOperation(&uSdHandle, (uint32_t)SD_DATATIMEOUT) != SD_OK) {
-            sd_state = MSD_ERROR;
-        } else {
-            sd_state = MSD_OK;
-        }
-    }
-
-    return sd_state;
-}
-
-/**
-  * @brief  Writes block(s) to a specified address in an SD card, in DMA mode.
-  * @param  pData: Pointer to the buffer that will contain the data to transmit
-  * @param  WriteAddr: Address from where data is to be written  
-  * @param  BlockSize: SD card data block size, that should be 512
-  * @param  NumOfBlocks: Number of SD blocks to write 
-  * @retval SD status
-  */
-uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint64_t WriteAddr, uint32_t BlockSize, uint32_t NumOfBlocks) {
-    uint8_t sd_state = MSD_OK;
-
-    /* Write block(s) in DMA transfer mode */
-    if (HAL_SD_WriteBlocks_DMA(&uSdHandle, pData, WriteAddr, BlockSize, NumOfBlocks) != SD_OK) {
-        sd_state = MSD_ERROR;
-    }
-
-    /* Wait until transfer is complete */
-    if (sd_state == MSD_OK) {
-        if (HAL_SD_CheckWriteOperation(&uSdHandle, (uint32_t)SD_DATATIMEOUT) != SD_OK) {
-            sd_state = MSD_ERROR;
-        } else {
-            sd_state = MSD_OK;
-        }
-    }
-
-    return sd_state;
 }
 
 /**
@@ -232,7 +175,7 @@ uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint64_t WriteAddr, uint32_t Blo
   * @retval SD status
   */
 uint8_t BSP_SD_Erase(uint64_t StartAddr, uint64_t EndAddr) {
-    if (HAL_SD_Erase(&uSdHandle, StartAddr, EndAddr) != SD_OK) {
+    if (HAL_SD_Erase(&uSdHandle, StartAddr, EndAddr) != HAL_OK) {
         return MSD_ERROR;
     } else {
         return MSD_OK;
@@ -245,8 +188,7 @@ uint8_t BSP_SD_Erase(uint64_t StartAddr, uint64_t EndAddr) {
   * @param  Params
   * @retval None
   */
-__weak void BSP_SD_MspInit(SD_HandleTypeDef *hsd, void *Params)
-{
+__weak void BSP_SD_MspInit(SD_HandleTypeDef *hsd, void *Params) {
     static DMA_HandleTypeDef dma_rx_handle;
     static DMA_HandleTypeDef dma_tx_handle;
 	uint16_t gpio_af;
@@ -421,12 +363,12 @@ void SD_DMAx_Rx_IRQHandler(void) {
   * @brief  Gets the current SD card data status.
   * @retval Data transfer state.
   *          This value can be one of the following values:
-  *            @arg  SD_TRANSFER_OK: No data transfer is acting
-  *            @arg  SD_TRANSFER_BUSY: Data transfer is acting
+  *            @arg  0: No data transfer is acting
+  *            @arg  1: Data transfer is acting
   *            @arg  SD_TRANSFER_ERROR: Data transfer error 
   */
-HAL_SD_TransferStateTypedef BSP_SD_GetStatus(void) {
-    return(HAL_SD_GetStatus(&uSdHandle));
+uint8_t BSP_SD_GetStatus(void) {
+    return (HAL_SD_GetCardState(&uSdHandle) == HAL_SD_CARD_TRANSFER) ? 0 : 1;
 }
 
 /**
@@ -434,9 +376,9 @@ HAL_SD_TransferStateTypedef BSP_SD_GetStatus(void) {
   * @param  CardInfo: Pointer to HAL_SD_CardInfoTypedef structure
   * @retval None 
   */
-void BSP_SD_GetCardInfo(HAL_SD_CardInfoTypedef *CardInfo) {
+void BSP_SD_GetCardInfo(HAL_SD_CardInfoTypeDef *CardInfo) {
     /* Get SD card Information */
-    HAL_SD_Get_CardInfo(&uSdHandle, CardInfo);
+    HAL_SD_GetCardInfo(&uSdHandle, CardInfo);
 }
 
 /**************************************************************/
@@ -506,7 +448,7 @@ DSTATUS TM_FATFS_SD_SDIO_disk_status(void) {
 
 DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {
 	DRESULT res = RES_ERROR;
-	HAL_SD_CardInfoTypedef CardInfo;
+	HAL_SD_CardInfoTypeDef CardInfo;
   
 	/* Check if init OK */
 	if (Stat & STA_NOINIT) {
@@ -528,13 +470,13 @@ DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {
 		/* Get number of sectors on the disk (DWORD) */
 		case GET_SECTOR_COUNT :
 			BSP_SD_GetCardInfo(&CardInfo);
-			*(DWORD *)buff = CardInfo.CardCapacity / SD_BLOCK_SIZE;
+			*(DWORD *)buff = CardInfo.LogBlockNbr;
 			res = RES_OK;
 			break;
 
 		/* Get erase block size in unit of sector (DWORD) */
 		case GET_BLOCK_SIZE :
-			*(DWORD*)buff = SD_BLOCK_SIZE;
+			*(DWORD*)buff = CardInfo.LogBlockSize;
 			break;
 
 		default:
@@ -545,17 +487,27 @@ DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
-	if (BSP_SD_ReadBlocks_DMA((uint32_t *)buff, (uint64_t)((uint64_t)sector * SD_BLOCK_SIZE), SD_BLOCK_SIZE, count) != MSD_OK) {
+    uint32_t timeout = 100000;
+	if (BSP_SD_ReadBlocks((uint32_t *)buff, sector, count, 1000) != MSD_OK) {
 		return RES_ERROR;
 	}
-	
+	while (BSP_SD_GetStatus() != MSD_OK) {
+        if (timeout-- == 0) {
+            return RES_ERROR;
+        }
+    }
 	return RES_OK;
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(const BYTE *buff, DWORD sector, UINT count) {
-	if (BSP_SD_WriteBlocks_DMA((uint32_t *)buff, (uint64_t)((uint64_t)sector * SD_BLOCK_SIZE), SD_BLOCK_SIZE, count) != MSD_OK) {
+    uint32_t timeout = 100000;
+	if (BSP_SD_WriteBlocks((uint32_t *)buff, sector, count, 1000) != MSD_OK) {
 		return RES_ERROR;
 	}
-	
+	while (BSP_SD_GetStatus() != MSD_OK) {
+        if (timeout-- == 0) {
+            return RES_ERROR;
+        }
+    }
 	return RES_OK;
 }
