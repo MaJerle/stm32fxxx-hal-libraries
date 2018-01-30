@@ -120,7 +120,7 @@ static void xmit_spi_multi (
 		}
 	} while (btx > 0);
 #else
-	TM_SPI_WriteMulti(FATFS_SPI, buff, 0xFF, btx);
+	TM_SPI_WriteMulti(FATFS_SPI, buff, btx);
 #endif
 }
 #endif
