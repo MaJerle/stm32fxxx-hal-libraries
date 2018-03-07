@@ -417,7 +417,7 @@ void TM_DISCO_LedToggle(uint16_t led);
  *            - LED_ORANGE: Orange led
  * @retval Led on status:
  *           - 0: Led is off
- *           - > 0: Led is on
+ *           - > 1: Led is on
  */
 #if defined(DISCO_USE_FUNCTIONS)
 uint16_t TM_DISCO_LedIsOn(uint16_t led);
@@ -439,7 +439,7 @@ uint16_t TM_DISCO_LedIsOn(uint16_t led);
  *            - LED_ALL: All leds
  * @param  state: Set or clear led 
  *            - 0: led is off
- *            - > 0: led is on
+ *            - > 1: led is on
  * @retval None
  */
 #define TM_DISCO_SetLed(led, state)    ((state) ? TM_DISCO_LedOn(led): TM_DISCO_LedOff(led))
@@ -449,7 +449,7 @@ uint16_t TM_DISCO_LedIsOn(uint16_t led);
  * @param  None
  * @retval Button status
  *            - 0: Button is not pressed
- *            - > 0: Button is pressed
+ *            - > 1: Button is pressed
  */
 #define TM_DISCO_ButtonPressed()       ((TM_GPIO_GetInputPinValue(DISCO_BUTTON_PORT, DISCO_BUTTON_PIN) == 0) != DISCO_BUTTON_PRESSED)
 
@@ -458,7 +458,7 @@ uint16_t TM_DISCO_LedIsOn(uint16_t led);
  * @param  None
  * @retval Button on pressed value
  *           - 0: In case that button has been already pressed on last call or was not pressed at all yet
- *           - > 0: Button was pressed, but state before was released
+ *           - > 1: Button was pressed, but state before was released
  */
 uint8_t TM_DISCO_ButtonOnPressed(void);
 
@@ -467,7 +467,7 @@ uint8_t TM_DISCO_ButtonOnPressed(void);
  * @param  None
  * @retval Button on released value
  *           - 0: In case that button has been already released on last call or was not released at all yet
- *           - > 0: Button was released, but state before was pressed
+ *           - > 1: Button was released, but state before was pressed
  */
 uint8_t TM_DISCO_ButtonOnReleased(void);
 
