@@ -172,7 +172,8 @@ uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, TM_ADC_Channel_t channel) {
 	HAL_ADC_PollForConversion(&AdcHandle, 10);
 
 	/* Check if the continous conversion of regular channel is finished */
-	if (HAL_ADC_GetState(&AdcHandle) == HAL_ADC_STATE_EOC_REG) {
+	if ((HAL_ADC_GetState(&AdcHandle) == HAL_ADC_STATE_EOC_REG)
+	    || (HAL_ADC_GetState(&AdcHandle) == (HAL_ADC_STATE_EOC_REG | HAL_ADC_STATE_READY))) {
 		/* Get the converted value of regular channel */
 		return HAL_ADC_GetValue(&AdcHandle);
 	}
