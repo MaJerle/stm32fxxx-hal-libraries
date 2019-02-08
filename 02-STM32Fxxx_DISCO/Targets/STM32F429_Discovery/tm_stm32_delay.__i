@@ -1,6 +1,0 @@
--c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I.\User -I.\TM -I..\00-STM32_LIBRARIES -I..\00-HAL_DRIVERS\STM32F4xx_HAL_Driver\Inc -I..\00-HAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include -I..\00-HAL_DRIVERS\CMSIS\Include
--I "C:\Users\MajerleT\Google Drive\ELECTRONICS\ARM\stm32fxxx\02-STM32Fxxx_DISCO\RTE"
--I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
--I C:\Keil_v5\ARM\CMSIS\Include
--D__UVISION_VERSION="516" -DSTM32F429xx -DSTM32F429xx -DUSE_HAL_DRIVER -DARM_MATH_CM4 -D__FPU_PRESENT="1" -DSTM32F4XX -DSTM32F429_DISCOVERY -DHSE_VALUE="8000000" -DRCC_OSCILLATORTYPE="RCC_OSCILLATORTYPE_HSE" -DRCC_PLLSOURCE="RCC_PLLSOURCE_HSE" -DRCC_PLLM="8" -DRCC_PLLN="360" -DRCC_PLLP="2" -DRCC_PLLQ="7"
--o .\targets\stm32f429_discovery\tm_stm32_delay.o --omf_browse .\targets\stm32f429_discovery\tm_stm32_delay.crf --depend .\targets\stm32f429_discovery\tm_stm32_delay.d "..\00-STM32_LIBRARIES\tm_stm32_delay.c"
