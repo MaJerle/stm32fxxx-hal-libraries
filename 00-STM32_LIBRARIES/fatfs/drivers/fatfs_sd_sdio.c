@@ -18,7 +18,7 @@
  */
 #include "fatfs_sd_sdio.h"
 
-uint8_t SDCARD_IsDetected(void);
+static uint8_t SDCARD_IsDetected(void);
 
 /* Status of SDCARD */
 static volatile DSTATUS Stat = STA_NOINIT;
