@@ -147,7 +147,7 @@ static int wait_ready (	/* 1:Ready, 0:Timeout */
 /*-----------------------------------------------------------------------*/
 /* Deselect card and release SPI                                         */
 /*-----------------------------------------------------------------------*/
-static void deselect (void) {
+static void deselect_card (void) {
 	FATFS_CS_HIGH;			/* CS = H */
 	TM_SPI_Send(FATFS_SPI, 0xFF);			/* Dummy clock (force DO hi-z for multiple slave SPI) */
 }
@@ -155,7 +155,7 @@ static void deselect (void) {
 /*-----------------------------------------------------------------------*/
 /* Select card and wait for ready                                        */
 /*-----------------------------------------------------------------------*/
-static int select (void)	/* 1:OK, 0:Timeout */
+static int select_card (void)	/* 1:OK, 0:Timeout */
 {
 	FATFS_CS_LOW;
 	TM_SPI_Send(FATFS_SPI, 0xFF);	/* Dummy clock (force DO enabled) */
@@ -163,7 +163,7 @@ static int select (void)	/* 1:OK, 0:Timeout */
 	if (wait_ready(500)) {
 		return 1;	/* OK */
 	}
-	deselect();
+	deselect_card();
 	return 0;	/* Timeout */
 }
 
@@ -237,8 +237,8 @@ static BYTE send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 
 	/* Select the card and wait for ready except to stop multiple block read */
 	if (cmd != CMD12) {
-		deselect();
-		if (!select()) return 0xFF;
+		deselect_card();
+		if (!select_card()) return 0xFF;
 	}
 
 	/* Send command packet */
@@ -323,7 +323,7 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 		}
 	}
 	TM_FATFS_SD_CardType = ty;	/* Card type */
-	deselect();
+	deselect_card();
 
 	if (ty) {			/* OK */
 		TM_FATFS_SD_Stat &= ~STA_NOINIT;	/* Clear STA_NOINIT flag */
@@ -391,7 +391,7 @@ DRESULT TM_FATFS_SD_disk_read (
 			send_cmd(CMD12, 0);				/* STOP_TRANSMISSION */
 		}
 	}
-	deselect();
+	deselect_card();
 
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
@@ -440,7 +440,7 @@ DRESULT TM_FATFS_SD_disk_write (
 			}
 		}
 	}
-	deselect();
+	deselect_card();
 
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
@@ -470,7 +470,7 @@ DRESULT TM_FATFS_SD_disk_ioctl (
 
 	switch (cmd) {
 		case CTRL_SYNC :		/* Wait for end of internal write process of the drive */
-			if (select()) res = RES_OK;
+			if (select_card()) res = RES_OK;
 			break;
 
 		/* Size in bytes for single sector */
@@ -531,7 +531,7 @@ DRESULT TM_FATFS_SD_disk_ioctl (
 			res = RES_PARERR;
 	}
 
-	deselect();
+	deselect_card();
 
 	return res;
 }
