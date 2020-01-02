@@ -1,12 +1,12 @@
 /**
- * @author  Tilen Majerle
+ * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
  * @version v1.0
  * @license MIT
 @verbatim
    ----------------------------------------------------------------------
-    Copyright (C) Tilen Majerle, 2015
+    Copyright (C) 2020 Tilen MAJERLE
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ extern "C" {
  *
  * \par About libraries
  *
- * These libraries are provided by Tilen Majerle and are developed under GNU GPL v3 licence. For more information about that, please check website of license.
+ * These libraries are provided by Tilen MAJERLE and are developed under GNU GPL v3 licence. For more information about that, please check website of license.
  *
  * To use it, I suppose you know C language and at least basics of STM32 devices (especially STM32F0, STM32F4 or STM32F7 series).
  *

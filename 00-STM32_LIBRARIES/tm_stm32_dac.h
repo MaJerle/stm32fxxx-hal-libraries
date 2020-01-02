@@ -1,5 +1,5 @@
 /**
- * @author  Tilen Majerle
+ * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net/2015/10/hal-library-28-digital-to-analog-converter-for-stm32fxxx/
  * @link    DAC library for ST32F0xx, STM32F4xx and STM32F7xx
@@ -10,7 +10,7 @@
  *	
 @verbatim
    ----------------------------------------------------------------------
-    Copyright (c) 2016 Tilen Majerle
+    Copyright (c) 2016 Tilen MAJERLE
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
