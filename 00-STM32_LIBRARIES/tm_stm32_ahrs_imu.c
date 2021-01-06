@@ -118,6 +118,10 @@ void TM_AHRSIMU_UpdateAHRS(TM_AHRSIMU_t* AHRSIMU, float gx, float gy, float gz, 
             hy = _2q0mx * AHRSIMU->_q3 + my * q0q0 - _2q0mz * AHRSIMU->_q1 + _2q1mx * AHRSIMU->_q2 - my * q1q1 + my * q2q2 + _2q2 * mz * AHRSIMU->_q3 - my * q3q3;
             _2bx = (float) sqrt(hx * hx + hy * hy);
             _2bz = -_2q0mx * AHRSIMU->_q2 + _2q0my * AHRSIMU->_q1 + mz * q0q0 + _2q1mx * AHRSIMU->_q3 - mz * q1q1 + _2q2 * my * AHRSIMU->_q3 - mz * q2q2 + mz * q3q3;
+            // #####  Correction START #####
+            _2bx *= 2.0f;
+            _2bz *= 2.0f;
+            // ##### Correction END #####
             _4bx = 2.0f * _2bx;
             _4bz = 2.0f * _2bz;
 
