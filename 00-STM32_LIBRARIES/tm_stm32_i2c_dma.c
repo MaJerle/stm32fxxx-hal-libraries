@@ -228,7 +228,7 @@ uint8_t TM_I2C_DMA_SendByte(I2C_TypeDef* I2Cx, uint8_t value, uint16_t count) {
 	TM_DMA_Start(&DMA_InitStruct, (uint32_t) &Settings->Dummy32, (uint32_t) &I2Cx->DR, count);
 	
 	/* Enable I2C TX DMA */
-	I2Cx->CR2 |= I2C_CR2_TXDMAEN;
+	I2Cx->CR2 |= I2C_CR2_DMAEN;
 	
 	/* Return OK */
 	return 1;
@@ -273,7 +273,7 @@ uint8_t TM_I2C_DMA_SendHalfWord(I2C_TypeDef* I2Cx, uint16_t value, uint16_t coun
 	TM_DMA_Start(&DMA_InitStruct, (uint32_t) &Settings->Dummy16, (uint32_t) &I2Cx->DR, count);
 	
 	/* Enable I2C TX DMA */
-	I2Cx->CR2 |= I2C_CR2_TXDMAEN;
+	I2Cx->CR2 |= I2C_CR2_DMAEN;
 	
 	/* Return OK */
 	return 1;
@@ -287,7 +287,7 @@ uint8_t TM_I2C_DMA_Transmitting(I2C_TypeDef* I2Cx) {
 	return (
 		Settings->RX_Stream->NDTR || /*!< RX is working */
 		Settings->TX_Stream->NDTR || /*!< TX is working */
-		I2C_IS_BUSY(I2Cx)            /*!< I2C is busy */
+		I2C_SR2_BUSY(I2Cx)           /*!< I2C is busy */
 	);
 }
 
