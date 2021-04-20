@@ -285,9 +285,9 @@ uint8_t TM_I2C_DMA_Transmitting(I2C_TypeDef* I2Cx) {
 	
 	/* Check if TX or RX DMA are working */
 	return (
-		Settings->RX_Stream->NDTR || /*!< RX is working */
-		Settings->TX_Stream->NDTR || /*!< TX is working */
-		I2C_IS_BUSY(I2Cx)            /*!< I2C is busy */
+		Settings->RX_Stream->NDTR ||      /*!< RX is working */
+		Settings->TX_Stream->NDTR ||      /*!< TX is working */
+		READ_BIT(I2Cx->SR2, I2C_SR2_BUSY) /*!< I2C is busy */
 	);
 }
 
