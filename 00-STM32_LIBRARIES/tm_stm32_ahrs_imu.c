@@ -50,7 +50,7 @@ void calculateAngles(TM_AHRSIMU_t* AHRSIMU) {
     }
 }
 
-void TM_AHRSIMU_Init(TM_AHRSIMU_t* AHRSIMU, float beta, float sampleRate, float inclination) {
+void TM_AHRSIMU_Init(TM_AHRSIMU_t* AHRSIMU, float sampleRate, float beta, float inclination) {
     AHRSIMU->_beta = beta;
     AHRSIMU->_sampleRate = 1 / sampleRate;
     AHRSIMU->Inclination = inclination;
