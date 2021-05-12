@@ -77,7 +77,7 @@ CHANNEL   ADC1   ADC2   ADC3
 6         PA6    PA6    PF8
 7         PA7    PA7    PF9
 8         PB0    PB0    PF10
-9         PB1    PB1    PF3
+9         PB1    PB1    PF11
 10        PC0    PC0    PC0
 11        PC1    PC1    PC1
 12        PC2    PC2    PC2
@@ -108,7 +108,6 @@ CHANNEL   ADC1   ADC2   ADC3
  */
 #include "stm32fxxx_hal.h"
 #include "defines.h"
-#include "tm_stm32_gpio.h"
 
 /**
  * @defgroup TM_ADC_Macros
@@ -131,6 +130,14 @@ CHANNEL   ADC1   ADC2   ADC3
 #else
 #define ADC_VBAT_MULTI			4
 #endif
+
+/**
+ * @brief  Choose pullup-pulldown style for analog inputs for ADC chanel confiuring
+ */
+#ifndef TM_ADC_PuPd
+#define TM_ADC_PuPd TM_GPIO_PuPd_DOWN
+#endif
+
 
 /**
  * @}
@@ -165,6 +172,7 @@ typedef enum {
 	TM_ADC_Channel_16,       /*!< Operate with ADC channel 16 */
 	TM_ADC_Channel_17,       /*!< Operate with ADC channel 17 */
 	TM_ADC_Channel_18       /*!< Operate with ADC channel 18 */
+	, TM_ADC_Channel_TOTAL
 } TM_ADC_Channel_t;
 
 /**
@@ -183,6 +191,14 @@ typedef enum {
  * @retval None
  */
 void TM_ADC_InitADC(ADC_TypeDef* ADCx);
+
+/**
+ * @brief  Initializes GPIO pin for ADCx channel
+ * @param  *ADCx: ADCx peripheral to operate with
+ * @param  channel: channel for ADCx. This parameter can be a value of @ref TM_ADC_Channel_t enumeration
+ * @retval None
+ */
+void TM_ADC_InitChanel(ADC_TypeDef* ADCx, TM_ADC_Channel_t channel);
 
 /**
  * @brief  Initializes ADCx with ADCx channel
